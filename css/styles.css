@@ -9,9 +9,9 @@
 /* GLOBAL - THEME TOKENS */
 :root {
     --txt: #000000;
-    --txt-light: #ffffff;
-    --txt-dark: #0d1b2a;
-    --txt-muted: #616161;
+    --txtLight: #ffffff;
+    --txtDark: #0d1b2a;
+    --txtMuted: #616161;
     --bg: #F6F6F6;
     --bg-light: #F6F6F6;
     --bg-dark: #141414;
@@ -34,11 +34,11 @@ body {
 }
 
 /* GLOBAL - DARK MODE OVERRIDES */
-body.dark-mode {
+body.darkMode {
     --txt: #ffffff;
-    --txt-light: #ffffff;
-    --txt-dark: #000000;
-    --txt-muted: #919191;
+    --txtLight: #ffffff;
+    --txtDark: #000000;
+    --txtMuted: #919191;
     --bg: #141414;
     --bg-light: #F6F6F6;
     --bg-dark: #141414;
@@ -58,7 +58,7 @@ section {
     color: var(--txt);
 }
 
-.theme-toggle {
+.themeToggle {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -73,68 +73,68 @@ section {
     transition: all 0.3s ease;
 }
 
-.theme-toggle:hover {
+.themeToggle:hover {
     background: var(--secondary);
-    color: var(--txt-light);
+    color: var(--txtLight);
 }
 
-body.dark-mode .theme-toggle {
+body.darkMode .themeToggle {
     background: var(--preto-fosco);
-    color: var(--txt-light);
+    color: var(--txtLight);
     border-color: var(--primary);
 }
 
-body.dark-mode .theme-toggle:hover {
+body.darkMode .themeToggle:hover {
     background: var(--primary);
-    color: var(--txt-light);
+    color: var(--txtLight);
 }
 
 /* GLOBAL - BACKGROUND UTILITIES */
-.bg-light {
+.bgLight {
     background-color: var(--bg-light);
-    color: var(--txt-dark);
+    color: var(--txtDark);
 }
 
-.bg-dark {
+.bgDark {
     background-color: var(--bg-dark);
-    color: var(--txt-light);
+    color: var(--txtLight);
 }
 
-.bg-primary {
+.bgPrimary {
     background-color: var(--primary);
-    color: var(--txt-light);
+    color: var(--txtLight);
 }
 
-.bg-secondary {
+.bgSecondary {
     background-color: var(--secondary);
     color: var(--txt);
 }
 
-.bg-tertiary {
+.bgTertiary {
     background-color: var(--tertiary);
     color: var(--txt);
 }
 
-.bg-hero {
-    background-color: var(--hero);
+.bgHeader {
+    background-color: var(--bg-header);
     color: var(--txt);
 }
 
-.txt-light {
-    color: var(--txt-light);
+.txtLight {
+    color: var(--txtLight);
 }
 
-.txt-dark {
+.txtDark {
     color: var(--txt);
 }
 
-.txt-muted {
-    color: var(--txt-muted);
+.txtMuted {
+    color: var(--txtMuted);
 }
 
-.btn-primary {
+.btnPrimary {
     background-color: var(--secondary);
-    color: var(--txt-light);
+    color: var(--txtLight);
     border: none;
     padding: 10px 24px;
     border-radius: 12px;
@@ -142,18 +142,18 @@ body.dark-mode .theme-toggle:hover {
     transition: background-color 0.3s ease;
 }
 
-.btn-primary.disable {
-    background-color: var(--txt-muted);
+.btnPrimary.disable {
+    background-color: var(--txtMuted);
     color: var(--bg);
     pointer-events: none;
 }
 
-.btn-primary:hover {
+.btnPrimary:hover {
     background-color: var(--primary);
-    color: var(--txt-light);
+    color: var(--txtLight);
 }
 
-.btn-outline {
+.btnOutline {
     background-color: transparent;
     color: var(--primary);
     border: 3px solid var(--secondary);
@@ -166,7 +166,7 @@ body.dark-mode .theme-toggle:hover {
         color 0.3s ease;
 }
 
-.btn-outline.darkmode {
+.btnOutline.darkmode {
     background-color: transparent;
     color: var(--primary);
     border: 3px solid var(--secondary);
@@ -179,24 +179,24 @@ body.dark-mode .theme-toggle:hover {
         color 0.3s ease;
 }
 
-.btn-outline.disable {
-    color: var(--txt-muted);
-    border: 3px solid var(--txt-muted);
+.btnOutline.disable {
+    color: var(--txtMuted);
+    border: 3px solid var(--txtMuted);
     pointer-events: none;
 }
 
-.btn-outline:hover {
+.btnOutline:hover {
     background-color: var(--primary) !important;
-    color: var(--txt-light) !important;
+    color: var(--txtLight) !important;
     border: 3px solid var(--primary) !important;}
 
-.btn-outline.darkmode:hover {
+.btnOutline.darkmode:hover {
     background-color: var(--primary) !important;
-    color: var(--txt-light) !important;
+    color: var(--txtLight) !important;
     border: 3px solid var(--txt) !important;
 }
 
-.btn-tamanho {
+.btnTamanho {
     width: 50px;
     height: 50px;
     font-size: 20px;
@@ -208,23 +208,23 @@ body.dark-mode .theme-toggle:hover {
     background-color: var(--branco-cinzento);
 }
 
-.btn-tamanho.active {
+.btnTamanho.active {
     background-color: var(--bg-light);
     border: var(--primary);
     border: 2px solid var(--primary);
     color: var(--primary);
 }
 
-.btn-tamanho.darkmode {
+.btnTamanho.darkmode {
     background-color: var(--cinza);
-    color: var(--txt-light);
+    color: var(--txtLight);
 }
 
-.btn-tamanho.active.darkmode {
+.btnTamanho.active.darkmode {
     background-color: var(--secondary);
     border: var(--primary);
-    border: 2px solid var(--txt-light);
-    color: var(--txt-light);
+    border: 2px solid var(--txtLight);
+    color: var(--txtLight);
 }
 
 .link {
@@ -256,6 +256,11 @@ body.dark-mode .theme-toggle:hover {
     font-weight: 600;
 }
 
+.subTitleCard {
+    font-size: 20px;
+    font-weight: 600;
+}
+
 .sectTitle {
     font-size: 32px;
     font-weight: bold;
@@ -273,6 +278,11 @@ body.dark-mode .theme-toggle:hover {
 .font36 {
     font-size: 36px;
     font-weight: bold;
+}
+
+.font20 {
+    font-size: 20px;
+    font-weight: normal;
 }
 
 p {
@@ -300,7 +310,7 @@ input.form-control {
 
 input::placeholder,
 textarea::placeholder {
-    color: var(--txt-muted-dark) !important;
+    color: var(--txtMuted-dark) !important;
 }
 
 input:focus,
@@ -313,7 +323,7 @@ textarea:focus {
 
 select {
     padding: 10px !important;
-    color: var(--txt-muted) !important;
+    color: var(--txtMuted) !important;
     border-radius: 12px !important;
     border: 2px solid var(--secondary) !important;
     outline: none !important;
@@ -322,11 +332,11 @@ select {
 
 @media (max-width: 992px) {
 
-    .btn-primary {
+    .btnPrimary {
         padding: 8px 14px;
     }
 
-    .btn-outline {
+    .btnOutline {
         padding: 8px 14px;
     }
 
@@ -354,12 +364,12 @@ select {
 
 @media (max-width: 576px) {
 
-    .btn-primary {
+    .btnPrimary {
         font-size: small;
         padding: 8px 12px;
     }
 
-    .btn-outline {
+    .btnOutline {
         padding: 8px 12px;
     }
 
