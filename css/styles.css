@@ -8,14 +8,14 @@
 
 /* GLOBAL - THEME TOKENS */
 :root {
-    --txt: #141414;
+    --txt: #000000;
     --txt-light: #ffffff;
     --txt-dark: #0d1b2a;
-    --txt-muted: #919191;
+    --txt-muted: #616161;
     --bg: #F6F6F6;
     --bg-light: #F6F6F6;
     --bg-dark: #141414;
-    --bg-header: #E8E8E8;
+    --bg-header: #F6F6F6;
     --primary: #B90504;
     --secondary: #990100;
     --tertiary: #D74B4A;
@@ -34,10 +34,10 @@ body {
 }
 
 /* GLOBAL - DARK MODE OVERRIDES */
-section.dark-mode {
+body.dark-mode {
     --txt: #ffffff;
     --txt-light: #ffffff;
-    --txt-dark: #141414;
+    --txt-dark: #000000;
     --txt-muted: #919191;
     --bg: #141414;
     --bg-light: #F6F6F6;
@@ -58,20 +58,51 @@ section {
     color: var(--txt);
 }
 
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 24px;
+    padding: 10px 16px;
+    border: 2px solid var(--secondary);
+    border-radius: 999px;
+    background: var(--bg-light);
+    color: var(--txt);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--secondary);
+    color: var(--txt-light);
+}
+
+body.dark-mode .theme-toggle {
+    background: var(--preto-fosco);
+    color: var(--txt-light);
+    border-color: var(--primary);
+}
+
+body.dark-mode .theme-toggle:hover {
+    background: var(--primary);
+    color: var(--txt-light);
+}
+
 /* GLOBAL - BACKGROUND UTILITIES */
 .bg-light {
     background-color: var(--bg-light);
-    color: var(--txt-light);
+    color: var(--txt-dark);
 }
 
 .bg-dark {
     background-color: var(--bg-dark);
-    color: var(--txt-dark);
+    color: var(--txt-light);
 }
 
 .bg-primary {
     background-color: var(--primary);
-    color: var(--txt);
+    color: var(--txt-light);
 }
 
 .bg-secondary {
@@ -124,10 +155,24 @@ section {
 
 .btn-outline {
     background-color: transparent;
-    color: var(--tertiary);
-    border: 2px solid var(--secondary);
+    color: var(--primary);
+    border: 3px solid var(--secondary);
     padding: 8px 22px;
     border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        all 0.3s ease,
+        color 0.3s ease;
+}
+
+.btn-outline.darkmode {
+    background-color: transparent;
+    color: var(--primary);
+    border: 3px solid var(--secondary);
+    padding: 8px 22px;
+    border-radius: 12px;
+    font-weight: 600;
     cursor: pointer;
     transition:
         all 0.3s ease,
@@ -136,14 +181,19 @@ section {
 
 .btn-outline.disable {
     color: var(--txt-muted);
-    border: 2px solid var(--txt-muted);
+    border: 3px solid var(--txt-muted);
     pointer-events: none;
 }
 
 .btn-outline:hover {
-    background-color: var(--secondary) !important;
+    background-color: var(--primary) !important;
     color: var(--txt-light) !important;
-    border: 2px solid var(--txt) !important;
+    border: 3px solid var(--primary) !important;}
+
+.btn-outline.darkmode:hover {
+    background-color: var(--primary) !important;
+    color: var(--txt-light) !important;
+    border: 3px solid var(--txt) !important;
 }
 
 .btn-tamanho {
@@ -153,6 +203,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     background-color: var(--branco-cinzento);
 }
@@ -160,42 +211,61 @@ section {
 .btn-tamanho.active {
     background-color: var(--bg-light);
     border: var(--primary);
+    border: 2px solid var(--primary);
+    color: var(--primary);
 }
 
-p {
-    font-size: 1rem;
+.btn-tamanho.darkmode {
+    background-color: var(--cinza);
+    color: var(--txt-light);
 }
 
-h1 {
-    font-size: 36px;
-    font-weight: bold;
+.btn-tamanho.active.darkmode {
+    background-color: var(--secondary);
+    border: var(--primary);
+    border: 2px solid var(--txt-light);
+    color: var(--txt-light);
 }
 
-h2 {
-    font-size: 20px;
-    font-weight: semi-bold;
+.link {
+    color: var(--primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-h3 {
-    font-size: 16px;
-    font-weight: semi-bold;
+.link:hover {
+    color: var(--tertiary);
+}
+
+.link.darkmode {
+    color: var(--tertiary);
+}
+
+.link.darkmode:hover {
+    color: var(--primary);
 }
 
 .mainTitle {
-    font-size: 44px;
+    font-size: 40px;
     font-weight: bold;
 }
 
 .subTitle {
-    font-size: 20px;
+    font-size: 28px;
     font-weight: 600;
+}
+
+.sectTitle {
+    font-size: 32px;
+    font-weight: bold;
 }
 
 .cardTitle {
     font-size: 24px;
     font-weight: bold;
 }
-
+ 
 .textCenter {
     text-align: center;
 }
@@ -203,6 +273,10 @@ h3 {
 .font36 {
     font-size: 36px;
     font-weight: bold;
+}
+
+p {
+    font-size: 1rem;
 }
 
 .mb64 {
@@ -247,24 +321,6 @@ select {
 }
 
 @media (max-width: 992px) {
-    h1 {
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-    h2 {
-        font-size: 16px;
-        font-weight: semi-bold;
-    }
-
-    h3 {
-        font-size: 14px;
-        font-weight: semi-bold;
-    }
-
-    p {
-        font-size: 1rem;
-    }
 
     .btn-primary {
         padding: 8px 14px;
@@ -284,27 +340,19 @@ select {
         font-weight: semi-bold;
     }
 
-}
-
-@media (max-width: 576px) {
-    h1 {
-        font-size: 24px;
+    .sectTitle {
+        font-size: 28px;
         font-weight: bold;
     }
 
-    h2 {
-        font-size: 16px;
-        font-weight: semi-bold;
+    .cardTitle {
+        font-size: 22px;
+        font-weight: bold;
     }
 
-    h3 {
-        font-size: 14px;
-        font-weight: semi-bold;
-    }
+}
 
-    p {
-        font-size: 12px;
-    }
+@media (max-width: 576px) {
 
     .btn-primary {
         font-size: small;
