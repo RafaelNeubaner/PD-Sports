@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const body = document.body;
 	const storageKey = "pd-sports-theme";
 	const themeTargets = document.querySelectorAll(
-		".btn-primary, .btn-outline, .btn-tamanho, .link"
+		".btnPrimary, .btnOutline, .btnTamanho, .link"
 	);
 
 	const syncThemeClasses = (isDark) => {
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	const setTheme = (isDark) => {
-		body.classList.toggle("dark-mode", isDark);
+		body.classList.toggle("darkMode", isDark);
 		syncThemeClasses(isDark);
 
 		if (themeToggle) {
@@ -33,11 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (themeToggle) {
 		themeToggle.addEventListener("click", () => {
-			setTheme(!body.classList.contains("dark-mode"));
+			setTheme(!body.classList.contains("darkMode"));
 		});
 	}
 
-	document.querySelectorAll(".btn-tamanho").forEach((button) => {
+	document.querySelectorAll(".btnTamanho").forEach((button) => {
 		button.addEventListener("click", () => {
 			const group = button.parentElement;
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				return;
 			}
 
-			group.querySelectorAll(".btn-tamanho").forEach((otherButton) => {
+			group.querySelectorAll(".btnTamanho").forEach((otherButton) => {
 				otherButton.classList.remove("active");
 			});
 
