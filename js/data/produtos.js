@@ -2410,18 +2410,21 @@ async function insertProdutos(products, endpoint) {
     }
 }
 
+/*
 for(let i=0; i < products.length; i++){
     products[i].isProduct2=false
 }
 await insertProdutos(products, "product")
+*/
 
+/*
 for(let i=0; i < products2.length; i++){
     products2[i].isProduct2=true
     products2[i].id = `${101+i}`
 }
     
 await insertProdutos(products2, "product2")
-
+*/
 
 // var produtos = await getProdutos()
 
@@ -2434,4 +2437,4 @@ await insertProdutos(products2, "product2")
 //     await delay(500)
 // }
 
-console.log(await getProductsFilter("Bermuda", null, null, true))
+//console.log(await getProductsFilter("Bermuda", null, null, true))
