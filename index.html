@@ -65,7 +65,7 @@
               id="logo"
           /></a>
 
-          <article class="containerSearch">
+          <search class="containerSearch">
             <a class="navbar-brand d-none d-md-block" href="index.html">
               <img
                 src="assets/media/logo/logo-light.svg"
@@ -109,6 +109,13 @@
                 <i class="bi bi-search"></i>
               </button>
 
+
+              <li class="nav-item">
+                <a id="themeToggle"
+                class="themeToggle"
+                aria-pressed="false"><i class="bi bi-moon-stars"></i></a>
+              </li>
+              
               <li class="nav-item">
                 <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
               </li>
@@ -121,7 +128,7 @@
                 >
               </li>
             </ul>
-          </article>
+          </search>
 
           <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
             <form>
@@ -136,7 +143,7 @@
             </form>
           </div>
 
-          <nav class="collapse navbar-collapse" id="navbarNav">
+          <menu class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item d-block d-sm-none">
                 <a href="#" class="nav-link"
@@ -174,7 +181,7 @@
                 <a class="nav-link" href="#">Sobre nós</a>
               </li>
             </ul>
-          </nav>
+          </menu>
         </div>
       </nav>
     </header>
@@ -201,11 +208,6 @@
     </section>
 
     <script src="js/scripts.js" defer></script>
-    
-    <button id="themeToggle" class="themeToggle" type="button" aria-pressed="false">
-      <i class="bi bi-moon-stars"></i>
-      
-    </button>
 
     <section id="testeClaro">
       <p class="mainTitle">titulo</p>
@@ -219,9 +221,10 @@
       <p class="btnTamanho active">40</p>
       <p class="link">Link</p>
     </section>
-
   </body>
   <footer class="bgHeader">
-    <p class="textCenter font20">© PD Sports 2026 | Desenvolvido por Pablo, Pedro e Rafael.</p>
+    <p class="textCenter font20">
+      © PD Sports 2026 | Desenvolvido por Pablo, Pedro e Rafael.
+    </p>
   </footer>
 </html>
