@@ -6,6 +6,14 @@
     <title>Document</title>
     <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -20,6 +28,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/header.css" />
 
     <!-- Scripts -->
     <script
@@ -36,63 +45,106 @@
     <header>
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          
           <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <article class="container-search">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-            <a class="navbar-brand" href="">PD Sports</a>
+          <a class="navbar-brand d-block d-md-none" href="index.html"
+            ><img
+              src="assets/media/logo/logo-light.svg"
+              alt="PD Sports"
+              id="logo"
+          /></a>
 
-            <form class="input-group">
+          <article class="containerSearch">
+            <a class="navbar-brand d-none d-md-block" href="index.html">
+              <img
+                src="assets/media/logo/logo-light.svg"
+                alt="PD Sports"
+                id="logo"
+              />
+            </a>
+
+            <form class="d-none d-md-flex position-relative inputForm">
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+                aria-label="Pesquisar produtos"
+              />
+              <button class="btn" type="button" id="button-search-desktop">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+
+            <ul class="navbar-nav align-items-center">
+              <li class="nav-item d-block d-lg-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i
+                ></a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i>Tire suas dúvidas</a
+                >
+              </li>
+
               <button
-                class="btn btn-outline-secondary"
+                class="btn d-block d-md-none"
                 type="button"
-                id="button-search"
+                data-bs-toggle="collapse"
+                data-bs-target="#mobileSearchBox"
+                aria-expanded="false"
+                aria-controls="mobileSearchBox"
               >
                 <i class="bi bi-search"></i>
               </button>
 
-              <input
-                type="text"
-                class="form-control"
-                placeholder="O que você está procurando?"
-                aria-label="Pesquisar produtos"
-                aria-describedby="button-search"
-              />
-            </form>
-
-            <ul class="navbar-nav">
-              <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-question-circle"></i>Tire suas dúvidas</a></li>
-            </ul>
-
-            <ul class="navbar-nav">
-              <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-cart3"></i></a></li>
-            </ul>
-            
-            <ul class="navbar-nav">
-              <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-person"></i></a></li>
-            </ul>
-
-            <ul class="navbar-nav">
-              <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-box-arrow-in-right"></i>Entrar</a></li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-box-arrow-in-right"></i>Entrar</a
+                >
+              </li>
             </ul>
           </article>
 
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Home</a>
+          <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
+            <form>
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+              />
+              <button class="btn" type="button">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+          </div>
+
+          <nav class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item d-block d-sm-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
+                    class="bi bi-chevron-right ms-1"
+                  ></i
+                ></a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="#">Esportes</a>
               </li>
@@ -108,22 +160,43 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Promoções</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item d-none d-lg-block">
                 <a class="nav-link" href="#">Futebol</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item d-none d-lg-block">
                 <a class="nav-link" href="#">Corrida</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item d-none d-lg-block">
                 <a class="nav-link" href="#">Marcas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Sobre nós</a>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
       </nav>
     </header>
+
+    <section id="testeClaro">
+      <p class="mainTitle">titulo</p>
+      <p class="subTitle">subtitulo</p>
+      <p class="cardTitle">card titulo</p>
+      <p class="text-dark">Paragrafo</p>
+      <p class="text-muted">Muted Text</p>
+      <p class="btn-primary">Botão Principal</p>
+      <p class="btn-outline">Botão Outline</p>
+      <p class="btn-tamanho">40</p>
+    </section>
+    <section class="dark-mode" id="testeEscuro">
+      <p class="mainTitle">titulo</p>
+      <p class="subTitle">subtitulo</p>
+      <p class="cardTitle">card titulo</p>
+      <p class="text">Paragrafo</p>
+      <p class="txt-muted">Muted Text</p>
+      <p class="btn-primary">Botão Principal</p>
+      <p class="btn-outline">Botão Outline</p>
+      <p class="btn-tamanho">40</p>
+    </section>
   </body>
 </html>
