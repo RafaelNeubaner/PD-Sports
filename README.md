@@ -49,7 +49,7 @@ O projeto está sendo desenvolvido pela equipe **Q1 Vênus – Manhã**:
 
 ### Padrões de Nomenclatura
 Definimos padrões a serem adotados+ para garantir a manutenibilidade do código:
-* **Código (JS):** Variáveis, funções e classes utilizam `camelCase`.
+* **Código:** Variáveis, funções e classes utilizam `camelCase`.
 * **Estrutura:** Pastas, arquivos e branches utilizam `kebab-case`.
 
 ### 🗂️Estrutura de Pastas
@@ -74,7 +74,7 @@ Seguimos o fluxo de branches para organização:
 
 * `develop:` Integração de novas funcionalidades.
 
-* `feature/*:` Desenvolvimento de funcionalidades específicas.
+* `feat/*:` Desenvolvimento de funcionalidades específicas.
 
 **Commits (Conventional Commits)**
 As mensagens de commit devem seguir o padrão:
@@ -82,7 +82,6 @@ As mensagens de commit devem seguir o padrão:
 
 * `feat:` Nova funcionalidade.
 * `fix:` Correção de erro.
-
 * `docs:` Alteração em documentação.
 
 

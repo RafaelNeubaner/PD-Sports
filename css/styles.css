@@ -2,4 +2,388 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+/* GLOBAL - THEME TOKENS */
+:root {
+    --txt: #000000;
+    --txtLight: #ffffff;
+    --txtDark: #0d1b2a;
+    --txtMuted: #616161;
+    --bg: #F6F6F6;
+    --bg-light: #F6F6F6;
+    --bg-dark: #141414;
+    --bg-header: #F6F6F6;
+    --primary: #B90504;
+    --secondary: #990100;
+    --tertiary: #D74B4A;
+    --amarelo-pastel: #FFDB79;
+    --branco-cinzento: #E8E8E8;
+    --cinza: #454545;
+    --cinza-escuro: #333333;
+    --preto-fosco: #252525;
+}
+
+/* GLOBAL - BASE */
+body {
+    background-color: var(--bg);
+    color: var(--txt);
+    overflow-x: hidden;
+}
+
+/* GLOBAL - DARK MODE OVERRIDES */
+body.darkMode {
+    --txt: #ffffff;
+    --txtLight: #ffffff;
+    --txtDark: #000000;
+    --txtMuted: #919191;
+    --bg: #141414;
+    --bg-light: #F6F6F6;
+    --bg-dark: #141414;
+    --bg-header: #990100;
+    --primary: #B90504;
+    --secondary: #990100;
+    --tertiary: #D74B4A;
+    --amarelo-pastel: #FFDB79;
+    --branco-cinzento: #E8E8E8;
+    --cinza: #454545;
+    --cinza-escuro: #333333;
+    --preto-fosco: #252525;
+}
+
+section {
+    background-color: var(--bg);
+    color: var(--txt);
+}
+
+.themeToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 24px;
+    padding: 10px 16px;
+    border: 2px solid var(--secondary);
+    border-radius: 999px;
+    background: var(--bg-light);
+    color: var(--txt);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.themeToggle:hover {
+    background: var(--secondary);
+    color: var(--txtLight);
+}
+
+body.darkMode .themeToggle {
+    background: var(--preto-fosco);
+    color: var(--txtLight);
+    border-color: var(--primary);
+}
+
+body.darkMode .themeToggle:hover {
+    background: var(--primary);
+    color: var(--txtLight);
+}
+
+/* GLOBAL - BACKGROUND UTILITIES */
+.bgLight {
+    background-color: var(--bg-light);
+    color: var(--txtDark);
+}
+
+.bgDark {
+    background-color: var(--bg-dark);
+    color: var(--txtLight);
+}
+
+.bgPrimary {
+    background-color: var(--primary);
+    color: var(--txtLight);
+}
+
+.bgSecondary {
+    background-color: var(--secondary);
+    color: var(--txt);
+}
+
+.bgTertiary {
+    background-color: var(--tertiary);
+    color: var(--txt);
+}
+
+.bgHeader {
+    background-color: var(--bg-header);
+    color: var(--txt);
+}
+
+.txtLight {
+    color: var(--txtLight);
+}
+
+.txtDark {
+    color: var(--txt);
+}
+
+.txtMuted {
+    color: var(--txtMuted);
+}
+
+.btnPrimary {
+    background-color: var(--secondary);
+    color: var(--txtLight);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btnPrimary.disable {
+    background-color: var(--txtMuted);
+    color: var(--bg);
+    pointer-events: none;
+}
+
+.btnPrimary:hover {
+    background-color: var(--primary);
+    color: var(--txtLight);
+}
+
+.btnOutline {
+    background-color: transparent;
+    color: var(--primary);
+    border: 3px solid var(--secondary);
+    padding: 8px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        all 0.3s ease,
+        color 0.3s ease;
+}
+
+.btnOutline.darkmode {
+    background-color: transparent;
+    color: var(--primary);
+    border: 3px solid var(--secondary);
+    padding: 8px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        all 0.3s ease,
+        color 0.3s ease;
+}
+
+.btnOutline.disable {
+    color: var(--txtMuted);
+    border: 3px solid var(--txtMuted);
+    pointer-events: none;
+}
+
+.btnOutline:hover {
+    background-color: var(--primary) !important;
+    color: var(--txtLight) !important;
+    border: 3px solid var(--primary) !important;}
+
+.btnOutline.darkmode:hover {
+    background-color: var(--primary) !important;
+    color: var(--txtLight) !important;
+    border: 3px solid var(--txt) !important;
+}
+
+.btnTamanho {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: var(--branco-cinzento);
+}
+
+.btnTamanho.active {
+    background-color: var(--bg-light);
+    border: var(--primary);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btnTamanho.darkmode {
+    background-color: var(--cinza);
+    color: var(--txtLight);
+}
+
+.btnTamanho.active.darkmode {
+    background-color: var(--secondary);
+    border: var(--primary);
+    border: 2px solid var(--txtLight);
+    color: var(--txtLight);
+}
+
+.link {
+    color: var(--primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: var(--tertiary);
+}
+
+.link.darkmode {
+    color: var(--tertiary);
+}
+
+.link.darkmode:hover {
+    color: var(--primary);
+}
+
+.mainTitle {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.subTitle {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.subTitleCard {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.sectTitle {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.cardTitle {
+    font-size: 24px;
+    font-weight: bold;
+}
+ 
+.textCenter {
+    text-align: center;
+}
+
+.font36 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.font20 {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+p {
+    font-size: 1rem;
+}
+
+.mb64 {
+    margin-bottom: 64px;
+}
+
+.mb48 {
+    margin-bottom: 48px;
+}
+
+input,
+textarea,
+input.form-control {
+    padding: 10px !important;
+    border-radius: 12px !important;
+    border: 2px solid var(--secondary) !important;
+    outline: none;
+    background-color: transparent !important;
+    color: var(--txt) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--txtMuted-dark) !important;
+}
+
+input:focus,
+textarea:focus {
+    background-color: var(--text-dark) !important;
+    border: 2px solid var(--primary) !important;
+    color: var(--txt) !important;
+    box-shadow: 0 0 0 0.2rem rgba(110, 159, 216, 0.25);
+}
+
+select {
+    padding: 10px !important;
+    color: var(--txtMuted) !important;
+    border-radius: 12px !important;
+    border: 2px solid var(--secondary) !important;
+    outline: none !important;
+    background-color: var(--bg) !important;
+}
+
+@media (max-width: 992px) {
+
+    .btnPrimary {
+        padding: 8px 14px;
+    }
+
+    .btnOutline {
+        padding: 8px 14px;
+    }
+
+    .mainTitle {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .subTitle {
+        font-size: 18px;
+        font-weight: semi-bold;
+    }
+
+    .sectTitle {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .cardTitle {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .btnPrimary {
+        font-size: small;
+        padding: 8px 12px;
+    }
+
+    .btnOutline {
+        padding: 8px 12px;
+    }
+
+    .mainTitle {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .subTitle {
+        font-size: 16px;
+        font-weight: semi-bold;
+    }
+
 }
