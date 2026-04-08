@@ -1,0 +1,179 @@
+main {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 4.8rem;
+  padding: 0 2.4rem;
+
+  margin: 0 auto;
+}
+
+/* PD SPORTS - SECTION OFERTAS SEMANA */
+.ofertas {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.ofertas .carrosselOfertas {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  width: 100%; 
+}
+
+.slider-wrapper {
+  overflow-x: auto; 
+  scroll-behavior: smooth; 
+  scrollbar-width: none;
+  -ms-overflow-style: none;  
+  width: 100%;
+}
+
+
+.slider-wrapper::-webkit-scrollbar { 
+  display: none;
+}
+
+
+.slider-track {
+  display: flex;
+  gap: 1.6rem; 
+  padding: 0.8rem ;
+}
+
+
+.slider-item {
+  flex: 0 0 calc(50% - 0.8rem); 
+  max-width: 300px;
+}
+
+.ofertas hgroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.ofertas .carrosselOfertas .slider-item {
+  padding: 0;
+  margin: 0;
+}
+
+.ofertas hgroup .veja-mais {
+  background-color: transparent;
+  color: var(--txtDark);
+  border: none;
+
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1.2rem;
+  
+}
+
+.ofertas hgroup .veja-mais i {
+  font-size: 1.6rem;
+}
+
+.ofertas .card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1rem;
+  background-color: transparent;
+  margin: 0;
+  border: none;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+
+.ofertas .cardImgProduto {
+  object-fit: contain; 
+  height: 120px; 
+}
+
+.ofertas .card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  padding: 0;
+}
+
+.badge {
+  background-color: #9900007e;
+  color: var(--txt-light);
+  font-size: 1.2rem;
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ofertas .card .card-body span>sub {
+  font-size: 1rem;
+  color: var(--txtMuted);
+}
+
+/* Botões de Controle (< e >) */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--secondary);
+  color: var(--txtLight);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.carousel-control.prev { left: 0; }
+.carousel-control.next { right: 0; }
+
+
+@media (min-width: 768px) {
+  .slider-item {
+    flex: 0 0 calc(33.333% - 1.1rem); 
+  }
+}
+
+@media (min-width: 992px) {
+  main {
+    /* margin: 0 12.8rem; */
+    max-width: 1200px;
+  }
+
+  .ofertas .carrosselOfertas {
+     padding: 0 40px;
+  }
+
+  .slider-item {
+    flex: 0 0 calc(25% - 1.2rem); 
+  }
+
+}
+
+@media ( min-width: 768px) and (max-width: 991px) {
+  main {
+    padding: 0 4.8rem;
+  }
+  
+  .carrosselOfertas { padding: 0; } 
+}
