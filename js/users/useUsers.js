@@ -32,6 +32,10 @@ export async function createUser(user){
         }
     )
 
+    if(!response.ok){
+        throw new Error("Ocorreu um erro ao cadastrar esse usuário")
+    }
+
     const newUser = await response.json()
     return newUser;
 }
@@ -54,6 +58,10 @@ export async function updateUser(id, user){
         body: JSON.stringify(user)
     })
 
+    if(!response.ok){
+        throw new Error("Ocorreu um erro ao atualizar o usuário")
+    }
+
     const userResponse = await response.json()
 
     return userResponse;
@@ -75,6 +83,10 @@ export async function deleteUser(id){
         }
     })
 
+    if(!response.ok){
+        throw new Error("Usuário não encontrado")
+    }
+
     const userResponse = await response.json()
 
     return userResponse;
@@ -95,6 +107,34 @@ export async function getUserById(id){
             'Content-Type': 'application/json'
         }
     })
+
+    if(!response.ok){
+        throw new Error("Usuário não encontrado")
+    }
+
+    const userResponse = await response.json()
+    return userResponse
+}
+
+/**
+ * Função para buscar um usuário pelo ID
+ * 
+ * @param {string} id
+ * 
+ * @return {User}
+ */
+export async function getUserByEmail(email){
+    const response = await fetch(`${BASE_URL}users?email=${email}`, {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(!response.ok){
+        throw new Error("Email não encontrado")
+    }
 
     const userResponse = await response.json()
     return userResponse
