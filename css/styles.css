@@ -65,30 +65,26 @@ section {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    margin: 24px;
-    padding: 10px 16px;
-    border: 2px solid var(--secondary);
-    border-radius: 999px;
-    background: var(--bg-light);
-    color: var(--txt);
+    border: none;
+    background-color: transparent;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .themeToggle:hover {
-    background: var(--secondary);
+    
     color: var(--txtLight);
 }
 
 body.darkMode .themeToggle {
-    background: var(--preto-fosco);
-    color: var(--txtLight);
-    border-color: var(--primary);
+    background-color: transparent;
+    color: var(--txtD);
+    
 }
 
 body.darkMode .themeToggle:hover {
-    background: var(--primary);
+    background-color: transparent;
     color: var(--txtLight);
 }
 
@@ -248,6 +244,7 @@ body.darkMode .themeToggle:hover {
 .link.darkmode:hover {
     color: var(--primary);
 }
+
 
 .mainTitle {
     font-size: 40px;
