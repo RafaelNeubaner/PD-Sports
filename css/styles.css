@@ -227,6 +227,13 @@ body.darkMode .themeToggle:hover {
     color: var(--txtLight);
 }
 
+.link2 {
+    color: var(--txt);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .link {
     color: var(--primary);
     text-decoration: none;
@@ -283,6 +290,11 @@ body.darkMode .themeToggle:hover {
 .font20 {
     font-size: 20px;
     font-weight: normal;
+}
+
+.txtFooter {
+    font-size: 14px;
+    color: var(--txtMuted);
 }
 
 p {
