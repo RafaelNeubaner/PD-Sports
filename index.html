@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>PD Sports</title>
     <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
 
     <!-- Google Fonts -->
@@ -39,8 +39,9 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- Custom JS -->
-    <script src="js/script.js" defer></script>
+    <script type="module" src="js/scripts.js" defer></script>
+    <script type="module" src="js/product-card.js" defer></script>
+  </head>
   </head>
   <body>
     <!-- HEADER -->
@@ -197,7 +198,7 @@
           </button>
         </hgroup>
 
-        <div class="carrosselOfertas position-relative">
+        <div class="carrossel position-relative">
           
           <button class="btn-primary carousel-control prev d-none d-lg-flex" id="btnLeftUnits">
             <i class="bi bi-chevron-left"></i>
@@ -205,105 +206,7 @@
 
           <div class="slider-wrapper" id="sliderWrapper">
             <div class="slider-track sliderContainer" id="sliderTrack">
-              
-              <article class="slider-item">
-                <div class="card">
-                  <span class="badge text-badge">
-                    <img src="/assets/media/icons/icone-desconto.svg" alt="icone desconto"> Desconto
-                  </span>
-
-                  <img src="/assets/media/img/produtos/futsal/chuteira-futsal-1.png" class="cardImgProduto card-img-top" alt="imagem do produto" />
-
-                  <hgroup class="card-body">
-                    <h3 class="card-title m-0 cardTitle">Nome do Produto</h3>
-                    <p class="card-text preco-antigo txtMuted mb-0"><s>R$ 89,99</s></p>
-                    <span class="subTitleCard txtDark" itemprop="price">R$ 69,99 <sub>no PIX</sub></span>
-                  </hgroup>
-                </div>
-              </article>
-
-              <article class="slider-item">
-                <div class="card">
-                  <span class="badge text-badge">
-                    <img src="/assets/media/icons/icone-desconto.svg" alt="icone desconto"> Desconto
-                  </span>
-
-                  <img src="/assets/media/img/produtos/futsal/chuteira-futsal-1.png" class="cardImgProduto card-img-top" alt="imagem do produto" />
-
-                  <hgroup class="card-body">
-                    <h3 class="card-title m-0 cardTitle">Nome do Produto</h3>
-                    <p class="card-text preco-antigo txtMuted mb-0"><s>R$ 89,99</s></p>
-                    <span class="subTitleCard txtDark" itemprop="price">R$ 69,99 <sub>no PIX</sub></span>
-                  </hgroup>
-                </div>
-              </article>
-
-              <article class="slider-item">
-                <div class="card">
-                  <span class="badge text-badge">
-                    <img src="/assets/media/icons/icone-desconto.svg" alt="icone desconto"> Desconto
-                  </span>
-
-                  <img src="/assets/media/img/produtos/futsal/chuteira-futsal-1.png" class="cardImgProduto card-img-top" alt="imagem do produto" />
-
-                  <hgroup class="card-body">
-                    <h3 class="card-title m-0 cardTitle">Nome do Produto</h3>
-                    <p class="card-text preco-antigo txtMuted mb-0"><s>R$ 89,99</s></p>
-                    <span class="subTitleCard txtDark" itemprop="price">R$ 69,99 <sub>no PIX</sub></span>
-                  </hgroup>
-                </div>
-              </article>
-
-              <article class="slider-item">
-                <div class="card">
-                  <span class="badge text-badge">
-                    <img src="/assets/media/icons/icone-desconto.svg" alt="icone desconto"> Desconto
-                  </span>
-
-                  <img src="/assets/media/img/produtos/futsal/chuteira-futsal-1.png" class="cardImgProduto card-img-top" alt="imagem do produto" />
-
-                  <hgroup class="card-body">
-                    <h3 class="card-title m-0 cardTitle">Nome do Produto</h3>
-                    <p class="card-text preco-antigo txtMuted mb-0"><s>R$ 89,99</s></p>
-                    <span class="subTitleCard txtDark" itemprop="price">R$ 69,99 <sub>no PIX</sub></span>
-                  </hgroup>
-                </div>
-              </article>
-
-              <article class="slider-item">
-                <div class="card">
-                  <span class="badge text-badge">
-                    <img src="/assets/media/icons/icone-desconto.svg" alt="icone desconto"> Desconto
-                  </span>
-
-                  <img src="/assets/media/img/produtos/futsal/chuteira-futsal-1.png" class="cardImgProduto card-img-top" alt="imagem do produto" />
-
-                  <hgroup class="card-body">
-                    <h3 class="card-title m-0 cardTitle">Nome do Produto</h3>
-                    <p class="card-text preco-antigo txtMuted mb-0"><s>R$ 89,99</s></p>
-                    <span class="subTitleCard txtDark" itemprop="price">R$ 69,99 <sub>no PIX</sub></span>
-                  </hgroup>
-                </div>
-              </article>
-
-              <article class="slider-item">
-                <div class="card">
-                  <span class="badge text-badge">
-                    <img src="/assets/media/icons/icone-desconto.svg" alt="icone desconto"> Desconto
-                  </span>
-
-                  <img src="/assets/media/img/produtos/futsal/chuteira-futsal-1.png" class="cardImgProduto card-img-top" alt="imagem do produto" />
-
-                  <hgroup class="card-body">
-                    <h3 class="card-title m-0 cardTitle">Nome do Produto</h3>
-                    <p class="card-text preco-antigo txtMuted mb-0"><s>R$ 89,99</s></p>
-                    <span class="subTitleCard txtDark" itemprop="price">R$ 69,99 <sub>no PIX</sub></span>
-                  </hgroup>
-                </div>
-              </article>
-
-              
-              
+              <!-- Cards de Produto serão inseridos aqui dinamicamente -->
 
             </div>
           </div>
@@ -314,6 +217,34 @@
 
         </div>
       </section>
+
+      <!-- MAIS VENDIDOS -->
+       <section class="maisVendidos">
+        <hgroup class="d-flex justify-content-between align-items-center">
+          <h2 class="sectTitle m-0">Mais Vendidos</h2>
+          <button class="vejaMais">
+            <i class="bi bi-plus-circle me-1"></i> Veja Mais
+          </button>
+        </hgroup>
+
+        <div class="carrossel position-relative">
+          <button class="btn-primary carousel-control prev d-none d-lg-flex" id="btnLeftBestSellers">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+
+          <div class="slider-wrapper" id="sliderWrapperBestSellers">
+            <div class="slider-track" id="sliderTrackBestSellers">
+                </div>
+          </div>
+
+          <button class="btn-primary carousel-control next d-none d-lg-flex" id="btnRightBestSellers">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+
+      
+
     </main>
 
     <section id="testeClaro">
@@ -351,8 +282,6 @@
       <p class="link">Link</p>
     </section>
 
-    <script src="js/scripts.js" defer></script>
-    <script src="js/carrossel.js" defer></script>
   </body>
   <footer class="bgHeader">
     <p class="textCenter">
