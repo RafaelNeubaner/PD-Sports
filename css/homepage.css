@@ -8,8 +8,8 @@ main {
   margin: 0 auto;
 }
 
-/* SECTION OFERTAS SEMANA */
-.ofertas {
+/* HOMEPAGE - CARROSSEIS */
+.ofertas, .maisVendidos {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -18,7 +18,7 @@ main {
   width: 100%;
 }
 
-.ofertas .carrosselOfertas {
+.ofertas .carrossel, .maisVendidos .carrossel {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -52,20 +52,16 @@ main {
   max-width: 300px;
 }
 
-.ofertas hgroup {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+.ofertas hgroup, .maisVendidos hgroup {
   width: 100%;
 }
 
-.ofertas .carrosselOfertas .slider-item {
+.ofertas .carrossel .slider-item, .maisVendidos .carrossel .slider-item {
   padding: 0;
   margin: 0;
 }
 
-.ofertas hgroup .vejaMais {
+.ofertas hgroup .vejaMais, .maisVendidos hgroup .vejaMais {
   background-color: transparent;
   color: var(--txt);
   border: none;
@@ -75,11 +71,11 @@ main {
   font-size: 1.2rem;
 }
 
-.ofertas hgroup .vejaMais i {
+.ofertas hgroup .vejaMais i, .maisVendidos hgroup .vejaMais i {
   font-size: 1.6rem;
 }
 
-.ofertas .card {
+.ofertas .card, .maisVendidos .card {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -95,12 +91,16 @@ body.darkMode .ofertas .card {
   background-color: var(--preto-fosco);
 }
 
-.ofertas .cardImgProduto {
+body.darkMode .maisVendidos .card {
+  background-color: var(--preto-fosco);
+}
+
+.ofertas .cardImgProduto, .maisVendidos .cardImgProduto {
   object-fit: contain;
   height: 120px;
 }
 
-.ofertas .card .card-body {
+.ofertas .card .card-body, .maisVendidos .card .card-body {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -120,21 +120,32 @@ body.darkMode .ofertas .card {
   gap: 0.5rem;
 }
 
-body.darkMode .ofertas .badge img {
+body.darkMode .ofertas .badge img, .maisVendidos .badge img {
     filter: invert(1) brightness(200%);
 }
 
-.ofertas .card .card-body .cardTitle {
+body.darkMode .maisVendidos .badge img, .ofertas .badge img {
+    filter: invert(1) brightness(200%);
+}
+
+.ofertas .card .card-body .cardTitle, .maisVendidos .card .card-body .cardTitle {
   color: var(--txt);
   font-size: 1.6rem;
   font-weight: 500;
 }
 
-.ofertas .card .card-body span>sub {
+.ofertas .card .card-body span>sub, .maisVendidos .card .card-body span>sub {
   font-size: 1rem;
   color: var(--txtMuted);
 }
 
+.ofertas .card .card-body span>sub, body.darkMode .maisVendidos .card .card-body span>sub  {
+  color: var(--txtMuted);
+}
+
+.ofertas .card .card-body .cardTitle, body.darkMode .maisVendidos .card .card-body .cardTitle  {
+  color: var(--txt);
+}
 
 .carousel-control {
   position: absolute;
@@ -155,6 +166,9 @@ body.darkMode .ofertas .badge img {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: 0.3s;
   font-weight: bold;
+
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
 }
 
 .carousel-control.prev {
@@ -177,7 +191,7 @@ body.darkMode .ofertas .badge img {
     max-width: 1200px;
   }
 
-  .ofertas .carrosselOfertas {
+  .ofertas .carrossel, .maisVendidos .carrossel {
     padding: 0 40px;
   }
 
@@ -185,7 +199,7 @@ body.darkMode .ofertas .badge img {
     flex: 0 0 calc(25% - 1.2rem);
   }
 
-  .ofertas .card .card-body .cardTitle {
+  .ofertas .card .card-body .cardTitle, .maisVendidos .card .card-body .cardTitle {
     color: var(--txt);
     font-size: 2rem;
     font-weight: 500;
@@ -198,7 +212,7 @@ body.darkMode .ofertas .badge img {
     padding: 0 4.8rem;
   }
 
-  .carrosselOfertas {
+  .carrossel {
     padding: 0;
   }
 }
