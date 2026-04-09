@@ -347,7 +347,7 @@ select {
 
     .subTitle {
         font-size: 18px;
-        font-weight: semi-bold;
+        font-weight: 600;
     }
 
     .sectTitle {
@@ -380,7 +380,7 @@ select {
 
     .subTitle {
         font-size: 16px;
-        font-weight: semi-bold;
+        font-weight: 600;
     }
 
 }
