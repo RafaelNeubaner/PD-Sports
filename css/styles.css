@@ -196,8 +196,9 @@ body.darkMode .themeToggle:hover {
 }
 
 .btnTamanho {
-    width: 50px;
+    min-width: 50px;
     height: 50px;
+    padding: 10px 5px;
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -224,6 +225,13 @@ body.darkMode .themeToggle:hover {
     border: var(--primary);
     border: 2px solid var(--txtLight);
     color: var(--txtLight);
+}
+
+.link2 {
+    color: var(--txt);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .link {
@@ -283,6 +291,11 @@ body.darkMode .themeToggle:hover {
 .font20 {
     font-size: 20px;
     font-weight: normal;
+}
+
+.txtFooter {
+    font-size: 14px;
+    color: var(--txtMuted);
 }
 
 p {

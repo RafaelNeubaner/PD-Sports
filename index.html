@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/homepage.css" />
+   
 
     <!-- Scripts -->
     <script
@@ -39,8 +40,11 @@
       crossorigin="anonymous"
     ></script>
 
-    <script type="module" src="js/scripts.js" defer></script>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/darkmode.js" defer></script>
+    <script src="js/carrossel.js" defer></script>
     <script type="module" src="js/product-card.js" defer></script>
+   
   </head>
   <body>
     <!-- HEADER -->
@@ -218,6 +222,114 @@
           </button>
         </div>
       </section>
+      
+      <!-- DESTAQUE CATEGORIAS --> 
+      <section id="catDestaques" class="container">
+        <button
+          type="button"
+          class="catArrow catArrow-left"
+          aria-label="Categoria anterior"
+        >
+          <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <div class="catDestaquesViewport" >
+          <div class="catDestaquesTrack">
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-1.png"
+                      alt="Categoria de destaque 1"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption class="">FUTEBOL</figcaption>
+                </figure>
+              </a>
+            </article>
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-2.png"
+                      alt="Categoria de destaque 2"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption>CORRIDA</figcaption>
+                </figure>
+              </a>
+            </article>
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-3.png"
+                      alt="Categoria de destaque 3"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption>ACADEMIA</figcaption>
+                </figure>
+              </a>
+            </article>
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-4.png"
+                      alt="Categoria de destaque 4"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption>TENIS</figcaption>
+                </figure>
+              </a>
+            </article>
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-5.png"
+                      alt="Categoria de destaque 5"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption>BASQUETE</figcaption>
+                </figure>
+              </a>
+            </article>
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-6.png"
+                      alt="Categoria de destaque 6"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption>NATAÇÃO</figcaption>
+                </figure>
+              </a>
+            </article>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="catArrow catArrow-right"
+          aria-label="Próxima categoria"
+        >
+          <i class="bi bi-chevron-right"></i>
+        </button>
+    </section>
 
       <!-- MAIS VENDIDOS -->
       <section class="maisVendidos">
@@ -324,39 +436,6 @@
       </section>
     </main>
 
-    <section id="testeClaro">
-      <p class="mainTitle">titulo</p>
-      <p class="subTitle">subtitulo</p>
-      <p class="cardTitle">card titulo</p>
-      <p class="text-dark">Paragrafo</p>
-      <p class="text-muted">Muted Text</p>
-      <p class="btn-primary">Botão Principal</p>
-      <p class="btn-outline">Botão Outline</p>
-      <p class="btn-tamanho">40</p>
-    </section>
-    <section class="dark-mode" id="testeEscuro">
-      <p class="mainTitle">titulo</p>
-      <p class="subTitle">subtitulo</p>
-      <p class="cardTitle">card titulo</p>
-      <p class="text">Paragrafo</p>
-      <p class="txt-muted">Muted Text</p>
-      <p class="btn-primary">Botão Principal</p>
-      <p class="btn-outline">Botão Outline</p>
-      <p class="btn-tamanho">40</p>
-    </section>
-
-    <section id="testeClaro">
-      <p class="mainTitle">titulo</p>
-      <p class="subTitle">subtitulo</p>
-      <p class="cardTitle">card titulo</p>
-      <p class="text">Paragrafo</p>
-      <p class="txtMuted">Muted Text</p>
-      <p class="btnPrimary">Botão Principal</p>
-      <p class="btnOutline">Botão Outline</p>
-      <p class="btnTamanho">40</p>
-      <p class="btnTamanho active">40</p>
-      <p class="link">Link</p>
-    </section>
 
     <footer class="bgHeader">
       <p class="textCenter">
