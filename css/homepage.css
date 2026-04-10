@@ -15,7 +15,7 @@ main {
   max-width: 1700px;
   min-height: min(40vw, 400px);
   height: auto;
-  margin: 0 0 2rem 0;
+  margin: 0 auto 2rem auto;
   position: relative;
   padding: 0 1rem;
 }
@@ -31,8 +31,7 @@ main {
 .carrossel img {
   width: 100vw;
   height: 100%;
-  object-fit: cover;
-
+  object-fit: cover; 
 }
 
 .slides_dots {
@@ -88,7 +87,7 @@ main {
   display: inline-block;
   cursor: pointer;
   transition: background .2s, transform .15s;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); */
 }
 
 .dot.active {
@@ -110,9 +109,12 @@ main {
 }
 
 @media(min-width: 992px) {
+  .carrossel {
+    height: 428px;
+  }
   .carrossel-wrap {
     padding: 0;
-    margin: 0 0 6.4rem 0;
+    margin: 0 auto 6.4rem auto;
   }
 
   #hero {
