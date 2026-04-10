@@ -1,4 +1,5 @@
-import {getProductById} from "/js/products/useProducts.js"
+import { getProductById } from "/js/products/useProducts.js"
+import { compreJunto } from "/js/product-card.js"
 
 const urlParams = new URLSearchParams(window.location.search);
 let id = urlParams.get('id');

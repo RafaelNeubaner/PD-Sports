@@ -56,28 +56,26 @@ main {
   display: block;
 }
 
-.slide {
-  position: relative;
-  min-width: 100%;
-  height: 100%;
+.compreJunto hgroup,
+.ofertas hgroup,
+.maisVendidos hgroup,
+.marcas hgroup {
+  width: 100%;
 }
 
-.slideBtn {
-  position: absolute;
-  left: 1.25rem;
-  bottom: 2.75rem;
-  z-index: 2;
+.compreJunto .carrossel .slider-item,
+.ofertas .carrossel .slider-item,
+.maisVendidos .carrossel .slider-item {
+  padding: 0;
+  margin: 0;
 }
 
-.dots {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 2px;
-  display: flex;
-  gap: 8px;
-  z-index: 20;
-}
+.compreJunto hgroup .vejaMais,
+.ofertas hgroup .vejaMais,
+.maisVendidos hgroup .vejaMais {
+  background-color: transparent;
+  color: var(--txt);
+  border: none;
 
 .dot {
   width: 12px;
@@ -90,13 +88,24 @@ main {
   /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); */
 }
 
-.dot.active {
-  background: var(--secondary);
+.ofertas hgroup .vejaMais i,
+.maisVendidos hgroup .vejaMais i,
+.compreJunto hgroup .vejaMais i {
+  font-size: 1.6rem;
 }
 
-.dot:hover {
-  transform: scale(1.08);
-  background: var(--primary);
+.ofertas .card,
+.maisVendidos .card,
+.compreJunto .card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1rem;
+  background-color: transparent;
+  margin: 0;
+  border: none;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
 }
 
 .carrossel-radio {
@@ -108,18 +117,21 @@ main {
   animation-play-state: paused;
 }
 
-@media(min-width: 992px) {
-  .carrossel {
-    height: 428px;
-  }
-  .carrossel-wrap {
-    padding: 0;
-    margin: 0 auto 6.4rem auto;
-  }
+.ofertas .cardImgProduto,
+.maisVendidos .cardImgProduto,
+.compreJunto .cardImgProduto {
+  object-fit: contain;
+  height: 120px;
+}
 
-  #hero {
-    padding: 0;
-  }
+.ofertas .card .card-body,
+.maisVendidos .card .card-body,
+.compreJunto .card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  padding: 0;
 }
 
   /* HOMEPAGE - CARROSSEIS */
@@ -151,10 +163,20 @@ main {
     width: 100%;
   }
 
+.ofertas .card .card-body .cardTitle,
+.maisVendidos .card .card-body .cardTitle,
+.compreJunto .card .card-body .cardTitle {
+  color: var(--txt);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
 
-  .slider-wrapper::-webkit-scrollbar {
-    display: none;
-  }
+.ofertas .card .card-body span>sub,
+.maisVendidos .card .card-body span>sub,
+.compreJunto .card .card-body span>sub {
+  font-size: 1rem;
+  color: var(--txtMuted);
+}
 
 
   .slider-track {
