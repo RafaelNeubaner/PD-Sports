@@ -38,7 +38,7 @@ function autoplayCarrossel() {
 carrossel.addEventListener('mouseenter',() => {
     clearInterval(autoplayInterval);
 });
-
+ 
 carrossel.addEventListener('mouseleave', () => {
     iniciarAutoplay();
 });
