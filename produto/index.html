@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/carrossel.css"/>
+    <link rel="stylesheet" href="/produto/css/styles.css">
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom JS -->
+    <script src="/js/script.js" defer></script>
+    <script src="/js/carrossel.js"></script>
+    <script src="/produto/js/script.js" defer type="module"></script>
+    <script src="/js/product-card.js"></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <a class="navbar-brand d-block d-md-none" href="index.html"
+            ><img
+              src="/assets/media/logo/logo-light.svg"
+              alt="PD Sports"
+              id="logo"
+          /></a>
+
+          <search class="containerSearch">
+            <a class="navbar-brand d-none d-md-block" href="index.html">
+              <img
+                src="/assets/media/logo/logo-light.svg"
+                alt="PD Sports"
+                id="logo"
+              />
+            </a>
+
+            <form class="d-none d-md-flex position-relative inputForm">
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+                aria-label="Pesquisar produtos"
+              />
+              <button class="btn" type="button" id="button-search-desktop">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+
+            <ul class="navbar-nav align-items-center">
+              <li class="nav-item d-block d-lg-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i
+                ></a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i>Tire suas dúvidas</a
+                >
+              </li>
+
+              <button
+                class="btn d-block d-md-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mobileSearchBox"
+                aria-expanded="false"
+                aria-controls="mobileSearchBox"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+
+
+              <li class="nav-item">
+                <a id="themeToggle"
+                class="themeToggle"
+                aria-pressed="false"><i class="bi bi-moon-stars"></i></a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-box-arrow-in-right"></i>Entrar</a
+                >
+              </li>
+            </ul>
+          </search>
+
+          <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
+            <form>
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+              />
+              <button class="btn" type="button">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+          </div>
+
+          <menu class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item d-block d-sm-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
+                    class="bi bi-chevron-right ms-1"
+                  ></i
+                ></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Esportes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Masculino</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Feminino</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Infantil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Promoções</a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" href="#">Futebol</a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" href="#">Corrida</a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" href="#">Marcas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sobre nós</a>
+              </li>
+            </ul>
+          </menu>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+        <section id="productDetails" class="d-flex justify-content-center gap-5">
+          <section id="productPhotos" class="d-flex flex-column gap-3">
+            <p class="subTitleCard"><span class="productGender"></span> > <span class="suitableFor"></span></p>
+            <div class="d-flex gap-3">
+              <div id="photosColumn" class="d-flex flex-column gap-3"></div>
+              <img class="principalImage"/>
+            </div>
+            
+          </section>
+          <aside class="d-flex flex-column gap-4 productInfos">
+            <h3 class="productName cardTitle"></h3>
+            <p class="productPrice cardTitle"></p>
+            <p class="productPriceParc">ou <span class="priceTotalParc"></span> em <span class="qtdParc"></span>x de <span class="priceParc"></span> sem juros</p>
+
+            <div>
+                <p class="subTitleCard">Marca: <span class="brandName"></span></p>
+                <p class="subTitleCard">Indicado para: <span class="suitableFor"></span></p>
+            </div>
+
+            <h4 class="variantesTitle d-none">Variantes</h4>
+            <div class="variantesSec d-flex flex-wrap gap-3"></div>
+            <button class="btnPrimary buyNowButton"><img src="/assets/media/icon/lightning.svg"/> Comprar Agora</button>
+            <button class="btnOutline">Adicionar ao Carrinho</button>
+            <div class="divider"></div>
+
+            <form class="d-flex flex-wrap gap-3">
+                <h3>Calcular Frete</h3>
+                <input placeholder="Digite seu CEP" name="CEP" type="text">
+                <button class="btnOutline">Calcular</button>
+            </form>
+          </aside>
+        </section>
+        <p class="NomeProduto">Bola Vôlei Mikasa V360W</p>
+      <p class="categoriaProduto">Vôlei</p>
+      <section class="compreJunto">
+        <hgroup class="d-flex justify-content-between align-items-center">
+          <h2 class="sectTitle m-0">Compre junto</h2>
+        </hgroup>
+
+        <div class="carrossel position-relative">
+          <button
+            class="btn-primary carousel-control prev d-none d-lg-flex"
+            id="btnLeftCompreJunto"
+          >
+            <i class="bi bi-chevron-left"></i>
+          </button>
+
+          <div class="slider-wrapper" id="sliderWrapperCompreJunto">
+            <div
+              class="slider-track sliderContainer"
+              id="sliderTrackCompreJunto"
+            >
+              <!-- Cards de Produto serão inseridos aqui dinamicamente -->
+            </div>
+          </div>
+
+          <button
+            class="btn-primary carousel-control next d-none d-lg-flex"
+            id="btnRightCompreJunto"
+          >
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+      <section id="avaliacoes">
+        <aside class="avaliacoesCard">
+          <h2 class="avaliacoesTitle">Avaliação do produto</h2>
+          <div class="avaliacoesBlock">
+            <h3>Avaliação dos clientes</h3>
+            <article class="avaliacaoNota">
+              <strong>4.7</strong>
+              <div class="avaliacaoDetalhe">
+                <div class="estrelas" aria-label="Avaliação média de 4,7 de 5">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                </div>
+                <p>Média entre 280 opiniões</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="avaliacoesBlock">
+            <h3>Recomendações</h3>
+            <div class="recomendacaoBloco">
+              <div class="recomendacaoNumero">
+                <strong>94</strong>
+                <span>%</span>
+              </div>
+              <div class="recomendacaoDetalhe">
+                <div class="recomendacaoBarra" aria-hidden="true">
+                  <span></span>
+                </div>
+                <p>Dos clientes recomendam o produto.</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </section>
+    </main>
+
+    <footer class="bgHeader">
+      <p class="textCenter font20">
+        © PD Sports 2026 | Desenvolvido por Pablo, Pedro e Rafael.
+      </p>
+    </footer>
+  </body>
+</html>

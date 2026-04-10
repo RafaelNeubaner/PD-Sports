@@ -136,10 +136,11 @@ export async function getAllProducts(){
  */
 export async function getProductById(id){
     const idSplit = id.split(".")
+    console.log(idSplit)    
     const idNum = idSplit[0]
     const endpoint = idSplit[1]
 
-    const response = await fetch(`${BASE_URL}${endpoint=='2'?'2':''}/${idNum}`)
+    const response = await fetch(`${BASE_URL}product${endpoint=='2'?'2':''}/${idNum}`)
 
     if(response.status!=200){
         throw new Error("Not found");

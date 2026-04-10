@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/homepage.css" />
     <link rel="stylesheet" href="css/temp.css" />
+   
 
     <!-- Scripts -->
     <script
@@ -40,8 +41,11 @@
       crossorigin="anonymous"
     ></script>
 
-    <script type="module" src="js/scripts.js" defer></script>
+    <script src="js/scripts.js" defer></script>
+    <script src="js/darkmode.js" defer></script>
+    <script src="js/carrossel.js" defer></script>
     <script type="module" src="js/product-card.js" defer></script>
+   
   </head>
   <body>
     <!-- HEADER -->
@@ -219,6 +223,114 @@
           </button>
         </div>
       </section>
+      
+      <!-- DESTAQUE CATEGORIAS --> 
+      <section id="catDestaques" class="container">
+        <button
+          type="button"
+          class="catArrow catArrow-left"
+          aria-label="Categoria anterior"
+        >
+          <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <div class="catDestaquesViewport" >
+          <div class="catDestaquesTrack">
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-1.png"
+                      alt="Categoria de destaque 1"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption class="">FUTEBOL</figcaption>
+                </figure>
+              </a>
+            </article>
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-2.png"
+                      alt="Categoria de destaque 2"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption>CORRIDA</figcaption>
+                </figure>
+              </a>
+            </article>
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-3.png"
+                      alt="Categoria de destaque 3"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption>ACADEMIA</figcaption>
+                </figure>
+              </a>
+            </article>
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-4.png"
+                      alt="Categoria de destaque 4"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption>TENIS</figcaption>
+                </figure>
+              </a>
+            </article>
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-5.png"
+                      alt="Categoria de destaque 5"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption>BASQUETE</figcaption>
+                </figure>
+              </a>
+            </article>
+            <article class="h-100 catCard">
+              <a href="#" class="link2">
+                <figure class="textCenter h-100">
+                  <div class="border">
+                    <img
+                      src="assets/media/images/home/categoria-destaque-6.png"
+                      alt="Categoria de destaque 6"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <figcaption>NATAÇÃO</figcaption>
+                </figure>
+              </a>
+            </article>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="catArrow catArrow-right"
+          aria-label="Próxima categoria"
+        >
+          <i class="bi bi-chevron-right"></i>
+        </button>
+    </section>
 
       <!-- MAIS VENDIDOS -->
       <section class="maisVendidos">
@@ -247,6 +359,46 @@
           >
             <i class="bi bi-chevron-right"></i>
           </button>
+        </div>
+      </section>
+
+      <!-- MARCAS -->
+      <section class="marcas mb64">
+        <hgroup>
+          <h2 class="sectTitle mb-0">Nossas Marcas</h2>
+        </hgroup>
+        
+        <div class="containerMarcas">
+          <article>
+            <img src="/assets/media/img/marcas/marca-nike.png" alt="Nike" class="logoMarca" />
+          </article>
+
+          <article>
+            <img src="/assets/media/img/marcas/marca-puma.png" alt="Puma" class="logoMarca" />
+          </article>
+
+          <article>
+            <img src="/assets/media/img/marcas/marca-adidas.png" alt="Adidas" class="logoMarca" />
+          </article>
+
+          <article>
+            <img
+              src="/assets/media/img/marcas/marca-new-balance.png"
+              alt="New Balance" class="logoMarca"
+            />
+          </article>
+
+          <article>
+            <img
+              src="/assets/media/img/marcas/marca-under-armour.png"
+              alt="Under Armour" class="logoMarca"
+            />
+          </article>
+
+          <article>
+            <img src="/assets/media/img/marcas/marca-umbro.png" alt="Umbro" class="logoMarca" />
+          </article>
+
         </div>
       </section>
 
@@ -284,6 +436,7 @@
         </form>
       </section>
     </main>
+
 
     <footer class="bgHeader">
       <p class="textCenter">

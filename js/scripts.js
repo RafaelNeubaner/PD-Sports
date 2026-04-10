@@ -1,55 +1,47 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const themeToggle = document.getElementById("themeToggle");
-	const body = document.body;
-	const storageKey = "pd-sports-theme";
-	const themeTargets = document.querySelectorAll(
-		".btnPrimary, .btnOutline, .btnTamanho, .link"
-	);
+	const container = document.querySelector("#catDestaques");
+	if (!container) return;
 
-	const syncThemeClasses = (isDark) => {
-		themeTargets.forEach((element) => {
-			element.classList.toggle("darkmode", isDark);
-		});
-	};
+	const viewport = container.querySelector(".catDestaquesViewport");
+	const track = container.querySelector(".catDestaquesTrack");
+	const cards = Array.from(container.querySelectorAll(".catCard"));
+	const prevBtn = container.querySelector(".catArrow-left");
+	const nextBtn = container.querySelector(".catArrow-right");
 
-	const setTheme = (isDark) => {
-		body.classList.toggle("darkMode", isDark);
-		syncThemeClasses(isDark);
+	if (!viewport || !track || cards.length === 0 || !prevBtn || !nextBtn) return;
 
-		if (themeToggle) {
-			themeToggle.setAttribute("aria-pressed", String(isDark));
-			const icon = themeToggle.querySelector("i");
-			if (icon) {
-				icon.className = isDark ? "bi bi-sun" : "bi bi-moon-stars";
-			}
-		}
+	let currentIndex = 0;
 
-		localStorage.setItem(storageKey, isDark ? "dark" : "light");
-	};
-
-	const savedTheme = localStorage.getItem(storageKey);
-	const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-	setTheme(savedTheme ? savedTheme === "dark" : prefersDark);
-
-	if (themeToggle) {
-		themeToggle.addEventListener("click", () => {
-			setTheme(!body.classList.contains("darkMode"));
-		});
+	function stepSize() {
+		const cardWidth = cards[0].getBoundingClientRect().width;
+		const gap = parseFloat(window.getComputedStyle(track).gap || "0");
+		return cardWidth + gap;
 	}
 
-	document.querySelectorAll(".btnTamanho").forEach((button) => {
-		button.addEventListener("click", () => {
-			const group = button.parentElement;
+	function maxOffset() {
+		return Math.max(0, track.scrollWidth - viewport.clientWidth);
+	}
 
-			if (!group) {
-				return;
-			}
+	function update() {
+		const step = stepSize();
+		const offset = Math.min(currentIndex * step, maxOffset());
+		currentIndex = Math.max(0, Math.round(offset / step));
 
-			group.querySelectorAll(".btnTamanho").forEach((otherButton) => {
-				otherButton.classList.remove("active");
-			});
+		track.style.transform = `translateX(-${offset}px)`;
+		prevBtn.disabled = offset <= 0;
+		nextBtn.disabled = offset >= maxOffset();
+	}
 
-			button.classList.add("active");
-		});
+	prevBtn.addEventListener("click", () => {
+		currentIndex = Math.max(0, currentIndex - 1);
+		update();
 	});
+
+	nextBtn.addEventListener("click", () => {
+		currentIndex += 1;
+		update();
+	});
+
+	window.addEventListener("resize", update);
+	update();
 });
