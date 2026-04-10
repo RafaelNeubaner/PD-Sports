@@ -1,0 +1,290 @@
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-header);
+  border-radius: 0 0 12px 12px;
+  z-index: 1000;
+  
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  margin: 0 0 6.4rem 0;
+}
+
+header .navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  padding: 2.4rem 3.2rem;
+}
+
+header .navbar .container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+header .navbar .container #logo {
+  height: auto;
+  width: 54px;
+
+}
+
+header .navbar .containerSearch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+header .navbar .containerSearch ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+}
+
+header .navbar .containerSearch .inputForm,
+#mobileSearchBox form {
+  position: relative !important;
+  display: flex;
+  width: 100%;
+}
+
+header .navbar .containerSearch input,
+#mobileSearchBox input {
+  width: 100%;
+  height: 42px;
+
+  font-size: 1.6rem;
+
+  border: 2px solid var(--preto-fosco) !important;
+  border-radius: 8px;
+
+  padding: 0.8rem 50px 0.8rem 1.6rem !important;
+
+  margin: 1rem 0;
+}
+
+header .navbar .containerSearch .inputForm button,
+#mobileSearchBox button {
+  position: absolute !important;
+  right: 5px;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0;
+  height: 100%;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+}
+
+header .navbar .containerSearch input::placeholder,
+#mobileSearchBox input::placeholder {
+  color: var(--txt-muted);
+}
+
+header .navbar .containerSearch button i,
+#mobileSearchBox button i {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+header .navbar i {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--secondary);
+}
+
+header .navbar .container .navbar-toggler {
+  border: none;
+  color: var(--primary) !important;
+  font-size: 2rem;
+  background-color: transparent;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(153, 1, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+}
+
+header .navbar .container #navbarNav li a {
+  position: relative;
+  color: var(--secondary);
+  font-size: 20px;
+  text-decoration: none;
+  list-style: none;
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  header .navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    padding: 2.4rem 0;
+  }
+
+  header .navbar .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+
+  header .navbar .containerSearch {
+    flex-grow: 1;
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+
+
+  header .navbar .containerSearch .inputForm {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    color: var(--txt);
+  }
+
+  header .navbar i {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--preto-fosco);
+  }
+
+  header .navbar .container #navbarNav .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+
+  header .navbar .container .containerSearch .navbar-nav li a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.8rem;
+    white-space: nowrap;
+    font-size: 16px;
+  }
+
+}
+
+@media (min-width: 992px) {
+  header .navbar {
+    padding: 1.8rem 12.8rem;
+  }
+
+  header .navbar .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+
+  }
+
+  header .navbar .container #logo {
+    height: auto;
+    width: 82px;
+
+  }
+
+  header .navbar .container .containerSearch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3.2rem;
+    width: 100%;
+    flex-grow: 1;
+
+  }
+
+  header .navbar .containerSearch .inputForm {
+    width: 450px;
+  }
+
+
+  header .navbar i {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--preto-fosco);
+  }
+
+
+  header .navbar .container .containerSearch .navbar-nav li a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    white-space: nowrap;
+    font-size: 1.6rem;
+  }
+
+  header .navbar .container #navbarNav li a:hover {
+    color: var(--tertiary) !important;
+  }
+
+  header .navbar .container #navbarNav li a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--primary);
+    transition: all 0.3s ease-out;
+  }
+
+  header .navbar .container #navbarNav li a:hover::after {
+    width: 90%;
+  }
+
+  header .navbar .container .navbar-nav,
+  header .navbar .container #navbarNav li a i {
+    color: var(--secondary);
+    white-space: nowrap;
+  }
+
+}
+
+/* DARK MODE - HEADER  */
+
+body.darkMode header .navbar .container #navbarNav li a,
+body.darkMode header .navbar .containerSearch .navbar-nav li a,
+body.darkMode header .navbar i,
+body.darkMode header .navbar .containerSearch button i,
+body.darkMode #mobileSearchBox button i {
+  color: var(--txtLight) !important;
+}
+
+body.darkMode header .navbar .container #navbarNav li a::after {
+  background: var(--txtLight);
+}
+
+
+body.darkMode .navbar-toggler-icon {
+  filter: invert(1) brightness(200%);
+}
