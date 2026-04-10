@@ -401,8 +401,8 @@ main {
 #catDestaques .border {
     width: 100%;
     max-width: 100%;
-    height: 200px;
-    max-width: 200px;
+    height: 175px;
+    max-width: 175px;
     border-radius: 100px;
     border: 2px solid var(--secondary) !important;
     position: relative;
@@ -417,7 +417,7 @@ main {
 #catDestaques img {
     width: 100%;
     max-width: 100%;
-    height: 200px;
+    height: 175px;
     max-width: 200px;
     border-radius: 100px;
     position: relative;
@@ -556,7 +556,27 @@ main {
     }
   }
 
+  /* HOMEPAGE CALL TO ACTION */
+  #CTA {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+  }
 
+  #CTAMobile {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+  }
+
+  #CTAHover:hover #CTA {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+  }
 
   /* HOMEPAGE - NEWSLETTER */
   #newsletterSection {
