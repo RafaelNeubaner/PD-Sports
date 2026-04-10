@@ -1,5 +1,5 @@
 import { getAllProducts } from "./products/useProducts.js";
-import { iniciarCarrossel } from "./carrossel.js";
+import { iniciarCarrossel } from "./section-carousel.js";
 
 // cria card produto
 export function criarCardProduto(produto) {
@@ -85,14 +85,14 @@ async function renderizarMaisVendidos() {
   }
 }
 
-async function compreJunto() {
+export async function compreJunto() {
   const sliderTrack = document.getElementById('sliderTrackCompreJunto');
   if (!sliderTrack) return;
 
   try {
     const todosProdutos = await getAllProducts();
-    const categoriaEspecifica = document.querySelector('.categoriaProduto').textContent.trim();
-    const nomeProduto = document.querySelector('.NomeProduto').textContent.trim();
+    const categoriaEspecifica = document.querySelector('.suitableFor').textContent.trim();
+    const nomeProduto = document.querySelector('.productName').textContent.trim();
     const produtosCompreJunto = todosProdutos.filter(p => p.category === categoriaEspecifica && p.name !== nomeProduto).slice(0, 10);
 
     sliderTrack.innerHTML = '';

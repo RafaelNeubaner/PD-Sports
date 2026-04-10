@@ -57,18 +57,21 @@ main {
   max-width: 300px;
 }
 
+.compreJunto hgroup,
 .ofertas hgroup,
 .maisVendidos hgroup,
 .marcas hgroup {
   width: 100%;
 }
 
+.compreJunto .carrossel .slider-item,
 .ofertas .carrossel .slider-item,
 .maisVendidos .carrossel .slider-item {
   padding: 0;
   margin: 0;
 }
 
+.compreJunto hgroup .vejaMais,
 .ofertas hgroup .vejaMais,
 .maisVendidos hgroup .vejaMais {
   background-color: transparent;
@@ -81,12 +84,14 @@ main {
 }
 
 .ofertas hgroup .vejaMais i,
-.maisVendidos hgroup .vejaMais i {
+.maisVendidos hgroup .vejaMais i,
+.compreJunto hgroup .vejaMais i {
   font-size: 1.6rem;
 }
 
 .ofertas .card,
-.maisVendidos .card {
+.maisVendidos .card,
+.compreJunto .card {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -107,13 +112,15 @@ body.darkMode .maisVendidos .card {
 }
 
 .ofertas .cardImgProduto,
-.maisVendidos .cardImgProduto {
+.maisVendidos .cardImgProduto,
+.compreJunto .cardImgProduto {
   object-fit: contain;
   height: 120px;
 }
 
 .ofertas .card .card-body,
-.maisVendidos .card .card-body {
+.maisVendidos .card .card-body,
+.compreJunto .card .card-body {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -139,14 +146,16 @@ body.darkMode .badge img {
 }
 
 .ofertas .card .card-body .cardTitle,
-.maisVendidos .card .card-body .cardTitle {
+.maisVendidos .card .card-body .cardTitle,
+.compreJunto .card .card-body .cardTitle {
   color: var(--txt);
   font-size: 1.6rem;
   font-weight: 500;
 }
 
 .ofertas .card .card-body span>sub,
-.maisVendidos .card .card-body span>sub {
+.maisVendidos .card .card-body span>sub,
+.compreJunto .card .card-body span>sub {
   font-size: 1rem;
   color: var(--txtMuted);
 }
