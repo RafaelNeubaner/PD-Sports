@@ -9,7 +9,9 @@ main {
 }
 
 /* HOMEPAGE - CARROSSEIS */
-.ofertas, .maisVendidos {
+.ofertas,
+.maisVendidos,
+.marcas {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -18,7 +20,8 @@ main {
   width: 100%;
 }
 
-.ofertas .carrossel, .maisVendidos .carrossel {
+.ofertas .carrossel,
+.maisVendidos .carrossel {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -52,16 +55,20 @@ main {
   max-width: 300px;
 }
 
-.ofertas hgroup, .maisVendidos hgroup {
+.ofertas hgroup,
+.maisVendidos hgroup,
+.marcas hgroup {
   width: 100%;
 }
 
-.ofertas .carrossel .slider-item, .maisVendidos .carrossel .slider-item {
+.ofertas .carrossel .slider-item,
+.maisVendidos .carrossel .slider-item {
   padding: 0;
   margin: 0;
 }
 
-.ofertas hgroup .vejaMais, .maisVendidos hgroup .vejaMais {
+.ofertas hgroup .vejaMais,
+.maisVendidos hgroup .vejaMais {
   background-color: transparent;
   color: var(--txt);
   border: none;
@@ -71,11 +78,13 @@ main {
   font-size: 1.2rem;
 }
 
-.ofertas hgroup .vejaMais i, .maisVendidos hgroup .vejaMais i {
+.ofertas hgroup .vejaMais i,
+.maisVendidos hgroup .vejaMais i {
   font-size: 1.6rem;
 }
 
-.ofertas .card, .maisVendidos .card {
+.ofertas .card,
+.maisVendidos .card {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -95,12 +104,14 @@ body.darkMode .maisVendidos .card {
   background-color: var(--preto-fosco);
 }
 
-.ofertas .cardImgProduto, .maisVendidos .cardImgProduto {
+.ofertas .cardImgProduto,
+.maisVendidos .cardImgProduto {
   object-fit: contain;
   height: 120px;
 }
 
-.ofertas .card .card-body, .maisVendidos .card .card-body {
+.ofertas .card .card-body,
+.maisVendidos .card .card-body {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -120,30 +131,31 @@ body.darkMode .maisVendidos .card {
   gap: 0.5rem;
 }
 
-body.darkMode .ofertas .badge img, .maisVendidos .badge img {
-    filter: invert(1) brightness(200%);
+
+body.darkMode .badge img {
+  filter: invert(1) brightness(200%);
 }
 
-body.darkMode .maisVendidos .badge img, .ofertas .badge img {
-    filter: invert(1) brightness(200%);
-}
-
-.ofertas .card .card-body .cardTitle, .maisVendidos .card .card-body .cardTitle {
+.ofertas .card .card-body .cardTitle,
+.maisVendidos .card .card-body .cardTitle {
   color: var(--txt);
   font-size: 1.6rem;
   font-weight: 500;
 }
 
-.ofertas .card .card-body span>sub, .maisVendidos .card .card-body span>sub {
+.ofertas .card .card-body span>sub,
+.maisVendidos .card .card-body span>sub {
   font-size: 1rem;
   color: var(--txtMuted);
 }
 
-.ofertas .card .card-body span>sub, body.darkMode .maisVendidos .card .card-body span>sub  {
+.ofertas .card .card-body span>sub,
+body.darkMode .maisVendidos .card .card-body span>sub {
   color: var(--txtMuted);
 }
 
-.ofertas .card .card-body .cardTitle, body.darkMode .maisVendidos .card .card-body .cardTitle  {
+.ofertas .card .card-body .cardTitle,
+body.darkMode .maisVendidos .card .card-body .cardTitle {
   color: var(--txt);
 }
 
@@ -191,7 +203,14 @@ body.darkMode .maisVendidos .badge img, .ofertas .badge img {
     max-width: 1200px;
   }
 
-  .ofertas .carrossel, .maisVendidos .carrossel {
+  .ofertas,
+  .maisVendidos,
+  .marcas {
+    gap: 2.4rem;
+  }
+
+  .ofertas .carrossel,
+  .maisVendidos .carrossel {
     padding: 0 40px;
   }
 
@@ -199,7 +218,8 @@ body.darkMode .maisVendidos .badge img, .ofertas .badge img {
     flex: 0 0 calc(25% - 1.2rem);
   }
 
-  .ofertas .card .card-body .cardTitle, .maisVendidos .card .card-body .cardTitle {
+  .ofertas .card .card-body .cardTitle,
+  .maisVendidos .card .card-body .cardTitle {
     color: var(--txt);
     font-size: 2rem;
     font-weight: 500;
@@ -217,39 +237,86 @@ body.darkMode .maisVendidos .badge img, .ofertas .badge img {
   }
 }
 
+/* HOMEPAGE - MARCAS */
+
+.marcas .containerMarcas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.marcas .logoMarca {
+  object-fit: contain;
+  height: 40px;
+  width: 120px;
+}
+
+body.darkMode .logoMarca {
+    filter: invert(1) brightness(200%);
+}
+
+@media (min-width: 768px) {
+
+  .marcas .logoMarca {
+    height: 50px;
+    width: 150px;
+  }
+}
+
+
+@media (min-width: 992px) {
+
+  .marcas .containerMarcas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .marcas .logoMarca {
+    height: 60px;
+    width: 180px;
+  }
+}
+
+
+
 /* HOMEPAGE - NEWSLETTER */
-#newsletterSection{
-    margin: 10px;
-    box-shadow: 0px 4px 4px #00000040;
-    padding: 24px;
-    border-radius: 12px;
-    max-width: 1440px;
+#newsletterSection {
+  margin: 10px;
+  box-shadow: 0px 4px 4px #00000040;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 1440px;
 }
 
-#newsletterSection h2, #newsletterSection label{
-    font-size: 12px;
-    color: var(--secondary);
+#newsletterSection h2,
+#newsletterSection label {
+  font-size: 12px;
+  color: var(--secondary);
 }
 
-#newsletterSection h2{
-    font-size: 24px;
-    font-weight: 800;
+#newsletterSection h2 {
+  font-size: 24px;
+  font-weight: 800;
 }
 
-#newsletterSection input, #newsletterSection button{
+#newsletterSection input,
+#newsletterSection button {
 
-    height: fit-content;
+  height: fit-content;
 }
 
-#newsletterSection .inputsSec input{
-    border: 0 !important;
-    background-color: var(--branco-cinzento) !important;
-    flex-grow: 1;
+#newsletterSection .inputsSec input {
+  border: 0 !important;
+  background-color: var(--branco-cinzento) !important;
+  flex-grow: 1;
 }
 
 @media (min-width: 992px) {
-    #newsletterSection{
-        margin: 10px auto;
-        max-width: min(calc(100% - 128px), 1440px);
-    }
+  #newsletterSection {
+    margin: 10px auto;
+    max-width: min(calc(100% - 128px), 1440px);
+  }
 }
