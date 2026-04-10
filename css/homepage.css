@@ -131,13 +131,8 @@ body.darkMode .maisVendidos .card {
   gap: 0.5rem;
 }
 
-body.darkMode .ofertas .badge img,
-.maisVendidos .badge img {
-  filter: invert(1) brightness(200%);
-}
 
-body.darkMode .maisVendidos .badge img,
-.ofertas .badge img {
+body.darkMode .badge img {
   filter: invert(1) brightness(200%);
 }
 
@@ -251,15 +246,19 @@ body.darkMode .maisVendidos .card .card-body .cardTitle {
   gap: 1rem;
 }
 
-.marcas img {
+.marcas .logoMarca {
   object-fit: contain;
   height: 40px;
   width: 120px;
 }
 
+body.darkMode .logoMarca {
+    filter: invert(1) brightness(200%);
+}
+
 @media (min-width: 768px) {
 
-  .marcas img {
+  .marcas .logoMarca {
     height: 50px;
     width: 150px;
   }
@@ -275,7 +274,7 @@ body.darkMode .maisVendidos .card .card-body .cardTitle {
     gap: 1rem;
   }
 
-  .marcas img {
+  .marcas .logoMarca {
     height: 60px;
     width: 180px;
   }
