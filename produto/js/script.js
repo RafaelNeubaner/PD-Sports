@@ -12,25 +12,23 @@ let productImages = product.images
 
 const principalImage = document.querySelector(".principalImage")
 
-principalImage.src = productImages[0]
+let selectedPrincipalImage = productImages[0]
 
-const secondaryImagesUrl = productImages.filter(link=>link!=productImages[0])
-console.log(secondaryImagesUrl)
-
-const imagesSection = document.getElementById("photosColumn")
-
-for(const imageUrl of secondaryImagesUrl){
-    const img = document.createElement("img")
-    img.classList.add("secondaryImage")
-    img.src = imageUrl
-
-    imagesSection.appendChild(img)
-}
+setPrincipalImage(selectedPrincipalImage)
 
 document.querySelector(".productName").textContent = product.name
 document.querySelector(".productPrice").textContent = product.price.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2})
-document.querySelector(".suitableFor").textContent = product.suitableFor
+document.querySelectorAll(".suitableFor").forEach(cont => cont.textContent = product.suitableFor)
+document.querySelector(".productGender").textContent = product.gender
 document.querySelector(".brandName").textContent = product.brand
+
+const qtdParc = 6
+const precoTotal = (product.price * 1.15)
+const precoParc = (precoTotal / qtdParc)
+
+document.querySelector(".priceTotalParc").textContent = precoTotal.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2})
+document.querySelector(".qtdParc").textContent  = qtdParc
+document.querySelector(".priceParc").textContent = precoParc.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2})
 
 if(product.variants && product.variants.length>0){
     document.querySelector(".variantesTitle").classList.remove("d-none")
@@ -45,8 +43,6 @@ if(product.variants && product.variants.length>0){
         variantesSec.appendChild(varBtn)
     })
 }
-
-
 
 document.querySelectorAll(".btnTamanho").forEach((button) => {
     button.addEventListener("click", () => {
@@ -63,3 +59,30 @@ document.querySelectorAll(".btnTamanho").forEach((button) => {
         button.classList.add("active");
     });
 });
+
+function setSecondaryImages(){
+    const secondaryImagesUrl = productImages.filter(link=>link!=selectedPrincipalImage)
+    
+    const imagesSection = document.getElementById("photosColumn")
+    
+    imagesSection.replaceChildren()
+    secondaryImagesUrl.forEach(imageUrl=> {
+        const img = document.createElement("img")
+        img.classList.add("secondaryImage")
+        img.src = imageUrl
+    
+        img.addEventListener('click', ()=>{
+            setPrincipalImage(imageUrl)
+        })
+    
+        imagesSection.appendChild(img)
+    })
+}
+
+function setPrincipalImage(url){
+    if(!productImages.includes(url)) return;
+
+    selectedPrincipalImage = url;
+    principalImage.src = url
+    setSecondaryImages()
+}
