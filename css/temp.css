@@ -1,0 +1,155 @@
+#avaliacoes {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto 4rem;
+  padding: 0 2.4rem;
+}
+
+.avaliacoesCard {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 3.2rem 2.4rem 2.8rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.avaliacoesTitle {
+  font-size: 3.2rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #1d1d1f;
+  margin-bottom: 2.8rem;
+}
+
+.avaliacoesBlock + .avaliacoesBlock {
+  margin-top: 3rem;
+}
+
+.avaliacoesBlock h3 {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #1d1d1f;
+  margin-bottom: 1rem;
+}
+
+.avaliacaoLinha {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.avaliacaoNota {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.avaliacaoNota strong,
+.recomendacaoNumero strong {
+  font-size: 5.2rem;
+  line-height: 1;
+  font-weight: 800;
+  color: #1d1d1f;
+}
+
+.avaliacaoDetalhe,
+.recomendacaoDetalhe {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.estrelas,
+.estrelas i {
+  color: var(--primary);
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.avaliacaoDetalhe p,
+.recomendacaoDetalhe p {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.35;
+  color: #767676;
+}
+
+.recomendacaoBloco {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.recomendacaoNumero {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+}
+
+.recomendacaoNumero strong {
+  font-size: 5.2rem;
+}
+
+.recomendacaoNumero span {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1d1d1f;
+}
+
+.recomendacaoBarra {
+  width: min(220px, 100%);
+  height: 10px;
+  background: #d7d7db;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.recomendacaoBarra span {
+  display: block;
+  width: 94%;
+  height: 100%;
+  background: var(--primary);
+  border-radius: inherit;
+}
+
+@media (max-width: 575px) {
+  #avaliacoes {
+    padding: 0 1.2rem;
+  }
+
+  .avaliacoesCard {
+    padding: 2.4rem 1.6rem 2.2rem;
+  }
+
+  .avaliacoesTitle {
+    font-size: 2.6rem;
+  }
+
+  .avaliacoesBlock h3 {
+    font-size: 1.8rem;
+  }
+
+  .avaliacaoNota strong,
+  .recomendacaoNumero strong {
+    font-size: 4.2rem;
+  }
+
+  .estrelas,
+  .estrelas i {
+    font-size: 1.6rem;
+  }
+
+  .recomendacaoBarra {
+    width: 100%;
+  }
+}
+
+#avaliacoes {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto 4rem;
+  padding: 0 2.4rem;
+  display: flex;
+}

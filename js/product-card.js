@@ -85,8 +85,34 @@ async function renderizarMaisVendidos() {
   }
 }
 
+async function compreJunto() {
+  const sliderTrack = document.getElementById('sliderTrackCompreJunto');
+  if (!sliderTrack) return;
+
+  try {
+    const todosProdutos = await getAllProducts();
+    const categoriaEspecifica = document.querySelector('.categoriaProduto').textContent.trim();
+    const nomeProduto = document.querySelector('.NomeProduto').textContent.trim();
+    const produtosCompreJunto = todosProdutos.filter(p => p.category === categoriaEspecifica && p.name !== nomeProduto).slice(0, 10);
+
+    sliderTrack.innerHTML = '';
+    
+    produtosCompreJunto.forEach(produto => {
+      sliderTrack.innerHTML += criarCardProduto(produto);
+    });
+
+    
+    setTimeout(() => {
+      iniciarCarrossel("sliderWrapperCompreJunto", "btnLeftCompreJunto", "btnRightCompreJunto");
+    }, 150);
+
+  } catch (erro) {
+    console.error("Erro ao carregar produtos para compre junto:", erro);
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   renderizarOfertas(); 
   renderizarMaisVendidos();
+  compreJunto();
 });
