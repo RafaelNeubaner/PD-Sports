@@ -1,5 +1,5 @@
 import { getAllProducts } from "./products/useProducts.js";
-import { iniciarCarrossel } from "./carrossel.js";
+import { iniciarCarrossel } from "./section-carousel.js";
 
 // cria card produto
 export function criarCardProduto(produto) {
