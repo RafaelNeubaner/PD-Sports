@@ -44,8 +44,8 @@
     <script src="js/scripts.js" defer></script>
     <script src="js/darkmode.js" defer></script>
     <script src="js/carrossel.js" defer></script>
+    <script src="js/section-carousel.js" defer></script>
     <script type="module" src="js/product-card.js" defer></script>
-   
   </head>
   <body>
     <!-- HEADER -->
@@ -191,7 +191,89 @@
       </nav>
     </header>
 
+    <!-- HERO -->
+    <section id="hero" class="container-fluid p-0">
+      <section class="carrossel-wrap">
+        <input
+          type="radio"
+          name="carrossel"
+          id="r1"
+          class="carrossel-radio"
+        />
+        <input
+          type="radio"
+          name="carrossel"
+          id="r2"
+          class="carrossel-radio"
+        />
+        <input
+          type="radio"
+          name="carrossel"
+          id="r3"
+          class="carrossel-radio"
+        />
+        <div class="carrossel">
+          <div class="slides_dots">
+            <div class="slides_autoplay">
+              <article class="slide">
+                <a href="#" aria-label="Ir para página de produtos">
+                  <img
+                    src="assets/media/images/home/imagem-hero.jpg"
+                    alt="Slide 1"
+                    style="object-position: 50% 0%"
+                    class="d-none d-lg-block d-sm-block"
+                  />
+                  <img
+                    src="assets/media/images/home/imagem-hero-mobile.jpg"
+                    alt="Slide 1"
+                    style="object-position: 50% 0%"
+                    class="d-block d-lg-none d-sm-none"
+                  />
+                </a>
+              </article>
+              <article class="slide">
+                <a href="#" aria-label="Ir para página de produtos">
+                  <img
+                    src="assets/media/images/home/imagem-hero-2.png"
+                    alt="Slide 2"
+                    class="d-none d-lg-block d-sm-block"
+                  />
+                  <img
+                    src="assets/media/images/home/imagem-hero-2-mobile.png"
+                    alt="Slide 2"
+                    style="object-position: 50% 0%"
+                    class="d-block d-lg-none d-sm-none"
+                  />
+                </a>
+              </article>
+              <article class="slide">
+                <a href="#" aria-label="Ir para página de produtos">
+                  <img
+                    src="assets/media/images/home/imagem-hero-3.png"
+                    alt="Slide 3"
+                    class="d-none d-lg-block d-sm-block"
+                  />
+                  <img
+                    src="assets/media/images/home/imagem-hero-3-mobile.png"
+                    alt="Slide 3"
+                    style="object-position: 50% 0%"
+                    class="d-block d-lg-none d-sm-none"
+                  />
+                </a>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="dots">
+          <label for="r1" class="dot" aria-label="Ir para slide 1"></label>
+          <label for="r2" class="dot" aria-label="Ir para slide 2"></label>
+          <label for="r3" class="dot" aria-label="Ir para slide 3"></label>
+        </div>
+      </section>
+    </section>
+
     <main>
+
       <!-- OFERTAS -->
       <section class="ofertas">
         <hgroup class="d-flex justify-content-between align-items-center">
@@ -201,7 +283,7 @@
           </button>
         </hgroup>
 
-        <div class="carrossel position-relative">
+        <div class="sectionCarousel position-relative">
           <button
             class="btn-primary carousel-control prev d-none d-lg-flex"
             id="btnLeftUnits"
@@ -223,8 +305,8 @@
           </button>
         </div>
       </section>
-      
-      <!-- DESTAQUE CATEGORIAS --> 
+
+      <!-- DESTAQUE CATEGORIAS -->
       <section id="catDestaques" class="container">
         <button
           type="button"
@@ -234,7 +316,7 @@
           <i class="bi bi-chevron-left"></i>
         </button>
 
-        <div class="catDestaquesViewport" >
+        <div class="catDestaquesViewport">
           <div class="catDestaquesTrack">
             <article class="h-100 catCard">
               <a href="#" class="link2">
@@ -330,7 +412,7 @@
         >
           <i class="bi bi-chevron-right"></i>
         </button>
-    </section>
+      </section>
 
       <!-- MAIS VENDIDOS -->
       <section class="maisVendidos">
@@ -341,7 +423,7 @@
           </button>
         </hgroup>
 
-        <div class="carrossel position-relative">
+        <div class="sectionCarousel position-relative">
           <button
             class="btn-primary carousel-control prev d-none d-lg-flex"
             id="btnLeftBestSellers"
@@ -363,42 +445,59 @@
       </section>
 
       <!-- MARCAS -->
-      <section class="marcas mb64">
+      <section class="marcas">
         <hgroup>
           <h2 class="sectTitle mb-0">Nossas Marcas</h2>
         </hgroup>
-        
+
         <div class="containerMarcas">
           <article>
-            <img src="/assets/media/img/marcas/marca-nike.png" alt="Nike" class="logoMarca" />
+            <img
+              src="/assets/media/img/marcas/marca-nike.png"
+              alt="Nike"
+              class="logoMarca"
+            />
           </article>
 
           <article>
-            <img src="/assets/media/img/marcas/marca-puma.png" alt="Puma" class="logoMarca" />
+            <img
+              src="/assets/media/img/marcas/marca-puma.png"
+              alt="Puma"
+              class="logoMarca"
+            />
           </article>
 
           <article>
-            <img src="/assets/media/img/marcas/marca-adidas.png" alt="Adidas" class="logoMarca" />
+            <img
+              src="/assets/media/img/marcas/marca-adidas.png"
+              alt="Adidas"
+              class="logoMarca"
+            />
           </article>
 
           <article>
             <img
               src="/assets/media/img/marcas/marca-new-balance.png"
-              alt="New Balance" class="logoMarca"
+              alt="New Balance"
+              class="logoMarca"
             />
           </article>
 
           <article>
             <img
               src="/assets/media/img/marcas/marca-under-armour.png"
-              alt="Under Armour" class="logoMarca"
+              alt="Under Armour"
+              class="logoMarca"
             />
           </article>
 
           <article>
-            <img src="/assets/media/img/marcas/marca-umbro.png" alt="Umbro" class="logoMarca" />
+            <img
+              src="/assets/media/img/marcas/marca-umbro.png"
+              alt="Umbro"
+              class="logoMarca"
+            />
           </article>
-
         </div>
       </section>
 
@@ -436,7 +535,6 @@
         </form>
       </section>
     </main>
-
 
     <footer class="bgHeader">
       <p class="textCenter">
