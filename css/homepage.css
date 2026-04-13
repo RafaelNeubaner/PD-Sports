@@ -29,7 +29,7 @@ main {
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
 
-.carrossel img {
+#hero .carrossel img {
   width: 100vw;
   max-height: min(75vw, 400px);
   height: 100%;
@@ -90,7 +90,6 @@ main {
   display: inline-block;
   cursor: pointer;
   transition: background .2s, transform .15s;
-  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); */
 }
 
 .dot.active {
