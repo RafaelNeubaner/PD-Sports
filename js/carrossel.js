@@ -91,14 +91,20 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function update() {
-		const step = stepSize();
-		const offset = Math.min(currentIndex * step, maxOffset());
-		currentIndex = Math.max(0, Math.round(offset / step));
+    // Verifica se estamos em resolução de desktop (onde as setas aparecem)
+    if (window.innerWidth > 976) {
+        const step = stepSize();
+        const offset = Math.min(currentIndex * step, maxOffset());
+        currentIndex = Math.max(0, Math.round(offset / step));
 
-		track.style.transform = `translateX(-${offset}px)`;
-		prevBtn.disabled = offset <= 0;
-		nextBtn.disabled = offset >= maxOffset();
-	}
+        track.style.transform = `translateX(-${offset}px)`;
+        prevBtn.disabled = offset <= 0;
+        nextBtn.disabled = offset >= maxOffset();
+    } else {
+        // Se for tablet/mobile, limpa o estilo para o scroll nativo assumir
+        track.style.transform = "none";
+    }
+}
 
 	prevBtn.addEventListener("click", () => {
 		currentIndex = Math.max(0, currentIndex - 1);
