@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function update() {
-    // Verifica se estamos em resolução de desktop (onde as setas aparecem)
+
     if (window.innerWidth > 976) {
         const step = stepSize();
         const offset = Math.min(currentIndex * step, maxOffset());
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
         prevBtn.disabled = offset <= 0;
         nextBtn.disabled = offset >= maxOffset();
     } else {
-        // Se for tablet/mobile, limpa o estilo para o scroll nativo assumir
+   
         track.style.transform = "none";
     }
 }
