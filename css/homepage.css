@@ -133,21 +133,16 @@ main {
   }
 }
 
-@media(min-width: 992px) {
+@media(min-width: 768px) {
 
   .carrossel-wrap {
     padding: 0;
     height: 32.8rem;
   }
-
-
-  #hero .carrossel-wrap img {
-    max-width: 1200px;
-  }
-
+  
 
   .carrossel {
-    height: 38.2rem;
+    height: 42.2rem;
     max-width: 1440px;
     margin: 0 auto;
   }
@@ -160,6 +155,7 @@ main {
   #hero {
     padding: 0;
   }
+
 }
 
 /* HOMEPAGE - CARROSSEIS */
@@ -456,10 +452,10 @@ body.darkMode .maisVendidos .card .card-body .cardTitle {
 
 #catDestaques .border {
   width: 100%;
-  max-width: 100%;
-  height: 168px;
-  max-width: 168px;
-  border-radius: 100px;
+  max-width: 175px;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
   border: 2px solid var(--secondary) !important;
   position: relative;
   overflow: visible;
@@ -568,42 +564,45 @@ body.darkMode .maisVendidos .card .card-body .cardTitle {
   #catDestaques img:hover {
     transform: scale(1.15) translateX(2.5%);
   }
-}
 
-
-@media (max-width: 976px) {
   #catDestaques {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; 
   }
 
   .catDestaquesViewport {
+
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
+
     scrollbar-width: none;
     -ms-overflow-style: none;
+
+    scroll-snap-type: x mandatory;
   }
+
 
   .catDestaquesViewport::-webkit-scrollbar {
     display: none;
   }
 
   .catDestaquesTrack {
-    justify-content: flex-start;
+    display: flex;
     width: max-content;
+
+    transform: none !important; 
+    transition: none !important;
   }
 
   .catCard {
     flex: 0 0 clamp(150px, 18vw, 200px);
+
+    scroll-snap-align: start;
   }
 
   .catArrow {
-    display: none;
-  }
 
-  #catDestaques img,
-  #catDestaques .border {
-    height: 150px;
+    display: none !important; 
   }
 }
 
