@@ -67,6 +67,7 @@ function autoplayCarrossel() {
     iniciarAutoplay();
   });
 }
+
 export function iniciarCarrossel(wrapperId, btnLeftId, btnRightId) {
   const sliderWrapper = document.getElementById(wrapperId);
   const btnLeft = document.getElementById(btnLeftId);
