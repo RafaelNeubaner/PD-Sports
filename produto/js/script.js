@@ -87,3 +87,30 @@ function setPrincipalImage(url){
     principalImage.src = url
     setSecondaryImages()
 }
+
+
+document.querySelector(".productDescription").textContent = product.description;
+
+
+const specsGrid = document.getElementById('specsGrid');
+const specs = product.characteristics[0];  
+
+if (specs && specsGrid) {
+    specsGrid.innerHTML = ''; 
+
+    Object.entries(specs).forEach(([chave, valor]) => {
+        const col = document.createElement('div');
+
+        col.className = 'col-6 col-md-4 col-lg-3'; 
+        
+        col.innerHTML = `
+            <div class="spec-item">
+                <span class="spec-label">${chave}</span>
+                <span class="spec-value">${valor}</span>
+            </div>
+        `;
+        
+        specsGrid.appendChild(col);
+    });
+}
+
