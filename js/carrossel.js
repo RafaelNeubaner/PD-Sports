@@ -1,121 +1,124 @@
-const carrossel = document.querySelector('.slides_autoplay');
-const carrosselwrap = document.querySelector('.carrossel-wrap');
-const dots = document.querySelectorAll('.dot');
+const carrossel = document.querySelector(".slides_autoplay");
+const carrosselwrap = document.querySelector(".carrossel-wrap");
+const dots = document.querySelectorAll(".dot");
 let autoplayInterval;
 
 function iniciarAutoplay() {
-    autoplayInterval = setInterval(autoplayCarrossel, 5000);
+  autoplayInterval = setInterval(autoplayCarrossel, 5000);
 }
 
 function resetAutoplay() {
-    clearInterval(autoplayInterval);
-    iniciarAutoplay();
+  clearInterval(autoplayInterval);
+  iniciarAutoplay();
 }
 
 dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        dots.forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
-        atualizarCarrossel();
-        resetAutoplay();
-    });
+  dot.addEventListener("click", () => {
+    dots.forEach((d) => d.classList.remove("active"));
+    dot.classList.add("active");
+    atualizarCarrossel();
+    resetAutoplay();
+  });
 });
 
 function atualizarCarrossel() {
-    const activeIndex = Array.from(dots).findIndex(dot => dot.classList.contains('active'));
-    const offset = -activeIndex * 100;
-    carrossel.style.transform = `translateX(${offset}%)`;
+  const activeIndex = Array.from(dots).findIndex((dot) =>
+    dot.classList.contains("active"),
+  );
+  const offset = -activeIndex * 100;
+  carrossel.style.transform = `translateX(${offset}%)`;
 }
 
 function autoplayCarrossel() {
-    const activeIndex = Array.from(dots).findIndex(dot => dot.classList.contains('active'));
-    const nextIndex = (activeIndex + 1) % dots.length;
-    dots.forEach(dot => dot.classList.remove('active'));
-    dots[nextIndex].classList.add('active');
-    atualizarCarrossel();
+  const activeIndex = Array.from(dots).findIndex((dot) =>
+    dot.classList.contains("active"),
+  );
+  const nextIndex = (activeIndex + 1) % dots.length;
+  dots.forEach((dot) => dot.classList.remove("active"));
+  dots[nextIndex].classList.add("active");
+  atualizarCarrossel();
 }
 
-carrossel.addEventListener('mouseenter',() => {
-    clearInterval(autoplayInterval);
+carrossel.addEventListener("mouseenter", () => {
+  clearInterval(autoplayInterval);
 });
 
-carrossel.addEventListener('mouseleave', () => {
-    iniciarAutoplay();
+carrossel.addEventListener("mouseleave", () => {
+  iniciarAutoplay();
 });
 
-carrosselwrap.addEventListener('keydown', (event) => {
-    const activeIndex = Array.from(dots).findIndex(dot => dot.classList.contains('active'));
-    if (event.key === 'ArrowRight') {
-        const nextIndex = (activeIndex + 1) % dots.length;
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[nextIndex].classList.add('active');
-        atualizarCarrossel();
-        resetAutoplay();
-    } else if (event.key === 'ArrowLeft') {
-        const prevIndex = (activeIndex - 1 + dots.length) % dots.length;
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[prevIndex].classList.add('active');
-        atualizarCarrossel();
-        resetAutoplay();
-    }
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    dots[0].classList.add('active');
-    iniciarAutoplay();
+carrosselwrap.addEventListener("keydown", (event) => {
+  const activeIndex = Array.from(dots).findIndex((dot) =>
+    dot.classList.contains("active"),
+  );
+  if (event.key === "ArrowRight") {
+    const nextIndex = (activeIndex + 1) % dots.length;
+    dots.forEach((dot) => dot.classList.remove("active"));
+    dots[nextIndex].classList.add("active");
+    atualizarCarrossel();
+    resetAutoplay();
+  } else if (event.key === "ArrowLeft") {
+    const prevIndex = (activeIndex - 1 + dots.length) % dots.length;
+    dots.forEach((dot) => dot.classList.remove("active"));
+    dots[prevIndex].classList.add("active");
+    atualizarCarrossel();
+    resetAutoplay();
+  }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-	const container = document.querySelector("#catDestaques");
-	if (!container) return;
+  dots[0].classList.add("active");
+  iniciarAutoplay();
+});
 
-	const viewport = container.querySelector(".catDestaquesViewport");
-	const track = container.querySelector(".catDestaquesTrack");
-	const cards = Array.from(container.querySelectorAll(".catCard"));
-	const prevBtn = container.querySelector(".catArrow-left");
-	const nextBtn = container.querySelector(".catArrow-right");
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector("#catDestaques");
+  if (!container) return;
 
-	if (!viewport || !track || cards.length === 0 || !prevBtn || !nextBtn) return;
+  const viewport = container.querySelector(".catDestaquesViewport");
+  const track = container.querySelector(".catDestaquesTrack");
+  const cards = Array.from(container.querySelectorAll(".catCard"));
+  const prevBtn = container.querySelector(".catArrow-left");
+  const nextBtn = container.querySelector(".catArrow-right");
 
-	let currentIndex = 0;
+  if (!viewport || !track || cards.length === 0 || !prevBtn || !nextBtn) return;
 
-	function stepSize() {
-		const cardWidth = cards[0].getBoundingClientRect().width;
-		const gap = parseFloat(window.getComputedStyle(track).gap || "0");
-		return cardWidth + gap;
-	}
+  let currentIndex = 0;
 
-	function maxOffset() {
-		return Math.max(0, track.scrollWidth - viewport.clientWidth);
-	}
+  function stepSize() {
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const gap = parseFloat(window.getComputedStyle(track).gap || "0");
+    return cardWidth + gap;
+  }
 
-	function update() {
+  function maxOffset() {
+    return Math.max(0, track.scrollWidth - viewport.clientWidth);
+  }
 
+  function update() {
     if (window.innerWidth > 976) {
-        const step = stepSize();
-        const offset = Math.min(currentIndex * step, maxOffset());
-        currentIndex = Math.max(0, Math.round(offset / step));
+      const step = stepSize();
+      const offset = Math.min(currentIndex * step, maxOffset());
+      currentIndex = Math.max(0, Math.round(offset / step));
 
-        track.style.transform = `translateX(-${offset}px)`;
-        prevBtn.disabled = offset <= 0;
-        nextBtn.disabled = offset >= maxOffset();
+      track.style.transform = `translateX(-${offset}px)`;
+      prevBtn.disabled = offset <= 0;
+      nextBtn.disabled = offset >= maxOffset();
     } else {
-   
-        track.style.transform = "none";
+      track.style.transform = "none";
     }
-}
+  }
 
-	prevBtn.addEventListener("click", () => {
-		currentIndex = Math.max(0, currentIndex - 1);
-		update();
-	});
+  prevBtn.addEventListener("click", () => {
+    currentIndex = Math.max(0, currentIndex - 1);
+    update();
+  });
 
-	nextBtn.addEventListener("click", () => {
-		currentIndex += 1;
-		update();
-	});
+  nextBtn.addEventListener("click", () => {
+    currentIndex += 1;
+    update();
+  });
 
-	window.addEventListener("resize", update);
-	update();
+  window.addEventListener("resize", update);
+  update();
 });
