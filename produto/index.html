@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
+    <link rel="icon" href="/assets/media/icons/fav-icon.png" type="image/png" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,8 +30,9 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
-    <link rel="stylesheet" href="/css/carrossel.css"/>
-    <link rel="stylesheet" href="/produto/css/styles.css">
+    <link rel="stylesheet" href="/css/carrossel.css" />
+    <link rel="stylesheet" href="/css/homepage.css" />
+    <link rel="stylesheet" href="/produto/css/styles.css" />
 
     <!-- Scripts -->
     <script
@@ -41,10 +42,11 @@
     ></script>
 
     <!-- Custom JS -->
-    <script src="/js/script.js" defer></script>
-    <script src="/js/carrossel.js"></script>
+    <script src="/js/darkmode.js" defer type="module"></script>
     <script src="/produto/js/script.js" defer type="module"></script>
-    <script src="/js/product-card.js"></script>
+    <script src="/js/product-card.js" defer type="module"></script>
+    <script src="/js/carrossel.js"></script>
+    <script src="/js/section-carousel.js"></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -63,7 +65,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <a class="navbar-brand d-block d-md-none" href="index.html"
+          <a class="navbar-brand d-block d-md-none" href="/index.html"
             ><img
               src="/assets/media/logo/logo-light.svg"
               alt="PD Sports"
@@ -71,7 +73,7 @@
           /></a>
 
           <search class="containerSearch">
-            <a class="navbar-brand d-none d-md-block" href="index.html">
+            <a class="navbar-brand d-none d-md-block" href="/index.html">
               <img
                 src="/assets/media/logo/logo-light.svg"
                 alt="PD Sports"
@@ -114,13 +116,12 @@
                 <i class="bi bi-search"></i>
               </button>
 
-
               <li class="nav-item">
-                <a id="themeToggle"
-                class="themeToggle"
-                aria-pressed="false"><i class="bi bi-moon-stars"></i></a>
+                <a id="themeToggle" class="themeToggle" aria-pressed="false"
+                  ><i class="bi bi-moon-stars"></i
+                ></a>
               </li>
-              
+
               <li class="nav-item">
                 <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
               </li>
@@ -192,71 +193,78 @@
     </header>
 
     <main>
-        <section id="productDetails" class="d-flex justify-content-center gap-5">
+      <!-- DETALHES DO PRODUTO -->
+      <section id="productDetails" class="d-flex justify-content-center gap-5">
+        <div class="containerProduct">
           <section id="productPhotos" class="d-flex flex-column gap-3">
-            <p class="subTitleCard"><span class="productGender"></span> > <span class="suitableFor"></span></p>
+            <p class="subTitleCard">
+              <span class="productGender"></span> >
+              <span class="suitableFor"></span>
+            </p>
             <div class="d-flex gap-3">
               <div id="photosColumn" class="d-flex flex-column gap-3"></div>
-              <img class="principalImage"/>
+              <img class="principalImage" />
             </div>
-            
           </section>
-          <aside class="d-flex flex-column gap-4 productInfos">
-            <h3 class="productName cardTitle"></h3>
-            <p class="productPrice cardTitle"></p>
-            <p class="productPriceParc">ou <span class="priceTotalParc"></span> em <span class="qtdParc"></span>x de <span class="priceParc"></span> sem juros</p>
 
-            <div>
-                <p class="subTitleCard">Marca: <span class="brandName"></span></p>
-                <p class="subTitleCard">Indicado para: <span class="suitableFor"></span></p>
+          <!-- INFORMAÇÕES DO PRODUTO -->
+          <section class="infoProduto">
+            <hgroup>
+              <h2 class="secTitle">
+                <span
+                  ><img
+                    src="/assets/media/icons/info.svg"
+                    alt="icone informacão"
+                    class="me-2" /></span
+                >Informações do Produto
+              </h2>
+
+              <p class="productDescription"></p>
+            </hgroup>
+
+            <!-- CARACTERÍSTICAS -->
+            <div class="productSpecs mt-5">
+              <h3 class="specTitle mb-4">Especificações Técnicas</h3>
+              <div id="specsGrid" class="row g-3"></div>
             </div>
+          </section>
+        </div>
 
-            <h4 class="variantesTitle d-none">Variantes</h4>
-            <div class="variantesSec d-flex flex-wrap gap-3"></div>
-            <button class="btnPrimary buyNowButton"><img src="/assets/media/icons/lightning.svg"/> Comprar Agora</button>
-            <button class="btnOutline">Adicionar ao Carrinho</button>
-            <div class="divider"></div>
+        <!-- COMPRAR PRODUTO -->
+        <aside class="d-flex flex-column gap-4 productInfos">
+          <h3 class="productName cardTitle"></h3>
+          <p class="productPrice cardTitle"></p>
+          <p class="productPriceParc">
+            ou <span class="priceTotalParc"></span> em
+            <span class="qtdParc"></span>x de
+            <span class="priceParc"></span> sem juros
+          </p>
 
-            <form class="d-flex flex-wrap gap-3">
-                <h3>Calcular Frete</h3>
-                <input placeholder="Digite seu CEP" name="CEP" type="text">
-                <button class="btnOutline">Calcular</button>
-            </form>
-          </aside>
-        </section>
-        <p class="NomeProduto">Bola Vôlei Mikasa V360W</p>
-      <p class="categoriaProduto">Vôlei</p>
-      <section class="compreJunto">
-        <hgroup class="d-flex justify-content-between align-items-center">
-          <h2 class="sectTitle m-0">Compre junto</h2>
-        </hgroup>
-
-        <div class="carrossel position-relative">
-          <button
-            class="btn-primary carousel-control prev d-none d-lg-flex"
-            id="btnLeftCompreJunto"
-          >
-            <i class="bi bi-chevron-left"></i>
-          </button>
-
-          <div class="slider-wrapper" id="sliderWrapperCompreJunto">
-            <div
-              class="slider-track sliderContainer"
-              id="sliderTrackCompreJunto"
-            >
-              <!-- Cards de Produto serão inseridos aqui dinamicamente -->
-            </div>
+          <div>
+            <p class="subTitleCard">Marca: <span class="brandName"></span></p>
+            <p class="subTitleCard">
+              Indicado para: <span class="suitableFor"></span>
+            </p>
           </div>
 
-          <button
-            class="btn-primary carousel-control next d-none d-lg-flex"
-            id="btnRightCompreJunto"
-          >
-            <i class="bi bi-chevron-right"></i>
+          <h4 class="variantesTitle d-none">Variantes</h4>
+          <div class="variantesSec d-flex flex-wrap gap-3"></div>
+          <button class="btnPrimary buyNowButton">
+            <img src="/assets/media/icons/lightning.svg" /> Comprar Agora
           </button>
-        </div>
+          <button class="btnOutline">Adicionar ao Carrinho</button>
+          <div class="divider"></div>
+
+          <form class="d-flex flex-wrap gap-3">
+            <h3>Calcular Frete</h3>
+            <input placeholder="Digite seu CEP" name="CEP" type="text" />
+            <button class="btnOutline">Calcular</button>
+          </form>
+        </aside>
       </section>
-      <section id="avaliacoes">
+
+      <!-- AVALIAÇÕES -->
+      <section id="avaliacoes" class="justify-content-end">
         <aside class="avaliacoesCard">
           <h2 class="avaliacoesTitle">Avaliação do produto</h2>
           <div class="avaliacoesBlock">
@@ -292,7 +300,38 @@
             </div>
           </div>
         </aside>
+      </section>
 
+      <!-- COMPRE JUNTO -->
+      <section class="compreJunto maisVendidos">
+        <hgroup class="d-flex justify-content-between align-items-center">
+          <h2 class="sectTitle m-0">Compre junto</h2>
+        </hgroup>
+
+        <div class="carrossel position-relative">
+          <button
+            class="btn-primary carousel-control prev d-none d-lg-flex"
+            id="btnLeftCompreJunto"
+          >
+            <i class="bi bi-chevron-left"></i>
+          </button>
+
+          <div class="slider-wrapper" id="sliderWrapperCompreJunto">
+            <div
+              class="slider-track sliderContainer"
+              id="sliderTrackCompreJunto"
+            >
+              <!-- Cards de Produto serão inseridos aqui dinamicamente -->
+            </div>
+          </div>
+
+          <button
+            class="btn-primary carousel-control next d-none d-lg-flex"
+            id="btnRightCompreJunto"
+          >
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
       </section>
     </main>
 

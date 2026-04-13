@@ -39,7 +39,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="js/scripts.js" defer></script>
     <script src="js/darkmode.js" defer></script>
     <script src="js/carrossel.js" defer></script>
     <script src="js/section-carousel.js" defer></script>
@@ -62,7 +61,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <a class="navbar-brand d-block d-md-none" href="index.html"
+          <a class="navbar-brand d-block d-md-none" href="/index.html"
             ><img
               src="assets/media/logo/logo-light.svg"
               alt="PD Sports"
@@ -70,7 +69,7 @@
           /></a>
 
           <search class="containerSearch">
-            <a class="navbar-brand d-none d-md-block" href="index.html">
+            <a class="navbar-brand d-none d-md-block" href="/index.html">
               <img
                 src="assets/media/logo/logo-light.svg"
                 alt="PD Sports"
@@ -192,37 +191,22 @@
     <!-- HERO -->
     <section id="hero" class="container-fluid mx-auto">
       <section class="carrossel-wrap">
-        <input
-          type="radio"
-          name="carrossel"
-          id="r1"
-          class="carrossel-radio"
-        />
-        <input
-          type="radio"
-          name="carrossel"
-          id="r2"
-          class="carrossel-radio"
-        />
-        <input
-          type="radio"
-          name="carrossel"
-          id="r3"
-          class="carrossel-radio"
-        />
+        <input type="radio" name="carrossel" id="r1" class="carrossel-radio" />
+        <input type="radio" name="carrossel" id="r2" class="carrossel-radio" />
+        <input type="radio" name="carrossel" id="r3" class="carrossel-radio" />
         <div class="carrossel">
           <div class="slides_dots">
             <div class="slides_autoplay">
-              <article class="slide">
+              <article class="slide" id="slide1">
                 <a href="#" aria-label="Ir para página de produtos">
                   <img
-                    src="assets/media/images/home/imagem-hero.jpg"
+                    src="assets/media/images/home/imagem-hero.png"
                     alt="Slide 1"
                     style="object-position: 50% 0%"
                     class="d-none d-lg-block d-sm-block"
                   />
                   <img
-                    src="assets/media/images/home/imagem-hero-mobile.jpg"
+                    src="assets/media/images/home/imagem-hero-mobile.png"
                     alt="Slide 1"
                     style="object-position: 50% 0%"
                     class="d-block d-lg-none d-sm-none"
@@ -237,7 +221,7 @@
                     class="d-none d-lg-block d-sm-block"
                   />
                   <img
-                    src="assets/media/images/home/imagem-hero-2-mobile.png"
+                    src="assets/media/images/home/imagem-hero-2-mobile.jpg"
                     alt="Slide 2"
                     style="object-position: 50% 0%"
                     class="d-block d-lg-none d-sm-none"
@@ -252,7 +236,7 @@
                     class="d-none d-lg-block d-sm-block"
                   />
                   <img
-                    src="assets/media/images/home/imagem-hero-3-mobile.png"
+                    src="assets/media/images/home/imagem-hero-3-mobile.jpg"
                     alt="Slide 3"
                     style="object-position: 50% 0%"
                     class="d-block d-lg-none d-sm-none"
@@ -269,9 +253,8 @@
         </div>
       </section>
     </section>
-    
-    <main>
 
+    <main>
       <!-- OFERTAS -->
       <section class="ofertas">
         <hgroup class="d-flex justify-content-between align-items-center">
@@ -326,7 +309,7 @@
                       class="img-fluid"
                     />
                   </div>
-                  <figcaption class="">FUTEBOL</figcaption>
+                  <figcaption class="font20">FUTEBOL</figcaption>
                 </figure>
               </a>
             </article>
@@ -340,7 +323,7 @@
                       class="img-fluid"
                     />
                   </div>
-                  <figcaption>CORRIDA</figcaption>
+                  <figcaption class="font20">CORRIDA</figcaption>
                 </figure>
               </a>
             </article>
@@ -354,7 +337,7 @@
                       class="img-fluid"
                     />
                   </div>
-                  <figcaption>ACADEMIA</figcaption>
+                  <figcaption class="font20">ACADEMIA</figcaption>
                 </figure>
               </a>
             </article>
@@ -368,7 +351,7 @@
                       class="img-fluid"
                     />
                   </div>
-                  <figcaption>TENIS</figcaption>
+                  <figcaption class="font20">TENIS</figcaption>
                 </figure>
               </a>
             </article>
@@ -382,7 +365,7 @@
                       class="img-fluid"
                     />
                   </div>
-                  <figcaption>BASQUETE</figcaption>
+                  <figcaption class="font20">BASQUETE</figcaption>
                 </figure>
               </a>
             </article>
@@ -396,7 +379,7 @@
                       class="img-fluid"
                     />
                   </div>
-                  <figcaption>NATAÇÃO</figcaption>
+                  <figcaption class="font20">NATAÇÃO</figcaption>
                 </figure>
               </a>
             </article>
@@ -458,7 +441,7 @@
         <div class="containerMarcas">
           <article>
             <img
-              src="/assets/media/img/marcas/marca-nike.png"
+              src="/assets/media/images/home/marcas/marca-nike.png"
               alt="Nike"
               class="logoMarca"
             />
@@ -466,7 +449,7 @@
 
           <article>
             <img
-              src="/assets/media/img/marcas/marca-puma.png"
+              src="/assets/media/images/home/marcas/marca-puma.png"
               alt="Puma"
               class="logoMarca"
             />
@@ -474,7 +457,7 @@
 
           <article>
             <img
-              src="/assets/media/img/marcas/marca-adidas.png"
+              src="/assets/media/images/home/marcas/marca-adidas.png"
               alt="Adidas"
               class="logoMarca"
             />
@@ -482,7 +465,7 @@
 
           <article>
             <img
-              src="/assets/media/img/marcas/marca-new-balance.png"
+              src="/assets/media/images/home/marcas/marca-new-balance.png"
               alt="New Balance"
               class="logoMarca"
             />
@@ -490,7 +473,7 @@
 
           <article>
             <img
-              src="/assets/media/img/marcas/marca-under-armour.png"
+              src="/assets/media/images/home/marcas/marca-under-armour.png"
               alt="Under Armour"
               class="logoMarca"
             />
@@ -498,7 +481,7 @@
 
           <article>
             <img
-              src="/assets/media/img/marcas/marca-umbro.png"
+              src="/assets/media/images/home/marcas/marca-umbro.png"
               alt="Umbro"
               class="logoMarca"
             />

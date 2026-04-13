@@ -5,7 +5,9 @@ header {
   align-items: center;
   background-color: var(--bg-header);
   border-radius: 0 0 12px 12px;
-  z-index: 1000;
+  z-index: 100;
+
+  position: fixed;
   
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   margin: 0;
@@ -128,6 +130,12 @@ header .navbar .container #navbarNav li a {
 
 @media (min-width: 768px) and (max-width: 991px) {
 
+  header {
+    border-radius: 0px;
+    box-shadow: none;
+    position: relative;
+  }
+
   header .navbar {
     display: flex;
     flex-direction: row;
@@ -189,6 +197,13 @@ header .navbar .container #navbarNav li a {
 }
 
 @media (min-width: 992px) {
+
+  header {
+    border-radius: 0px;
+    box-shadow: none;
+    position: relative;
+  }
+  
   header .navbar {
     padding: 1.8rem 12.8rem;
   }
