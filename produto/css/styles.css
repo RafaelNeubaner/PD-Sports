@@ -1,3 +1,10 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 main{
     padding-top: 100px;
     margin: 0px 128px;
@@ -71,7 +78,6 @@ button{
 .containerProduct {
     display: flex;
     flex-direction: column;
-
     gap: 4.8rem;
 }
 
