@@ -9,7 +9,7 @@ export function criarCardProduto(produto) {
 
   return `
     <article class="slider-item">
-    <a href="/produto/index.html?id=${produto.id}" class="linkCardProduto" itemprop="item">
+    <a href="/produto/index.html?id=${produto.id}" class="linkCardProduto text-decoration-none" itemprop="item">
       <div class="card h-100">
         ${temDesconto ? `
           <span class="badge text-badge position-absolute top-0 start-0 m-2">
