@@ -9,6 +9,7 @@ export function criarCardProduto(produto) {
 
   return `
     <article class="slider-item">
+    <a href="/produto/index.html?id=${produto.id}" class="linkCardProduto" itemprop="item">
       <div class="card h-100">
         ${temDesconto ? `
           <span class="badge text-badge position-absolute top-0 start-0 m-2">
@@ -25,9 +26,35 @@ export function criarCardProduto(produto) {
           <span class="subTitleCard txtDark" itemprop="price">R$ ${(temDesconto ? produto.discount : produto.price).toFixed(2)} <sub>no PIX</sub></span>
         </div>
       </div>
+      </a>
     </article>
   `;
 }
+
+// capturar o ID do produto selecionado a partir da URL
+const parametros = new URLSearchParams(window.location.search);
+
+const idProduto = parametros.get('id'); 
+
+console.log("O ID do produto clicado é:", idProduto);
+
+import { getProductById } from "../js/products/useProducts.js";
+
+async function carregarDetalhesDoProduto() {
+  try {
+    
+    const produto = await getProductById(idProduto);
+    
+    console.log("Dados do produto recebidos:", produto);
+    
+    
+  } catch (error) {
+    console.error("Erro ao carregar produto:", error);
+  }
+}
+
+carregarDetalhesDoProduto();
+
 
 //  Homepage - Ofertas da Semana
 async function renderizarOfertas() {
