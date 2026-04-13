@@ -22,7 +22,7 @@
 
 const BASE_URL = "https://69c284407518bf8facbe9c12.mockapi.io/api/"
 
-function formatIdProduct(product){
+function formatIdProduct(product) {
     product.id = `${product.id}.${product.isProduct2 ? "2" : '1'}`
 }
 
@@ -32,7 +32,7 @@ function formatIdProduct(product){
  * @param {Product} product - objeto de produto com as propriedades * 
  * @param {string} endpoint - Qual endpoint o produto será salvo
  */
-export async function createProduct(product, endpoint="product2"){
+export async function createProduct(product, endpoint = "product2") {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
         method: "POST",
         headers: {
@@ -58,8 +58,8 @@ export async function createProduct(product, endpoint="product2"){
  * Ex: updateProduct("20.1", produto) #ID 20 no endpoint 1(/product)
  * Ex: updateProduct("20.2", produto) #ID 20 no endpoint 2(/product2)
  */
-export async function updateProduct(id, product){
-    const response = await fetch(`${BASE_URL}${product.isProduct2==true ? "product2/" : "product/"}${id}`, {
+export async function updateProduct(id, product) {
+    const response = await fetch(`${BASE_URL}${product.isProduct2 == true ? "product2/" : "product/"}${id}`, {
         method: "PUT",
         headers: {
             'Accept': 'application/json',
@@ -85,8 +85,8 @@ export async function updateProduct(id, product){
  * Ex: deleteProduct("20.1") #ID 20 no endpoint 1(/product)
  * Ex: deleteProduct("20.2") #ID 20 no endpoint 2(/product2)
  */
-export async function deleteProduct(id){
-    const response = await fetch(`${BASE_URL}${product.isProduct2==true ? "product2/" : "product/"}${id}`, {
+export async function deleteProduct(id) {
+    const response = await fetch(`${BASE_URL}${product.isProduct2 == true ? "product2/" : "product/"}${id}`, {
         method: "DELETE",
         headers: {
             'Accept': 'application/json',
@@ -106,7 +106,7 @@ export async function deleteProduct(id){
  * @returns {Product[]}  array com todos os produtos com suas propriedades
  * 
  */
-export async function getAllProducts(){
+export async function getAllProducts() {
     const responses = await Promise.all([
         fetch(`${BASE_URL}product`),
         fetch(`${BASE_URL}product2`),
@@ -117,7 +117,7 @@ export async function getAllProducts(){
         ...(await responses[1].json())
     ]
 
-    produtos.map(produto=>formatIdProduct(produto))
+    produtos.map(produto => formatIdProduct(produto))
 
     return produtos;
 }
@@ -134,15 +134,15 @@ export async function getAllProducts(){
  * @returns {Product[]}  array com todos os produtos com suas propriedades
  * 
  */
-export async function getProductById(id){
+export async function getProductById(id) {
     const idSplit = id.split(".")
-    console.log(idSplit)    
+    console.log(idSplit)
     const idNum = idSplit[0]
     const endpoint = idSplit[1]
 
-    const response = await fetch(`${BASE_URL}product${endpoint=='2'?'2':''}/${idNum}`)
+    const response = await fetch(`${BASE_URL}product${endpoint == '2' ? '2' : ''}/${idNum}`)
 
-    if(response.status!=200){
+    if (response.status != 200) {
         throw new Error("Not found");
     }
 
@@ -161,30 +161,30 @@ export async function getProductById(id){
  * @returns {Product[]}  array com todos os produtos com suas propriedades
  * 
  */
-export async function getProductsByCategory(category){
+export async function getProductsByCategory(category) {
     const url = new URL("product")
     url.searchParams.append("category", category)
 
     const url2 = new URL(`${BASE_URL}product2`)
     url2.searchParams.append("category", category)
 
-    const responses = await Promise.all([ 
+    const responses = await Promise.all([
         fetch(url, {
             method: 'GET',
-            headers: {'content-type':'application/json'},
-        }).catch(err=>null),
-         fetch(url2, {
+            headers: { 'content-type': 'application/json' },
+        }).catch(err => null),
+        fetch(url2, {
             method: 'GET',
-            headers: {'content-type':'application/json'},
-        }).catch(err=>null)
+            headers: { 'content-type': 'application/json' },
+        }).catch(err => null)
     ])
 
     let produtos = []
     for (var response of responses) {
-        if (response.status == 200){
+        if (response.status == 200) {
             let produtosRes = await response.json()
             console.log(produtosRes)
-            produtosRes.map(produto=>formatIdProduct(produto))
+            produtosRes.map(produto => formatIdProduct(produto))
             produtos = [...produtos, ...produtosRes]
         }
     }
@@ -197,43 +197,44 @@ export async function getProductsByCategory(category){
  * 
  * @param {string} query 
  * @param {string} category 
- * @param {string} genero
+ * @param {string} gender
  * @param {boolean} discount
  * @param {boolean} sortByPrice
- * @param {string} order
+ * @param {'asc'|'desc'} order
  * 
  * @returns {Product[]}
  */
-export async function getProductsFilter(query, category, gender, discount, sortByPrice=false, order='desc'){
+export async function getProductsFilter(query, category, gender, discount, sortByPrice = false, order = 'desc') {
     const url = new URL(`${BASE_URL}product`)
     const url2 = new URL(`${BASE_URL}product2`)
-    
+    const normalizedOrder = order === 'asc' ? 'asc' : 'desc'
+
     url.searchParams.append("search", query)
     url2.searchParams.append("search", query)
 
-    if(category){
+    if (category) {
         url.searchParams.append("category", category)
         url2.searchParams.append("category", category)
     }
-    if(genero){
+    if (gender) {
         url.searchParams.append("gender", gender)
         url2.searchParams.append("gender", gender)
     }
-    if(discount){
+    if (discount) {
         url.searchParams.append("noDiscount", !discount)
         url2.searchParams.append("noDiscount", !discount)
     }
-    if(sortByPrice){
+    if (sortByPrice) {
         url.searchParams.append("sortBy", 'price')
         url2.searchParams.append("sortBy", 'price')
-        
-        url.searchParams.append("order", order)
-        url2.searchParams.append("order", order)
+
+        url.searchParams.append("order", normalizedOrder)
+        url2.searchParams.append("order", normalizedOrder)
     }
 
     const responses = await Promise.all([
-        fetch(url, {method: 'GET', headers: {'content-type': 'application/json'}}),
-        fetch(url2, {method: 'GET', headers: {'content-type': 'application/json'}}),
+        fetch(url, { method: 'GET', headers: { 'content-type': 'application/json' } }),
+        fetch(url2, { method: 'GET', headers: { 'content-type': 'application/json' } }),
     ])
 
     let produtos = []
@@ -241,7 +242,7 @@ export async function getProductsFilter(query, category, gender, discount, sortB
         if (response.status == 200) {
             let produtosRes = await response.json()
             console.log(produtosRes)
-            produtosRes.map(produto=>formatIdProduct(produto))
+            produtosRes.map(produto => formatIdProduct(produto))
             produtos = [...produtos, ...produtosRes]
         }
     }
