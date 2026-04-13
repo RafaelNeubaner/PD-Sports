@@ -10,16 +10,14 @@ main {
 
 
 /* HOMEPAGE - HERO */
-
-
 .carrossel-wrap {
   width: 100%;
-  max-width: 1700px;
+  max-width: 1400px;
   min-height: min(40vw, 400px);
   height: auto;
   margin: 0 auto 2rem auto;
   position: relative;
-  padding: 7.6rem 0 0 0;
+  /* padding: 7.6rem 0 0 0; */
 }
 
 .carrossel {
@@ -110,13 +108,43 @@ main {
   animation-play-state: paused;
 }
 
-@media(min-width: 768px) {
+@media(max-width: 575px) {
   .carrossel-wrap {
-    padding: 0;
+    padding: 7.6rem 0 0 0;
+  }
+}
+
+@media(max-width: 767px) and (min-width: 576px) {
+
+  
+  .carrossel-wrap {
+    padding: 8.6rem 0 0 0;
+    height: 36.8rem;
+  }
+
+  #hero .carrossel img {
+    width: 100vw;
+    height: 100%;
+    object-fit: fill;
+  }
+
+  #hero .carrossel-wrap img {
+    max-width: 1200px;
   }
 }
 
 @media(min-width: 992px) {
+
+  .carrossel-wrap {
+    padding: 0;
+    height: 32.8rem;
+  }
+
+
+  #hero .carrossel-wrap img {
+    max-width: 1200px;
+  }
+
 
   .carrossel {
     height: 38.2rem;
@@ -602,7 +630,7 @@ body.darkMode .logoMarca {
 
 #newsletterSection .inputsSec input {
   border: 0 !important;
-  background-color: var(--bg-light)!important;
+  background-color: var(--bg-light) !important;
   flex-grow: 1;
 }
 
