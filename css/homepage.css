@@ -522,7 +522,7 @@ body.darkMode .maisVendidos .card .card-body .cardTitle {
   }
 
   .catCard {
-    flex: 0 0 calc((95% - 7.5rem) / 6);
+    flex: 0 0 clamp((95% - 7.5rem) / 6, 18vw, 200px);
   }
 
   .catArrow {
