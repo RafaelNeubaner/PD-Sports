@@ -11,6 +11,10 @@
   margin-bottom: 1rem;
 }
 
+.descricao .breadcrumb-item, .descricao .breadcrumb-item a {
+  color: var(--txt) !important;
+}
+
 .btn-filtrar {
   background-color: var(--secondary);
   color: var(--txt);
