@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/busca/css/busca-produto.css" />
 
-
     <!-- Scripts -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
@@ -42,7 +41,7 @@
 
     <script src="/js/darkmode.js" defer></script>
     <script type="module" src="/busca/js/busca.js"></script>
-    <script src="/busca/js/filtros.js" defer></script>
+    <script type="module" src="/busca/js/filtros.js" defer></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -218,12 +217,12 @@
 
     <main class="container py-4 bg-light-custom">
       <div class="d-flex justify-content-between align-items-end mb-4">
-        <div>
+        <div class="descricao">
           <h1 class="page-title mb-1" id="tituloBusca">Masculino</h1>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
               <li class="breadcrumb-item">
-                <a href="/" class="text-decoration-none text-muted">Home</a>
+                <a href="/" class="text-decoration-none ">Home</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
                 Masculino
@@ -234,7 +233,7 @@
 
         <div class="d-flex gap-3 align-items-center">
           <div class="d-none d-md-flex align-items-center gap-2">
-            <label for="ordenarPor" class="text-muted text-nowrap mb-0"
+            <label for="ordenarPor" class="text-nowrap mb-0"
               >Ordenar por</label
             >
             <select
@@ -261,376 +260,51 @@
 
       <div class="row">
         <aside id="filtros" class="col-lg-3">
-          <div
-            class="offcanvas-lg offcanvas-start"
-            tabindex="-1"
-            id="filtrosOffcanvas"
-            aria-labelledby="filtrosOffcanvasLabel"
-          >
+          <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="filtrosOffcanvas" aria-labelledby="filtrosOffcanvasLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title fw-bold" id="filtrosOffcanvasLabel">
-                Filtros
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="offcanvas"
-                data-bs-target="#filtrosOffcanvas"
-                aria-label="Close"
-              ></button>
+              <h5 class="offcanvas-title fw-bold" id="filtrosOffcanvasLabel">Filtros</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#filtrosOffcanvas" aria-label="Close"></button>
             </div>
+            
             <section class="offcanvas-body flex-column p-lg-0">
-              <article #marcas class="filter-section mb-4">
+              
+              <article class="filter-section mb-4">
                 <h6 class="filter-title">Marcas</h6>
-                
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2" 
-                    type="checkbox"
-                    value=""
-                    id="marcaNike"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="marcaNike"
-                  >
-                    Nike 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="marcaPuma"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="marcaPuma"
-                  >
-                    Puma 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="marcaAdidas"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="marcaAdidas"
-                  >
-                    Adidas 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="marcaNewBalance"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="marcaNewBalance"
-                  >
-                    New Balance 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="marcaMizuno"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="marcaMizuno"
-                  >
-                    Mizuno 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="marcaUnderArmour"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="marcaUnderArmour"
-                  >
-                    Under Armour 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="marcaUmbro"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="marcaUmbro"
-                  >
-                    Umbro 
-                  </label>
-                </fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Nike" id="marcaNike"/><label class="form-check-label d-flex justify-content-between" for="marcaNike">Nike</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Puma" id="marcaPuma"/><label class="form-check-label d-flex justify-content-between" for="marcaPuma">Puma</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Adidas" id="marcaAdidas"/><label class="form-check-label d-flex justify-content-between" for="marcaAdidas">Adidas</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="New Balance" id="marcaNewBalance"/><label class="form-check-label d-flex justify-content-between" for="marcaNewBalance">New Balance</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Mizuno" id="marcaMizuno"/><label class="form-check-label d-flex justify-content-between" for="marcaMizuno">Mizuno</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Under Armour" id="marcaUnderArmour"/><label class="form-check-label d-flex justify-content-between" for="marcaUnderArmour">Under Armour</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Umbro" id="marcaUmbro"/><label class="form-check-label d-flex justify-content-between" for="marcaUmbro">Umbro</label></fieldset>
               </article>
 
-
-              <article #genero class="filter-section mb-4">
+              <article class="filter-section mb-4">
                 <h6 class="filter-title">Gênero</h6>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="genMasc"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="genMasc"
-                  >
-                    Masculino 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="genFem"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="genFem"
-                  >
-                    Feminino 
-                  </label>
-                </fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="genero" value="Masculino" id="genMasc"/><label class="form-check-label d-flex justify-content-between" for="genMasc">Masculino</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="genero" value="Feminino" id="genFem"/><label class="form-check-label d-flex justify-content-between" for="genFem">Feminino</label></fieldset>
               </article>
 
-              <article #categoria class="filter-section mb-4">
+              <article class="filter-section mb-4">
                 <h6 class="filter-title">Esportes</h6>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catFutebol"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catFutebol"
-                  >
-                    Futebol 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catCorrida"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catCorrida"
-                  >
-                    Corrida 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Musculação 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Futsal 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Natação 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Volei 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Basquete 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Hipismo 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Tenis 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Artes Marciais
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Automobilismo 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Tiro 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Baseball 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Patins/Patinetes 
-                  </label>
-                </fieldset>
-                <fieldset class="form-check custom-checkbox">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="catMusculacao"
-                  />
-                  <label
-                    class="form-check-label d-flex justify-content-between"
-                    for="catMusculacao"
-                  >
-                    Skate 
-                  </label>
-                </fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Futebol" id="catFutebol"/><label class="form-check-label d-flex justify-content-between" for="catFutebol">Futebol</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Corrida" id="catCorrida"/><label class="form-check-label d-flex justify-content-between" for="catCorrida">Corrida</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Musculação" id="catMusculacao"/><label class="form-check-label d-flex justify-content-between" for="catMusculacao">Musculação</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Futsal" id="catFutsal"/><label class="form-check-label d-flex justify-content-between" for="catFutsal">Futsal</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Natação" id="catNatacao"/><label class="form-check-label d-flex justify-content-between" for="catNatacao">Natação</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Vôlei" id="catVolei"/><label class="form-check-label d-flex justify-content-between" for="catVolei">Vôlei</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Basquete" id="catBasquete"/><label class="form-check-label d-flex justify-content-between" for="catBasquete">Basquete</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Hipismo" id="catHipismo"/><label class="form-check-label d-flex justify-content-between" for="catHipismo">Hipismo</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Tênis" id="catTenis"/><label class="form-check-label d-flex justify-content-between" for="catTenis">Tênis</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Artes Marciais" id="catArtesMarciais"/><label class="form-check-label d-flex justify-content-between" for="catArtesMarciais">Artes Marciais</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Automobilismo" id="catAutomobilismo"/><label class="form-check-label d-flex justify-content-between" for="catAutomobilismo">Automobilismo</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Tiro" id="catTiro"/><label class="form-check-label d-flex justify-content-between" for="catTiro">Tiro</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Baseball" id="catBaseball"/><label class="form-check-label d-flex justify-content-between" for="catBaseball">Baseball</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Patins e Patinetes" id="catPatins"/><label class="form-check-label d-flex justify-content-between" for="catPatins">Patins/Patinetes</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Skate" id="catSkate"/><label class="form-check-label d-flex justify-content-between" for="catSkate">Skate</label></fieldset>
               </article>
 
-              <button class="btn btn-filtrar w-100  mt-3">
+              <button class="btn btn-filtrar btn-aplicar w-100 mt-3">
                 Aplicar Filtros
               </button>
             </section>
