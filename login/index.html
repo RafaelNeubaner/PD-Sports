@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | PD Sports</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <script src="js/login.js" defer></script>
+  </head>
+  <body>
+    <main class="loginPage textCenter">
+      <section class="login-card">
+        <a  href="../index.html">
+          <img
+            src="../assets/media/logo/logo-light.svg"
+            alt="PD Sports"
+            class="logo"
+          />
+        </a>
+
+        <h1 class="mainTitle textCenter">Entre na sua conta</h1>
+
+        <form class="login-form" autocomplete="on">
+          <label class="txtInvisible" for="login-user">CPF ou Email</label>
+          <input
+            id="login-user"
+            name="usuario"
+            type="text"
+            placeholder="CPF ou Email"
+            autocomplete="username"
+            required
+          />
+
+          <label class="txtInvisible" for="login-password">Senha</label>
+          <input
+            id="login-password"
+            name="senha"
+            type="password"
+            placeholder="Senha"
+            autocomplete="current-password"
+            required
+          />
+
+          <div class="loginLinks">
+            <a href="#" class="link subTitleCard">Termos e Condições</a>
+            <a href="#" class="link subTitleCard " id="abrirModalSenha">Esqueceu a senha?</a>
+          </div>
+            <button type="submit" class="btnPrimary mb24">Login</button>
+        </form>
+
+        <p class="subTitleCard">
+          Não tem conta?
+          <a href="#" class="link subTitleCard">Cadastre-se</a>
+        </p>
+      </section>
+
+      <article class="modalRecuperarSenha">
+        <div class="bg">
+          <button class="btnOutline sair" id="sairModalSenha">X</button>
+        <hgroup>
+          <h2 class="subTitle textCenter">Redefinição de Senha </h2>
+          <p>Digite o email vinculado à sua conta e receba instruções para redefinir sua senha.</p>
+        </hgroup>
+          <div class="containerReset">
+            <form class="resetForm" autocomplete="on">
+          <label class="txtInvisible" for="resetEmail">Email</label>
+          <input
+            id="resetEmail"
+            name="email"
+            type="email"
+            placeholder="Digite seu email"
+            autocomplete="email"
+            required
+          />
+          </div>
+          <br>
+          <button type="submit" class="btnPrimary mt12" id="enviar">Enviar Instruções</button>
+        </form>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
