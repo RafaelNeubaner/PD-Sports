@@ -8,6 +8,7 @@
  * @property {number} price - preço principal do produto
  * @property {number} discount - preço com desconto
  * @property {number} discountPercentage - porcentagem do desconto
+ * @property {number} qtSales  - Quantidade de vendas do produto
  * @property {boolean} noDiscount - verificar se possui desconto
  * @property {string} brand - nome da marca do produto
  * @property {string} description - descrição do produto
@@ -195,22 +196,25 @@ export async function getProductsByCategory(category){
 /**
  * Busca dos produtos com filtro e categorização
  * 
- * @param {string} query 
- * @param {string} category 
- * @param {string} gender
- * @param {boolean} discount
- * @param {boolean} sortByPrice
- * @param {'asc'|'desc'} order
+ * @param {object} params
+ * @param {string} params.query 
+ * @param {string} params.category 
+ * @param {string} params.gender
+ * @param {boolean} params.hasDiscount
+ * @param {'price' | 'qtSales' | 'discountPercentage' } params.sortBy
+ * @param {'asc'|'desc'} params.order
  * 
  * @returns {Product[]}
  */
-export async function getProductsFilter(query, category, gender, discount, sortByPrice = false, order = 'desc') {
+export async function getProductsFilter({query, category, gender, hasDiscount, sortBy, order = 'desc', limit=20, page=1}) {
     const url = new URL(`${BASE_URL}product`)
     const url2 = new URL(`${BASE_URL}product2`)
     const normalizedOrder = order === 'asc' ? 'asc' : 'desc'
 
-    url.searchParams.append("search", query)
-    url2.searchParams.append("search", query)
+    if(query){
+        url.searchParams.append("search", query)
+        url2.searchParams.append("search", query)
+    }
 
     if (category) {
         url.searchParams.append("category", category)
@@ -220,17 +224,23 @@ export async function getProductsFilter(query, category, gender, discount, sortB
         url.searchParams.append("gender", gender)
         url2.searchParams.append("gender", gender)
     }
-    if (discount) {
-        url.searchParams.append("noDiscount", !discount)
-        url2.searchParams.append("noDiscount", !discount)
+    if (hasDiscount) {
+        url.searchParams.append("hasDiscount", !hasDiscount)
+        url2.searchParams.append("hasDiscount", !hasDiscount)
     }
-    if (sortByPrice) {
-        url.searchParams.append("sortBy", 'price')
-        url2.searchParams.append("sortBy", 'price')
+    if (sortBy) {
+        url.searchParams.append("sortBy", sortBy)
+        url2.searchParams.append("sortBy", sortBy)
 
         url.searchParams.append("order", normalizedOrder)
         url2.searchParams.append("order", normalizedOrder)
     }
+
+    url.searchParams.append("limit", limit)
+    url2.searchParams.append("limit", limit)
+
+    url.searchParams.append("page", page)
+    url2.searchParams.append("page", page)
 
     const responses = await Promise.all([
         fetch(url, { method: 'GET', headers: { 'content-type': 'application/json' } }),
@@ -247,5 +257,17 @@ export async function getProductsFilter(query, category, gender, discount, sortB
         }
     }
 
-    return produtos;
+    switch(sortBy){
+        case 'discountPercentage':
+            produtos.sort((a,b)=> normalizedOrder=='asc' ? a.discountPercentage - b.discountPercentage : b.discountPercentage - a.discountPercentage);
+            break;
+        case 'price':
+            produtos.sort((a,b)=> normalizedOrder=='asc' ? a.price - b.price : b.price - a.price);
+            break;
+        case 'qtSales':
+            produtos.sort((a,b)=> normalizedOrder=='asc' ? a.qtSales - b.qtSales : b.qtSales - a.qtSales);
+            break;
+    }
+
+    return produtos.slice(0, limit);
 }
