@@ -133,6 +133,10 @@ body.darkMode .themeToggle:hover {
     color: var(--txtMuted);
 }
 
+.txtInvisible {
+    color: transparent;
+}
+
 .btnPrimary {
     background-color: var(--secondary);
     color: var(--txtLight);
