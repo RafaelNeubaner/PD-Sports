@@ -696,8 +696,6 @@ body.darkMode .logoMarca {
   }
 }
 
-
-
 /* HOMEPAGE CALL TO ACTION */
 #CTA {
   width: 100%;
@@ -720,8 +718,10 @@ body.darkMode .logoMarca {
   transition: transform 0.3s ease;
 }
 
+
+/* HOMEPAGE - NEWSLETTER */
+
 #newsletterSection .inputsSec input {
-  border: 0 !important;
   background-color: var(--bg-light) !important;
   flex-grow: 1;
 }
@@ -746,7 +746,6 @@ body.darkMode #newsletterSection .inputsSec input {
   }
 }
 
-/* HOMEPAGE - NEWSLETTER */
 #newsletterSection {
   margin: 0 auto 4.8rem auto;
   box-shadow: 0px 4px 4px #00000040;
@@ -755,13 +754,17 @@ body.darkMode #newsletterSection .inputsSec input {
   max-width: 1440px;
 }
 
+#newsletterSection input[type="checkbox"] {
+  accent-color: var(--secondary)
+}
+
 #newsletterSection h2,
 #newsletterSection label {
   font-size: 12px;
-  color: var(--secondary);
 }
 
 #newsletterSection h2 {
   font-size: 24px;
   font-weight: 800;
+  color: var(--secondary);
 }
