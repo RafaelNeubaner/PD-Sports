@@ -162,7 +162,7 @@ export async function getProductById(id){
  * 
  */
 export async function getProductsByCategory(category){
-    const url = new URL("product")
+    const url = new URL(`${BASE_URL}product`)
     url.searchParams.append("category", category)
 
     const url2 = new URL(`${BASE_URL}product2`)

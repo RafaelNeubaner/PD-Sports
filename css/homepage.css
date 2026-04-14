@@ -26,7 +26,6 @@ main {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
 
 #hero .carrossel img {
@@ -119,7 +118,6 @@ main {
 @media(min-width: 992px) {
 
   .carrossel {
-    height: 38.2rem;
     max-width: 1440px;
     margin: 0 auto;
   }

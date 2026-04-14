@@ -58,8 +58,11 @@ carregarDetalhesDoProduto();
 
 //  Homepage - Ofertas da Semana
 async function renderizarOfertas() {
+  const sliderWrapper = document.getElementById('sliderWrapper');
+  const btnLeft = document.getElementById('btnLeftUnits');
+  const btnRight = document.getElementById('btnRightUnits');
   const sliderTrack = document.getElementById('sliderTrack');
-  if (!sliderTrack) return;
+  if (!sliderTrack || !sliderWrapper || !btnLeft || !btnRight) return;
 
   try {
     const todosProdutos = await getAllProducts();
@@ -88,8 +91,11 @@ async function renderizarOfertas() {
 
 //  Homepage - Mais Vendidos
 async function renderizarMaisVendidos() {
+  const sliderWrapper = document.getElementById('sliderWrapperBestSellers');
+  const btnLeft = document.getElementById('btnLeftBestSellers');
+  const btnRight = document.getElementById('btnRightBestSellers');
   const sliderTrack = document.getElementById('sliderTrackBestSellers');
-  if (!sliderTrack) return;
+  if (!sliderTrack || !sliderWrapper || !btnLeft || !btnRight) return;
 
   try {
     const todosProdutos = await getAllProducts();
@@ -112,19 +118,14 @@ async function renderizarMaisVendidos() {
   }
 }
 
-export async function compreJunto() {
+export async function compreJunto(productList) {
   const sliderTrack = document.getElementById('sliderTrackCompreJunto');
   if (!sliderTrack) return;
 
   try {
-    const todosProdutos = await getAllProducts();
-    const categoriaEspecifica = document.querySelector('.suitableFor').textContent.trim();
-    const nomeProduto = document.querySelector('.productName').textContent.trim();
-    const produtosCompreJunto = todosProdutos.filter(p => p.category === categoriaEspecifica && p.name !== nomeProduto).slice(0, 10);
-
     sliderTrack.innerHTML = '';
     
-    produtosCompreJunto.forEach(produto => {
+    productList.forEach(produto => {
       sliderTrack.innerHTML += criarCardProduto(produto);
     });
 
@@ -141,5 +142,4 @@ export async function compreJunto() {
 document.addEventListener("DOMContentLoaded", () => {
   renderizarOfertas(); 
   renderizarMaisVendidos();
-  compreJunto();
 });
