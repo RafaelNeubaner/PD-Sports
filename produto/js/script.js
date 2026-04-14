@@ -1,5 +1,7 @@
-import { getProductById } from "/js/products/useProducts.js"
-import { getProductsByCategory } from "/js/products/useProducts.js";
+/**
+ * @typedef {import('../../js/products/useProducts.js').Product} Product
+ */
+import { getProductById, getProductsByCategory } from "../../js/products/useProducts.js"
 import { compreJunto } from "/js/product-card.js"
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -29,6 +31,7 @@ let selectedPrincipalImage = productImages[0]
 setPrincipalImage(selectedPrincipalImage)
 setupMobilePhotosCarousel()
 
+document.querySelector(".productFullPrice").textContent = product.hasDiscount ? product.fullPrice.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2}) : ''
 document.querySelector(".productName").textContent = product.name
 document.querySelector(".productPrice").textContent = product.price.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2})
 document.querySelectorAll(".suitableFor").forEach(cont => cont.textContent = product.suitableFor)
