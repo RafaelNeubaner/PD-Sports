@@ -156,25 +156,25 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Esportes</a>
+                <a class="nav-link" href="/busca/busca-produto.html?categoria=esportes">Esportes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Masculino</a>
+                <a class="nav-link" href="/busca/busca-produto.html?gender=masculino">Masculino</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Feminino</a>
+                <a class="nav-link" href="/busca/busca-produto.html?gender=feminino">Feminino</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Infantil</a>
+                <a class="nav-link" href="/busca/busca-produto.html?genero=infantil">Infantil</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Promoções</a>
+                <a class="nav-link" href="/busca/busca-produto.html?promocao=ofertas">Promoções</a>
               </li>
               <li class="nav-item d-none d-lg-block">
-                <a class="nav-link" href="#">Futebol</a>
+                <a class="nav-link" href="/busca/busca-produto.html?categoria=futebol">Futebol</a>
               </li>
               <li class="nav-item d-none d-lg-block">
-                <a class="nav-link" href="#">Corrida</a>
+                <a class="nav-link" href="/busca/busca-produto.html?categoria=corrida">Corrida</a>
               </li>
               <li class="nav-item d-none d-lg-block">
                 <a class="nav-link" href="#">Marcas</a>
@@ -198,7 +198,7 @@
           <div class="slides_dots">
             <div class="slides_autoplay">
               <article class="slide" id="slide1">
-                <a href="#" aria-label="Ir para página de produtos">
+                <a href="/busca/busca-produto.html?promocao=banner1" aria-label="Ir para página de produtos">
                   <img
                     src="assets/media/images/home/imagem-hero.png"
                     alt="Slide 1"
@@ -214,7 +214,7 @@
                 </a>
               </article>
               <article class="slide">
-                <a href="#" aria-label="Ir para página de produtos">
+                <a href="/busca/busca-produto.html?promocao=banner2" aria-label="Ir para página de produtos">
                   <img
                     src="assets/media/images/home/imagem-hero-2.png"
                     alt="Slide 2"
@@ -259,9 +259,9 @@
       <section class="ofertas">
         <hgroup class="d-flex justify-content-between align-items-center">
           <h2 class="sectTitle m-0">Ofertas da Semana</h2>
-          <button class="vejaMais">
+          <a class="vejaMais" href="/busca/busca-produto.html?promocao=ofertas">
             <i class="bi bi-plus-circle me-1"></i> Veja Mais
-          </button>
+          </a>
         </hgroup>
 
         <div class="sectionCarousel position-relative">
@@ -300,7 +300,7 @@
         <div class="catDestaquesViewport">
           <div class="catDestaquesTrack">
             <article class="h-100 catCard">
-              <a href="#" class="link2">
+              <a href="/busca/busca-produto.html?categoria=futebol" class="link2">
                 <figure class="textCenter h-100">
                   <div class="border">
                     <img
@@ -314,7 +314,7 @@
               </a>
             </article>
             <article class="h-100 catCard">
-              <a href="#" class="link2">
+              <a href="/busca/busca-produto.html?categoria=corrida" class="link2">
                 <figure class="textCenter h-100">
                   <div class="border">
                     <img
@@ -328,7 +328,7 @@
               </a>
             </article>
             <article class="h-100 catCard">
-              <a href="#" class="link2">
+              <a href="/busca/busca-produto.html?categoria=academia" class="link2">
                 <figure class="textCenter h-100">
                   <div class="border">
                     <img
@@ -342,7 +342,7 @@
               </a>
             </article>
             <article class="h-100 catCard">
-              <a href="#" class="link2">
+              <a href="/busca/busca-produto.html?categoria=corrida" class="link2">
                 <figure class="textCenter h-100">
                   <div class="border">
                     <img
@@ -356,7 +356,7 @@
               </a>
             </article>
             <article class="h-100 catCard">
-              <a href="#" class="link2">
+              <a href="/busca/busca-produto.html?categoria=tenis" class="link2">
                 <figure class="textCenter h-100">
                   <div class="border">
                     <img
@@ -370,7 +370,7 @@
               </a>
             </article>
             <article class="h-100 catCard">
-              <a href="#" class="link2">
+              <a href="/busca/busca-produto.html?categoria=natacao" class="link2">
                 <figure class="textCenter h-100">
                   <div class="border">
                     <img
@@ -399,9 +399,9 @@
       <section class="maisVendidos">
         <hgroup class="d-flex justify-content-between align-items-center">
           <h2 class="sectTitle m-0">Mais Vendidos</h2>
-          <button class="vejaMais">
+          <a class="vejaMais" href="/busca/busca-produto.html?promocao=mais-vendidos">
             <i class="bi bi-plus-circle me-1"></i> Veja Mais
-          </button>
+          </a>
         </hgroup>
 
         <div class="sectionCarousel position-relative">
@@ -425,12 +425,15 @@
         </div>
       </section>
 
-      <article>
-        <a href="#" id="CTAHover">
-          <img class="d-none d-lg-block d-sm-block" src="assets/media/images/home/CTA-home.png" alt="" id="CTA">
-          <img class="d-block d-lg-none d-sm-none" src="assets/media/images/home/CTA-home-mobile.png" alt="" id="CTAMobile">
-        </a>
-      </article>
+      <!-- CTA -->
+       <section class="cta">
+         <article>
+           <a href="/busca/busca-produto.html?promocao=cta" id="CTAHover">
+             <img class="d-none d-lg-block d-sm-block" src="assets/media/images/home/CTA-home.png" alt="" id="CTA">
+             <img class="d-block d-lg-none d-sm-none" src="assets/media/images/home/CTA-home-mobile.png" alt="" id="CTAMobile">
+           </a>
+         </article>
+       </section>
 
       <!-- MARCAS -->
       <section class="marcas">
