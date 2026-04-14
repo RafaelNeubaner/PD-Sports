@@ -161,8 +161,8 @@ export async function getProductById(id) {
  * @returns {Product[]}  array com todos os produtos com suas propriedades
  * 
  */
-export async function getProductsByCategory(category) {
-    const url = new URL("product")
+export async function getProductsByCategory(category){
+    const url = new URL(`${BASE_URL}product`)
     url.searchParams.append("category", category)
 
     const url2 = new URL(`${BASE_URL}product2`)

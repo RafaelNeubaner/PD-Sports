@@ -114,6 +114,7 @@ header .navbar .container .navbar-toggler {
   color: var(--primary) !important;
   font-size: 2rem;
   background-color: transparent;
+  width: 40px;
 }
 
 .navbar-toggler-icon {
