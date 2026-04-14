@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PD Sports</title>
+    <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/busca/css/busca-produto.css" />
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/js/darkmode.js" defer></script>
+    <script type="module" src="/busca/js/busca.js"></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <a class="navbar-brand d-block d-md-none" href="/index.html"
+            ><img
+              src="/assets/media/logo/logo-light.svg"
+              alt="PD Sports"
+              id="logo"
+          /></a>
+
+          <search class="containerSearch">
+            <a class="navbar-brand d-none d-md-block" href="/index.html">
+              <img
+                src="/assets/media/logo/logo-light.svg"
+                alt="PD Sports"
+                id="logo"
+              />
+            </a>
+
+            <form class="d-none d-md-flex position-relative inputForm">
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+                aria-label="Pesquisar produtos"
+              />
+              <button class="btn" type="button" id="button-search-desktop">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+
+            <ul class="navbar-nav align-items-center">
+              <li class="nav-item d-block d-lg-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i
+                ></a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i>Tire suas dúvidas</a
+                >
+              </li>
+
+              <button
+                class="btn d-block d-md-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mobileSearchBox"
+                aria-expanded="false"
+                aria-controls="mobileSearchBox"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+
+              <li class="nav-item">
+                <a id="themeToggle" class="themeToggle" aria-pressed="false"
+                  ><i class="bi bi-moon-stars"></i
+                ></a>
+              </li>
+
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-box-arrow-in-right"></i>Entrar</a
+                >
+              </li>
+            </ul>
+          </search>
+
+          <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
+            <form>
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+              />
+              <button class="btn" type="button">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+          </div>
+
+          <menu class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item d-block d-sm-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
+                    class="bi bi-chevron-right ms-1"
+                  ></i
+                ></a>
+              </li>
+
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=esportes"
+                  >Esportes</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?genero=masculino"
+                  >Masculino</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?genero=feminino"
+                  >Feminino</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?genero=infantil"
+                  >Infantil</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?promocao=ofertas"
+                  >Promoções</a
+                >
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=futebol"
+                  >Futebol</a
+                >
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=corrida"
+                  >Corrida</a
+                >
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" href="#">Marcas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sobre nós</a>
+              </li>
+            </ul>
+          </menu>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container py-4 bg-light-custom">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+          <h1 class="page-title mb-1" id="tituloBusca">Masculino</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item">
+                <a href="/" class="text-decoration-none text-muted">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Masculino
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="d-flex gap-3 align-items-center">
+          <div class="d-none d-md-flex align-items-center gap-2">
+            <label for="ordenarPor" class="text-muted text-nowrap mb-0"
+              >Ordenar por</label
+            >
+            <select
+              id="ordenarPor"
+              class="form-select border-0 bg-transparent fw-semibold shadow-none cursor-pointer"
+            >
+              <option value="relevancia">Relevância</option>
+              <option value="menorPreco">Menor Preço</option>
+              <option value="maiorPreco">Maior Preço</option>
+              <option value="lancamentos">Lançamentos</option>
+            </select>
+          </div>
+          <button
+            class="btn btn-filtrar d-lg-none"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#filtrosOffcanvas"
+            aria-controls="filtrosOffcanvas"
+          >
+            Filtrar
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <aside class="col-lg-3">
+          <div
+            class="offcanvas-lg offcanvas-start"
+            tabindex="-1"
+            id="filtrosOffcanvas"
+            aria-labelledby="filtrosOffcanvasLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title fw-bold" id="filtrosOffcanvasLabel">
+                Filtros
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                data-bs-target="#filtrosOffcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body flex-column p-lg-0">
+              <div class="filter-section mb-4">
+                <h6 class="filter-title">Marca</h6>
+                <div class="search-filter mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Faça sua busca"
+                  />
+                  <i class="bi bi-search search-icon"></i>
+                </div>
+                <div class="form-check custom-checkbox">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="marcaNike"
+                  />
+                  <label
+                    class="form-check-label d-flex justify-content-between"
+                    for="marcaNike"
+                  >
+                    Nike <span class="text-muted">(qtd)</span>
+                  </label>
+                </div>
+                <div class="form-check custom-checkbox">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="marcaPuma"
+                  />
+                  <label
+                    class="form-check-label d-flex justify-content-between"
+                    for="marcaPuma"
+                  >
+                    Puma <span class="text-muted">(qtd)</span>
+                  </label>
+                </div>
+                <div class="form-check custom-checkbox">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="marcaAdidas"
+                  />
+                  <label
+                    class="form-check-label d-flex justify-content-between"
+                    for="marcaAdidas"
+                  >
+                    Adidas <span class="text-muted">(qtd)</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="filter-section mb-4">
+                <h6 class="filter-title">Tamanho</h6>
+                <div class="size-grid">
+                  <button class="btn-size">PP</button>
+                  <button class="btn-size">P</button>
+                  <button class="btn-size">M</button>
+                  <button class="btn-size">G</button>
+                  <button class="btn-size">GG</button>
+                  <button class="btn-size">GGG</button>
+                </div>
+              </div>
+
+              <div class="filter-section mb-4">
+                <h6 class="filter-title">Gênero</h6>
+                <div class="form-check custom-checkbox">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="genMasc"
+                  />
+                  <label
+                    class="form-check-label d-flex justify-content-between"
+                    for="genMasc"
+                  >
+                    Masculino <span class="text-muted">(qtd)</span>
+                  </label>
+                </div>
+                <div class="form-check custom-checkbox">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="genFem"
+                  />
+                  <label
+                    class="form-check-label d-flex justify-content-between"
+                    for="genFem"
+                  >
+                    Feminino <span class="text-muted">(qtd)</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="filter-section mb-4">
+                <h6 class="filter-title">Categoria</h6>
+                <div class="form-check custom-checkbox">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="catFutebol"
+                  />
+                  <label
+                    class="form-check-label d-flex justify-content-between"
+                    for="catFutebol"
+                  >
+                    Futebol <span class="text-muted">(qtd)</span>
+                  </label>
+                </div>
+                <div class="form-check custom-checkbox">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="catCorrida"
+                  />
+                  <label
+                    class="form-check-label d-flex justify-content-between"
+                    for="catCorrida"
+                  >
+                    Corrida <span class="text-muted">(qtd)</span>
+                  </label>
+                </div>
+                <div class="form-check custom-checkbox">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="catMusculacao"
+                  />
+                  <label
+                    class="form-check-label d-flex justify-content-between"
+                    for="catMusculacao"
+                  >
+                    Musculação <span class="text-muted">(qtd)</span>
+                  </label>
+                </div>
+              </div>
+
+              <button class="btn btn-filtrar w-100  mt-3">
+                Aplicar Filtros
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <section class="col-lg-9" id="resultadosBusca">
+          <h3 class="secTitle mb-4 d-none d-lg-block">Resultado da busca</h3>
+
+          <div
+            id="gridProdutosBusca"
+            class="row row-cols-2 row-cols-lg-3 g-3 g-md-4"
+          >
+            <div class="col-12 text-center py-5 w-100" id="loadingBusca">
+              <div class="spinner-border text-danger" role="status">
+                <span class="visually-hidden">Carregando produtos...</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="bgHeader">
+      <p class="textCenter">
+        © PD Sports 2026 | Desenvolvido por Pablo, Pedro e Rafael.
+      </p>
+    </footer>
+  </body>
+</html>
