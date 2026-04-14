@@ -17,7 +17,7 @@ const BASE_URL = 'https://69d3b21c336103955f8f770c.mockapi.io/api/'
  * Função para cadastrar novo usuário na aplicação
  * 
  * @param {User} user 
- * @returns {User}
+ * @returns {Promise<User>}
  */
 export async function createUser(user){
     const response  = await fetch(
@@ -46,7 +46,7 @@ export async function createUser(user){
  * @param {string} id
  * @param {User} user
  * 
- * @returns {User}
+ * @returns {Promise<User>}
  */
 export async function updateUser(id, user){
     const response = await fetch(`${BASE_URL}users/${id}`, {
@@ -72,7 +72,7 @@ export async function updateUser(id, user){
  * 
  * @param {string} id
  * 
- * @returns {User}
+ * @returns {Promise<User>}
  */
 export async function deleteUser(id){
     const response = await fetch(`${BASE_URL}users/${id}`, {
@@ -97,7 +97,7 @@ export async function deleteUser(id){
  * 
  * @param {string} id
  * 
- * @return {User}
+ * @return {Promise<User>}
  */
 export async function getUserById(id){
     const response = await fetch(`${BASE_URL}users/${id}`, {
@@ -121,7 +121,7 @@ export async function getUserById(id){
  * 
  * @param {string} id
  * 
- * @return {User}
+ * @return {Promise<User>}
  */
 export async function getUserByEmail(email){
     const response = await fetch(`${BASE_URL}users?email=${email}`, {
