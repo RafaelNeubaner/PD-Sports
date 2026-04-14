@@ -61,8 +61,11 @@ carregarDetalhesDoProduto();
 // HOMEPAGE - OFERTAS DA SEMANA
 
 async function renderizarOfertas() {
-  const sliderTrack = document.getElementById("sliderTrack");
-  if (!sliderTrack) return;
+  const sliderWrapper = document.getElementById('sliderWrapper');
+  const btnLeft = document.getElementById('btnLeftUnits');
+  const btnRight = document.getElementById('btnRightUnits');
+  const sliderTrack = document.getElementById('sliderTrack');
+  if (!sliderTrack || !sliderWrapper || !btnLeft || !btnRight) return;
 
   try {
     const todosProdutos = await getAllProducts();
@@ -90,8 +93,11 @@ async function renderizarOfertas() {
 // HOMEPAGE - MAIS VENDIDOS
 
 async function renderizarMaisVendidos() {
-  const sliderTrack = document.getElementById("sliderTrackBestSellers");
-  if (!sliderTrack) return;
+  const sliderWrapper = document.getElementById('sliderWrapperBestSellers');
+  const btnLeft = document.getElementById('btnLeftBestSellers');
+  const btnRight = document.getElementById('btnRightBestSellers');
+  const sliderTrack = document.getElementById('sliderTrackBestSellers');
+  if (!sliderTrack || !sliderWrapper || !btnLeft || !btnRight) return;
 
   try {
     const todosProdutos = await getAllProducts();
@@ -117,29 +123,14 @@ async function renderizarMaisVendidos() {
   }
 }
 
-// PRODUTO - COMPRE JUNTO
-
-export async function compreJunto() {
-  const sliderTrack = document.getElementById("sliderTrackCompreJunto");
+export async function compreJunto(productList) {
+  const sliderTrack = document.getElementById('sliderTrackCompreJunto');
   if (!sliderTrack) return;
 
   try {
-    const todosProdutos = await getAllProducts();
-    const categoriaEspecifica = document
-      .querySelector(".suitableFor")
-      .textContent.trim();
-    const nomeProduto = document
-      .querySelector(".productName")
-      .textContent.trim();
-    const produtosCompreJunto = todosProdutos
-      .filter(
-        (p) => p.category === categoriaEspecifica && p.name !== nomeProduto,
-      )
-      .slice(0, 10);
-
-    sliderTrack.innerHTML = "";
-
-    produtosCompreJunto.forEach((produto) => {
+    sliderTrack.innerHTML = '';
+    
+    productList.forEach(produto => {
       sliderTrack.innerHTML += criarCardProduto(produto);
     });
 
@@ -159,5 +150,4 @@ export async function compreJunto() {
 document.addEventListener("DOMContentLoaded", () => {
   renderizarOfertas();
   renderizarMaisVendidos();
-  compreJunto();
 });

@@ -2,11 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	const themeToggle = document.getElementById("themeToggle");
 	const body = document.body;
 	const storageKey = "pd-sports-theme";
-	const themeTargets = document.querySelectorAll(
-		".btnPrimary, .btnOutline, .btnTamanho, .link"
-	);
+	const themeSelector = ".btnPrimary, .btnOutline, .btnTamanho, .link";
 
 	const syncThemeClasses = (isDark) => {
+		const themeTargets = document.querySelectorAll(themeSelector);
 		themeTargets.forEach((element) => {
 			element.classList.toggle("darkmode", isDark);
 		});

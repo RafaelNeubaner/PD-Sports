@@ -19,6 +19,7 @@ html {
     --bg-light: #F6F6F6;
     --bg-dark: #141414;
     --bg-header: #F6F6F6;
+    --bg-card: #E8E8E8;
     --primary: #B90504;
     --secondary: #990100;
     --tertiary: #D74B4A;
@@ -46,6 +47,7 @@ body.darkMode {
     --bg-light: #F6F6F6;
     --bg-dark: #141414;
     --bg-header: #990100;
+    --bg-card: #252525;
     --primary: #B90504;
     --secondary: #990100;
     --tertiary: #D74B4A;
@@ -165,25 +167,6 @@ body.darkMode .themeToggle:hover {
         color 0.3s ease;
 }
 
-.btnOutline.darkmode {
-    background-color: transparent;
-    color: var(--primary);
-    border: 3px solid var(--secondary);
-    padding: 8px 22px;
-    border-radius: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-        all 0.3s ease,
-        color 0.3s ease;
-}
-
-.btnOutline.disable {
-    color: var(--txtMuted);
-    border: 3px solid var(--txtMuted);
-    pointer-events: none;
-}
-
 .btnOutline:hover {
     background-color: var(--primary) !important;
     color: var(--txtLight) !important;
@@ -265,7 +248,7 @@ body.darkMode .themeToggle:hover {
 }
 
 .subTitleCard {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
 }
 
@@ -299,7 +282,7 @@ body.darkMode .themeToggle:hover {
 }
 
 p {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .mb64 {
@@ -310,6 +293,9 @@ p {
     margin-bottom: 48px;
 }
 
+.mb24 {
+    margin-bottom: 24px;
+}
 input,
 textarea,
 input.form-control {

@@ -1,4 +1,5 @@
 import { getProductById } from "/js/products/useProducts.js"
+import { getProductsByCategory } from "/js/products/useProducts.js";
 import { compreJunto } from "/js/product-card.js"
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -10,12 +11,23 @@ if(!id){
 
 const product = await getProductById(id)
 let productImages = product.images
+const categoryProducts = await getProductsByCategory(product.category)
+const relatedProducts = categoryProducts.filter(p => p.id != id).slice(0, 10)
+compreJunto(relatedProducts)
 
-const principalImage = document.querySelector(".principalImage")
+const principalImageDesktop = document.querySelector(".principalImageDesktop")
+const sliderWrapperPhotos = document.getElementById("sliderWrapperPhotos")
+const sliderTrackPhotos = document.getElementById("sliderTrackPhotos")
+const photoDots = document.getElementById("photoDots")
+
+let mobileCurrentIndex = 0
+let startX = 0
+let isDragging = false
 
 let selectedPrincipalImage = productImages[0]
 
 setPrincipalImage(selectedPrincipalImage)
+setupMobilePhotosCarousel()
 
 document.querySelector(".productName").textContent = product.name
 document.querySelector(".productPrice").textContent = product.price.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2})
@@ -39,6 +51,9 @@ if(product.variants && product.variants.length>0){
         const varBtn = document.createElement("p")
     
         varBtn.classList.add("btnTamanho")
+        if (document.body.classList.contains("darkMode")) {
+            varBtn.classList.add("darkmode")
+        }
         varBtn.textContent = variant
     
         variantesSec.appendChild(varBtn)
@@ -84,8 +99,116 @@ function setPrincipalImage(url){
     if(!productImages.includes(url)) return;
 
     selectedPrincipalImage = url;
-    principalImage.src = url
+    if (principalImageDesktop) {
+        principalImageDesktop.src = url
+    }
     setSecondaryImages()
+    syncMobileCarouselByUrl(url)
+}
+
+function setupMobilePhotosCarousel(){
+    if (!sliderTrackPhotos || !sliderWrapperPhotos || !photoDots) {
+        return
+    }
+
+    sliderTrackPhotos.replaceChildren()
+    photoDots.replaceChildren()
+
+    productImages.forEach((imageUrl, index) => {
+        const slide = document.createElement("img")
+        slide.classList.add("mobilePhotoSlide")
+        slide.src = imageUrl
+        slide.alt = `${product.name} - imagem ${index + 1}`
+
+        sliderTrackPhotos.appendChild(slide)
+
+        const dot = document.createElement("button")
+        dot.classList.add("photoDot")
+        dot.type = "button"
+        dot.setAttribute("aria-label", `Ver imagem ${index + 1}`)
+        dot.addEventListener("click", () => {
+            goToMobileImage(index, true)
+        })
+
+        photoDots.appendChild(dot)
+    })
+
+    goToMobileImage(0, false)
+
+    sliderWrapperPhotos.addEventListener("touchstart", handleTouchStart, { passive: true })
+    sliderWrapperPhotos.addEventListener("touchend", handleTouchEnd)
+    sliderWrapperPhotos.addEventListener("mousedown", handleMouseDown)
+    sliderWrapperPhotos.addEventListener("mouseup", handleMouseUp)
+    sliderWrapperPhotos.addEventListener("mouseleave", handleMouseLeave)
+}
+
+function goToMobileImage(index, syncPrincipal){
+    if (!sliderTrackPhotos || !photoDots || productImages.length === 0) {
+        return
+    }
+
+    mobileCurrentIndex = Math.max(0, Math.min(index, productImages.length - 1))
+    sliderTrackPhotos.style.transform = `translateX(-${mobileCurrentIndex * 100}%)`
+
+    photoDots.querySelectorAll(".photoDot").forEach((dot, dotIndex) => {
+        dot.classList.toggle("active", dotIndex === mobileCurrentIndex)
+    })
+
+    if (syncPrincipal) {
+        setPrincipalImage(productImages[mobileCurrentIndex])
+    }
+}
+
+function syncMobileCarouselByUrl(url){
+    const imageIndex = productImages.indexOf(url)
+    if (imageIndex === -1 || imageIndex === mobileCurrentIndex) {
+        return
+    }
+
+    goToMobileImage(imageIndex, false)
+}
+
+function handleTouchStart(event){
+    startX = event.touches[0].clientX
+}
+
+function handleTouchEnd(event){
+    const endX = event.changedTouches[0].clientX
+    handleSwipe(endX)
+}
+
+function handleMouseDown(event){
+    isDragging = true
+    startX = event.clientX
+}
+
+function handleMouseUp(event){
+    if (!isDragging) return
+    isDragging = false
+    handleSwipe(event.clientX)
+}
+
+function handleMouseLeave(event){
+    if (!isDragging) return
+    isDragging = false
+    handleSwipe(event.clientX)
+}
+
+function handleSwipe(endX){
+    const distance = endX - startX
+    const threshold = 40
+
+    if (Math.abs(distance) < threshold) {
+        goToMobileImage(mobileCurrentIndex, false)
+        return
+    }
+
+    if (distance < 0) {
+        goToMobileImage(mobileCurrentIndex + 1, true)
+        return
+    }
+
+    goToMobileImage(mobileCurrentIndex - 1, true)
 }
 
 
