@@ -8,7 +8,7 @@ const USER_VARIABLE = "userAuth"
 
 /**
  * 
- * @returns {User | null}
+ * @returns {Promise<User | null>}
  */
 export function getUserAuthenticated(){
     const userAuthStr = localStorage.getItem(USER_VARIABLE)
