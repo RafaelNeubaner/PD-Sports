@@ -6,10 +6,10 @@
  * @property {string} id - O ID é uma string composta separada por `.`, primeira parte ID e segunda o endpoint a ser buscado `id.endpoint`
  * @property {string} name - nome do produto
  * @property {number} price - preço principal do produto
- * @property {number} discount - preço com desconto
+ * @property {number} fullPrice - preço total do produto
  * @property {number} discountPercentage - porcentagem do desconto
  * @property {number} qtSales  - Quantidade de vendas do produto
- * @property {boolean} noDiscount - verificar se possui desconto
+ * @property {boolean} hasDiscount - verificar se possui desconto
  * @property {string} brand - nome da marca do produto
  * @property {string} description - descrição do produto
  * @property {Object} characteristics - características específicas do produto
@@ -132,7 +132,7 @@ export async function getAllProducts() {
  * Ex: getProductById("20.1") #ID 20 no endpoint 1(/product)
  * Ex: getProductById("20.2") #ID 20 no endpoint 2(/product2)
  * 
- * @returns {Product[]}  array com todos os produtos com suas propriedades
+ * @returns {Product}  array com o produtos e suas propriedades
  * 
  */
 export async function getProductById(id) {
