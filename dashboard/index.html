@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css" />
 
     <!-- Scripts -->
     <script
@@ -41,6 +41,7 @@
 
     <!-- Custom JS -->
     <script src="/js/script.js" defer></script>
+    <script src="/js/darkmode.js"></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -110,13 +111,12 @@
                 <i class="bi bi-search"></i>
               </button>
 
-
               <li class="nav-item">
-                <a id="themeToggle"
-                class="themeToggle"
-                aria-pressed="false"><i class="bi bi-moon-stars"></i></a>
+                <a id="themeToggle" class="themeToggle" aria-pressed="false"
+                  ><i class="bi bi-moon-stars"></i
+                ></a>
               </li>
-              
+
               <li class="nav-item">
                 <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
               </li>
@@ -188,10 +188,74 @@
     </header>
 
     <main>
-
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#criarProduto">
+      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#criarProduto">
         Launch demo modal
-      </button>
+      </button> -->
+
+      <section id="dashboard">
+        <h2 class="textCenter mainTitle">Dashboard de Vendas</h2>
+        <div class="row">
+          <article class="card">
+            <h3 class="subTitleCard">Mais vendidos nas ultimas 24h</h3>
+            <ol id="mostWanted24">
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">1. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="80" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">2. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="60" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">3. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="40" max="100"></progress>
+              </li>
+            </ol>
+          </article>
+          <article class="card cardFull">
+            <h3 class="subTitleCard"><span>234</span> vendas na última hora</h3>
+          </article>
+          <article class="card cardFull">
+            <h3 class="subTitleCard"><span>15432</span> vendas na última semana</h3>
+          </article>
+          <article class="card">
+            <h3 class="subTitleCard">Mais vendidos na semana</h3>
+            <ol id="mostWantedMonth">
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">1. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="80" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">2. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="60" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">3. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="40" max="100"></progress>
+              </li>
+            </ol>
+          </article>
+          
+        </div>
+      </section>
     </main>
 
     <footer class="bgHeader">
@@ -205,30 +269,75 @@
         <form id="formCreateProduct" class="modal-content">
           <div class="modal-header">
             <h2>Criar Produto</h2>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="close"
+            ></button>
           </div>
           <div class="modal-body d-flex flex-column">
             <h3>Informações</h3>
             <div class="d-flex imagesForm">
-              <input type="text" placeholder="URL Imagem" name="url" id="urlImageInput"/>
-              <button type="button" class="btnPrimary" type="button">Adicionar</button>
+              <input
+                type="text"
+                placeholder="URL Imagem"
+                name="url"
+                id="urlImageInput"
+              />
+              <button type="button" class="btnPrimary" type="button">
+                Adicionar
+              </button>
             </div>
 
             <div class="imagesSec"></div>
 
-            <input type="text" name="name" class="nameProdInput" placeholder="Nome Produto" required>
-            
-            <input type="text" name="brand" class="brandProdInput" placeholder="Marca do Produto" required>
+            <input
+              type="text"
+              name="name"
+              class="nameProdInput"
+              placeholder="Nome Produto"
+              required
+            />
+
+            <input
+              type="text"
+              name="brand"
+              class="brandProdInput"
+              placeholder="Marca do Produto"
+              required
+            />
 
             <div class="d-flex">
-              <input type="number" step="any" class="price" name="price" placeholder="Preço" required>
-              <input type="number" step="any" class="discountPrice" name="discountPrice" placeholder="Preço com desconto">
-              <button type="button" class="btnOutline cleanDiscount">Limpar desconto</button>
+              <input
+                type="number"
+                step="any"
+                class="price"
+                name="price"
+                placeholder="Preço"
+                required
+              />
+              <input
+                type="number"
+                step="any"
+                class="discountPrice"
+                name="discountPrice"
+                placeholder="Preço com desconto"
+              />
+              <button type="button" class="btnOutline cleanDiscount">
+                Limpar desconto
+              </button>
             </div>
 
             <div class="d-flex variantsInputSec">
-              <input type="text" class="variantsInput" placeholder="Variantes"/>
-              <button type="button" class="btnPrimary addVariant">Adicionar</button>
+              <input
+                type="text"
+                class="variantsInput"
+                placeholder="Variantes"
+              />
+              <button type="button" class="btnPrimary addVariant">
+                Adicionar
+              </button>
             </div>
 
             <div class="variantsSec d-flex gap-3"></div>
@@ -239,22 +348,46 @@
                 <option value="Masculino">Masculino</option>
                 <option value="Feminino">Feminino</option>
               </select>
-              <input type="text" name="category" class="categoryInput" placeholder="Categoria">
+              <input
+                type="text"
+                name="category"
+                class="categoryInput"
+                placeholder="Categoria"
+              />
             </div>
 
-            <input type="text" name="suitableFor" placeholder="Indicado para:" class="suitableForInput">
+            <input
+              type="text"
+              name="suitableFor"
+              placeholder="Indicado para:"
+              class="suitableForInput"
+            />
 
             <h3>Características</h3>
 
             <div class="d-flex characteristicsInputSec">
-              <input type="text" class="titleInputCharacteristics" name="titulo" placeholder="Título">
-              <input type="text" class="valueInputCharacteristics" name="valor" placeholder="Valor">
+              <input
+                type="text"
+                class="titleInputCharacteristics"
+                name="titulo"
+                placeholder="Título"
+              />
+              <input
+                type="text"
+                class="valueInputCharacteristics"
+                name="valor"
+                placeholder="Valor"
+              />
               <button class="btnPrimary" type="button">Adicionar</button>
             </div>
 
             <div class="characteristicsSec"></div>
 
-            <textarea name="descriptionInput" placeholder="Descrição" class="descriptionInput"></textarea>
+            <textarea
+              name="descriptionInput"
+              placeholder="Descrição"
+              class="descriptionInput"
+            ></textarea>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btnPrimary">Criar Produto</button>

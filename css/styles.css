@@ -23,6 +23,7 @@ html {
     --primary: #B90504;
     --secondary: #990100;
     --tertiary: #D74B4A;
+    --red2yellow: #B90504;
     --amarelo-pastel: #FFDB79;
     --branco-cinzento: #E8E8E8;
     --cinza: #454545;
@@ -51,6 +52,7 @@ body.darkMode {
     --primary: #B90504;
     --secondary: #990100;
     --tertiary: #D74B4A;
+    --red2yellow: #FFDB79;
     --amarelo-pastel: #FFDB79;
     --branco-cinzento: #E8E8E8;
     --cinza: #454545;
