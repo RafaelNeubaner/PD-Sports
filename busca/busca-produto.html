@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PD Sports</title>
+    <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/busca/css/busca-produto.css" />
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/js/darkmode.js" defer></script>
+    <script type="module" src="/busca/js/busca.js"></script>
+    <script type="module" src="/busca/js/filtros.js"></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <a class="navbar-brand d-block d-md-none" href="/index.html"
+            ><img
+              src="../assets/media/logo/logo-light.svg"
+              alt="PD Sports"
+              id="logo"
+          /></a>
+
+          <search class="containerSearch">
+            <a class="navbar-brand d-none d-md-block" href="/index.html">
+              <img
+                src="../assets/media/logo/logo-light.svg"
+                alt="PD Sports"
+                id="logo"
+              />
+            </a>
+
+            <form action="/busca/busca-produto.html" class="d-none d-md-flex position-relative inputForm">
+              <input
+                type="text"
+                name="query"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+                aria-label="Pesquisar produtos"
+              />
+              <button class="btn" type="button" id="button-search-desktop">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+
+            <ul class="navbar-nav align-items-center">
+              <li class="nav-item d-block d-lg-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i
+                ></a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i>Tire suas dúvidas</a
+                >
+              </li>
+
+              <button
+                class="btn d-block d-md-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mobileSearchBox"
+                aria-expanded="false"
+                aria-controls="mobileSearchBox"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+
+              <li class="nav-item">
+                <a id="themeToggle" class="themeToggle" aria-pressed="false"
+                  ><i class="bi bi-moon-stars"></i
+                ></a>
+              </li>
+
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-box-arrow-in-right"></i>Entrar</a
+                >
+              </li>
+            </ul>
+          </search>
+
+          <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
+            <form>
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+              />
+              <button class="btn" type="button">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+          </div>
+
+          <menu class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item d-block d-sm-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
+                    class="bi bi-chevron-right ms-1"
+                  ></i
+                ></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/busca/busca-produto.html?categoria=esportes">Esportes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/busca/busca-produto.html?gender=masculino">Masculino</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/busca/busca-produto.html?gender=feminino">Feminino</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/busca/busca-produto.html?genero=infantil">Infantil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/busca/busca-produto.html?promocao=ofertas">Promoções</a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" href="/busca/busca-produto.html?categoria=futebol">Futebol</a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" href="/busca/busca-produto.html?categoria=corrida">Corrida</a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" href="#">Marcas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sobre nós</a>
+              </li>
+            </ul>
+          </menu>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container py-4 bg-light-custom">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div class="descricao">
+          <h1 class="page-title mb-1" id="tituloBusca">Masculino</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item">
+                <a href="/" class="text-decoration-none ">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Masculino
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="d-flex gap-3 align-items-center">
+          <div class="d-none d-md-flex align-items-center gap-2">
+            <label for="ordenarPor" class="text-nowrap mb-0"
+              >Ordenar por</label
+            >
+            <select
+              id="ordenarPor"
+              class="form-select border-0 bg-transparent fw-semibold shadow-none cursor-pointer"
+            >
+              <option value="relevancia">Relevância</option>
+              <option value="menorPreco">Menor Preço</option>
+              <option value="maiorPreco">Maior Preço</option>
+              <option value="lancamentos">Lançamentos</option>
+            </select>
+          </div>
+          <button
+            class="btn btn-filtrar d-lg-none"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#filtrosOffcanvas"
+            aria-controls="filtrosOffcanvas"
+          >
+            Filtrar
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <aside id="filtros" class="col-lg-3">
+          <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="filtrosOffcanvas" aria-labelledby="filtrosOffcanvasLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title fw-bold" id="filtrosOffcanvasLabel">Filtros</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#filtrosOffcanvas" aria-label="Close"></button>
+            </div>
+            
+            <section class="offcanvas-body flex-column p-lg-0">
+              
+              <article class="filter-section mb-4">
+                <h6 class="filter-title">Marcas</h6>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Nike" id="marcaNike"/><label class="form-check-label d-flex justify-content-between" for="marcaNike">Nike</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Puma" id="marcaPuma"/><label class="form-check-label d-flex justify-content-between" for="marcaPuma">Puma</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Adidas" id="marcaAdidas"/><label class="form-check-label d-flex justify-content-between" for="marcaAdidas">Adidas</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="New Balance" id="marcaNewBalance"/><label class="form-check-label d-flex justify-content-between" for="marcaNewBalance">New Balance</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Mizuno" id="marcaMizuno"/><label class="form-check-label d-flex justify-content-between" for="marcaMizuno">Mizuno</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Under Armour" id="marcaUnderArmour"/><label class="form-check-label d-flex justify-content-between" for="marcaUnderArmour">Under Armour</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="marca" value="Umbro" id="marcaUmbro"/><label class="form-check-label d-flex justify-content-between" for="marcaUmbro">Umbro</label></fieldset>
+              </article>
+
+              <article class="filter-section mb-4">
+                <h6 class="filter-title">Gênero</h6>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="genero" value="Masculino" id="genMasc"/><label class="form-check-label d-flex justify-content-between" for="genMasc">Masculino</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="genero" value="Feminino" id="genFem"/><label class="form-check-label d-flex justify-content-between" for="genFem">Feminino</label></fieldset>
+              </article>
+
+              <article class="filter-section mb-4">
+                <h6 class="filter-title">Esportes</h6>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Futebol" id="catFutebol"/><label class="form-check-label d-flex justify-content-between" for="catFutebol">Futebol</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Corrida" id="catCorrida"/><label class="form-check-label d-flex justify-content-between" for="catCorrida">Corrida</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Musculação" id="catMusculacao"/><label class="form-check-label d-flex justify-content-between" for="catMusculacao">Musculação</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Futsal" id="catFutsal"/><label class="form-check-label d-flex justify-content-between" for="catFutsal">Futsal</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Natação" id="catNatacao"/><label class="form-check-label d-flex justify-content-between" for="catNatacao">Natação</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Vôlei" id="catVolei"/><label class="form-check-label d-flex justify-content-between" for="catVolei">Vôlei</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Basquete" id="catBasquete"/><label class="form-check-label d-flex justify-content-between" for="catBasquete">Basquete</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Hipismo" id="catHipismo"/><label class="form-check-label d-flex justify-content-between" for="catHipismo">Hipismo</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Tênis" id="catTenis"/><label class="form-check-label d-flex justify-content-between" for="catTenis">Tênis</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Artes Marciais" id="catArtesMarciais"/><label class="form-check-label d-flex justify-content-between" for="catArtesMarciais">Artes Marciais</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Automobilismo" id="catAutomobilismo"/><label class="form-check-label d-flex justify-content-between" for="catAutomobilismo">Automobilismo</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Tiro" id="catTiro"/><label class="form-check-label d-flex justify-content-between" for="catTiro">Tiro</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Baseball" id="catBaseball"/><label class="form-check-label d-flex justify-content-between" for="catBaseball">Baseball</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Patins e Patinetes" id="catPatins"/><label class="form-check-label d-flex justify-content-between" for="catPatins">Patins/Patinetes</label></fieldset>
+                <fieldset class="form-check custom-checkbox"><input class="form-check-input me-2" type="checkbox" name="categoria" value="Skate" id="catSkate"/><label class="form-check-label d-flex justify-content-between" for="catSkate">Skate</label></fieldset>
+              </article>
+
+              <button class="btn btn-filtrar btn-aplicar w-100 mt-3">
+                Aplicar Filtros
+              </button>
+            </section>
+          </div>
+        </aside>
+
+        <section class="col-lg-9" id="resultadosBusca">
+          <h3 class="secTitle mb-4 d-none d-lg-block">Resultado da busca</h3>
+
+          <div
+            id="gridProdutosBusca"
+            class="row row-cols-2 row-cols-lg-3 g-3 g-md-4"
+          >
+            <div class="col-12 text-center py-5 w-100" id="loadingBusca">
+              <div class="spinner-border text-danger" role="status">
+                <span class="visually-hidden">Carregando produtos...</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="bgHeader">
+      <p class="textCenter">
+        © PD Sports 2026 | Desenvolvido por Pablo, Pedro e Rafael.
+      </p>
+    </footer>
+  </body>
+</html>
