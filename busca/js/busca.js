@@ -101,8 +101,8 @@ async function carregarVitrine() {
         const categoriasBuscadas = categorias.map(c => c === "academia" ? "musculacao" : c);
 
         produtosFiltrados = produtosFiltrados.filter((p) => {
-          const categoriaDoProduto = removerAcentos(p.category.toLowerCase());
-          return categoriasBuscadas.includes(categoriaDoProduto); 
+          //const categoriaDoProduto = removerAcentos(p.category.toLowerCase());
+          return categorias.includes(p.category.toLowerCase()); 
         });
 
         const dicionarioDeTitulos = {

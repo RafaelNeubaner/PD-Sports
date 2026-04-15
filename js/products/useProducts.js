@@ -245,7 +245,7 @@ export async function getProductsFilter({query, category, gender, hasDiscount, s
     const responses = await Promise.all([
         fetch(url, { method: 'GET', headers: { 'content-type': 'application/json' } }),
         fetch(url2, { method: 'GET', headers: { 'content-type': 'application/json' } }),
-    ])
+    ]).catch(e=>console.log(e))
 
     let produtos = []
     for (var response of responses) {
