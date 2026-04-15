@@ -52,6 +52,7 @@ export async function createUser(user){
  */
 export async function loginUser({email, password}){
     try{
+        console.log(`EMail: ${email}`)
         let user = await getUserByEmail(email);
 
         if(user.password !== password) throw new Error("Senha inválida")
@@ -62,8 +63,9 @@ export async function loginUser({email, password}){
 
         return user;
     }catch(e){
-        throw new Error("Email ou senha inválidos");
+        console.log(e)
     }
+    throw new Error("Email ou senha inválidos");
 }
 /**
  * 

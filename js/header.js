@@ -8,4 +8,6 @@ if(user){
         link.classList.remove("d-md-block")
         link.classList.add("d-none")
     })
+}else{
+    document.querySelector(".iconProfile").classList.remove("d-md-block")
 }

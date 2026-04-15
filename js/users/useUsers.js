@@ -117,13 +117,14 @@ export async function getUserById(id){
 }
 
 /**
- * Função para buscar um usuário pelo ID
+ * Função para buscar um usuário pelo email
  * 
- * @param {string} id
+ * @param {string} email
  * 
  * @return {Promise<User>}
  */
 export async function getUserByEmail(email){
+    console.log("useUsers: "+email)
     const response = await fetch(`${BASE_URL}users?email=${email}`, {
         method: "GET",
         headers: {
