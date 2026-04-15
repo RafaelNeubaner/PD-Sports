@@ -65,7 +65,7 @@
 
           <a class="navbar-brand d-block d-md-none" href="/index.html"
             ><img
-              src="/assets/media/logo/logo-light.svg"
+              src="../assets/media/logo/logo-light.svg"
               alt="PD Sports"
               id="logo"
           /></a>
@@ -73,15 +73,16 @@
           <search class="containerSearch">
             <a class="navbar-brand d-none d-md-block" href="/index.html">
               <img
-                src="/assets/media/logo/logo-light.svg"
+                src="../assets/media/logo/logo-light.svg"
                 alt="PD Sports"
                 id="logo"
               />
             </a>
 
-            <form class="d-none d-md-flex position-relative inputForm">
+            <form action="/busca/busca-produto.html" class="d-none d-md-flex position-relative inputForm">
               <input
                 type="text"
+                name="query"
                 class="form-control pe-5"
                 placeholder="O que você está procurando?"
                 aria-label="Pesquisar produtos"
@@ -158,25 +159,25 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Esportes</a>
+                <a class="nav-link" href="/busca/busca-produto.html?categoria=esportes">Esportes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Masculino</a>
+                <a class="nav-link" href="/busca/busca-produto.html?gender=masculino">Masculino</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Feminino</a>
+                <a class="nav-link" href="/busca/busca-produto.html?gender=feminino">Feminino</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Infantil</a>
+                <a class="nav-link" href="/busca/busca-produto.html?genero=infantil">Infantil</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Promoções</a>
+                <a class="nav-link" href="/busca/busca-produto.html?promocao=ofertas">Promoções</a>
               </li>
               <li class="nav-item d-none d-lg-block">
-                <a class="nav-link" href="#">Futebol</a>
+                <a class="nav-link" href="/busca/busca-produto.html?categoria=futebol">Futebol</a>
               </li>
               <li class="nav-item d-none d-lg-block">
-                <a class="nav-link" href="#">Corrida</a>
+                <a class="nav-link" href="/busca/busca-produto.html?categoria=corrida">Corrida</a>
               </li>
               <li class="nav-item d-none d-lg-block">
                 <a class="nav-link" href="#">Marcas</a>
