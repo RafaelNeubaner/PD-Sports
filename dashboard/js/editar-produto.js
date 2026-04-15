@@ -133,7 +133,7 @@ if (formEdit && modalEditarElement) {
             e.preventDefault();
             if (editImagesSelected.length > 4) return alert("Máximo de 5 imagens.");
             try {
-                new URL(urlInput.value); // Valida a URL
+                new URL(urlInput.value);
                 editImagesSelected.push(urlInput.value);
                 renderEditImages();
                 urlInput.value = "";
@@ -224,7 +224,7 @@ if (formEdit && modalEditarElement) {
         const updatedProductData = {
             name: nameProduct,
             price: price,
-            discount: discountPrice || price, // Se não tiver desconto, o discount iguala o price na lógica do BD
+            discount: discountPrice || price,
             discountPercentage: discountPrice ? Math.ceil(100 - (discountPrice / price * 100)) : 0,
             noDiscount: !discountPrice,
             brand: brandProduct,
