@@ -19,23 +19,25 @@ html {
     --bg-light: #F6F6F6;
     --bg-dark: #141414;
     --bg-header: #F6F6F6;
+    --bg-card: #E8E8E8;
     --primary: #B90504;
     --secondary: #990100;
     --tertiary: #D74B4A;
+    --red2yellow: #B90504;
     --amarelo-pastel: #FFDB79;
     --branco-cinzento: #E8E8E8;
     --cinza: #454545;
     --cinza-escuro: #333333;
     --preto-fosco: #252525;
 }
-
+ 
 /* GLOBAL - BASE */
 body {
     background-color: var(--bg);
     color: var(--txt);
     overflow-x: hidden;
 }
-
+ 
 /* GLOBAL - DARK MODE OVERRIDES */
 body.darkMode {
     --txt: #ffffff;
@@ -46,19 +48,16 @@ body.darkMode {
     --bg-light: #F6F6F6;
     --bg-dark: #141414;
     --bg-header: #990100;
+    --bg-card: #252525;
     --primary: #B90504;
     --secondary: #990100;
     --tertiary: #D74B4A;
+    --red2yellow: #FFDB79;
     --amarelo-pastel: #FFDB79;
     --branco-cinzento: #E8E8E8;
     --cinza: #454545;
     --cinza-escuro: #333333;
     --preto-fosco: #252525;
-}
-
-section {
-    background-color: var(--bg);
-    color: var(--txt);
 }
 
 .themeToggle {
