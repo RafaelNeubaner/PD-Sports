@@ -143,11 +143,51 @@ hgroup h2 {
         justify-content: center;
     }
 
+    .btnPrimary {
+        padding: 12px 24px;
+        font-size: small;
+    }
 	
 }
 
 @media (max-width: 768px) {
     .bg {
         padding: 75px;
+    }
+}
+
+.formRows {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.formRows input {
+    width: 100%;
+}
+
+.regForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+}
+
+.txtInvisible {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+@media (max-width: 992px) {
+    .formRows {
+        flex-direction: column;
     }
 }
