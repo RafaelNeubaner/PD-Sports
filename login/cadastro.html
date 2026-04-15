@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -14,11 +14,13 @@
 
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="css/login.css" />
-    <script src="js/login.js" defer></script>
+    <script src="js/cadastro.js" type="module" defer></script>
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+
   </head>
   <body>
     <main class="loginPage textCenter">
-      <section class="login-card">
+      <section class="loginCard">
         <a href="../index.html">
           <img
             src="../assets/media/logo/logo-light.svg"
@@ -37,31 +39,65 @@
               name="usuario"
               type="text"
               placeholder="Email"
-              autocomplete="username"
+              autocomplete="email"
               required
             />
 
-            <label class="txtInvisible" for="login-password"></label>
+            <label class="txtInvisible" for="login-phone"></label>
             <input
-              id="login-password"
-              name="senha"
-              type="password"
+              id="login-phone"
+              name="phone"
+              type="tel"
+              placeholder="Telefone"
+              autocomplete="tel"
+              required
+            />
+
+            
+          </div>
+          <div class="formRows">
+            <label class="txtInvisible" for="login-cpf"></label>
+            <input
+              id="login-cpf"
+              name="cpf"
+              type="text"
               placeholder="CPF"
-              autocomplete="current-password"
+              required
+            />
+            
+            <label class="txtInvisible" for="login-bday"></label>
+            <input
+              id="login-bday"
+              name="usuario"
+              type="date"
+              placeholder="Data de Nascimento"
+              autocomplete="bday"
               required
             />
           </div>
           <div class="formRows">
-            <label class="txtInvisible" for="login-user"></label>
+            <label class="txtInvisible" for="login-name"></label>
             <input
-              id="login-user"
-              name="usuario"
+              id="login-name"
+              name="firstname"
               type="text"
               placeholder="Nome"
               autocomplete="username"
               required
             />
 
+            <input
+              id="login-lastname"
+              name="lastname"
+              type="text"
+              placeholder="Sobrenome"
+              autocomplete="username"
+              required
+            />
+            
+            
+          </div>
+          <div class="formRows rowDate mb24">
             <label class="txtInvisible" for="login-password"></label>
             <input
               id="login-password"
@@ -71,21 +107,9 @@
               autocomplete="current-password"
               required
             />
-          </div>
-          <div class="formRows rowDate mb24">
-            <label class="txtInvisible" for="login-user"></label>
+            <label class="txtInvisible" for="login-confirm-password"></label>
             <input
-              id="login-user"
-              name="usuario"
-              type="date"
-              placeholder="Data de Nascimento"
-              autocomplete="username"
-              required
-            />
-
-            <label class="txtInvisible" for="login-password"></label>
-            <input
-              id="login-password"
+              id="login-confirm-password"
               name="senha"
               type="password"
               placeholder="Confirmar Senha"
@@ -95,6 +119,10 @@
           </div>
           <button type="submit" class="btnPrimary mb24">Criar Conta</button>
         </form>
+        <p class="subTitleCard">
+          Já tem conta?
+          <a href="./index.html" class="link subTitleCard">Faça o login</a>
+        </p>
       </section>
     </main>
   </body>

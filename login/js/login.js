@@ -55,12 +55,10 @@ formLogin.addEventListener("submit", async (event)=>{
         return alert("Senha não cumpre os requisitos")
     }
 
-    const result = await loginUser({email, password})
-
     try{
         await loginUser({email, password})
         window.location = "/"
     }catch(e){
-        alert(e.name)
+        alert(e.message)
     }
 })

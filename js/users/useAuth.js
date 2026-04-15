@@ -4,18 +4,18 @@
  */
 import {createUser as createUserAPI, updateUser as updateUserAPI, getUserByEmail, getUserById} from "../users/useUsers.js"
 
-const USER_VARIABLE = "userAuth"
+const USER_ID_VARIABLE = "userIdAuth"
 
 /**
  * 
  * @returns {Promise<User | null>}
  */
-export function getUserAuthenticated(){
-    const userAuthStr = localStorage.getItem(USER_VARIABLE)
+export async function getUserAuthenticated(){
+    const userIdAuthStr = localStorage.getItem(USER_ID_VARIABLE)
 
-    if(!userAuthStr) return null;
+    if(!userIdAuthStr) return null;
 
-    return JSON.parse(userAuthStr)
+    return await getUserById(userIdAuthStr)
 }
 
 /**
@@ -23,7 +23,7 @@ export function getUserAuthenticated(){
  * @returns {boolean}
  */
 export function isAuthenticated(){
-    return localStorage.getItem(USER_VARIABLE) != null;
+    return localStorage.getItem(USER_ID_VARIABLE) != null;
 }
 
 /**
@@ -52,14 +52,12 @@ export async function createUser(user){
  */
 export async function loginUser({email, password}){
     try{
-        console.log(`EMail: ${email}`)
-        let user = await getUserByEmail(email);
-
+        let user = (await getUserByEmail(email))[0];
         if(user.password !== password) throw new Error("Senha inválida")
         
         delete user.password;
 
-        localStorage.setItem(USER_VARIABLE, JSON.stringify(user))
+        localStorage.setItem(USER_ID_VARIABLE, user.id)
 
         return user;
     }catch(e){
@@ -86,5 +84,5 @@ export async function updateUser(id, user){
  * @return {void}
  */
 export function signOut(){
-    localStorage.removeItem(USER_VARIABLE);
+    localStorage.removeItem(USER_ID_VARIABLE);
 }
