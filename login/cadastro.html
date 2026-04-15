@@ -1,4 +1,4 @@
- <!doctype html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -19,7 +19,7 @@
   <body>
     <main class="loginPage textCenter">
       <section class="login-card">
-        <a  href="../index.html">
+        <a href="../index.html">
           <img
             src="../assets/media/logo/logo-light.svg"
             alt="PD Sports"
@@ -27,42 +27,75 @@
           />
         </a>
 
-        <h1 class="mainTitle textCenter">Entre na sua conta</h1>
+        <h1 class="mainTitle textCenter mb24">Registre-se</h1>
 
-        <form class="login-form" autocomplete="on">
-          <label class="txtInvisible" for="login-user">CPF ou Email</label>
-          <input
-            id="login-user"
-            name="usuario"
-            type="text"
-            placeholder="CPF ou Email"
-            autocomplete="username"
-            required
-          />
+        <form class="regForm" autocomplete="on">
+          <div class="formRows">
+            <label class="txtInvisible" for="login-user"></label>
+            <input
+              id="login-user"
+              name="usuario"
+              type="text"
+              placeholder="Email"
+              autocomplete="username"
+              required
+            />
 
-          <label class="txtInvisible" for="login-password">Senha</label>
-          <input
-            id="login-password"
-            name="senha"
-            type="password"
-            placeholder="Senha"
-            autocomplete="current-password"
-            required
-          />
-
-          <div class="loginLinks">
-            <a href="#" class="link subTitleCard">Termos e Condições</a>
-            <a href="#" class="link subTitleCard">Esqueceu a senha?</a>
+            <label class="txtInvisible" for="login-password"></label>
+            <input
+              id="login-password"
+              name="senha"
+              type="password"
+              placeholder="CPF"
+              autocomplete="current-password"
+              required
+            />
           </div>
-            <button type="submit" class="btnPrimary mb24">Login</button>
-        </form>
+          <div class="formRows">
+            <label class="txtInvisible" for="login-user"></label>
+            <input
+              id="login-user"
+              name="usuario"
+              type="text"
+              placeholder="Nome"
+              autocomplete="username"
+              required
+            />
 
-        <p class="subTitleCard">
-          Não tem conta?
-          <a href="#" class="link subTitleCard">Cadastre-se</a>
-        </p>
+            <label class="txtInvisible" for="login-password"></label>
+            <input
+              id="login-password"
+              name="senha"
+              type="password"
+              placeholder="Senha"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+          <div class="formRows rowDate mb24">
+            <label class="txtInvisible" for="login-user"></label>
+            <input
+              id="login-user"
+              name="usuario"
+              type="date"
+              placeholder="Data de Nascimento"
+              autocomplete="username"
+              required
+            />
+
+            <label class="txtInvisible" for="login-password"></label>
+            <input
+              id="login-password"
+              name="senha"
+              type="password"
+              placeholder="Confirmar Senha"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+          <button type="submit" class="btnPrimary mb24">Criar Conta</button>
+        </form>
       </section>
     </main>
   </body>
 </html>
- 
