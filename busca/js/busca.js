@@ -1,4 +1,4 @@
-import { getProductsFilter } from "/js/products/useProducts.js";
+import { getProductsFilter } from "../../js/products/useProducts.js";
 import { criarCardProduto } from "/js/product-card.js";
 import { sincronizarCheckboxes, iniciarFiltrosLateral } from "./filtros.js";
 
@@ -7,7 +7,7 @@ async function carregarVitrine() {
 
   sincronizarCheckboxes(params);
 
-
+  const query = params.get("query")
   const promocao = params.get("promocao");
   const categorias = params.getAll("categoria").map(c => c.toLowerCase());
   const generos = params.getAll("genero").map(g => g.toLowerCase());
@@ -32,6 +32,9 @@ async function carregarVitrine() {
     }
     if (generos.length === 1) {
       parametrosAPI.gender = generos[0].charAt(0).toUpperCase() + generos[0].slice(1);
+    }
+    if (query){
+      parametrosAPI.query = query
     }
 
     let produtosApi = await getProductsFilter(parametrosAPI);
