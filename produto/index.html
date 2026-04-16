@@ -245,10 +245,10 @@
 
         <!-- COMPRAR PRODUTO -->
         <aside class="d-flex flex-column gap-4 productInfos">
-          <h3 class="productName cardTitle"></h3>
+          <h3 class="productName cardTitle" id="nomeProduto"></h3>
           <div>
             <p class="productFullPrice"></p>
-            <p class="productPrice cardTitle"></p>
+            <p class="productPrice cardTitle" id="preco"></p>
           </div>
           <p class="productPriceParc">
             ou <span class="priceTotalParc"></span> em
@@ -268,7 +268,7 @@
           <button class="btnPrimary buyNowButton">
             <img src="/assets/media/icons/lightning.svg" /> Comprar Agora
           </button>
-          <button class="btnOutline mb24">Adicionar ao Carrinho</button>
+          <button class="btnOutline mb24" id="addCart">Adicionar ao Carrinho</button>
           <div class="divider"></div>
 
           <form class="d-flex flex-wrap gap-3">
