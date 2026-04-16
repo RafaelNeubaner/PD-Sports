@@ -1,261 +1,257 @@
-
 import { getProductById, updateProduct } from "/js/products/useProducts.js";
 
-let currentEditId = null;
-let editImagesSelected = [];
-let editVariants = [];
-let editCaracteristicas = new Map();
+document.addEventListener("DOMContentLoaded", () => {
+  const modalEditarElement = document.getElementById("editarProduto");
+  const formEdit = document.getElementById("formEditarProduto");
 
-const formEdit = document.querySelector("#formEditarProduto");
-const modalEditarElement = document.getElementById('editarProduto');
+  if (!modalEditarElement || !formEdit) return;
 
-if (formEdit && modalEditarElement) {
-    const imagesSection = formEdit.querySelector(".imagesSec");
-    const variantsSec = formEdit.querySelector(".variantsSec");
-    const characteristicsSec = formEdit.querySelector(".characteristicsSec");
+  let currentEditId = null;
+  let editImagesSelected = [];
+  let editVariants = [];
+  let editCaracteristicas = new Map();
 
-    modalEditarElement.addEventListener('show.bs.modal', async (event) => {
 
-        const button = event.relatedTarget; 
-        currentEditId = button.getAttribute('data-id');
+  const imagesSection = formEdit.querySelector(".imagesSec");
+  const variantsSec = formEdit.querySelector(".variantsSec");
+  const characteristicsSec = formEdit.querySelector(".characteristicsSec");
+  const btnSubmit = formEdit.querySelector('button[type="submit"]');
 
-        try {
 
-            const produto = await getProductById(currentEditId);
+  modalEditarElement.addEventListener("show.bs.modal", async (event) => {
+    const button = event.relatedTarget;
+    currentEditId = button.getAttribute("data-id");
 
-            formEdit.querySelector(".nameProdInput").value = produto.name || "";
-            formEdit.querySelector(".brandProdInput").value = produto.brand || "";
-            formEdit.querySelector(".price").value = produto.price ? produto.price.toString().replace(".", ",") : "";
-            formEdit.querySelector(".discountPrice").value = produto.discount ? produto.discount.toString().replace(".", ",") : "";
-            formEdit.querySelector(".genderSelect").value = produto.gender || "";
-            formEdit.querySelector(".categoryInput").value = produto.category || "";
-            formEdit.querySelector(".suitableForInput").value = produto.suitableFor || "";
-            formEdit.querySelector(".descriptionInput").value = produto.description || "";
+    try {
 
-            editImagesSelected = produto.images ? [...produto.images] : [];
-            editVariants = produto.variants ? [...produto.variants] : [];
-            
+      btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Carregando...';
+      btnSubmit.disabled = true;
 
-            editCaracteristicas.clear();
-            if (produto.characteristics && produto.characteristics.length > 0) {
-                const charObj = produto.characteristics[0];
-                for (const [key, value] of Object.entries(charObj)) {
-                    editCaracteristicas.set(key, value);
-                }
-            }
+      const produto = await getProductById(currentEditId);
 
-            renderEditImages();
-            renderEditVariants();
-            renderEditCharacteristics();
+      document.getElementById("editName").value = produto.name || "";
+      document.getElementById("editBrand").value = produto.brand || "";
+      document.getElementById("editPrice").value = produto.price ? produto.price.toString().replace(".", ",") : "";
+      document.getElementById("editDiscount").value = produto.discount ? produto.discount.toString().replace(".", ",") : "";
+      document.getElementById("editGender").value = produto.gender || "";
+      document.getElementById("editCategory").value = produto.category || "";
+      document.getElementById("editSuitable").value = produto.suitableFor || "";
+      document.getElementById("editDesc").value = produto.description || "";
 
-        } catch (error) {
-            console.error("Erro ao buscar produto para edição:", error);
-            alert("Erro ao carregar dados do produto.");
 
-            const modalInstance = bootstrap.Modal.getInstance(modalEditarElement);
-            if (modalInstance) modalInstance.hide();
+      editImagesSelected = produto.images ? [...produto.images] : [];
+      editVariants = produto.variants ? [...produto.variants] : [];
+
+      editCaracteristicas.clear();
+      if (produto.characteristics && produto.characteristics.length > 0) {
+        const charObj = produto.characteristics[0];
+        for (const [key, value] of Object.entries(charObj)) {
+          editCaracteristicas.set(key, value);
         }
+      }
+      renderEditImages();
+      renderEditVariants();
+      renderEditCharacteristics();
+
+      btnSubmit.innerHTML = "Salvar Alterações";
+      btnSubmit.disabled = false;
+
+    } catch (error) {
+      console.error("Erro ao carregar dados para edição:", error);
+      alert("Não foi possível carregar os dados do produto. Tente novamente.");
+
+      const modalInstance = bootstrap.Modal.getInstance(modalEditarElement);
+      if (modalInstance) modalInstance.hide();
+    }
+  });
+
+
+  function renderEditImages() {
+    imagesSection.innerHTML = "";
+    editImagesSelected.forEach((url) => {
+      const divImg = document.createElement("div");
+      divImg.classList.add("imgAddProduct");
+
+      const img = document.createElement("img");
+      img.height = 80;
+      img.src = url;
+
+      const icon = document.createElement("i");
+      icon.classList.add("bi", "bi-trash");
+      icon.addEventListener("click", () => {
+        editImagesSelected = editImagesSelected.filter((u) => u !== url);
+        renderEditImages();
+      });
+
+      divImg.appendChild(img);
+      divImg.appendChild(icon);
+      imagesSection.appendChild(divImg);
     });
+  }
 
+  function renderEditVariants() {
+    variantsSec.innerHTML = "";
+    editVariants.forEach((variant) => {
+      const span = document.createElement("span");
+      span.classList.add("variantItem");
 
-    function renderEditImages() {
-        imagesSection.replaceChildren();
-        editImagesSelected.forEach(url => {
-            const divImg = document.createElement("div");
-            divImg.classList.add("imgAddProduct");
-            
-            const img = document.createElement("img");
-            img.height = 80;
-            img.src = url;
+      const text = document.createElement("span");
+      text.textContent = variant;
 
-            const icon = document.createElement("i");
-            icon.classList.add("bi", "bi-trash");
-            icon.addEventListener("click", () => {
-                editImagesSelected = editImagesSelected.filter(urlImg => urlImg !== url);
-                renderEditImages();
-            });
+      const icon = document.createElement("i");
+      icon.classList.add("bi", "bi-trash");
+      icon.addEventListener("click", () => {
+        editVariants = editVariants.filter((v) => v !== variant);
+        renderEditVariants();
+      });
 
-            divImg.appendChild(img);
-            divImg.appendChild(icon);
-            imagesSection.appendChild(divImg);
-        });
-    }
-
-    function renderEditVariants() {
-        variantsSec.replaceChildren();
-        editVariants.forEach(variant => {
-            const span = document.createElement("span");
-            span.classList.add("variantItem");
-
-            const text = document.createElement("span");
-            text.textContent = variant;
-
-            const icon = document.createElement("i");
-            icon.classList.add("bi", "bi-trash");
-            icon.addEventListener("click", () => {
-                editVariants = editVariants.filter(v => v !== variant);
-                renderEditVariants();
-            });
-
-            span.appendChild(text);
-            span.appendChild(icon);
-            variantsSec.append(span);
-        });
-    }
-
-    function renderEditCharacteristics() {
-        characteristicsSec.replaceChildren();
-        editCaracteristicas.forEach((value, key) => {
-            const span = document.createElement("span");
-            span.classList.add("variantItem");
-
-            const text = document.createElement("span");
-            text.textContent = `${key}: ${value}`;
-
-            const icon = document.createElement("i");
-            icon.classList.add("bi", "bi-trash");
-            icon.addEventListener("click", () => {
-                editCaracteristicas.delete(key);
-                renderEditCharacteristics();
-            });
-
-            span.appendChild(text);
-            span.appendChild(icon);
-            characteristicsSec.append(span);
-        });
-    }
-
-
-    const btnAddImage = formEdit.querySelector(".imagesForm .btnPrimary");
-    const urlInput = formEdit.querySelector("#urlImageInput");
-    if(btnAddImage) {
-        btnAddImage.addEventListener("click", (e) => {
-            e.preventDefault();
-            if (editImagesSelected.length > 4) return alert("Máximo de 5 imagens.");
-            try {
-                new URL(urlInput.value);
-                editImagesSelected.push(urlInput.value);
-                renderEditImages();
-                urlInput.value = "";
-            } catch (err) {
-                alert("Insira uma URL válida");
-            }
-        });
-    }
-
-    const variantsInputSec = formEdit.querySelector(".variantsInputSec");
-    if(variantsInputSec) {
-        const btnAddVariant = variantsInputSec.querySelector("button");
-        const inputVariant = variantsInputSec.querySelector("input");
-        
-        const addVariant = (e) => {
-            e?.preventDefault();
-            const val = inputVariant.value.trim();
-            if (!val) return;
-            if (editVariants.includes(val)) return alert("Variante já existe.");
-            editVariants.push(val);
-            inputVariant.value = "";
-            renderEditVariants();
-        };
-
-        btnAddVariant.addEventListener("click", addVariant);
-        inputVariant.addEventListener("focusout", addVariant);
-    }
-
-    const characteristicsInputSec = formEdit.querySelector(".characteristicsInputSec");
-    if(characteristicsInputSec) {
-        const btnAddChar = characteristicsInputSec.querySelector("button");
-        const titleChar = characteristicsInputSec.querySelector(".titleInputCharacteristics");
-        const valueChar = characteristicsInputSec.querySelector(".valueInputCharacteristics");
-
-        const addChar = (e) => {
-            e?.preventDefault();
-            if (!titleChar.value.trim() || !valueChar.value.trim()) return;
-            editCaracteristicas.set(titleChar.value.trim(), valueChar.value.trim());
-            renderEditCharacteristics();
-            titleChar.value = "";
-            valueChar.value = "";
-        };
-
-        btnAddChar.addEventListener("click", addChar);
-        titleChar.addEventListener("focusout", addChar);
-        valueChar.addEventListener("focusout", addChar);
-    }
-
-    const btnCleanDiscount = formEdit.querySelector(".cleanDiscount");
-    if(btnCleanDiscount) {
-        btnCleanDiscount.addEventListener("click", () => {
-            formEdit.querySelector(".discountPrice").value = "";
-        });
-    }
-
-
-    formEdit.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        if (editImagesSelected.length <= 0) return alert("Insira ao menos uma imagem");
-        
-        const nameProduct = formEdit.querySelector(".nameProdInput").value;
-        const brandProduct = formEdit.querySelector(".brandProdInput").value;
-        let price = formEdit.querySelector(".price").value;
-        let discountPrice = formEdit.querySelector(".discountPrice").value;
-        const gender = formEdit.querySelector(".genderSelect").value;
-        let category = formEdit.querySelector(".categoryInput").value;
-        const suitableFor = formEdit.querySelector(".suitableForInput").value;
-        const description = formEdit.querySelector(".descriptionInput").value;
-
-        if (!nameProduct) return alert("Insira o nome do produto");
-        if (!brandProduct) return alert("Insira a marca do produto");
-        if (!price) return alert("Insira o preço");
-        if (!gender) return alert("Insira o gênero do produto");
-        if (!category) return alert("Insira uma categoria");
-        if (!suitableFor) return alert("Especifique para qual esporte é indicado");
-        if (editCaracteristicas.size <= 0) return alert("Insira ao menos uma característica");
-        if (!description) return alert("Insira uma descrição do produto");
-
-        price = Number(price.replace(",", "."));
-        if (discountPrice) discountPrice = Number(discountPrice.replace(",", "."));
-
-        category = category.toLowerCase();
-        category = category.charAt(0).toUpperCase() + category.slice(1);
-
-        const isProduct2 = currentEditId.endsWith(".2");
-
-        const updatedProductData = {
-            name: nameProduct,
-            price: price,
-            discount: discountPrice || price,
-            discountPercentage: discountPrice ? Math.ceil(100 - (discountPrice / price * 100)) : 0,
-            noDiscount: !discountPrice,
-            brand: brandProduct,
-            description: description,
-            characteristics: [Object.fromEntries(editCaracteristicas)],
-            variants: editVariants,
-            images: editImagesSelected,
-            category: category,
-            gender: gender,
-            suitableFor: suitableFor,
-            isProduct2: isProduct2
-        };
-
-        try {
-
-            const submitBtn = formEdit.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = "Salvando...";
-            submitBtn.disabled = true;
-
-            await updateProduct(currentEditId, updatedProductData);
-            
-            alert("Produto atualizado com sucesso!");
-            
-            window.location.reload(); 
-
-        } catch (error) {
-            console.error("Erro ao atualizar:", error);
-            alert("Falha ao salvar as edições. Tente novamente.");
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        }
+      span.appendChild(text);
+      span.appendChild(icon);
+      variantsSec.append(span);
     });
-}
+  }
+
+  function renderEditCharacteristics() {
+    characteristicsSec.innerHTML = "";
+    editCaracteristicas.forEach((value, key) => {
+      const span = document.createElement("span");
+      span.classList.add("variantItem");
+
+      const text = document.createElement("span");
+      text.textContent = `${key}: ${value}`;
+
+      const icon = document.createElement("i");
+      icon.classList.add("bi", "bi-trash");
+      icon.addEventListener("click", () => {
+        editCaracteristicas.delete(key);
+        renderEditCharacteristics();
+      });
+
+      span.appendChild(text);
+      span.appendChild(icon);
+      characteristicsSec.append(span);
+    });
+  }
+
+
+  const btnAddImage = formEdit.querySelector(".imagesForm .btnPrimary");
+  const urlInput = document.getElementById("editUrlImageInput");
+  if (btnAddImage && urlInput) {
+    btnAddImage.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (editImagesSelected.length > 4) return alert("Máximo de 5 imagens.");
+      try {
+        new URL(urlInput.value); // Valida a URL
+        editImagesSelected.push(urlInput.value);
+        renderEditImages();
+        urlInput.value = "";
+      } catch (err) {
+        alert("Insira uma URL válida");
+      }
+    });
+  }
+
+  const btnAddVariant = formEdit.querySelector(".addVariant");
+  const inputVariant = document.getElementById("editVariants");
+  if (btnAddVariant && inputVariant) {
+    const addVariant = (e) => {
+      e?.preventDefault();
+      const val = inputVariant.value.trim();
+      if (!val) return;
+      if (editVariants.includes(val)) return alert("Variante já existe.");
+      editVariants.push(val);
+      inputVariant.value = "";
+      renderEditVariants();
+    };
+    btnAddVariant.addEventListener("click", addVariant);
+    inputVariant.addEventListener("focusout", addVariant);
+  }
+
+  const btnAddChar = formEdit.querySelector(".characteristicsInputSec .btnPrimary");
+  const titleChar = document.getElementById("charTitle");
+  const valueChar = document.getElementById("charValue");
+  if (btnAddChar && titleChar && valueChar) {
+    const addChar = (e) => {
+      e?.preventDefault();
+      if (!titleChar.value.trim() || !valueChar.value.trim()) return;
+      editCaracteristicas.set(titleChar.value.trim(), valueChar.value.trim());
+      renderEditCharacteristics();
+      titleChar.value = "";
+      valueChar.value = "";
+    };
+    btnAddChar.addEventListener("click", addChar);
+    titleChar.addEventListener("focusout", addChar);
+    valueChar.addEventListener("focusout", addChar);
+  }
+
+  const btnCleanDiscount = formEdit.querySelector(".cleanDiscount");
+  const discountInput = document.getElementById("editDiscount");
+  if (btnCleanDiscount && discountInput) {
+    btnCleanDiscount.addEventListener("click", () => {
+      discountInput.value = "";
+    });
+  }
+
+
+
+
+  formEdit.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (editImagesSelected.length <= 0) return alert("Insira ao menos uma imagem");
+
+    const nameProduct = document.getElementById("editName").value;
+    const brandProduct = document.getElementById("editBrand").value;
+    let price = document.getElementById("editPrice").value;
+    let discountPrice = document.getElementById("editDiscount").value;
+    const gender = document.getElementById("editGender").value;
+    let category = document.getElementById("editCategory").value;
+    const suitableFor = document.getElementById("editSuitable").value;
+    const description = document.getElementById("editDesc").value;
+
+    if (editCaracteristicas.size <= 0) return alert("Insira ao menos uma característica");
+
+    price = Number(price.replace(",", "."));
+    if (discountPrice) discountPrice = Number(discountPrice.replace(",", "."));
+
+    category = category.toLowerCase();
+    category = category.charAt(0).toUpperCase() + category.slice(1);
+
+    const isProduct2 = currentEditId.endsWith(".2");
+
+    const updatedProductData = {
+      name: nameProduct,
+      price: price,
+      discount: discountPrice || price,
+      discountPercentage: discountPrice ? Math.ceil(100 - (discountPrice / price) * 100) : 0,
+      noDiscount: !discountPrice,
+      brand: brandProduct,
+      description: description,
+      characteristics: [Object.fromEntries(editCaracteristicas)],
+      variants: editVariants,
+      images: editImagesSelected,
+      category: category,
+      gender: gender,
+      suitableFor: suitableFor,
+      isProduct2: isProduct2,
+    };
+
+    try {
+      btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Salvando...';
+      btnSubmit.disabled = true;
+
+      const idNumerico = currentEditId.split(".")[0];
+
+      await updateProduct(idNumerico, updatedProductData);
+
+      alert("Produto atualizado com sucesso!");
+      window.location.reload();
+
+    } catch (error) {
+      console.error("Erro ao atualizar:", error);
+      alert("Falha ao salvar as edições. Tente novamente.");
+      btnSubmit.innerHTML = "Salvar Alterações";
+      btnSubmit.disabled = false;
+    }
+  });
+});
