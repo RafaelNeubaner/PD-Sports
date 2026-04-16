@@ -111,6 +111,19 @@ button{
     width: 100%;
 }
 
+.freteItem *{
+    margin: 0;
+    padding: 0;
+}
+
+.freteItem img{
+    height: 18px;
+}
+
+.freteItem input{
+    min-width: none;
+    width: fit-content;
+}
 
 /* INFO PRODUTO */
 .containerProduct {
