@@ -31,7 +31,6 @@
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/css/carrossel.css" />
-    <link rel="stylesheet" href="/css/homepage.css" />
     <link rel="stylesheet" href="/produto/css/styles.css" />
 
     <!-- Scripts -->
@@ -45,8 +44,7 @@
     <script src="/js/darkmode.js" defer type="module"></script>
     <script src="/produto/js/script.js" defer type="module"></script>
     <script src="/js/product-card.js" defer type="module"></script>
-    <script src="/js/carrossel.js"></script>
-    <script src="/js/section-carousel.js"></script>
+    <script src="/js/section-carousel.js" defer type="module"></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -201,10 +199,25 @@
               <span class="productGender"></span> >
               <span class="suitableFor"></span>
             </p>
-            <div class="d-flex gap-3">
+            <div class="d-none d-lg-flex gap-3">
               <div id="photosColumn" class="d-flex flex-column gap-3"></div>
-              <img class="principalImage" />
+              <img class="principalImage principalImageDesktop" />
             </div>
+            <section class="photosMobile d-flex flex-column gap-3 d-lg-none">
+              <div class="slider-wrapper" id="sliderWrapperPhotos">
+                <div
+                  class="slider-track sliderContainerPhotos"
+                  id="sliderTrackPhotos"
+                >
+                  <!-- Slides de foto serão inseridos aqui dinamicamente -->
+                </div>
+              </div>
+              <div
+                id="photoDots"
+                class="photoDots"
+                aria-label="Navegação de fotos do produto"
+              ></div>
+            </section>
           </section>
 
           <!-- INFORMAÇÕES DO PRODUTO -->
@@ -233,7 +246,10 @@
         <!-- COMPRAR PRODUTO -->
         <aside class="d-flex flex-column gap-4 productInfos">
           <h3 class="productName cardTitle"></h3>
-          <p class="productPrice cardTitle"></p>
+          <div>
+            <p class="productFullPrice"></p>
+            <p class="productPrice cardTitle"></p>
+          </div>
           <p class="productPriceParc">
             ou <span class="priceTotalParc"></span> em
             <span class="qtdParc"></span>x de
@@ -252,53 +268,38 @@
           <button class="btnPrimary buyNowButton">
             <img src="/assets/media/icons/lightning.svg" /> Comprar Agora
           </button>
-          <button class="btnOutline">Adicionar ao Carrinho</button>
+          <button class="btnOutline mb24">Adicionar ao Carrinho</button>
           <div class="divider"></div>
 
           <form class="d-flex flex-wrap gap-3">
             <h3>Calcular Frete</h3>
             <input placeholder="Digite seu CEP" name="CEP" type="text" />
-            <button class="btnOutline">Calcular</button>
+            <button class="btnOutline mb24">Calcular</button>
           </form>
-        </aside>
-      </section>
-
-      <!-- AVALIAÇÕES -->
-      <section id="avaliacoes" class="justify-content-end">
-        <aside class="avaliacoesCard">
-          <h2 class="avaliacoesTitle">Avaliação do produto</h2>
-          <div class="avaliacoesBlock">
-            <h3>Avaliação dos clientes</h3>
-            <article class="avaliacaoNota">
-              <strong>4.7</strong>
-              <div class="avaliacaoDetalhe">
-                <div class="estrelas" aria-label="Avaliação média de 4,7 de 5">
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-half"></i>
-                </div>
-                <p>Média entre 280 opiniões</p>
+          <!-- AVALIAÇÕES -->
+          <section id="avaliacoes">
+            <aside class="avaliacoesCard">
+              <h2 class="subTitleCard">Avaliação do produto</h2>
+              <div class="avaliacoesBlock">
+                <article class="avaliacaoNota">
+                  <strong>4.7</strong>
+                  <div class="avaliacaoDetalhe">
+                    <div
+                      class="estrelas"
+                      aria-label="Avaliação média de 4,7 de 5"
+                    >
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-half"></i>
+                    </div>
+                    <p>Média entre 280 opiniões</p>
+                  </div>
+                </article>
               </div>
-            </article>
-          </div>
-
-          <div class="avaliacoesBlock">
-            <h3>Recomendações</h3>
-            <div class="recomendacaoBloco">
-              <div class="recomendacaoNumero">
-                <strong>94</strong>
-                <span>%</span>
-              </div>
-              <div class="recomendacaoDetalhe">
-                <div class="recomendacaoBarra" aria-hidden="true">
-                  <span></span>
-                </div>
-                <p>Dos clientes recomendam o produto.</p>
-              </div>
-            </div>
-          </div>
+            </aside>
+          </section>
         </aside>
       </section>
 
@@ -336,7 +337,7 @@
     </main>
 
     <footer class="bgHeader">
-      <p class="textCenter font20">
+      <p class="textCenter txtFooter">
         © PD Sports 2026 | Desenvolvido por Pablo, Pedro e Rafael.
       </p>
     </footer>

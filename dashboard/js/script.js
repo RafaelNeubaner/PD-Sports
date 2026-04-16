@@ -1,4 +1,4 @@
-import { createProduct } from "/js/products/useProducts.js"
+import { createProduct } from "../../js/products/useProducts.js"
 
 let imagesSelected = []
 let variants = []
@@ -198,7 +198,10 @@ async function validadeForm(){
     }
 
     price = Number(price.replace(",", "."))
-    if(discountPrice && discountPrice > 0){
+    if(discountPrice && discountPrice > 0 ){
+        if(discountPrice > price){
+            return alert("Valor de desconto deve ser menor que o valor original")
+        }
         discountPrice = Number(discountPrice.replace(",", "."))
     }
 
@@ -233,10 +236,11 @@ async function validadeForm(){
     console.log([caracteristicas.to])
     await createProduct({
         name: nameProduct,
-        price: price,
-        discount: discountPrice,
+        fullPrice: price,
+        price: discountPrice>0? discountPrice : price,
         discountPercentage: discountPrice ?  Math.ceil(discountPrice/price * 100) : null,
-        noDiscount: discountPrice ? true : false,
+        hasDiscount: discountPrice ? true : false,
+        qtSales: Math.ceil(Math.random() * 2000),
         brand: brandProduct,
         description: description,
         characteristics: [Object.fromEntries(caracteristicas)],
@@ -245,7 +249,8 @@ async function validadeForm(){
         category: category,
         gender: gender,
         suitableFor: suitableFor,
-        isProduct2: true
+        isProduct2: true,
+
     })
     alert("Produto cadastrado")
 }

@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/dashboard/css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
 
     <!-- Scripts -->
     <script
@@ -45,6 +46,7 @@
     <script src="/dashboard/js/menu.js"></script>
     <script type="module" src="/dashboard/js/gerenciar-produtos.js"></script>
     <script type="module" src="/dashboard/js/editar-produto.js"></script>
+    <script src="/js/darkmode.js"></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -72,6 +74,27 @@
             <h2 class="secTitle">Bem-vindo(a) ao painel administrativo</h2>
 
             <ul class="navbar-nav align-items-center">
+              <li class="nav-item d-block d-lg-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i
+                ></a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i>Tire suas dúvidas</a
+                >
+              </li>
+
+              <button
+                class="btn d-block d-md-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mobileSearchBox"
+                aria-expanded="false"
+                aria-controls="mobileSearchBox"
+              >
+                <i class="bi bi-search"></i>
+              </button>
 
               <li class="nav-item">
                 <a id="themeToggle" class="themeToggle" aria-pressed="false"
@@ -80,6 +103,17 @@
               </li>
 
               
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-box-arrow-in-right"></i>Entrar</a
+                >
+              </li>
             </ul>
           </search>
           
@@ -164,6 +198,71 @@
             class="d-flex flex-column w-100 mt-2"
           ></div>
         </section>
+      <section id="dashboard">
+        <h2 class="textCenter mainTitle">Dashboard de Vendas</h2>
+        <div class="row">
+          <article class="card">
+            <h3 class="subTitleCard">Mais vendidos nas ultimas 24h</h3>
+            <ol id="mostWanted24">
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">1. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="80" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">2. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="60" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">3. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="40" max="100"></progress>
+              </li>
+            </ol>
+          </article>
+          <article class="card cardFull">
+            <h3 class="subTitleCard"><span>234</span> vendas na última hora</h3>
+          </article>
+          <article class="card cardFull">
+            <h3 class="subTitleCard"><span>15432</span> vendas na última semana</h3>
+          </article>
+          <article class="card">
+            <h3 class="subTitleCard">Mais vendidos na semana</h3>
+            <ol id="mostWantedMonth">
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">1. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="80" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">2. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="60" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">3. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="40" max="100"></progress>
+              </li>
+            </ol>
+          </article>
+          
+        </div>
+      </section>
+    </main>
 
         <!-- LOJA -->
         <section id="loja" class="flex-fill p-4 d-none"></section>
