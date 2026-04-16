@@ -8,8 +8,8 @@
     align-items: left;
     margin-bottom: 20px;
     max-width: 400px;
-    border: 1px solid var(--cinza);
-    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    padding: 20px;
 }
 
 .cartItem img {
@@ -19,6 +19,22 @@
 }
 
 .quantityControl button{
-    background-color: var(--branco-cinzento);
-    padding: 6px 12px;
+    padding: 1px 9px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.remove {
+    margin-left: 10px;
+}
+
+.quantityControl span {
+    margin: 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.red {
+    color: var(--primary);
 }
