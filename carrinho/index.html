@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/carrinho/css/carrinho.css" />
 
     <!-- Scripts -->
     <script
@@ -39,7 +40,7 @@
     ></script>
 
     <!-- Custom JS -->
-    <script src="/js/script.js" defer></script>
+    <script src="/carrinho/js/carrinho.js" defer></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -186,7 +187,34 @@
       </nav>
     </header>
 
-    <main></main>
+    <main id="carrinho">
+      <h1>Carrinho <span class="cart-badge">(0)</span></h1>
+      <p class="carrinho-vazio">Seu carrinho está vazio.</p>
+      <section class="cartItens">
+        <article class="cartItem">
+          <div class="d-flex">
+          <img src="/assets/media/images/home/marcas/marca-adidas.png" alt="Tênis Esportivo" />
+          <div class="itemDetails">
+            <h3>Tênis Esportivo</h3>
+            <p><small>Variante: Vermelho , 42</small></p>
+          </div>
+          </div>
+            <p>R$ 8,97</p>
+            <div class="d-flex justify-content-between">
+            <div class="quantityControl">
+              <button class="decrease">-</button>
+              <span class="quantity">1</span>
+              <button class="increase">+</button>
+            </div>
+            <p class="subTotal">R$ 8,97</p>
+          </div>
+        </article>
+      </section>
+      <aside class="resumo">
+        <h4>Subtotal: <span class="span2">R$ 8,97</span></h4>
+        <button class="finalizar">Finalizar Compra</button>
+      </aside>
+    </main>
 
     <footer class="bgHeader">
       <p class="textCenter font20">
