@@ -188,30 +188,51 @@
     </header>
 
     <main id="carrinho">
-      <h1>Carrinho <span class="cart-badge">(0)</span></h1>
+      <h1 class="red mainTitle">Carrinho <span class="cartB adge"></span></h1>
       <p class="carrinho-vazio">Seu carrinho está vazio.</p>
       <section class="cartItens">
         <article class="cartItem">
           <div class="d-flex">
           <img src="/assets/media/images/home/marcas/marca-adidas.png" alt="Tênis Esportivo" />
           <div class="itemDetails">
-            <h3>Tênis Esportivo</h3>
+            <h3 class="cardTitle">Tênis Esportivo</h3>
             <p><small>Variante: Vermelho , 42</small></p>
           </div>
           </div>
             <p>R$ 8,97</p>
             <div class="d-flex justify-content-between">
             <div class="quantityControl">
-              <button class="decrease">-</button>
+              <button class="decrease btnOutline">-</button>
               <span class="quantity">1</span>
-              <button class="increase">+</button>
+              <button class="increase btnOutline">+</button>
+              <button class="remove btnOutline"><i class="bi bi-trash"></i></button>
             </div>
-            <p class="subTotal">R$ 8,97</p>
+            <p class="subTotal red cardTitle">R$ 8,97</p>
+          </div>
+        </article>
+        <article class="cartItem">
+          <div class="d-flex">
+          <img src="/assets/media/images/home/marcas/marca-adidas.png" alt="Tênis Esportivo" />
+          <div class="itemDetails">
+            <h3 class="cardTitle">Tênis Esportivo</h3>
+            <p><small>Variante: Vermelho , 42</small></p>
+          </div>
+          </div>
+            <p>R$ 8,97</p>
+            <div class="d-flex justify-content-between">
+            <div class="quantityControl">
+              <button class="decrease btnOutline">-</button>
+              <span class="quantity">1</span>
+              <button class="increase btnOutline">+</button>
+              <button class="remove btnOutline"><i class="bi bi-trash"></i></button>
+            </div>
+            <p class="subTotal red cardTitle">R$ 8,97</p>
           </div>
         </article>
       </section>
       <aside class="resumo">
         <h4>Subtotal: <span class="span2">R$ 8,97</span></h4>
+        <h4>Entrega: <span class="span2">R$ 0,00</span></h4>
         <button class="finalizar">Finalizar Compra</button>
       </aside>
     </main>
