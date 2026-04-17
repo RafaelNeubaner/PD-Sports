@@ -41,6 +41,8 @@
 
     <!-- Custom JS -->
     <script type="module" src="/carrinho/js/carrinho.js" defer></script>
+    <script src="/js/darkmode.js"></script>
+    <script src="/carrinho/js/validacao-cartao.js"></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -59,7 +61,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <a class="navbar-brand d-block d-md-none" href="index.html"
+          <a class="navbar-brand d-block d-md-none" href="/index.html"
             ><img
               src="/assets/media/logo/logo-light.svg"
               alt="PD Sports"
@@ -67,7 +69,7 @@
           /></a>
 
           <search class="containerSearch">
-            <a class="navbar-brand d-none d-md-block" href="index.html">
+            <a class="navbar-brand d-none d-md-block" href="/index.html">
               <img
                 src="/assets/media/logo/logo-light.svg"
                 alt="PD Sports"
@@ -110,13 +112,12 @@
                 <i class="bi bi-search"></i>
               </button>
 
-
               <li class="nav-item">
-                <a id="themeToggle"
-                class="themeToggle"
-                aria-pressed="false"><i class="bi bi-moon-stars"></i></a>
+                <a id="themeToggle" class="themeToggle" aria-pressed="false"
+                  ><i class="bi bi-moon-stars"></i
+                ></a>
               </li>
-              
+
               <li class="nav-item">
                 <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
               </li>
@@ -155,25 +156,53 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Esportes</a>
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=esportes"
+                  >Esportes</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Masculino</a>
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?gender=masculino"
+                  >Masculino</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Feminino</a>
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?gender=feminino"
+                  >Feminino</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Infantil</a>
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?genero=infantil"
+                  >Infantil</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Promoções</a>
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?promocao=ofertas"
+                  >Promoções</a
+                >
               </li>
               <li class="nav-item d-none d-lg-block">
-                <a class="nav-link" href="#">Futebol</a>
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=futebol"
+                  >Futebol</a
+                >
               </li>
               <li class="nav-item d-none d-lg-block">
-                <a class="nav-link" href="#">Corrida</a>
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=corrida"
+                  >Corrida</a
+                >
               </li>
               <li class="nav-item d-none d-lg-block">
                 <a class="nav-link" href="#">Marcas</a>
@@ -192,9 +221,176 @@
         <h1 class="red mainTitle">Carrinho ( <span class="cart-badge"></span> )</h1>
         <p class="carrinho-vazio">Seu carrinho está vazio.</p>
         <section class="cartItens"></section>
+
+        /* FORMS - Dados, Endereço e Forma de Pagamento */
+        <section id="formulario">
+          <form>
+            <section id="dadosCliente">
+              <legend>Dados do Cliente</legend>
+              <div class="d-flex w-100">
+                <fieldset class="w-100">
+                  <label for="nome" class="form-label">Nome</label>
+                  <input
+                    type="text"
+                    class="form-control w-100"
+                    id="nome"
+                    placeholder="Primeiro nome"
+                  />
+                </fieldset>
+
+                <fieldset class="w-100">
+                  <label for="sobrenome" class="form-label">Sobrenome</label>
+                  <input
+                    type="text"
+                    class="form-control w-100"
+                    id="sobrenome"
+                    placeholder="Sobrenome"
+                  />
+                </fieldset>
+              </div>
+
+              <fieldset>
+                <label for="cpf" class="form-label">CPF</label>
+                <input
+                  type="cpf"
+                  class="form-control"
+                  id="cpf"
+                  placeholder="Informe seu CPF"
+                />
+              </fieldset>
+            </section>
+
+            <section id="endereco">
+              <legend>Endereço de Entrega</legend>
+
+              <fieldset class="w-100">
+                <label for="cep" class="form-label">CEP</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cep"
+                  placeholder="Informe seu CEP"
+                />
+              </fieldset>
+
+              <div class="d-flex w-100">
+                <fieldset class="w-100">
+                  <label for="rua" class="form-label">Rua</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="rua"
+                    placeholder="Rua"
+                  />
+                </fieldset>
+
+                <fieldset class="w-100">
+                  <label for="bairro" class="form-label">Bairro</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="bairro"
+                    placeholder="Bairro"
+                  />
+                </fieldset>
+                <fieldset class="w-100">
+                  <label for="numero" class="form-label">Número</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="numero"
+                    placeholder="Número"
+                    min="1"
+                  />
+                </fieldset>
+              </div>
+
+              <fieldset class="w-100">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cidade"
+                  placeholder="Informe sua Cidade"
+                />
+              </fieldset>
+              <fieldset class="w-100">
+                <label for="estado" class="form-label">Estado</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="estado"
+                  placeholder="Informe seu Estado"
+                />
+              </fieldset>
+            </section>
+
+            <section id="formaPagamento">
+              <legend>Forma de Pagamento</legend>
+
+              <div class="d-flex w-100">
+                <fieldset class="pagamento d-flex align-items-center">
+                  <input
+                    type="radio"
+                    name="metodoPagamento"
+                    id="pix"
+                    class="custom-radio"
+                  />
+                  <i class="bi bi-x-diamond-fill fs-2" style="color: #00bdae"></i>
+                  <p>Pix</p>
+                </fieldset>
+
+                <fieldset class="pagamento d-flex align-items-center">
+                  <input
+                    type="radio"
+                    name="metodoPagamento"
+                    id="cartao"
+                    class="custom-radio"
+                  />
+                  <i class="bi bi-credit-card fs-2"></i>
+                  <p>Cartão de Crédito</p>
+                </fieldset>
+              </div>
+
+              <fieldset id="camposCartao" class="d-flex flex-column gap-3 w-100">
+                <div class="input-icon-wrapper">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="n-cartao"
+                    placeholder="Nº do Cartão"
+                  />
+                  <i class="bi bi-credit-card-2-front"></i>
+                </div>
+
+                <div class="d-flex gap-3 w-100">
+                  <div class="input-icon-wrapper w-50">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="vencimento"
+                      placeholder="Data Vencimento"
+                    />
+                    <i class="bi bi-calendar"></i>
+                  </div>
+
+                  <div class="input-icon-wrapper w-50">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cvv"
+                      placeholder="CVV"
+                    />
+                    <i class="bi bi-key-fill"></i>
+                  </div>
+                </div>
+              </fieldset>
+            </section>
+          </form>
+        </section>
       </section>
 
-      <aside class="resumo d-flex flex-column gap-4">
+      <aside class="resumo">
         <h4>Subtotal: <span class="span2">R$ 8,97</span></h4>
         <form id="formFrete" class="d-flex gap-3">
           <input placeholder="Digite seu CEP" class="flex-grow-1" name="CEP" type="text" id="cepInput">
