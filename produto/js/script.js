@@ -103,10 +103,6 @@ function setupAddToCartButton(){
         }
     })
 }
-
-function setSecondaryImages(){
-    const secondaryImagesUrl = productImages.filter(link=>link!=selectedPrincipalImage)
-}
     
 document.querySelector(".btnCalcularFrete").addEventListener('click', calculateFrete)
 document.querySelector("#formFrete").addEventListener('submit', (event) => {

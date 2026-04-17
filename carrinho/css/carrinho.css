@@ -1,40 +1,101 @@
 #carrinho {
-    padding: 20px 128px;
+  padding: 20px 128px;
+}
+
+.cartItens{
+    width: 40vw;
+    border-radius: 16px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px 25px;
 }
 
 .cartItem {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    margin-bottom: 20px;
-    max-width: 400px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
 .cartItem img {
-    width: 100px;
-    height: auto;
-    margin-right: 20px;
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
 }
 
-.quantityControl button{
-    padding: 1px 9px;
-    font-size: 18px;
-    font-weight: bold;
+.quantityControl .controls{
+    display: flex;
+    align-items: center;
+    background-color: #E9E9E9;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px;
+}
+
+.quantityControl .btnOutline:hover{
+    background-color: #d1d1d1 !important;
+    color: black !important; 
+    border: 0 !important;
+}
+
+.quantityControl button {
+  padding: 1px 9px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--txtDark);
+  border: 0;
 }
 
 .remove {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .quantityControl span {
-    margin: 0 10px;
-    font-size: 16px;
-    font-weight: bold;
-    vertical-align: middle;
+  margin: 0 10px;
+  font-size: 16px;
+  font-weight: bold;
+  vertical-align: middle;
 }
 
 .red {
-    color: var(--primary);
+  color: var(--primary);
+}
+
+.resumo {
+  width: 30%;
+}
+
+ul {
+  padding: 0;
+}
+
+.resumo > h4 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.freteItem * {
+  margin: 0;
+  padding: 0;
+}
+
+.freteItem img {
+  height: 18px;
+}
+
+.freteItem input {
+  min-width: none;
+  width: fit-content;
+}
+
+.precoTotal {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.buyNowButton {
+  box-shadow: 0 8px 28px #e1060073;
+  height: 60px;
 }

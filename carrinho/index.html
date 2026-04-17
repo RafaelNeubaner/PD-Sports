@@ -40,7 +40,7 @@
     ></script>
 
     <!-- Custom JS -->
-    <script src="/carrinho/js/carrinho.js" defer></script>
+    <script type="module" src="/carrinho/js/carrinho.js" defer></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -187,53 +187,37 @@
       </nav>
     </header>
 
-    <main id="carrinho">
-      <h1 class="red mainTitle">Carrinho ( <span class="cart-badge"></span> )</h1>
-      <p class="carrinho-vazio">Seu carrinho está vazio.</p>
-      <section class="cartItens">
-        <article class="cartItem">
-          <div class="d-flex">
-          <img src="/assets/media/images/home/marcas/marca-adidas.png" alt="Tênis Esportivo" />
-          <div class="itemDetails">
-            <h3 class="cardTitle">Tênis Esportivo</h3>
-            <p><small>Variante: Vermelho , 42</small></p>
-          </div>
-          </div>
-            <p class="prodPrice">R$ 8,97</p>
-            <div class="d-flex justify-content-between">
-            <div class="quantityControl">
-              <button class="decrease btnOutline">-</button>
-              <span class="quantity">1</span>
-              <button class="increase btnOutline">+</button>
-              <button class="remove btnOutline"><i class="bi bi-trash"></i></button>
-            </div>
-            <p class="subTotal red cardTitle">R$ 8,97</p>
-          </div>
-        </article>
-        <article class="cartItem">
-          <div class="d-flex">
-          <img src="/assets/media/images/home/marcas/marca-adidas.png" alt="Tênis Esportivo" />
-          <div class="itemDetails">
-            <h3 class="cardTitle">Tênis Esportivo</h3>
-            <p><small>Variante: Vermelho , 42</small></p>
-          </div>
-          </div>
-            <p class="prodPrice">R$ 8,97</p>
-            <div class="d-flex justify-content-between">
-            <div class="quantityControl">
-              <button class="decrease btnOutline">-</button>
-              <span class="quantity">1</span>
-              <button class="increase btnOutline">+</button>
-              <button class="remove btnOutline"><i class="bi bi-trash"></i></button>
-            </div>
-            <p class="subTotal red cardTitle">R$ 8,97</p>
-          </div>
-        </article>
+    <main id="carrinho" class="d-flex justify-content-between">
+      <section class="d-flex flex-column gap-3">
+        <h1 class="red mainTitle">Carrinho ( <span class="cart-badge"></span> )</h1>
+        <p class="carrinho-vazio">Seu carrinho está vazio.</p>
+        <section class="cartItens"></section>
       </section>
-      <aside class="resumo">
+
+      <aside class="resumo d-flex flex-column gap-4">
         <h4>Subtotal: <span class="span2">R$ 8,97</span></h4>
-        <h4>Entrega: <span class="span2">R$ 0,00</span></h4>
-        <button class="finalizar">Finalizar Compra</button>
+        <form id="formFrete" class="d-flex gap-3">
+          <input placeholder="Digite seu CEP" class="flex-grow-1" name="CEP" type="text" id="cepInput">
+          <button class="btnPrimary btnCalcularFrete">Calcular</button>
+        </form>
+        <template id="tempFreteOption">
+          <li class="freteItem d-flex gap-3">
+            <input type="radio" name="freteOption" class="freteOption">
+            <img src="" alt="">
+            <label for="" class="d-flex flex-row w-100 align-items-center justify-content-between">
+              <h4></h4>
+              <p></p>
+            </label>
+          </li>
+        </template>
+        <ul class="fretesOptions d-flex flex-column gap-4">
+        </ul>
+        <h4>Entrega: <span class="precoFrete">R$ 0,00</span></h4>
+        <h4>Total: <span class="precoTotal">R$ 0,00</span></h4>
+
+        <button class="btnPrimary buyNowButton">
+          <img src="/assets/media/icons/lightning.svg" /> Finalizar Compra
+        </button>
       </aside>
     </main>
 
