@@ -7,7 +7,10 @@ export function sincronizarCheckboxes(params) {
 
   const marcas = params.getAll('marca').map(m => m.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
   const generos = params.getAll('genero').map(g => g.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
-  const categorias = params.getAll('categoria').map(c => c.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+  let categorias = params.getAll('categoria').map(c => c.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+  if(categorias.includes("academia")){
+    categorias.push("musculacao")
+  }
 
   document.querySelectorAll('.form-check-input').forEach(cb => {
 
@@ -30,7 +33,11 @@ export function iniciarFiltrosLateral(callbackAtualizarVitrine) {
       const params = new URLSearchParams();
 
       const urlAntiga = new URLSearchParams(window.location.search);
-      if (urlAntiga.has('promocao')) params.set('promocao', urlAntiga.get('promocao'));
+      if (urlAntiga.has('promocao')) 
+        params.set('promocao', urlAntiga.get('promocao'));
+
+      if(urlAntiga.get("query"))
+        params.append("query", urlAntiga.get("query"))
 
       document.querySelectorAll('input[name="marca"]:checked').forEach(cb => params.append('marca', cb.value));
       document.querySelectorAll('input[name="genero"]:checked').forEach(cb => params.append('genero', cb.value));
