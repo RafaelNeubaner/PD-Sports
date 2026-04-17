@@ -5,7 +5,7 @@ footer{
 }
 
 main{
-    padding-top: 100px;
+    padding-top: 120px;
     margin: 0px 128px;
 }
 
@@ -111,6 +111,19 @@ button{
     width: 100%;
 }
 
+.freteItem *{
+    margin: 0;
+    padding: 0;
+}
+
+.freteItem img{
+    height: 18px;
+}
+
+.freteItem input{
+    min-width: none;
+    width: fit-content;
+}
 
 /* INFO PRODUTO */
 .containerProduct {
@@ -235,12 +248,15 @@ body.darkMode .spec-label {
     color: #767676;
 }
 
-
+@media (min-width: 768px){
+    main{
+        padding-top: 0;
+    }
+}
 
 @media (max-width: 992px) {
     main {
         margin: 0 1.6rem;
-        padding-top: 8.8rem;
     }
 
     #productDetails {
@@ -315,9 +331,8 @@ body.darkMode .spec-label {
 
 @media (min-width: 380px) {
     main {
-            margin: 0 1.2rem;
-            padding: 140px 0 4.8rem;
-        }
+        margin: 0 1.2rem;
+    }
 }
 
 @media (max-width: 575px) {
@@ -355,7 +370,7 @@ body.darkMode .spec-label {
 
 @media (max-width: 1400px) {
     main {
-        margin: 0 6rem;
+        margin: 0 2rem;
     }
 }
 

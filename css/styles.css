@@ -30,14 +30,14 @@ html {
     --cinza-escuro: #333333;
     --preto-fosco: #252525;
 }
-
+ 
 /* GLOBAL - BASE */
 body {
     background-color: var(--bg);
     color: var(--txt);
     overflow-x: hidden;
 }
-
+ 
 /* GLOBAL - DARK MODE OVERRIDES */
 body.darkMode {
     --txt: #ffffff;
@@ -58,11 +58,6 @@ body.darkMode {
     --cinza: #454545;
     --cinza-escuro: #333333;
     --preto-fosco: #252525;
-}
-
-section {
-    background-color: var(--bg);
-    color: var(--txt);
 }
 
 .themeToggle {
@@ -133,6 +128,10 @@ body.darkMode .themeToggle:hover {
 
 .txtMuted {
     color: var(--txtMuted);
+}
+
+.txtInvisible {
+    color: transparent;
 }
 
 .btnPrimary {

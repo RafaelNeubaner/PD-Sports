@@ -8,7 +8,6 @@ export function criarCardProduto(produto) {
     produto.images && produto.images.length > 0
       ? produto.images[0]
       : "/assets/media/img/default.png";
-      console.log(produto)
   const temDesconto = produto.hasDiscount;
 
   return `

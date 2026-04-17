@@ -1,0 +1,193 @@
+.loginPage {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 24px;
+}
+
+h1 {
+    color: var(--secondary);
+}
+
+
+.loginCard {
+	width: 100%;
+	max-width: 560px;
+	text-align: center;
+}
+
+.logo {
+	width: 210px;
+	max-width: 100%;
+	height: auto;
+	margin-bottom: 56px;
+	filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.2));
+}
+
+.login-form {
+	width: 100%;
+    text-align: center;
+}
+
+.login-form input {
+	width: 100%;
+	height: 50px;
+	border: 2px solid var(--branco-cinzento);
+	background: transparent;
+	color: var(--txt);
+	margin-bottom: 24px;
+    
+}
+
+.loginLinks {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 2px 4px 32px;
+	gap: 12px;
+}
+
+.btnPrimary {
+    padding: 14px 28px;
+    font-size: 18px;
+}
+
+.modalRecuperarSenha {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.bg {
+    position: relative;
+    background-color: var(--bg);
+    padding: 150px;
+    border-radius: 12px;
+    border: 3px solid var(--cinza-escuro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+	transform: translateY(16px) scale(0.98);
+	transition: transform 0.25s ease;
+}
+
+.modalRecuperarSenha.is-open {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+}
+
+.modalRecuperarSenha.is-open .bg {
+	transform: translateY(0) scale(1);
+}
+
+.sair {
+    padding: 6px 12px;
+    position: absolute;
+    top: 32px;
+    right: 32px;
+}
+
+.containerReset{
+    width: 100%;
+}
+
+.resetForm {
+    width: 100%;
+    max-width: 700px;
+}
+
+#resetEmail {
+    width: 100%;
+    max-width: 700px;
+    height: 50px;
+    border: 2px solid var(--branco-cinzento);
+    background: transparent;
+    color: var(--txt);
+    padding: 0 16px;
+}
+
+hgroup h2 {
+    color: var(--secondary);
+}
+
+@media (max-width: 992px) {
+	.logo {
+		width: 165px;
+		margin-bottom: 36px;
+	}
+
+    .modalRecuperarSenha {
+        width: 100%;
+        height: 100%;
+    }
+
+    .bg {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        border: none;
+        justify-content: center;
+    }
+
+    .btnPrimary {
+        padding: 12px 24px;
+        font-size: small;
+    }
+	
+}
+
+@media (max-width: 768px) {
+    .bg {
+        padding: 75px;
+    }
+}
+
+.formRows {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.formRows input {
+    width: 100%;
+}
+
+.regForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+}
+
+.txtInvisible {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+@media (max-width: 992px) {
+    .formRows {
+        flex-direction: column;
+    }
+}
