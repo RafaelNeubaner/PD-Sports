@@ -1,4 +1,4 @@
-import { getAllProducts, getProductById } from "./products/useProducts.js";
+import { getAllProducts, getProductById, getProductsFilter } from "./products/useProducts.js";
 import { iniciarCarrossel } from "./section-carousel.js";
 
 // CRIA CARD PRODUTO
@@ -8,7 +8,7 @@ export function criarCardProduto(produto) {
     produto.images && produto.images.length > 0
       ? produto.images[0]
       : "/assets/media/img/default.png";
-  const temDesconto = !produto.noDiscount;
+  const temDesconto = produto.hasDiscount;
 
   return `
     <article class="slider-item">
@@ -29,8 +29,8 @@ export function criarCardProduto(produto) {
 
         <div class="card-body">
           <h3 class="card-title font20 mb-2 cardTitle">${produto.name}</h3>
-          ${temDesconto ? `<p class="card-text preco-antigo txtMuted mb-0"><s>R$ ${produto.price.toFixed(2)}</s></p>` : ""}
-          <span class="subTitleCard txtDark" itemprop="price">R$ ${(temDesconto ? produto.discount : produto.price).toFixed(2)} <sub>no PIX</sub></span>
+          ${temDesconto ? `<p class="card-text preco-antigo txtMuted mb-0"><s>R$ ${produto.fullPrice.toFixed(2)}</s></p>` : ""}
+          <span class="subTitleCard txtDark" itemprop="price">R$ ${(temDesconto ? produto.price : produto.fullPrice).toFixed(2)} <sub>no PIX</sub></span>
         </div>
       </div>
       </a>
@@ -68,11 +68,11 @@ async function renderizarOfertas() {
   if (!sliderTrack || !sliderWrapper || !btnLeft || !btnRight) return;
 
   try {
-    const todosProdutos = await getAllProducts();
-    // filtra produtos com desconto
-    const ofertas = todosProdutos
-      .filter((p) => p.noDiscount === false)
-      .slice(0, 10);
+    const ofertas = await getProductsFilter({
+      sortBy: 'discountPercentage',
+      order: 'desc',
+      limit: 10
+    });
 
     sliderTrack.innerHTML = "";
 
@@ -100,10 +100,11 @@ async function renderizarMaisVendidos() {
   if (!sliderTrack || !sliderWrapper || !btnLeft || !btnRight) return;
 
   try {
-    const todosProdutos = await getAllProducts();
-    const maisVendidos = todosProdutos
-      .filter((p) => p.noDiscount === true)
-      .slice(0, 10);
+    const maisVendidos = await getProductsFilter({
+      sortBy: 'qtSales',
+      order: 'desc',
+      limit: 10
+    });
 
     sliderTrack.innerHTML = "";
 

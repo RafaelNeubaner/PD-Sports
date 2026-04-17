@@ -5,7 +5,7 @@ footer{
 }
 
 main{
-    padding-top: 100px;
+    padding-top: 120px;
     margin: 0px 128px;
 }
 
@@ -81,10 +81,14 @@ main{
     font-weight: normal;
 }
 
+.productFullPrice{
+    text-decoration: line-through;
+    color: var(--txtMuted);
+}
+
 .productPriceParc{
     font-size: 16px;
     color: var(--txtMuted);
-    
 }
 
 button{
@@ -231,12 +235,15 @@ body.darkMode .spec-label {
     color: #767676;
 }
 
-
+@media (min-width: 768px){
+    main{
+        padding-top: 0;
+    }
+}
 
 @media (max-width: 992px) {
     main {
         margin: 0 1.6rem;
-        padding-top: 8.8rem;
     }
 
     #productDetails {
@@ -311,9 +318,8 @@ body.darkMode .spec-label {
 
 @media (min-width: 380px) {
     main {
-            margin: 0 1.2rem;
-            padding: 140px 0 4.8rem;
-        }
+        margin: 0 1.2rem;
+    }
 }
 
 @media (max-width: 575px) {
@@ -351,7 +357,7 @@ body.darkMode .spec-label {
 
 @media (max-width: 1400px) {
     main {
-        margin: 0 6rem;
+        margin: 0 2rem;
     }
 }
 

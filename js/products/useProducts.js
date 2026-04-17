@@ -6,9 +6,10 @@
  * @property {string} id - O ID é uma string composta separada por `.`, primeira parte ID e segunda o endpoint a ser buscado `id.endpoint`
  * @property {string} name - nome do produto
  * @property {number} price - preço principal do produto
- * @property {number} discount - preço com desconto
+ * @property {number} fullPrice - preço total do produto
  * @property {number} discountPercentage - porcentagem do desconto
- * @property {boolean} noDiscount - verificar se possui desconto
+ * @property {number} qtSales  - Quantidade de vendas do produto
+ * @property {boolean} hasDiscount - verificar se possui desconto
  * @property {string} brand - nome da marca do produto
  * @property {string} description - descrição do produto
  * @property {Object} characteristics - características específicas do produto
@@ -131,7 +132,7 @@ export async function getAllProducts() {
  * Ex: getProductById("20.1") #ID 20 no endpoint 1(/product)
  * Ex: getProductById("20.2") #ID 20 no endpoint 2(/product2)
  * 
- * @returns {Product[]}  array com todos os produtos com suas propriedades
+ * @returns {Product}  array com o produtos e suas propriedades
  * 
  */
 export async function getProductById(id) {
@@ -195,22 +196,25 @@ export async function getProductsByCategory(category){
 /**
  * Busca dos produtos com filtro e categorização
  * 
- * @param {string} query 
- * @param {string} category 
- * @param {string} gender
- * @param {boolean} discount
- * @param {boolean} sortByPrice
- * @param {'asc'|'desc'} order
+ * @param {object} params
+ * @param {string} params.query 
+ * @param {string} params.category 
+ * @param {string} params.gender
+ * @param {boolean} params.hasDiscount
+ * @param {'price' | 'qtSales' | 'discountPercentage' } params.sortBy
+ * @param {'asc'|'desc'} params.order
  * 
- * @returns {Product[]}
+ * @returns {Promise<Product[]>}
  */
-export async function getProductsFilter(query, category, gender, discount, sortByPrice = false, order = 'desc') {
+export async function getProductsFilter({query, category, gender, hasDiscount, sortBy, order = 'desc', limit=20, page=1}) {
     const url = new URL(`${BASE_URL}product`)
     const url2 = new URL(`${BASE_URL}product2`)
     const normalizedOrder = order === 'asc' ? 'asc' : 'desc'
 
-    url.searchParams.append("search", query)
-    url2.searchParams.append("search", query)
+    if(query){
+        url.searchParams.append("search", query)
+        url2.searchParams.append("search", query)
+    }
 
     if (category) {
         url.searchParams.append("category", category)
@@ -220,32 +224,49 @@ export async function getProductsFilter(query, category, gender, discount, sortB
         url.searchParams.append("gender", gender)
         url2.searchParams.append("gender", gender)
     }
-    if (discount) {
-        url.searchParams.append("noDiscount", !discount)
-        url2.searchParams.append("noDiscount", !discount)
+    if (hasDiscount) {
+        url.searchParams.append("hasDiscount", !hasDiscount)
+        url2.searchParams.append("hasDiscount", !hasDiscount)
     }
-    if (sortByPrice) {
-        url.searchParams.append("sortBy", 'price')
-        url2.searchParams.append("sortBy", 'price')
+    if (sortBy) {
+        url.searchParams.append("sortBy", sortBy)
+        url2.searchParams.append("sortBy", sortBy)
 
         url.searchParams.append("order", normalizedOrder)
         url2.searchParams.append("order", normalizedOrder)
     }
 
+    url.searchParams.append("limit", limit)
+    url2.searchParams.append("limit", limit)
+
+    url.searchParams.append("page", page)
+    url2.searchParams.append("page", page)
+
     const responses = await Promise.all([
         fetch(url, { method: 'GET', headers: { 'content-type': 'application/json' } }),
         fetch(url2, { method: 'GET', headers: { 'content-type': 'application/json' } }),
-    ])
+    ]).catch(e=>console.log(e))
 
     let produtos = []
     for (var response of responses) {
         if (response.status == 200) {
             let produtosRes = await response.json()
-            console.log(produtosRes)
             produtosRes.map(produto => formatIdProduct(produto))
             produtos = [...produtos, ...produtosRes]
         }
     }
 
-    return produtos;
+    switch(sortBy){
+        case 'discountPercentage':
+            produtos.sort((a,b)=> normalizedOrder=='asc' ? a.discountPercentage - b.discountPercentage : b.discountPercentage - a.discountPercentage);
+            break;
+        case 'price':
+            produtos.sort((a,b)=> normalizedOrder=='asc' ? a.price - b.price : b.price - a.price);
+            break;
+        case 'qtSales':
+            produtos.sort((a,b)=> normalizedOrder=='asc' ? a.qtSales - b.qtSales : b.qtSales - a.qtSales);
+            break;
+    }
+
+    return produtos.slice(0, limit);
 }
