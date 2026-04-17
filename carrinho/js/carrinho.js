@@ -1,15 +1,96 @@
+const CART_STORAGE_KEY = 'pd-sports-cart';
+
+function parseValor(valorTexto) {
+    const normalizado = String(valorTexto || '0')
+        .replace(/[^\d,.-]/g, '')
+        .replace(/\.(?=\d{3}(\D|$))/g, '')
+        .replace(',', '.');
+
+    const valor = Number.parseFloat(normalizado);
+    return Number.isNaN(valor) ? 0 : valor;
+}
+
+function parseProduto(nome) {
+    return String(nome || 'produto')
+        .trim()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+}
+
+function getCartStorage() {
+    try {
+        const rawCart = localStorage.getItem(CART_STORAGE_KEY);
+        return rawCart ? JSON.parse(rawCart) : [];
+    } catch {
+        return [];
+    }
+}
+
+function setCartStorage(cart) {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+}
+
+window.PDSportsCart = window.PDSportsCart || {
+    parseProduto,
+    parseValor,
+    getCart: () => getCartStorage(),
+    saveCart: (cart) => setCartStorage(cart),
+    addToCart: (produto, quantidade = 1) => {
+        const cart = getCartStorage();
+        const index = cart.findIndex((item) => item.id === produto.id);
+
+        if (index >= 0) {
+            cart[index].qtd += quantidade;
+        } else {
+            cart.push({ ...produto, qtd: quantidade });
+        }
+
+        setCartStorage(cart);
+        return cart;
+    },
+    removeFromCart: (id, quantidade = 1) => {
+        const cart = getCartStorage();
+        const index = cart.findIndex((item) => item.id === id);
+
+        if (index === -1) {
+            return cart;
+        }
+
+        cart[index].qtd -= quantidade;
+        if (cart[index].qtd <= 0) {
+            cart.splice(index, 1);
+        }
+
+        setCartStorage(cart);
+        return cart;
+    },
+    clearCart: () => {
+        setCartStorage([]);
+    },
+    getTotalItens: () => getCartStorage().reduce((total, item) => total + (item.qtd || 0), 0),
+    atualizarBadgeGlobal: () => {
+        const badge = document.querySelector('.cart-badge');
+        if (badge) {
+            badge.textContent = String(window.PDSportsCart.getTotalItens());
+        }
+    }
+};
+
 const cartBadge = document.querySelector('.cart-badge');
 const carrinho = document.getElementById('carrinho');
 const cartApi = window.PDSportsCart;
 let quantidadeCarrinho = 0;
 
 function getProdutoDados(produto) {
-    const nome = produto.querySelector('h3, h4')?.textContent?.trim() || 'Produto';
+    const nome = produto.querySelector('h3 .cardTitle')?.textContent?.trim() || 'Produto';
     const id = cartApi?.parseProduto ? cartApi.parseProduto(nome) : nome.toLowerCase().replace(/\s+/g, '-');
-    const precoTexto = produto.querySelector('.preco .span2, .preço .span2')?.textContent || 'R$ 0,00';
+    const precoTexto = produto.querySelector('.prodPrice')?.textContent || 'R$ 0,00';
     const preco = cartApi?.parseValor ? cartApi.parseValor(precoTexto) : 0;
     const img = produto.querySelector('img')?.getAttribute('src') || '';
-    const qtd = parseInt(produto.querySelector('.quantidade .span1')?.textContent || '0', 10) || 0;
+    const qtd = parseInt(produto.querySelector('.quantity')?.textContent || '0', 10) || 0;
 
     return { id, nome, preco, img, qtd };
 }
@@ -19,9 +100,9 @@ function sincronizarQuantidadeCarrinho() {
         quantidadeCarrinho = cartApi.getTotalItens();
         return;
     }
-    quantidadeCarrinho = 0;
-    document.querySelectorAll('.produto-carrinho').forEach((produto) => {
-        const qtd = parseInt(produto.querySelector('.quantidade .span1')?.textContent || '0', 10) || 0;
+    quantidadeCarrinho = 1;
+    document.querySelectorAll('.cartItem').forEach((produto) => {
+        const qtd = parseInt(produto.querySelector('.quantity')?.textContent || '0', 10) || 0;
         quantidadeCarrinho += qtd;
     });
 }
@@ -30,7 +111,7 @@ function sincronizarStorageComPagina() {
     if (!cartApi) return;
 
     const totais = new Map();
-    document.querySelectorAll('.produto-carrinho').forEach((produto) => {
+    document.querySelectorAll('.cartItem').forEach((produto) => {
         const item = getProdutoDados(produto);
         if (!item.id) return;
 
@@ -59,22 +140,22 @@ addEventListener('DOMContentLoaded', () => {
 
     sincronizarQuantidadeCarrinho();
 
-    const contentWrap = document.querySelector('.content-wrap');
-    if (contentWrap) {
-        contentWrap.addEventListener('click', (event) => {
-            const botaoAdicionar = event.target.closest('.adicionar');
+    const cartItens = document.querySelector('.cartItens');
+    if (cartItens) {
+        cartItens.addEventListener('click', (event) => {
+            const botaoAdicionar = event.target.closest('.increase');
             if (botaoAdicionar) {
                 somarItem({ currentTarget: botaoAdicionar });
                 return;
             }
 
-            const botaoSubtrair = event.target.closest('.subtrair');
+            const botaoSubtrair = event.target.closest('.decrease');
             if (botaoSubtrair) {
                 subtrairItem({ currentTarget: botaoSubtrair });
                 return;
             }
 
-            const botaoRemover = event.target.closest('.remover');
+            const botaoRemover = event.target.closest('.remove');
             if (botaoRemover) {
                 removerItem({ currentTarget: botaoRemover });
             }
@@ -86,7 +167,7 @@ addEventListener('DOMContentLoaded', () => {
             atualizarSubtotal();
         });
 
-        observer.observe(contentWrap, { childList: true });
+        observer.observe(cartItens, { childList: true });
 
         const resumo = document.querySelector('.resumo');
         if (cartApi.getCart().length === 0 && resumo) {
@@ -102,12 +183,12 @@ addEventListener('DOMContentLoaded', () => {
 
 
 function somarItem(event) {
-    const produto = event.currentTarget.closest('.produto-carrinho');
+    const produto = event.currentTarget.closest('.cartItem');
     if (!produto) return;
 
-    const precoSpan = produto.querySelector('.preco .span2, .preço .span2');
-    const quantidadeSpan = produto.querySelector('.quantidade .span1');
-    const totalSpan = produto.querySelector('.total .span2');
+    const precoSpan = produto.querySelector('.prodPrice');
+    const quantidadeSpan = produto.querySelector('.quantity');
+    const totalSpan = produto.querySelector('.subTotal');
 
     if (!precoSpan || !quantidadeSpan || !totalSpan) return;
 
@@ -129,12 +210,12 @@ function somarItem(event) {
 }
 
 function subtrairItem(event) {
-    const produto = event.currentTarget.closest('.produto-carrinho');
+    const produto = event.currentTarget.closest('.cartItem');
     if (!produto) return;
 
-    const precoSpan = produto.querySelector('.preco .span2, .preço .span2');
-    const quantidadeSpan = produto.querySelector('.quantidade .span1');
-    const totalSpan = produto.querySelector('.total .span2');
+    const precoSpan = produto.querySelector('.prodPrice');
+    const quantidadeSpan = produto.querySelector('.quantity');
+    const totalSpan = produto.querySelector('.subTotal');
 
     if (!precoSpan || !quantidadeSpan || !totalSpan) return;
 
@@ -197,8 +278,8 @@ function atualizarBadge() {
 
 function atualizarSubtotal() {
     let subtotal = 0;
-    document.querySelectorAll('.produto-carrinho').forEach(produto => {
-        let subtotalProduto = parseFloat(produto.querySelector('.total .span2').textContent.replace('R$', '').replace(',', '.'));
+    document.querySelectorAll('.cartItem').forEach(produto => {
+        let subtotalProduto = parseFloat(produto.querySelector('.subTotal').textContent.replace('R$', '').replace(',', '.'));
             subtotal += subtotalProduto;
     });
     let subtotalElement = document.querySelector('.resumo .span2');
@@ -217,7 +298,7 @@ document.querySelectorAll('.finalizar').forEach(button => {
         if (cartApi) {
             cartApi.clearCart();
         }
-        document.querySelectorAll('.produto-carrinho').forEach((produto) => produto.remove());
+        document.querySelectorAll('.cartItem').forEach((produto) => produto.remove());
         quantidadeCarrinho = 0;
         atualizarBadge();
         atualizarSubtotal();
@@ -225,7 +306,7 @@ document.querySelectorAll('.finalizar').forEach(button => {
 });
 
 function removerItem(event) {
-    let produto = event.currentTarget.closest('.produto-carrinho');
+    let produto = event.currentTarget.closest('.cartItem');
     if (!produto) return;
 
     const item = getProdutoDados(produto);
@@ -242,26 +323,31 @@ function removerItem(event) {
 function carregarCarrinho() {
     if (!cartApi) return;
 
-    const conteiner = document.querySelector('.content-wrap');
+    const conteiner = document.querySelector('.cartItens');
     const itens = cartApi.getCart();
     if (!itens || itens.length === 0) return;
 
     itens.forEach(item => {
         const produtoHTML = `
-            <div class="produto-carrinho">
-                <img src="${item.img}" alt="${item.nome}">
-                <div class="info">
-                    <h4>${item.nome}</h4>
-                    <p class="preco">Preço: <span class="span2">R$ ${item.preco.toFixed(2).replace('.', ',')}</span></p>
-                    <div class="quantidade">
-                        <button class="subtrair">-</button>
-                        <span class="span1">${item.qtd}</span>
-                        <button class="adicionar">+</button>
-                    </div>
-                    <p class="total">Total: <span class="span2">R$ ${(item.preco * item.qtd).toFixed(2).replace('.', ',')}</span></p>
-                    <button class="remover">Remover</button>
-                </div>
+            <article class="cartItem">
+            <div class="d-flex">
+            <img src="${item.img}" alt="${item.nome}" />
+            <div class="itemDetails">
+                <h3 class="cardTitle">${item.nome}</h3>
+                <p><small>Variante: Vermelho , 42</small></p>
             </div>
+            </div>
+                <p>R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+                <div class="d-flex justify-content-between">
+                <div class="quantityControl">
+                <button class="decrease btnOutline">-</button>
+                <span class="quantity">${item.qtd}</span>
+                <button class="increase btnOutline">+</button>
+                <button class="remove btnOutline"><i class="bi bi-trash"></i></button>
+                </div>
+                <p class="subTotal red cardTitle">R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+            </div>
+            </article>
         `;
         conteiner.insertAdjacentHTML('beforeend', produtoHTML);
     });
