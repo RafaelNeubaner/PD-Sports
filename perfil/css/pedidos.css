@@ -1,0 +1,184 @@
+/* CARDS PEDIDOS  */
+.pedido-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+body.darkMode .pedido-card {
+  border: 1px solid var(--cinza);
+}
+
+.pedido-col {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+
+.col-produto {
+  align-items: center;
+  justify-content: center;
+}
+
+.produto-imagem-wrapper {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 16px 0;
+}
+
+.produto-imagem {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.produto-nome {
+  text-align: center;
+  font-weight: 500;
+  padding: 0 8px;
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.col-status {
+  align-items: center;
+  justify-content: center;
+}
+
+.status-botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.status-botoes button {
+  width: 100%;
+  padding: 8px 16px;
+}
+
+
+.col-resumo {
+  justify-content: space-between;
+}
+
+.resumo-header {
+  margin-bottom: 24px;
+}
+
+.resumo-titulo {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.resumo-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--txt); 
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.resumo-lista span {
+  color: var(--txt);
+  font-weight: 300;
+}
+
+.resumo-lista .destaque-valor {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.btn-comprar-novamente {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px 16px;
+  margin-top: auto;
+  width: 100%;
+}
+
+.timeline {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto 24px auto;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background-color: var(--primary);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.step {
+  text-align: center;
+  z-index: 1;
+}
+
+.step i {
+  position: relative;
+  z-index: 2;
+  background-color: var(--branco-puro, #fff);
+  padding: 0 4px;
+  font-size: 1.5rem;
+  color: var(--primary);
+  border-radius: 50%;
+}
+
+
+@media (min-width: 992px) {
+  .pedido-card {
+    flex-direction: row; 
+  }
+
+  .col-produto {
+    max-width: 300px;
+  }
+
+  .col-status {
+    border-left: 1px solid var(--branco-cinzento);
+    border-right: 1px solid var(--branco-cinzento);
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  body.darkMode .col-status {
+    border-left: 1px solid var(--cinza);
+    border-right: 1px solid var(--cinza);
+  }
+
+  .status-botoes {
+    padding: 0 24px; /* Afasta os botões da borda na coluna do meio */
+  }
+}
+
+@media (max-width: 991px) {
+  .col-status {
+    border-top: 1px solid var(--branco-cinzento, #e0e0e0);
+    border-bottom: 1px solid var(--branco-cinzento, #e0e0e0);
+  }
+}
