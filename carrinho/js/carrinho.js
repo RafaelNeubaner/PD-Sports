@@ -33,6 +33,10 @@ function setCartStorage(cart) {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
 }
 
+function buildCartItemKey(item) {
+    return `${item.id}::${item.variant || ''}`;
+}
+
 window.PDSportsCart = window.PDSportsCart || {
     parseProduto,
     parseValor,
@@ -40,20 +44,22 @@ window.PDSportsCart = window.PDSportsCart || {
     saveCart: (cart) => setCartStorage(cart),
     addToCart: (produto, quantidade = 1) => {
         const cart = getCartStorage();
-        const index = cart.findIndex((item) => item.id === produto.id);
+        const itemKey = buildCartItemKey(produto);
+        const index = cart.findIndex((item) => buildCartItemKey(item) === itemKey);
 
         if (index >= 0) {
             cart[index].qtd += quantidade;
         } else {
-            cart.push({ ...produto, qtd: quantidade });
+            cart.push({ ...produto, qtd: quantidade, cartKey: itemKey });
         }
 
         setCartStorage(cart);
         return cart;
     },
-    removeFromCart: (id, quantidade = 1) => {
+    removeFromCart: (id, quantidade = 1, variant = '') => {
         const cart = getCartStorage();
-        const index = cart.findIndex((item) => item.id === id);
+        const itemKey = buildCartItemKey({ id, variant });
+        const index = cart.findIndex((item) => buildCartItemKey(item) === itemKey);
 
         if (index === -1) {
             return cart;
@@ -72,10 +78,10 @@ window.PDSportsCart = window.PDSportsCart || {
     },
     getTotalItens: () => getCartStorage().reduce((total, item) => total + (item.qtd || 0), 0),
     atualizarBadgeGlobal: () => {
-        const badge = document.querySelector('.cart-badge');
-        if (badge) {
-            badge.textContent = String(window.PDSportsCart.getTotalItens());
-        }
+        const total = String(window.PDSportsCart.getTotalItens());
+        document.querySelectorAll('.cart-badge').forEach((badge) => {
+            badge.textContent = total;
+        });
     }
 };
 
@@ -85,14 +91,15 @@ const cartApi = window.PDSportsCart;
 let quantidadeCarrinho = 0;
 
 function getProdutoDados(produto) {
-    const nome = produto.querySelector('h3 .cardTitle')?.textContent?.trim() || 'Produto';
-    const id = cartApi?.parseProduto ? cartApi.parseProduto(nome) : nome.toLowerCase().replace(/\s+/g, '-');
+    const nome = produto.querySelector('h3.cardTitle, h3, h4')?.textContent?.trim() || 'Produto';
+    const id = produto.getAttribute('data-id') || (cartApi?.parseProduto ? cartApi.parseProduto(nome) : nome.toLowerCase().replace(/\s+/g, '-'));
     const precoTexto = produto.querySelector('.prodPrice')?.textContent || 'R$ 0,00';
     const preco = cartApi?.parseValor ? cartApi.parseValor(precoTexto) : 0;
     const img = produto.querySelector('img')?.getAttribute('src') || '';
     const qtd = parseInt(produto.querySelector('.quantity')?.textContent || '0', 10) || 0;
+    const variant = produto.querySelector('.cartVariant')?.textContent?.replace(/^Variante:\s*/i, '').trim() || '';
 
-    return { id, nome, preco, img, qtd };
+    return { id, nome, preco, img, qtd, variant };
 }
 
 function sincronizarQuantidadeCarrinho() {
@@ -100,7 +107,7 @@ function sincronizarQuantidadeCarrinho() {
         quantidadeCarrinho = cartApi.getTotalItens();
         return;
     }
-    quantidadeCarrinho = 1;
+    quantidadeCarrinho = 0;
     document.querySelectorAll('.cartItem').forEach((produto) => {
         const qtd = parseInt(produto.querySelector('.quantity')?.textContent || '0', 10) || 0;
         quantidadeCarrinho += qtd;
@@ -115,16 +122,20 @@ function sincronizarStorageComPagina() {
         const item = getProdutoDados(produto);
         if (!item.id) return;
 
-        const existente = totais.get(item.id);
+        const itemKey = buildCartItemKey(item);
+
+        const existente = totais.get(itemKey);
         if (existente) {
             existente.qtd += item.qtd;
         } else {
-            totais.set(item.id, {
+            totais.set(itemKey, {
                 id: item.id,
                 nome: item.nome,
                 preco: item.preco,
                 qtd: item.qtd,
-                img: item.img
+                img: item.img,
+                variant: item.variant || '',
+                cartKey: itemKey
             });
         }
     });
@@ -202,7 +213,7 @@ function somarItem(event) {
 
     const item = getProdutoDados(produto);
     if (cartApi) {
-        cartApi.addToCart({ id: item.id, nome: item.nome, preco: item.preco, img: item.img }, 1);
+        cartApi.addToCart({ id: item.id, nome: item.nome, preco: item.preco, img: item.img, variant: item.variant }, 1);
     }
 
     atualizarSubtotal();
@@ -231,7 +242,7 @@ function subtrairItem(event) {
 
         const item = getProdutoDados(produto);
         if (cartApi) {
-            cartApi.removeFromCart(item.id, 1);
+            cartApi.removeFromCart(item.id, 1, item.variant);
         }
 
         atualizarBadge();
@@ -313,7 +324,7 @@ function removerItem(event) {
 
     produto.remove();
     if (cartApi) {
-        cartApi.removeFromCart(item.id, item.qtd);
+        cartApi.removeFromCart(item.id, item.qtd, item.variant);
         sincronizarStorageComPagina();
     }
     atualizarBadge();
@@ -329,15 +340,15 @@ function carregarCarrinho() {
 
     itens.forEach(item => {
         const produtoHTML = `
-            <article class="cartItem">
+            <article class="cartItem" data-id="${item.id}">
             <div class="d-flex">
             <img src="${item.img}" alt="${item.nome}" />
             <div class="itemDetails">
                 <h3 class="cardTitle">${item.nome}</h3>
-                <p><small>Variante: Vermelho , 42</small></p>
+                ${item.variant ? `<p class="cartVariant"><small>Variante: ${item.variant}</small></p>` : ''}
             </div>
             </div>
-                <p>R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+                <p class="prodPrice">R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
                 <div class="d-flex justify-content-between">
                 <div class="quantityControl">
                 <button class="decrease btnOutline">-</button>
@@ -345,7 +356,7 @@ function carregarCarrinho() {
                 <button class="increase btnOutline">+</button>
                 <button class="remove btnOutline"><i class="bi bi-trash"></i></button>
                 </div>
-                <p class="subTotal red cardTitle">R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+                <p class="subTotal red cardTitle">R$ ${(item.preco * item.qtd).toFixed(2).replace('.', ',')}</p>
             </div>
             </article>
         `;

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>PD Sports | Carrinho</title>
     <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
 
     <!-- Google Fonts -->
@@ -41,6 +41,7 @@
 
     <!-- Custom JS -->
     <script src="/carrinho/js/carrinho.js" defer></script>
+    <script src="/js/darkmode.js"></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -59,7 +60,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <a class="navbar-brand d-block d-md-none" href="index.html"
+          <a class="navbar-brand d-block d-md-none" href="/index.html"
             ><img
               src="/assets/media/logo/logo-light.svg"
               alt="PD Sports"
@@ -67,7 +68,7 @@
           /></a>
 
           <search class="containerSearch">
-            <a class="navbar-brand d-none d-md-block" href="index.html">
+            <a class="navbar-brand d-none d-md-block" href="/index.html">
               <img
                 src="/assets/media/logo/logo-light.svg"
                 alt="PD Sports"
@@ -117,8 +118,9 @@
                 aria-pressed="false"><i class="bi bi-moon-stars"></i></a>
               </li>
               
-              <li class="nav-item">
-                <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
+              <li class="nav-item position-relative">
+                <a href="/carrinho/index.html" class="nav-link"><i class="bi bi-cart3"></i></a>
+                <span class="cart-badge">0</span>
               </li>
               <li class="nav-item d-none d-md-block">
                 <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
@@ -191,44 +193,7 @@
       <h1 class="red mainTitle">Carrinho ( <span class="cart-badge"></span> )</h1>
       <p class="carrinho-vazio">Seu carrinho está vazio.</p>
       <section class="cartItens">
-        <article class="cartItem">
-          <div class="d-flex">
-          <img src="/assets/media/images/home/marcas/marca-adidas.png" alt="Tênis Esportivo" />
-          <div class="itemDetails">
-            <h3 class="cardTitle">Tênis Esportivo</h3>
-            <p><small>Variante: Vermelho , 42</small></p>
-          </div>
-          </div>
-            <p class="prodPrice">R$ 8,97</p>
-            <div class="d-flex justify-content-between">
-            <div class="quantityControl">
-              <button class="decrease btnOutline">-</button>
-              <span class="quantity">1</span>
-              <button class="increase btnOutline">+</button>
-              <button class="remove btnOutline"><i class="bi bi-trash"></i></button>
-            </div>
-            <p class="subTotal red cardTitle">R$ 8,97</p>
-          </div>
-        </article>
-        <article class="cartItem">
-          <div class="d-flex">
-          <img src="/assets/media/images/home/marcas/marca-adidas.png" alt="Tênis Esportivo" />
-          <div class="itemDetails">
-            <h3 class="cardTitle">Tênis Esportivo</h3>
-            <p><small>Variante: Vermelho , 42</small></p>
-          </div>
-          </div>
-            <p class="prodPrice">R$ 8,97</p>
-            <div class="d-flex justify-content-between">
-            <div class="quantityControl">
-              <button class="decrease btnOutline">-</button>
-              <span class="quantity">1</span>
-              <button class="increase btnOutline">+</button>
-              <button class="remove btnOutline"><i class="bi bi-trash"></i></button>
-            </div>
-            <p class="subTotal red cardTitle">R$ 8,97</p>
-          </div>
-        </article>
+        
       </section>
       <aside class="resumo">
         <h4>Subtotal: <span class="span2">R$ 8,97</span></h4>

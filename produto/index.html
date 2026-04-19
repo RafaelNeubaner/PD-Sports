@@ -121,8 +121,9 @@
                 ></a>
               </li>
 
-              <li class="nav-item">
-                <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
+              <li class="nav-item position-relative">
+                <a href="/carrinho/index.html" class="nav-link"><i class="bi bi-cart3"></i></a>
+                <span class="cart-badge">0</span>
               </li>
               <li class="nav-item d-none d-md-block">
                 <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
@@ -337,6 +338,15 @@
           </button>
         </div>
       </section>
+
+      <article id="modalCart">
+        <h2>Produto Adicionado!</h2>
+        <div class="modalCartContent"></div>
+        <div class="d-flex gap-3 mt-4">
+          <button class="btnOutline modalRemoveButton">Remover</button>
+          <button class="btnPrimary modalOkButton">OK</button>
+        </div>
+      </article>
     </main>
 
     <footer class="bgHeader">

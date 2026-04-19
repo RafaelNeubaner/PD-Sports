@@ -82,6 +82,21 @@ document.querySelectorAll(".btnTamanho").forEach((button) => {
     });
 });
 
+function getSelectedVariant() {
+    return document.querySelector(".btnTamanho.active")?.textContent?.trim() || "";
+}
+
+function scrollToNavbar() {
+    const navbar = document.querySelector("header .navbar") || document.querySelector(".navbar");
+    if (!navbar) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    navbar.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start"
+    });
+}
+
 function setupAddToCartButton(){
     const addCartButton = document.getElementById("addCart")
     if (!addCartButton) return
@@ -91,10 +106,18 @@ function setupAddToCartButton(){
         const idProduto = String(product.id || nome.toLowerCase().replace(/\s+/g, "-"))
         const preco = Number(product.price) || 0
         const img = selectedPrincipalImage || productImages[0] || ""
+        const variant = getSelectedVariant()
+        const payload = { id: idProduto, nome, preco, img }
+
+        if (variant) {
+            payload.variant = variant
+        }
 
         if (cartApi?.addToCart) {
-            cartApi.addToCart({ id: idProduto, nome, preco, img }, 1)
+            cartApi.addToCart(payload, 1)
             cartApi.atualizarBadgeGlobal?.()
+            scrollToNavbar()
+            modalCart(payload)
         }
     })
 }
@@ -260,3 +283,73 @@ if (specs && specsGrid) {
     });
 }
 
+function modalCart(product){
+    const modal = document.getElementById("modalCart")
+    const modalContent = modal.querySelector(".modalCartContent")
+    const removeBtn = modal.querySelector(".modalRemoveButton")
+    const okBtn = modal.querySelector(".modalOkButton")
+
+    if(!modal || !modalContent || !removeBtn || !okBtn) return
+
+    modalContent.innerHTML = `
+        <div class= "d-flex"> 
+        <img src="${product.img}" alt="${product.nome}" class="modalProductImage">
+        <div class="modalProductInfo">
+            <h3>${product.nome}</h3>
+            <p>${product.preco.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2})}</p>
+            ${product.variant ? `<small>Variante: ${product.variant}</small>` : ''}
+        </div>
+        </div>
+    `
+
+    removeBtn.onclick = () => {
+        cartApi.removeFromCart(product.id, 1, product.variant || "")
+        cartApi.atualizarBadgeGlobal?.()
+        modal.classList.remove("show")
+    }
+    
+    okBtn.onclick = () => {
+        modal.classList.remove("show")
+    }
+
+    positionModalCart()
+    modal.classList.add("show")
+    requestAnimationFrame(positionModalCart)
+}
+
+function positionModalCart() {
+    const modal = document.getElementById("modalCart")
+    if (!modal) return
+
+    const cartNavItem = document
+        .querySelector("header .bi-cart3")
+        ?.closest(".nav-item")
+
+    if (!cartNavItem) return
+
+    const iconRect = cartNavItem.getBoundingClientRect()
+    const margin = 12
+    const viewportWidth = window.innerWidth
+    const targetY = Math.max(iconRect.bottom , margin)
+    const desiredX = iconRect.left + (iconRect.width / 2)
+    const modalWidth = modal.offsetWidth || 320
+    const clampedX = Math.min(
+        Math.max(desiredX, (modalWidth / 2) + margin),
+        viewportWidth - (modalWidth / 2) - margin
+    )
+
+    modal.style.top = `${targetY}px`
+    modal.style.left = `${clampedX}px`
+}
+
+window.addEventListener("resize", () => {
+    const modal = document.getElementById("modalCart")
+    if (!modal?.classList.contains("show")) return
+    positionModalCart()
+})
+
+window.addEventListener("scroll", () => {
+    const modal = document.getElementById("modalCart")
+    if (!modal?.classList.contains("show")) return
+    positionModalCart()
+}, { passive: true })
