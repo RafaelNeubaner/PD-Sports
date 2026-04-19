@@ -2,7 +2,6 @@ const carrossel = document.querySelector('.slides_autoplay');
 const carrosselwrap = document.querySelector('.carrossel-wrap');
 const dots = document.querySelectorAll('.dot');
 let autoplayInterval;
-
 function iniciarAutoplay() {
     autoplayInterval = setInterval(autoplayCarrossel, 5000);
 }

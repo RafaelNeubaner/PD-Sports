@@ -1,4 +1,9 @@
+import {calcularFrete} from '../../js/fretes/useFretes.js'
+
 const CART_STORAGE_KEY = 'pd-sports-cart';
+
+var freteVal = 0;
+var subtotal = 0;
 
 function parseValor(valorTexto) {
     const normalizado = String(valorTexto || '0')
@@ -288,13 +293,26 @@ function atualizarBadge() {
 }
 
 function atualizarSubtotal() {
-    let subtotal = 0;
+    subtotal = 0;
     document.querySelectorAll('.cartItem').forEach(produto => {
         let subtotalProduto = parseFloat(produto.querySelector('.subTotal').textContent.replace('R$', '').replace(',', '.'));
             subtotal += subtotalProduto;
     });
     let subtotalElement = document.querySelector('.resumo .span2');
     subtotalElement.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+}
+
+function calcularTotal(){
+    let total = 0 
+    console.log(typeof total)
+    if(subtotal) total += subtotal;
+    console.log(typeof total)
+    console.log(typeof freteVal)
+    if(freteVal) total += freteVal;
+    console.log(typeof total)
+
+    document.querySelector(".precoTotal").textContent = total.toLocaleString("pt-BR", {currency: "BRL", style:"currency"})
+    console.log(total)
 }
 
 document.querySelectorAll('.finalizar').forEach(button => {
@@ -350,11 +368,13 @@ function carregarCarrinho() {
             </div>
                 <p class="prodPrice">R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
                 <div class="d-flex justify-content-between">
-                <div class="quantityControl">
-                <button class="decrease btnOutline">-</button>
-                <span class="quantity">${item.qtd}</span>
-                <button class="increase btnOutline">+</button>
-                <button class="remove btnOutline"><i class="bi bi-trash"></i></button>
+                <div class="quantityControl d-flex ">
+                    <div class="controls">
+                        <button class="decrease btnOutline">-</button>
+                        <span class="quantity">${item.qtd}</span>
+                        <button class="increase btnOutline">+</button>
+                    </div>
+                    <button class="remove btnOutline"><i class="bi bi-trash"></i></button>
                 </div>
                 <p class="subTotal red cardTitle">R$ ${(item.preco * item.qtd).toFixed(2).replace('.', ',')}</p>
             </div>
@@ -365,4 +385,62 @@ function carregarCarrinho() {
 
     atualizarBadge();
     atualizarSubtotal();
+}
+
+document.querySelector(".btnCalcularFrete").addEventListener('click', calculateFrete)
+document.querySelector("#formFrete").addEventListener('submit', (event) => {
+    event.preventDefault()
+    calculateFrete()
+})
+
+const savedCEP = localStorage.getItem("LAST_CEP")
+const cepInput = document.querySelector("#cepInput")
+let selectedFrete = null
+cepInput.value=savedCEP
+
+if(cepInput.value){
+    calculateFrete()
+}
+
+var isLoading = false;
+const freteTemp = document.getElementById("tempFreteOption")
+async function calculateFrete() {
+    if (isLoading) return
+    const cep = cepInput.value
+    if (!cep) return;
+
+    localStorage.setItem("LAST_CEP", cep)
+    isLoading = true
+    const fretesSec = document.querySelector(".fretesOptions")
+    fretesSec.replaceChildren()
+    fretesSec.textContent = "Carregando..."
+    document.querySelector(".btnCalcularFrete").textContent = "Carregando..."
+    const fretesOptions = await calcularFrete(cep, cartApi.getTotalItens())
+    isLoading = false
+    document.querySelector(".btnCalcularFrete").textContent = "Calcular"
+
+    fretesSec.replaceChildren()
+    fretesOptions.forEach(frete => {
+        if (frete.error) return;
+        const li = freteTemp.content.cloneNode(true)
+        
+        li.querySelector("input").id = `${frete.name}Op`
+        li.querySelector("label").setAttribute("for", `${frete.name}Op`)
+        li.querySelector("img").src = frete.company.picture
+        li.querySelector("h4").textContent = frete.name
+        li.querySelector("p").textContent = `${frete.currency} ${frete.price.toString().replace(".", ",")}`
+
+        li.querySelector("input").addEventListener("change", (event)=>{
+            freteVal = Number(frete.price)
+            document.querySelector(".precoFrete").textContent = `${frete.currency} ${frete.price.toString().replace(".", ",")}`
+            calcularTotal()
+        })
+
+        fretesSec.appendChild(li)
+    })
+
+    fretesSec.firstElementChild.querySelector("input").setAttribute("checked", true)
+    document.querySelector(".precoFrete").textContent = fretesSec.firstElementChild.querySelector("p").textContent
+    freteVal = Number(fretesOptions[0].price)
+    calcularTotal()
 }

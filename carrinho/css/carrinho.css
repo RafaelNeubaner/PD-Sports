@@ -22,26 +22,203 @@
 }
 
 .cartItem img {
-    width: 100px;
-    height: auto;
-    margin-right: 20px;
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
 }
 
-.quantityControl button{
+.quantityControl .controls{
+    display: flex;
+    align-items: center;
+    background-color: #E9E9E9;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px;
+}
+
+.quantityControl .btnOutline:hover{
+    background-color: #d1d1d1 !important;
+    color: black !important; 
+    border: 0 !important;
+}
+
+.quantityControl button {
     padding: 1px 9px;
     font-size: 18px;
     font-weight: bold;
+    color: var(--txtDark);
+    border: 0;
+    background-color: var(--branco-cinzento);
+    padding: 6px 12px;
+}
+
+/* FORMS - Dados, Endereço e Forma de Pagamento */
+#formaPagamento>div {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 2.4rem;
+    margin-bottom: 1.2rem;
+}
+
+#formaPagamento>div .pagamento {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+#formaPagamento>div .pagamento p {
+    font-size: 1.4rem;
+    margin: 0;
+
+}
+
+.custom-radio {
+    appearance: none;
+  
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--secondary);
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+    flex-shrink: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.custom-radio:checked::before {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary);
+
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.input-icon-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-icon-wrapper input.form-control {
+    padding-right: 45px;
+    border-radius: 8px;
+    height: 50px;
+}
+
+.input-icon-wrapper i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+
+    pointer-events: none;
+}
+
+#formulario {
+    width: 100%;
+}
+
+#carrinho {
+    padding: 0 2.4rem;
+}
+
+#formulario form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+#formulario legend {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+#formulario label {
+    display: none;
+}
+
+#dadosCliente {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#dadosCliente>div {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin: 2.4rem 0 1.2rem 0;
+}
+
+#dadosCliente>.d-flex,
+#endereco>.d-flex,
+#formaPagamento>.d-flex {
+    flex-direction: row;
+    gap: 1.2rem !important;
+}
+
+
+#endereco {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+}
+
+#endereco #cep {
+    margin-top: 1.2rem;
+}
+
+#endereco>div {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+@media(min-width: 768px) {
+
+    #formulario label{
+        font-size: 1.4rem
+    }
+
+    #formulario input {
+        font-size: 1.4rem;
+    }
+
+    #formulario {
+        max-width: 512px;
+    }
+
+    #formulario label {
+        display: block;
+    }
+
+    #carrinho {
+        padding: 20px 128px;
+    }
+
 }
 
 .remove {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .quantityControl span {
-    margin: 0 10px;
-    font-size: 16px;
-    font-weight: bold;
-    vertical-align: middle;
+  margin: 0 10px;
+  font-size: 16px;
+  font-weight: bold;
+  vertical-align: middle;
 }
 
 .red {
@@ -73,4 +250,44 @@
     }
 }
 
+.resumo {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
 
+ul {
+  padding: 0;
+}
+
+.resumo > h4 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.freteItem * {
+  margin: 0;
+  padding: 0;
+}
+
+.freteItem img {
+  height: 18px;
+}
+
+.freteItem input {
+  min-width: none;
+  width: fit-content;
+}
+
+.precoTotal {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.buyNowButton {
+  box-shadow: 0 8px 28px #e1060073;
+  height: 60px;
+}

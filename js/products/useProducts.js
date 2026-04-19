@@ -204,7 +204,7 @@ export async function getProductsByCategory(category){
  * @param {'price' | 'qtSales' | 'discountPercentage' } params.sortBy
  * @param {'asc'|'desc'} params.order
  * 
- * @returns {Product[]}
+ * @returns {Promise<Product[]>}
  */
 export async function getProductsFilter({query, category, gender, hasDiscount, sortBy, order = 'desc', limit=20, page=1}) {
     const url = new URL(`${BASE_URL}product`)
@@ -245,13 +245,12 @@ export async function getProductsFilter({query, category, gender, hasDiscount, s
     const responses = await Promise.all([
         fetch(url, { method: 'GET', headers: { 'content-type': 'application/json' } }),
         fetch(url2, { method: 'GET', headers: { 'content-type': 'application/json' } }),
-    ])
+    ]).catch(e=>console.log(e))
 
     let produtos = []
     for (var response of responses) {
         if (response.status == 200) {
             let produtosRes = await response.json()
-            console.log(produtosRes)
             produtosRes.map(produto => formatIdProduct(produto))
             produtos = [...produtos, ...produtosRes]
         }
