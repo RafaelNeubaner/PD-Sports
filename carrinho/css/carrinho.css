@@ -1,20 +1,24 @@
 #carrinho {
-  padding: 20px 128px;
+    padding: 20px 64px;
 }
 
-.cartItens{
-    width: 40vw;
-    border-radius: 16px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 5px 25px;
+.cartItens {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+    max-width: 70%;
 }
 
 .cartItem {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  margin-bottom: 20px;
-  padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    padding: 10px;
 }
 
 .cartItem img {
@@ -218,7 +222,32 @@
 }
 
 .red {
-  color: var(--primary);
+    color: var(--primary);
+}
+
+@media (max-width: 576px) {
+    #carrinho {
+        padding: 120px 16px;
+    }
+
+    .cartItens {
+        grid-template-columns: 1fr;
+        max-width: none;
+    }
+}
+
+@media (min-width:576px) and (max-width: 768px) {
+    #carrinho {
+        padding: 120px 16px;
+    }
+    
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+    .cartItens {
+        grid-template-columns: 1fr;
+            max-width: 55%;
+    }
 }
 
 .resumo {
