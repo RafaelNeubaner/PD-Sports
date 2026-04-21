@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         containerPedidos.innerHTML = ""; 
 
         if (!pedidosDaAPI || pedidosDaAPI.length === 0) {
-            // ... (Código de tela vazia original mantido)
             containerPedidos.innerHTML = `
                 <div class="text-center py-5 bg-white rounded-3 shadow-sm border">
                     <i class="bi bi-bag-x fs-1 text-muted d-block mb-3"></i>
@@ -106,8 +105,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <div class="pedido-col col-status">
                         ${gerarTimelineStatus()}
                         <div class="status-botoes">
-                            <button class="btnOutline">Trocar ou devolver</button>
-                            <button class="btnOutline">Baixar nota fiscal</button>
+                            <a href="/perfil/troc" class="btnOutline">Trocar ou devolver</a>
+                            <a href="#" class="btnOutline">Baixar nota fiscal</a>
                         </div>
                     </div>
 
