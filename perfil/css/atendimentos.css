@@ -1,0 +1,90 @@
+main {
+  max-width: 1200px;
+}
+
+#atendimento {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+  padding: 12.8rem 2.4rem;
+}
+
+#atendimento .btnOutline {
+  padding: 0.8rem 1.6rem;
+  max-width: fit-content;
+}
+
+.chamados {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.chamados .atendimento-card {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+}
+
+.atendimento-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.atendimento-card ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+  border: 1px solid var(--branco-cinzento);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  padding: 1rem;
+  list-style: none;
+  margin-bottom: 0;
+
+  flex: 1; 
+}
+
+body.darkMode .atendimento-card ul {
+  border: 1px solid var(--cinza);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.atendimento-card ul li {
+  font-size: 1.4rem;
+  font-weight: 200;
+}
+
+.atendimento-card ul li  strong {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+#atendimento .btnPrimary {
+  padding: 0.8rem 1.6rem;
+  max-width: fit-content;
+}
+
+@media(min-width: 768px) {
+  #atendimento {
+    gap: 6.4rem;
+    padding: 12.8rem 4.8rem;
+  }
+
+  .chamados .atendimento-card {
+    gap: 1.6rem;
+  }
+
+  .atendimento-card img {
+    width: 150px;
+    height: 150px;
+  }
+
+  #atendimento .btnPrimary {
+  padding: 1.2rem 2.4rem;
+  max-width: fit-content;
+  font-size: 1.4rem;
+}
+}
