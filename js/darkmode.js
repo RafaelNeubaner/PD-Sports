@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const body = document.body;
 	const storageKey = "pd-sports-theme";
 	const themeSelector = ".btnPrimary, .btnOutline, .btnTamanho, .link";
+	const darkLogoName = "logo-dark.svg";
+	const lightLogoName = "logo-light.svg";
 
 	const syncThemeClasses = (isDark) => {
 		const themeTargets = document.querySelectorAll(themeSelector);
@@ -11,9 +13,31 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	};
 
+	const syncLogos = (isDark) => {
+		const logos = document.querySelectorAll("img#logo");
+		if (logos.length === 0) {
+			return;
+		}
+
+		logos.forEach((logo) => {
+			const currentSrc = logo.getAttribute("src") || "";
+			if (!currentSrc) {
+				return;
+			}
+
+			const targetLogo = isDark ? darkLogoName : lightLogoName;
+			const nextSrc = currentSrc.replace(/logo-(light|dark)\.svg(?=$|[?#])/i, targetLogo);
+
+			if (nextSrc !== currentSrc) {
+				logo.setAttribute("src", nextSrc);
+			}
+		});
+	};
+
 	const setTheme = (isDark) => {
 		body.classList.toggle("darkMode", isDark);
 		syncThemeClasses(isDark);
+		syncLogos(isDark);
 
 		if (themeToggle) {
 			themeToggle.setAttribute("aria-pressed", String(isDark));
