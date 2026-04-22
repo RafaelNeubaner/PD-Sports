@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ | PD Sports</title>
+    <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/pagina-informativa/css/faq.css" />
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom JS -->
+    <script src="/pagina-informativa/js/script.js" defer></script>
+    <script src="/js/darkmode.js"></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <a class="navbar-brand d-block d-md-none" href="index.html"
+            ><img
+              src="/assets/media/logo/logo-light.svg"
+              alt="PD Sports"
+              id="logo"
+          /></a>
+
+          <search class="containerSearch">
+            <a class="navbar-brand d-none d-md-block" href="index.html">
+              <img
+                src="/assets/media/logo/logo-light.svg"
+                alt="PD Sports"
+                id="logo"
+              />
+            </a>
+
+            <form class="d-none d-md-flex position-relative inputForm">
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+                aria-label="Pesquisar produtos"
+              />
+              <button class="btn" type="button" id="button-search-desktop">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+
+            <ul class="navbar-nav align-items-center">
+              <li class="nav-item d-block d-lg-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i
+                ></a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i>Tire suas dúvidas</a
+                >
+              </li>
+
+              <button
+                class="btn d-block d-md-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mobileSearchBox"
+                aria-expanded="false"
+                aria-controls="mobileSearchBox"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+
+              <li class="nav-item">
+                <a id="themeToggle" class="themeToggle" aria-pressed="false"
+                  ><i class="bi bi-moon-stars"></i
+                ></a>
+              </li>
+
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-box-arrow-in-right"></i>Entrar</a
+                >
+              </li>
+            </ul>
+          </search>
+
+          <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
+            <form>
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+              />
+              <button class="btn" type="button">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+          </div>
+
+          <menu class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item d-block d-sm-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
+                    class="bi bi-chevron-right ms-1"
+                  ></i
+                ></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Esportes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Masculino</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Feminino</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Infantil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Promoções</a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" href="#">Futebol</a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" href="#">Corrida</a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" href="#">Marcas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sobre nós</a>
+              </li>
+            </ul>
+          </menu>
+        </div>
+      </nav>
+    </header>
+
+    <main class="faqPage">
+      <section class="faqShell container">
+        <h1 class="mainTitle textCenter" >Perguntas Frequentes</h1>
+
+        <div class="faqLayout">
+          <aside class="faqSidebar">
+            <button class="faqFilter subTitleCard" type="button" data-category="all">
+              <i class="bi bi-grid-3x3-gap subtTitleCard"></i>
+              <span>Todas</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="trocas">
+              <i class="bi bi-arrow-repeat subtTitleCard"></i>
+              <span>Trocas e Devoluções</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="entrega">
+              <i class="bi bi-truck subtTitleCard"></i>
+              <span>Entrega</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="conta">
+              <i class="bi bi-person-badge subtTitleCard"></i>
+              <span>Minha Conta</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="pagamento">
+              <i class="bi bi-credit-card subtTitleCard"></i>
+              <span>Pagamento</span>
+            </button>
+            <button
+              class="faqFilter subTitleCard"
+              type="button"
+              data-category="cancelamento"
+            >
+              <i class="bi bi-x-circle subtTitleCard"></i>
+              <span>Cancelamento</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="pedidos">
+              <i class="bi bi-bag-check subtTitleCard"></i>
+              <span>Meus Pedidos</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="privacidade">
+              <i class="bi bi-shield-lock subtTitleCard"></i>
+              <span>Privacidade e Dados</span>
+            </button>
+          </aside>
+
+          <section class="faqContent">
+            <label class="faqSearch" for="faqSearch">
+              <i class="bi bi-search"></i>
+              <input
+                id="faqSearch"
+                type="search"
+                placeholder="     Procure por um tópico, assunto ou termo que deseja saber mais"
+                autocomplete="off"
+              />
+            </label>
+
+            <div class="faqMeta">
+              <span id="faqCount">0 perguntas encontradas</span>
+              <button id="faqClear" class="link" type="button">
+                Limpar filtros
+              </button>
+            </div>
+
+            <div id="faqAccordion" class="faqAccordion"></div>
+
+            <div id="faqEmpty" class="faqEmpty d-none">
+              <i class="bi bi-search"></i>
+              <h2>Nenhuma pergunta encontrada</h2>
+              <p>
+                Tente pesquisar por outro termo ou selecionar uma categoria
+                diferente.
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bgHeader">
+      <p class="textCenter font20">
+        © PD Sports 2026 | Desenvolvido por Pablo, Pedro e Rafael.
+      </p>
+    </footer>
+  </body>
+</html>
