@@ -17,7 +17,7 @@
 
 .btn-filtrar {
   background-color: var(--secondary);
-  color: var(--txt);
+  color: var(--txtLight);
   border-radius: 6px;
   padding: 0.5rem 1.5rem;
   font-weight: 500;
@@ -27,7 +27,7 @@
 
 .btn-filtrar:hover {
   background-color: var(--primary);
-  color: var(--txt);
+  color: var(--txtLight);
 }
 
 .search-filter {
@@ -101,12 +101,13 @@
 
 .btn-filtrar {
   background-color: var(--secondary);
-  color: var(--txt);
+  color: var(--txtLight);
   border-radius: 6px;
   padding: 0.5rem 1.5rem;
   font-weight: 500;
   border: none;
   transition: all 0.2s ease;
+  font-size: 1.4rem;
 }
 
 .btn-size {
