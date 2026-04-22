@@ -1,0 +1,319 @@
+main {
+  padding-top: 4.8rem;
+}
+
+body.modalOpen {
+  overflow: hidden;
+}
+
+/* CARDS PEDIDOS  */
+
+
+.pedidoCard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+body.darkMode .pedidoCard {
+  border: 1px solid var(--cinza);
+}
+
+.pedidoCol {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+
+.colProduto {
+  align-items: center;
+  justify-content: center;
+}
+
+.produtoImagemWrapper {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 16px 0;
+}
+
+.produtoImagem {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.produtoNome {
+  text-align: center;
+  font-weight: 500;
+  padding: 0 8px;
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.colStatus {
+  align-items: center;
+  justify-content: center;
+}
+
+.statusBotoes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.statusBotoes button {
+  width: 100%;
+  padding: 8px 16px;
+}
+
+
+.colResumo {
+  justify-content: space-between;
+}
+
+.resumoHeader {
+  margin-bottom: 24px;
+}
+
+.resumoTitulo {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.resumoLista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--txt);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.resumoLista span {
+  color: var(--txt);
+  font-weight: 300;
+}
+
+.resumoLista .destaqueValor {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.btnComprarNovamente {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px 16px;
+  margin-top: auto;
+  width: 100%;
+}
+
+.modalTrocaDevolucao {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 2000;
+}
+
+.modalTrocaDevolucao.show {
+  display: flex;
+}
+
+.modalTrocaCard {
+  width: min(100%, 680px);
+  min-height: 560px;
+  background: var(--bg);
+  border-radius: 0;
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.25);
+}
+
+.btnFecharModal {
+  align-self: flex-start;
+  width: fit-content;
+}
+
+.modalTrocaCard h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.modalTrocaForm {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: min(100%, 430px);
+  align-self: center;
+}
+
+.modalSelect,
+.modalObservacoes {
+  border: 1px solid var(--txtDark);
+  border-radius: 8px;
+  font-size: 1.4rem;
+}
+
+.modalSelect {
+  height: 48px;
+}
+
+.modalOpcoes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.modalOpcao {
+  border: 2px solid var(--secondary);
+  border-radius: 12px;
+  padding: 12px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.4rem;
+}
+
+.modalOpcao input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  margin: 0;
+}
+
+.modalObservacoes {
+  min-height: 84px;
+  resize: none;
+}
+
+.modalConfirmar {
+  margin-top: 16px;
+  width: 100%;
+  min-height: 48px;
+}
+
+.timeline {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto 24px auto;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.timelineLine {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background-color: var(--primary);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.timelineStep {
+  text-align: center;
+  z-index: 1;
+}
+
+.timelineStep i {
+  position: relative;
+  z-index: 2;
+  background-color: var(--branco-cinzento);
+  padding: 4px 8px;
+  font-size: 1.5rem;
+  color: var(--primary);
+  border-radius: 50%;
+}
+
+body.darkMode .step i {
+  background-color: var(--preto-fosco);
+}
+
+
+@media (max-width: 575px) {
+  main {
+    padding-top: 12.8rem;
+  }
+  
+  #meusPedidos {
+    padding: 0 2.4rem;
+  }
+
+  .modalTrocaCard {
+    min-height: auto;
+  }
+
+  .modalOpcoes {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (min-width: 992px) {
+  .pedidoCard {
+    flex-direction: row;
+  }
+
+  .colProduto {
+    max-width: 300px;
+  }
+
+  .colStatus {
+    border-left: 1px solid var(--branco-cinzento);
+    border-right: 1px solid var(--branco-cinzento);
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  body.darkMode .colStatus {
+    border-left: 1px solid var(--cinza);
+    border-right: 1px solid var(--cinza);
+  }
+
+  .statusBotoes {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 991px) {
+  .colStatus {
+    border-top: 1px solid var(--branco-cinzento);
+    border-bottom: 1px solid var(--branco-cinzento);
+  }
+
+  body.darkMode .colStatus {
+    border-top: 1px solid var(--cinza);
+    border-bottom: 1px solid var(--cinza);
+  }
+
+ 
+
+
+}
