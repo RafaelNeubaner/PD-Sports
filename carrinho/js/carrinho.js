@@ -433,7 +433,7 @@ if(cepInput.value){
 
 var isLoading = false;
 async function calculateFrete() {
-    if (!btnCalcularFrete || !cepInput || !freteTemp || !cartApi) return;
+    if (!cepInput || !freteTemp || !cartApi) return;
     if (isLoading) return
     const cep = cepInput.value
     if (!cep) return;
