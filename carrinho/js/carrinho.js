@@ -224,6 +224,7 @@ function somarItem(event) {
 
     atualizarSubtotal();
     atualizarBadge();
+    calcularTotal();
 }
 
 function subtrairItem(event) {
@@ -250,18 +251,18 @@ function subtrairItem(event) {
         if (cartApi) {
             cartApi.removeFromCart(item.id, 1, item.variant);
         }
-
-        atualizarBadge();
-        atualizarSubtotal();
     }
+    
     if (qtd === 0) {
         produto.remove();
         if (cartApi) {
             sincronizarStorageComPagina();
         }
-        atualizarBadge();
-        atualizarSubtotal();
     }
+
+    atualizarBadge();
+    atualizarSubtotal();
+    calcularTotal();
 }
 
 function atualizarBadge() {
