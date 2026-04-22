@@ -216,19 +216,86 @@
     </header>
 
     <main class="container">
+      <!-- ATENDIMENTO -->
       <section id="atendimento">
-        <button
-          class="btnOutline"
-           id="voltar"
-        >
-          Voltar
+        <button class="btnOutline" id="voltar">Voltar</button>
+
+        <div class="chamados" id="containerAtendimentos"></div>
+
+        <button class="btnPrimary" id="abrirAtendimento">
+          Abrir novo atendimento
         </button>
-
-        <div class="chamados" id="containerAtendimentos">
-        </div>
-
-        <button class="btnPrimary">Abrir novo atendimento</button>
       </section>
     </main>
+
+    <!-- MODAL NOVO ATENDIMENTO -->
+    <dialog id="modalAtendimento" class="modal-custom">
+      <header class="modal-header">
+        <h2>Abrir Atendimento</h2>
+        <button
+          type="button"
+          class="btnOutline btn-fechar-modal"
+          aria-label="Fechar modal"
+        >
+          Fechar
+        </button>
+      </header>
+
+      <form id="formNovoAtendimento">
+        <label for="nomeCliente" class="sr-only">Nome Cliente</label>
+        <input
+          type="text"
+          id="nomeCliente"
+          name="nomeCliente"
+          placeholder="Nome Cliente"
+          required
+        />
+
+        <label for="codigoPedido" class="sr-only">Código do Pedido</label>
+        <input
+          type="text"
+          id="codigoPedido"
+          name="codigoPedido"
+          placeholder="Código do Pedido"
+          maxlength="6"
+          required
+        />
+
+        <label for="telefoneContato" class="sr-only">Telefone de contato</label>
+        <input
+          type="tel"
+          id="telefoneContato"
+          name="telefoneContato"
+          placeholder="Telefone de contato"
+          required
+        />
+
+        <label for="areaAtendimento" class="sr-only">Área de atendimento</label>
+        <select id="areaAtendimento" name="areaAtendimento" required>
+          <option value="" disabled selected>
+            Dropdown áreas de atendimento
+          </option>
+          <option value="duvida">Dúvidas gerais</option>
+          <option value="devolucao">Troca ou Devolução</option>
+          <option value="entrega">Problemas com a entrega</option>
+          <option value="pagamento">Pagamento e Estorno</option>
+        </select>
+
+        <label for="descricao" class="sr-only">Descrição</label>
+        <textarea
+          id="descricao"
+          name="descricao"
+          rows="6"
+          placeholder="Descrição"
+          required
+        ></textarea>
+
+        <div class="modal-footer">
+          <button type="submit" class="btnPrimary btn-enviar-modal">
+            Abrir Atendimento
+          </button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
