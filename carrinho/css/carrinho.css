@@ -1,29 +1,47 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 #carrinho {
     padding: 20px 64px;
+    gap: 20px;
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
 }
 
 .cartItens {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
-    align-items: start;
-    max-width: 70%;
+    align-items: stretch;
+    max-width: 100%;
 }
 
 .cartItem {
     display: flex;
     flex-direction: column;
     align-items: left;
+    vertical-align: middle;
     margin-bottom: 20px;
     width: 100%;
+    height: 100%;
     max-width: none;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     padding: 10px;
 }
 
+.cartItem > .prodPrice {
+    margin-top: auto;
+}
+
 .cartItem img {
   width: 100px;
-  height: auto;
+  height:min-content ;
   margin-right: 20px;
 }
 
@@ -33,6 +51,13 @@
     background-color: #E9E9E9;
     border: 1px solid #DDDDDD;
     border-radius: 12px;
+}
+
+.quantityControl span {
+    padding: 0 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--txtDark);
 }
 
 .quantityControl .btnOutline:hover{
@@ -48,7 +73,6 @@
     color: var(--txtDark);
     border: 0;
     background-color: var(--branco-cinzento);
-    padding: 6px 12px;
 }
 
 /* FORMS - Dados, Endereço e Forma de Pagamento */
@@ -127,10 +151,8 @@
 
 #formulario {
     width: 100%;
-}
-
-#carrinho {
-    padding: 0 2.4rem;
+    background-color: var(--bg);
+    display: block;
 }
 
 #formulario form {
@@ -204,10 +226,6 @@
         display: block;
     }
 
-    #carrinho {
-        padding: 20px 128px;
-    }
-
 }
 
 .remove {
@@ -228,12 +246,32 @@
 @media (max-width: 576px) {
     #carrinho {
         padding: 120px 16px;
+        margin-bottom: 60px;
     }
 
     .cartItens {
         grid-template-columns: 1fr;
         max-width: none;
     }
+    .resumo {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100% !important;
+        padding: 20px;
+        max-width: none;
+        background-color: var(--bg);
+                box-sizing: border-box;
+    }
+
+        #formFrete {
+            flex-wrap: wrap;
+        }
+
+        #formFrete .btnCalcularFrete {
+            width: 100%;
+        }
 }
 
 @media (min-width:576px) and (max-width: 768px) {
@@ -246,7 +284,7 @@
 @media (min-width: 576px) and (max-width: 992px) {
     .cartItens {
         grid-template-columns: 1fr;
-            max-width: 55%;
+            max-width: 90%;
     }
 }
 
@@ -254,6 +292,22 @@
     width: 30%;
     display: flex;
     flex-direction: column;
+}
+
+#formFrete {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+}
+
+#formFrete #cepInput {
+    flex: 1;
+    min-width: 0;
+}
+
+#formFrete .btnCalcularFrete {
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 ul {
@@ -282,12 +336,49 @@ ul {
 }
 
 .precoTotal {
-  font-size: 28px;
-  font-weight: 800;
+  font-weight: bold;
   color: var(--primary);
 }
 
 .buyNowButton {
   box-shadow: 0 8px 28px #e1060073;
   height: 60px;
+}
+
+
+.modalCompraConcluida {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    z-index: 1000;
+}
+
+#carrinho.checkout-completed > :not(.modalCompraConcluida) {
+    display: none !important;
+}
+
+#carrinho.checkout-completed .modalCompraConcluida {
+    display: flex;
+}
+
+.modalCompraConcluida i {
+    font-size: 48px;
+}
+
+.modalCompraConcluida a {
+    border-radius: 8px;
+}
+
+.modalCompraConcluida div {
+    display: flex;
+    gap: 24px;
 }

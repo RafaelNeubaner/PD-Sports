@@ -275,19 +275,31 @@ function atualizarBadge() {
 
     const textoVazio = carrinho.querySelector('.carrinho-vazio');
     const resumo = carrinho.querySelector('.resumo');
+    const formulario = carrinho.querySelector('#formulario');
 
     if (quantidadeCarrinho === 0) {
+        if (resumo) {
+            resumo.style.display = 'none';
+        }
+        if (formulario) {
+            formulario.style.display = 'none';
+        }
+
         if (!textoVazio) {
             const texto = document.createElement('p');
             texto.className = 'carrinho-vazio';
             texto.textContent = 'Seu carrinho está vazio';
             carrinho.appendChild(texto);
-            resumo.style.display = 'none';
         }
     } else {
         if (textoVazio) {
             textoVazio.remove();
+        }
+        if (resumo) {
             resumo.style.display = 'flex';
+        }
+        if (formulario) {
+            formulario.style.display = 'block';
         }
     }
 }
@@ -299,6 +311,7 @@ function atualizarSubtotal() {
             subtotal += subtotalProduto;
     });
     let subtotalElement = document.querySelector('.resumo .span2');
+    if (!subtotalElement) return;
     subtotalElement.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
 }
 
@@ -315,15 +328,20 @@ function calcularTotal(){
     console.log(total)
 }
 
-document.querySelectorAll('.finalizar').forEach(button => {
-    button.addEventListener('click', () => {
+function exibirModalCompraConcluida() {
+    if (!carrinho) return;
+    carrinho.classList.add('checkout-completed');
+}
+
+const botaoFinalizarCompra = carrinho?.querySelector('.resumo .buyNowButton');
+if (carrinho && botaoFinalizarCompra) {
+    botaoFinalizarCompra.addEventListener('click', () => {
         const audioCompraFinalizada = document.getElementById('audio-compra-finalizada');
         if (audioCompraFinalizada) {
             audioCompraFinalizada.currentTime = 0;
             audioCompraFinalizada.play().catch(() => {});
         }
 
-        alert('Compra finalizada com sucesso!');
         if (cartApi) {
             cartApi.clearCart();
         }
@@ -331,8 +349,9 @@ document.querySelectorAll('.finalizar').forEach(button => {
         quantidadeCarrinho = 0;
         atualizarBadge();
         atualizarSubtotal();
+        exibirModalCompraConcluida();
     });
-});
+}
 
 function removerItem(event) {
     let produto = event.currentTarget.closest('.cartItem');
@@ -353,6 +372,7 @@ function carregarCarrinho() {
     if (!cartApi) return;
 
     const conteiner = document.querySelector('.cartItens');
+    if (!conteiner) return;
     const itens = cartApi.getCart();
     if (!itens || itens.length === 0) return;
 
@@ -376,7 +396,7 @@ function carregarCarrinho() {
                     </div>
                     <button class="remove btnOutline"><i class="bi bi-trash"></i></button>
                 </div>
-                <p class="subTotal red cardTitle">R$ ${(item.preco * item.qtd).toFixed(2).replace('.', ',')}</p>
+                <p class="subTotal red subTitleCard">R$ ${(item.preco * item.qtd).toFixed(2).replace('.', ',')}</p>
             </div>
             </article>
         `;
@@ -385,26 +405,33 @@ function carregarCarrinho() {
 
     atualizarBadge();
     atualizarSubtotal();
+    calcularTotal();
 }
 
-document.querySelector(".btnCalcularFrete").addEventListener('click', calculateFrete)
-document.querySelector("#formFrete").addEventListener('submit', (event) => {
-    event.preventDefault()
-    calculateFrete()
-})
+const btnCalcularFrete = document.querySelector('.btnCalcularFrete');
+const formFrete = document.querySelector('#formFrete');
+const cepInput = document.querySelector('#cepInput');
+const freteTemp = document.getElementById('tempFreteOption');
 
-const savedCEP = localStorage.getItem("LAST_CEP")
-const cepInput = document.querySelector("#cepInput")
-let selectedFrete = null
-cepInput.value=savedCEP
+if (btnCalcularFrete && formFrete && cepInput && freteTemp) {
+    btnCalcularFrete.addEventListener('click', calculateFrete);
+    formFrete.addEventListener('submit', (event) => {
+        event.preventDefault();
+        calculateFrete();
+    });
 
-if(cepInput.value){
-    calculateFrete()
+    const savedCEP = localStorage.getItem('LAST_CEP');
+    let selectedFrete = null;
+    cepInput.value = savedCEP || '';
+
+    if (cepInput.value) {
+        calculateFrete();
+    }
 }
 
 var isLoading = false;
-const freteTemp = document.getElementById("tempFreteOption")
 async function calculateFrete() {
+    if (!btnCalcularFrete || !cepInput || !freteTemp || !cartApi) return;
     if (isLoading) return
     const cep = cepInput.value
     if (!cep) return;
@@ -412,12 +439,21 @@ async function calculateFrete() {
     localStorage.setItem("LAST_CEP", cep)
     isLoading = true
     const fretesSec = document.querySelector(".fretesOptions")
+    if (!fretesSec) {
+        isLoading = false;
+        return;
+    }
     fretesSec.replaceChildren()
     fretesSec.textContent = "Carregando..."
-    document.querySelector(".btnCalcularFrete").textContent = "Carregando..."
+    btnCalcularFrete.textContent = "Carregando..."
     const fretesOptions = await calcularFrete(cep, cartApi.getTotalItens())
     isLoading = false
-    document.querySelector(".btnCalcularFrete").textContent = "Calcular"
+    btnCalcularFrete.textContent = "Calcular"
+
+    if (!Array.isArray(fretesOptions) || fretesOptions.length === 0) {
+        fretesSec.textContent = 'Nao foi possivel calcular o frete.';
+        return;
+    }
 
     fretesSec.replaceChildren()
     fretesOptions.forEach(frete => {
@@ -438,6 +474,8 @@ async function calculateFrete() {
 
         fretesSec.appendChild(li)
     })
+
+    if (!fretesSec.firstElementChild) return;
 
     fretesSec.firstElementChild.querySelector("input").setAttribute("checked", true)
     document.querySelector(".precoFrete").textContent = fretesSec.firstElementChild.querySelector("p").textContent

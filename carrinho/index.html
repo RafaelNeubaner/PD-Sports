@@ -217,7 +217,7 @@
       </nav>
     </header>
 
-    <main id="carrinho" class="d-flex justify-content-between">
+    <main id="carrinho" class="d-flex">
       <section class="d-flex flex-column gap-3">
         <h1 class="red mainTitle">Carrinho ( <span class="cart-badge"></span> )</h1>
         <p class="carrinho-vazio">Seu carrinho está vazio.</p>
@@ -393,8 +393,8 @@
 
       <aside class="resumo">
         <h4>Subtotal: <span class="span2">R$ 8,97</span></h4>
-        <form id="formFrete" class="d-flex gap-3">
-          <input placeholder="Digite seu CEP" class="flex-grow-1" name="CEP" type="text" id="cepInput">
+        <form id="formFrete" class="d-flex gap-3 w-100">
+          <input placeholder="Digite seu CEP" class="" name="CEP" type="text" id="cepInput">
           <button class="btnPrimary btnCalcularFrete">Calcular</button>
         </form>
         <template id="tempFreteOption">
@@ -410,12 +410,20 @@
         <ul class="fretesOptions d-flex flex-column gap-4">
         </ul>
         <h4>Entrega: <span class="precoFrete">R$ 0,00</span></h4>
-        <h4>Total: <span class="precoTotal">R$ 0,00</span></h4>
+        <h4>Total: <span class="precoTotal subTitleCard">R$ 0,00</span></h4>
 
         <button class="btnPrimary buyNowButton">
           <img src="/assets/media/icons/lightning.svg" /> Finalizar Compra
         </button>
       </aside>
+      <article class="modalCompraConcluida">
+        <i class="bi bi-check-circle" style="color: green;"></i>
+        <h3 class="subTitleCard">Obrigado por comprar conosco!</h3>
+        <div>
+          <a href="/index.html" class="btnOutline">Voltar a tela Inicial</a>
+          <a href="#" class="btnPrimary">Meus Pedidos</a>
+        </div>
+      </article>
     </main>
 
     <footer class="bgHeader">
