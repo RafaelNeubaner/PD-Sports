@@ -40,8 +40,6 @@
 
     <!-- Custom JS -->
     <script src="/js/darkmode.js"></script>
-    <script src="/carrinho/js/carrinho.js" defer></script>
-    <script src="/login/js/cadastro.js"></script>
     <script src="/perfil/js/meus-dados.js"></script>
   </head>
   <body>
@@ -217,8 +215,6 @@
     </header>
 
     <main id="perfil">
-      <!-- <h1 class="mainTitle d-none d-md-block">Meus Dados</h1> -->
-
       <!-- MENU -->
       <nav class="navbar">
         <ul>
@@ -239,11 +235,10 @@
       <section id="meusDados">
         <h1 class="mainTitle">Meus Dados</h1>
         <div>
-
           <section id="dadosPessoais">
             <form>
               <legend>Dados do Perfil</legend>
-  
+
               <fieldset class="w-100">
                 <label for="nome" class="form-label">Nome</label>
                 <input
@@ -253,7 +248,7 @@
                   placeholder="Primeiro nome"
                 />
               </fieldset>
-  
+
               <fieldset class="w-100">
                 <label for="sobrenome" class="form-label">Sobrenome</label>
                 <input
@@ -263,7 +258,7 @@
                   placeholder="Sobrenome"
                 />
               </fieldset>
-  
+
               <fieldset>
                 <label for="cpf" class="form-label">CPF</label>
                 <input
@@ -273,7 +268,7 @@
                   placeholder="Informe seu CPF"
                 />
               </fieldset>
-  
+
               <fieldset>
                 <label for="telefone" class="form-label">Telefone</label>
                 <input
@@ -283,25 +278,29 @@
                   placeholder="Informe seu telefone"
                 />
               </fieldset>
-  
+
               <fieldset class="d-flex flex-column">
-                <label for="telefone" class="form-label"
+                <label for="data-nascimento" class="form-label"
                   >Data de Nascimento</label
                 >
-                <input type="date" name="data-nascimento" id="data-nascimento" />
+                <input
+                  type="date"
+                  name="data-nascimento"
+                  id="data-nascimento"
+                />
               </fieldset>
-  
+
               <button type="button" class="btnOutline">Editar dados</button>
             </form>
           </section>
-  
+
           <section id="dadosAcesso">
             <form>
               <legend>Dados de Acesso</legend>
-  
+
               <div class="d-flex flex-column w-100">
                 <fieldset class="w-100">
-                  <label for="cep" class="form-label">E-mail</label>
+                  <label for="email" class="form-label">E-mail</label>
                   <input
                     type="text"
                     class="form-control"
@@ -309,9 +308,9 @@
                     placeholder="Informe seu e-mail"
                   />
                 </fieldset>
-  
+
                 <fieldset class="w-100">
-                  <label for="cep" class="form-label">Novo E-mail</label>
+                  <label for="novo-email" class="form-label">Novo E-mail</label>
                   <input
                     type="text"
                     class="form-control"
@@ -319,31 +318,31 @@
                     placeholder="Digite seu novo e-mail"
                   />
                 </fieldset>
-  
+
                 <button type="button" class="btnPrimary">Alterar E-mail</button>
               </div>
-  
+
               <div class="d-flex flex-column w-100">
                 <fieldset class="w-100">
-                  <label for="cep" class="form-label">Senha</label>
+                  <label for="senha" class="form-label">Senha</label>
                   <input
-                    type="text"
+                    type="password"
                     class="form-control"
                     id="senha"
-                    placeholder="Informe seu senha atual"
+                    placeholder="Informe sua senha atual"
                   />
                 </fieldset>
-  
+
                 <fieldset class="w-100">
-                  <label for="cep" class="form-label">Nova Senha</label>
+                  <label for="nova-senha" class="form-label">Nova Senha</label>
                   <input
-                    type="text"
+                    type="password"
                     class="form-control"
                     id="nova-senha"
                     placeholder="Digite sua nova senha"
                   />
                 </fieldset>
-  
+
                 <button type="button" class="btnPrimary">Alterar Senha</button>
               </div>
             </form>
