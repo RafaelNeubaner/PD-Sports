@@ -25,6 +25,7 @@ footer {
 .cartItem {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: left;
     vertical-align: middle;
     margin-bottom: 20px;
@@ -41,7 +42,8 @@ footer {
 
 .cartItem img {
   width: 100px;
-  height:min-content ;
+  height: auto;
+  object-fit: cover;
   margin-right: 20px;
 }
 
@@ -243,6 +245,13 @@ footer {
     color: var(--primary);
 }
 
+.resumo {
+    width: 30%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
 @media (max-width: 576px) {
     #carrinho {
         padding: 120px 16px;
@@ -250,28 +259,25 @@ footer {
     }
 
     .cartItens {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         max-width: none;
     }
-    .resumo {
-        display: block;
+
+    #formulario{
+        padding-bottom: 100px;
+    }
+
+    .resumo{
         position: fixed;
         bottom: 0;
         left: 0;
-        width: 100% !important;
-        padding: 20px;
+        padding: 20px 20px;
+        width: 100%;
         max-width: none;
-        background-color: var(--bg);
-                box-sizing: border-box;
+        background-color: var(--branco-cinzento);
+        box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.418);
     }
-
-        #formFrete {
-            flex-wrap: wrap;
-        }
-
-        #formFrete .btnCalcularFrete {
-            width: 100%;
-        }
 }
 
 @media (min-width:576px) and (max-width: 768px) {
@@ -288,11 +294,7 @@ footer {
     }
 }
 
-.resumo {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-}
+
 
 #formFrete {
     width: 100%;

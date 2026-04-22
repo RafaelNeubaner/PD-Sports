@@ -217,7 +217,7 @@
       </nav>
     </header>
 
-    <main id="carrinho" class="d-flex">
+    <main id="carrinho" class="d-flex justify-content-between gap-3">
       <section class="d-flex flex-column gap-3">
         <h1 class="red mainTitle">Carrinho ( <span class="cart-badge"></span> )</h1>
         <p class="carrinho-vazio">Seu carrinho está vazio.</p>
@@ -269,18 +269,18 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="cep"
+                  id="cepInput"
                   placeholder="Informe seu CEP"
                 />
               </fieldset>
 
-              <div class="d-flex w-100">
+              <div class="d-flex flex-column flex-md-row w-100">
                 <fieldset class="w-100">
                   <label for="rua" class="form-label">Rua</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="rua"
+                    id="ruaInput"
                     placeholder="Rua"
                   />
                 </fieldset>
@@ -290,7 +290,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="bairro"
+                    id="bairroInput"
                     placeholder="Bairro"
                   />
                 </fieldset>
@@ -299,7 +299,7 @@
                   <input
                     type="number"
                     class="form-control"
-                    id="numero"
+                    id="numeroInput"
                     placeholder="Número"
                     min="1"
                   />
@@ -311,7 +311,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="cidade"
+                  id="cidadeInput"
                   placeholder="Informe sua Cidade"
                 />
               </fieldset>
@@ -320,7 +320,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="estado"
+                  id="estadoInput"
                   placeholder="Informe seu Estado"
                 />
               </fieldset>
@@ -336,6 +336,7 @@
                     name="metodoPagamento"
                     id="pix"
                     class="custom-radio"
+                    checked
                   />
                   <i class="bi bi-x-diamond-fill fs-2" style="color: #00bdae"></i>
                   <p>Pix</p>
@@ -393,10 +394,10 @@
 
       <aside class="resumo">
         <h4>Subtotal: <span class="span2">R$ 8,97</span></h4>
-        <form id="formFrete" class="d-flex gap-3 w-100">
-          <input placeholder="Digite seu CEP" class="" name="CEP" type="text" id="cepInput">
+        <!--<form id="formFrete" class="d-flex gap-3">
+          <input placeholder="Digite seu CEP" class="flex-grow-1" name="CEP" type="text" id="cepInput">
           <button class="btnPrimary btnCalcularFrete">Calcular</button>
-        </form>
+        </form>-->
         <template id="tempFreteOption">
           <li class="freteItem d-flex gap-3">
             <input type="radio" name="freteOption" class="freteOption">
