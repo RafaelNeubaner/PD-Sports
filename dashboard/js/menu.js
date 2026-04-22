@@ -3,7 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const linksMenu = document.querySelectorAll('.admin-sidebar .nav-link, .d-md-none a[href="#loja"]');
     const conteudos = document.querySelectorAll('main > section');
 
+    if(!document.location.hash){
+        document.location.hash = "#dashboard"
+    }
+
     function ocultarTodasAsTelas() {
+        console.log("limpou")
         conteudos.forEach(section => {
             section.classList.add('d-none'); 
         });
@@ -16,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
  
     function navegarPara(idTela) {
         ocultarTodasAsTelas(); 
+        console.log(idTela)
         if (idTela === '#loja') {
             window.location.href = '/index.html';
             return;
@@ -40,5 +46,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    navegarPara('#desempenho');
+    navegarPara(document.location.hash)
 });
