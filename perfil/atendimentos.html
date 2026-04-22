@@ -41,7 +41,7 @@
     <!-- Custom JS -->
     <script src="/js/darkmode.js"></script>
     <script src="/carrinho/js/carrinho.js" defer></script>
-    <!-- <script type="module" src="/perfil/js/atendimentos.js"></script> -->
+    <script type="module" src="/perfil/js/meus-atendimentos.js"></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -219,74 +219,12 @@
       <section id="atendimento">
         <button
           class="btnOutline"
-          onclick="window.location.href = '/perfil/perfil.html'"
+           id="voltar"
         >
           Voltar
         </button>
 
-        <div class="chamados">
-          <article class="atendimento-card">
-            <img src="/assets/media/images/home/categoria-destaque-1.png" alt="" />
-            <ul>
-              <li>
-                <strong>Status:</strong> <span class="badge bg-warning">Em andamento</span>
-              </li>
-              <li>
-                <strong>Motivo do chamado:</strong>
-                Problemas com o pedido
-              </li>
-              <li>
-                <strong>Situação do chamado:</strong>
-                Aguardando resposta do vendedor
-              </li>
-              <li>
-                <strong>Descrição do chamado:</strong>
-                A bola veio com o tecido de revestimento descascado.
-              </li>
-            </ul>
-          </article>
-
-          <article class="atendimento-card">
-            <img src="/assets/media/images/home/categoria-destaque-1.png" alt="" />
-            <ul>
-              <li>
-                <strong>Status:</strong> <span class="badge bg-warning">Em andamento</span>
-              </li>
-              <li>
-                <strong>Motivo do chamado:</strong>
-                Problemas com o pedido
-              </li>
-              <li>
-                <strong>Situação do chamado:</strong>
-                Aguardando resposta do vendedor
-              </li>
-              <li>
-                <strong>Descrição do chamado:</strong>
-                A bola veio com o tecido de revestimento descascado.
-              </li>
-            </ul>
-          </article>
-
-          <article class="atendimento-card">
-            <img src="/assets/media/images/home/categoria-destaque-1.png" alt="" />
-            <ul>
-              <li>
-                <strong>Status:</strong> <span class="badge bg-warning">Em andamento</span>
-              </li>
-              <li>
-                <strong>Motivo do chamado:</strong>
-                Problemas com o pedido
-              </li>
-              <li>
-                <strong>Situação do chamado:</strong>
-                Aguardando resposta do vendedor
-              </li>
-              <li>
-                <strong>Descrição do chamado:</strong>
-                A bola veio com o tecido de revestimento descascado.
-              </li>
-            </ul>
-          </article>
+        <div class="chamados" id="containerAtendimentos">
         </div>
 
         <button class="btnPrimary">Abrir novo atendimento</button>
