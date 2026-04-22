@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>FAQ | PD Sports</title>
     <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
 
     <!-- Google Fonts -->
@@ -41,6 +41,7 @@
 
     <!-- Custom JS -->
     <script src="/pagina-informativa/js/script.js" defer></script>
+    <script src="/js/darkmode.js"></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -110,13 +111,12 @@
                 <i class="bi bi-search"></i>
               </button>
 
-
               <li class="nav-item">
-                <a id="themeToggle"
-                class="themeToggle"
-                aria-pressed="false"><i class="bi bi-moon-stars"></i></a>
+                <a id="themeToggle" class="themeToggle" aria-pressed="false"
+                  ><i class="bi bi-moon-stars"></i
+                ></a>
               </li>
-              
+
               <li class="nav-item">
                 <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
               </li>
@@ -187,7 +187,82 @@
       </nav>
     </header>
 
-    <main></main>
+    <main class="faqPage">
+      <section class="faqShell container">
+        <h1 class="mainTitle textCenter" >Perguntas Frequentes</h1>
+
+        <div class="faqLayout">
+          <aside class="faqSidebar">
+            <button class="faqFilter subTitleCard" type="button" data-category="all">
+              <i class="bi bi-grid-3x3-gap subtTitleCard"></i>
+              <span>Todas</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="trocas">
+              <i class="bi bi-arrow-repeat subtTitleCard"></i>
+              <span>Trocas e Devoluções</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="entrega">
+              <i class="bi bi-truck subtTitleCard"></i>
+              <span>Entrega</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="conta">
+              <i class="bi bi-person-badge subtTitleCard"></i>
+              <span>Minha Conta</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="pagamento">
+              <i class="bi bi-credit-card subtTitleCard"></i>
+              <span>Pagamento</span>
+            </button>
+            <button
+              class="faqFilter subTitleCard"
+              type="button"
+              data-category="cancelamento"
+            >
+              <i class="bi bi-x-circle subtTitleCard"></i>
+              <span>Cancelamento</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="pedidos">
+              <i class="bi bi-bag-check subtTitleCard"></i>
+              <span>Meus Pedidos</span>
+            </button>
+            <button class="faqFilter subTitleCard" type="button" data-category="privacidade">
+              <i class="bi bi-shield-lock subtTitleCard"></i>
+              <span>Privacidade e Dados</span>
+            </button>
+          </aside>
+
+          <section class="faqContent">
+            <label class="faqSearch" for="faqSearch">
+              <i class="bi bi-search"></i>
+              <input
+                id="faqSearch"
+                type="search"
+                placeholder="     Procure por um tópico, assunto ou termo que deseja saber mais"
+                autocomplete="off"
+              />
+            </label>
+
+            <div class="faqMeta">
+              <span id="faqCount">0 perguntas encontradas</span>
+              <button id="faqClear" class="link" type="button">
+                Limpar filtros
+              </button>
+            </div>
+
+            <div id="faqAccordion" class="faqAccordion"></div>
+
+            <div id="faqEmpty" class="faqEmpty d-none">
+              <i class="bi bi-search"></i>
+              <h2>Nenhuma pergunta encontrada</h2>
+              <p>
+                Tente pesquisar por outro termo ou selecionar uma categoria
+                diferente.
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
 
     <footer class="bgHeader">
       <p class="textCenter font20">
