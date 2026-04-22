@@ -1,4 +1,4 @@
-import {calcularFrete} from '../../js/fretes/useFretes.js'
+import {calcularFrete, getLocationByCEP} from '../../js/fretes/useFretes.js'
 
 const CART_STORAGE_KEY = 'pd-sports-cart';
 
@@ -194,6 +194,7 @@ addEventListener('DOMContentLoaded', () => {
     carregarCarrinho();
     atualizarBadge();
     atualizarSubtotal();
+    calcularTotal()
 });
 
 
@@ -386,20 +387,25 @@ function carregarCarrinho() {
     atualizarBadge();
     atualizarSubtotal();
 }
-
+/*
 document.querySelector(".btnCalcularFrete").addEventListener('click', calculateFrete)
 document.querySelector("#formFrete").addEventListener('submit', (event) => {
     event.preventDefault()
     calculateFrete()
-})
+})*/
 
 const savedCEP = localStorage.getItem("LAST_CEP")
 const cepInput = document.querySelector("#cepInput")
+cepInput.addEventListener('blur', async ()=>{
+    calculateFrete()
+    getCEP()
+})
 let selectedFrete = null
 cepInput.value=savedCEP
 
 if(cepInput.value){
     calculateFrete()
+    getCEP()
 }
 
 var isLoading = false;
@@ -414,10 +420,10 @@ async function calculateFrete() {
     const fretesSec = document.querySelector(".fretesOptions")
     fretesSec.replaceChildren()
     fretesSec.textContent = "Carregando..."
-    document.querySelector(".btnCalcularFrete").textContent = "Carregando..."
+    //document.querySelector(".btnCalcularFrete").textContent = "Carregando..."
     const fretesOptions = await calcularFrete(cep, cartApi.getTotalItens())
     isLoading = false
-    document.querySelector(".btnCalcularFrete").textContent = "Calcular"
+    //document.querySelector(".btnCalcularFrete").textContent = "Calcular"
 
     fretesSec.replaceChildren()
     fretesOptions.forEach(frete => {
@@ -443,4 +449,22 @@ async function calculateFrete() {
     document.querySelector(".precoFrete").textContent = fretesSec.firstElementChild.querySelector("p").textContent
     freteVal = Number(fretesOptions[0].price)
     calcularTotal()
+}
+
+var isLoadingCEP = false
+async function getCEP(){
+    if (isLoadingCEP) return
+    const cep = cepInput.value
+    if (!cep) return;
+
+    isLoadingCEP=true;
+
+    const location = await getLocationByCEP(cep)
+
+    document.getElementById("ruaInput").value = location.logradouro
+    document.getElementById("bairroInput").value = location.bairro
+    document.getElementById("cidadeInput").value = location.localidade
+    document.getElementById("estadoInput").value = location.estado
+    document.getElementById("numeroInput").focus()
+    isLoadingCEP=false
 }
