@@ -382,3 +382,21 @@ ul {
     display: flex;
     gap: 24px;
 }
+
+@media (max-width: 576px) {
+    .modalCompraConcluida {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .modalCompraConcluida div {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 992px) {
+    .modalCompraConcluida {
+            width: 90%;
+            padding: 20px;
+        }
+}
