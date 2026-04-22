@@ -297,6 +297,10 @@ p {
 .mb24 {
     margin-bottom: 24px;
 }
+
+.red {
+    color: var(--primary);
+}
 input,
 textarea,
 input.form-control {
