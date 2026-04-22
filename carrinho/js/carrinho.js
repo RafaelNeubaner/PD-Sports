@@ -368,6 +368,7 @@ function removerItem(event) {
     }
     atualizarBadge();
     atualizarSubtotal();
+    calcularTotal();
 }
 
 function carregarCarrinho() {
@@ -386,10 +387,10 @@ function carregarCarrinho() {
             <div class="itemDetails">
                 <h3 class="cardTitle">${item.nome}</h3>
                 ${item.variant ? `<p class="cartVariant"><small>Variante: ${item.variant}</small></p>` : ''}
-            </div>
-            </div>
                 <p class="prodPrice">R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
-                <div class="d-flex justify-content-between">
+            </div>
+            </div>
+            <div class="d-flex justify-content-between">
                 <div class="quantityControl d-flex ">
                     <div class="controls">
                         <button class="decrease btnOutline">-</button>
