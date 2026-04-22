@@ -1,14 +1,14 @@
 /**
  * @typedef {import('../../js/products/useProducts.js').Product} Product
  */
+import { calcularFrete } from "../../js/fretes/useFretes.js";
 import { getProductById, getProductsByCategory } from "../../js/products/useProducts.js"
 import { compreJunto } from "/js/product-card.js"
 
 const urlParams = new URLSearchParams(window.location.search);
 let id = urlParams.get('id');
-
-if(!id){
-    id="1.1"
+if (!id) {
+    id = "1.1"
 }
 
 const product = await getProductById(id)
@@ -16,7 +16,42 @@ let productImages = product.images
 const categoryProducts = await getProductsByCategory(product.category)
 const relatedProducts = categoryProducts.filter(p => p.id != id).slice(0, 10)
 compreJunto(relatedProducts)
+const cartApi = window.PDSportsCart
+const CART_STORAGE_KEY = "pd-sports-cart"
 
+function getItemCartKey(item) {
+    return `${item.id}::${item.variant || ""}`
+}
+
+function addToCartFallback(produto, quantidade = 1) {
+    let cart = []
+    try {
+        const raw = localStorage.getItem(CART_STORAGE_KEY)
+        cart = raw ? JSON.parse(raw) : []
+        if (!Array.isArray(cart)) {
+            cart = []
+        }
+    } catch {
+        cart = []
+    }
+
+    const itemKey = getItemCartKey(produto)
+    const index = cart.findIndex((item) => getItemCartKey(item) === itemKey)
+
+    if (index >= 0) {
+        cart[index].qtd = (Number(cart[index].qtd) || 0) + quantidade
+    } else {
+        cart.push({ ...produto, qtd: quantidade, cartKey: itemKey })
+    }
+
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart))
+}
+
+const last_cep = localStorage.getItem("LAST_CEP")
+if (last_cep){
+    document.querySelector("#cepInput").value = last_cep
+    calculateFrete()
+}
 const principalImageDesktop = document.querySelector(".principalImageDesktop")
 const sliderWrapperPhotos = document.getElementById("sliderWrapperPhotos")
 const sliderTrackPhotos = document.getElementById("sliderTrackPhotos")
@@ -28,12 +63,15 @@ let isDragging = false
 
 let selectedPrincipalImage = productImages[0]
 
+setupAddToCartButton()
+setupBuyNowButton()
+
 setPrincipalImage(selectedPrincipalImage)
 setupMobilePhotosCarousel()
 
-document.querySelector(".productFullPrice").textContent = product.hasDiscount ? product.fullPrice.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2}) : ''
+document.querySelector(".productFullPrice").textContent = product.hasDiscount ? product.fullPrice.toLocaleString('pt-BR', { style: 'currency', currency: "BRL", minimumFractionDigits: 2 }) : ''
 document.querySelector(".productName").textContent = product.name
-document.querySelector(".productPrice").textContent = product.price.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2})
+document.querySelector(".productPrice").textContent = product.price.toLocaleString('pt-BR', { style: 'currency', currency: "BRL", minimumFractionDigits: 2 })
 document.querySelectorAll(".suitableFor").forEach(cont => cont.textContent = product.suitableFor)
 document.querySelector(".productGender").textContent = product.gender
 document.querySelector(".brandName").textContent = product.brand
@@ -42,23 +80,23 @@ const qtdParc = 6
 const precoTotal = (product.price * 1.15)
 const precoParc = (precoTotal / qtdParc)
 
-document.querySelector(".priceTotalParc").textContent = precoTotal.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2})
-document.querySelector(".qtdParc").textContent  = qtdParc
-document.querySelector(".priceParc").textContent = precoParc.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2})
+document.querySelector(".priceTotalParc").textContent = precoTotal.toLocaleString('pt-BR', { style: 'currency', currency: "BRL", minimumFractionDigits: 2 })
+document.querySelector(".qtdParc").textContent = qtdParc
+document.querySelector(".priceParc").textContent = precoParc.toLocaleString('pt-BR', { style: 'currency', currency: "BRL", minimumFractionDigits: 2 })
 
-if(product.variants && product.variants.length>0){
+if (product.variants && product.variants.length > 0) {
     document.querySelector(".variantesTitle").classList.remove("d-none")
     const variantesSec = document.querySelector(".variantesSec")
-    
-    product.variants.forEach(variant =>{
+
+    product.variants.forEach(variant => {
         const varBtn = document.createElement("p")
-    
+
         varBtn.classList.add("btnTamanho")
         if (document.body.classList.contains("darkMode")) {
             varBtn.classList.add("darkmode")
         }
         varBtn.textContent = variant
-    
+
         variantesSec.appendChild(varBtn)
     })
 }
@@ -79,27 +117,95 @@ document.querySelectorAll(".btnTamanho").forEach((button) => {
     });
 });
 
-function setSecondaryImages(){
-    const secondaryImagesUrl = productImages.filter(link=>link!=selectedPrincipalImage)
+function getSelectedVariant() {
+    return document.querySelector(".btnTamanho.active")?.textContent?.trim() || "";
+}
+
+function scrollToNavbar() {
+    const navbar = document.querySelector("header .navbar") || document.querySelector(".navbar");
+    if (!navbar) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    navbar.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start"
+    });
+}
+
+function setupAddToCartButton(){
+    const addCartButton = document.getElementById("addCart")
+    if (!addCartButton) return
+
+    addCartButton.addEventListener("click", () => {
+        const payload = addCurrentProductToCart()
+        if (!payload) return
+
+        scrollToNavbar()
+        modalCart(payload)
+    })
+}
+
+function setupBuyNowButton() {
+    const buyNowButton = document.querySelector(".buyNowButton")
+    if (!buyNowButton) return
+
+    buyNowButton.addEventListener("click", () => {
+        const payload = addCurrentProductToCart()
+        if (!payload) return
+
+        window.location.href = "/carrinho/index.html"
+    })
+}
+
+function addCurrentProductToCart() {
+    const nome = product.name?.trim() || "Produto"
+    const idProduto = String(product.id || nome.toLowerCase().replace(/\s+/g, "-"))
+    const preco = Number(product.price) || 0
+    const img = selectedPrincipalImage || productImages[0] || ""
+    const variant = getSelectedVariant()
+    const payload = { id: idProduto, nome, preco, img }
+
+    if (variant) {
+        payload.variant = variant
+    }
+
+    if (cartApi?.addToCart) {
+        cartApi.addToCart(payload, 1)
+        cartApi.atualizarBadgeGlobal?.()
+        return payload
+    }
+
+    addToCartFallback(payload, 1)
+    return payload
+}
     
+document.querySelector(".btnCalcularFrete").addEventListener('click', calculateFrete)
+document.querySelector("#formFrete").addEventListener('submit', (event) => {
+    event.preventDefault()
+    calculateFrete()
+})
+
+function setSecondaryImages() {
+    const secondaryImagesUrl = productImages.filter(link => link != selectedPrincipalImage)
+
     const imagesSection = document.getElementById("photosColumn")
-    
+
     imagesSection.replaceChildren()
-    secondaryImagesUrl.forEach(imageUrl=> {
+    secondaryImagesUrl.forEach(imageUrl => {
         const img = document.createElement("img")
         img.classList.add("secondaryImage")
         img.src = imageUrl
-    
-        img.addEventListener('click', ()=>{
+
+        img.addEventListener('click', () => {
             setPrincipalImage(imageUrl)
         })
-    
+
         imagesSection.appendChild(img)
     })
 }
 
-function setPrincipalImage(url){
-    if(!productImages.includes(url)) return;
+function setPrincipalImage(url) {
+    if (!productImages.includes(url)) return;
 
     selectedPrincipalImage = url;
     if (principalImageDesktop) {
@@ -109,7 +215,36 @@ function setPrincipalImage(url){
     syncMobileCarouselByUrl(url)
 }
 
-function setupMobilePhotosCarousel(){
+var isLoading = false;
+async function calculateFrete() {
+    if (isLoading) return
+    const cep = document.querySelector("#cepInput").value
+    if (!cep) return;
+
+    localStorage.setItem("LAST_CEP", cep)
+    isLoading = true
+    document.querySelector(".btnCalcularFrete").textContent = "Carregando..."
+    const fretesOptions = await calcularFrete(cep, product.price)
+    isLoading = false
+    document.querySelector(".btnCalcularFrete").textContent = "Calcular"
+
+    const fretesSec = document.querySelector(".fretesOptions")
+    const freteTemp = document.getElementById("tempFreteOption")
+    fretesSec.replaceChildren()
+    fretesOptions.forEach(frete => {
+        if (frete.error) return;
+        const li = freteTemp.content.cloneNode(true)
+        li.querySelector("input").id = `${frete.name}Op`
+        li.querySelector("label").setAttribute("for", `${frete.name}Op`)
+        li.querySelector("img").src = frete.company.picture
+        li.querySelector("h4").textContent = frete.name
+        li.querySelector("p").textContent = `${frete.currency} ${frete.price.toString().replace(".", ",")}`
+
+        fretesSec.appendChild(li)
+    })
+}
+
+function setupMobilePhotosCarousel() {
     if (!sliderTrackPhotos || !sliderWrapperPhotos || !photoDots) {
         return
     }
@@ -145,7 +280,7 @@ function setupMobilePhotosCarousel(){
     sliderWrapperPhotos.addEventListener("mouseleave", handleMouseLeave)
 }
 
-function goToMobileImage(index, syncPrincipal){
+function goToMobileImage(index, syncPrincipal) {
     if (!sliderTrackPhotos || !photoDots || productImages.length === 0) {
         return
     }
@@ -162,7 +297,7 @@ function goToMobileImage(index, syncPrincipal){
     }
 }
 
-function syncMobileCarouselByUrl(url){
+function syncMobileCarouselByUrl(url) {
     const imageIndex = productImages.indexOf(url)
     if (imageIndex === -1 || imageIndex === mobileCurrentIndex) {
         return
@@ -171,33 +306,33 @@ function syncMobileCarouselByUrl(url){
     goToMobileImage(imageIndex, false)
 }
 
-function handleTouchStart(event){
+function handleTouchStart(event) {
     startX = event.touches[0].clientX
 }
 
-function handleTouchEnd(event){
+function handleTouchEnd(event) {
     const endX = event.changedTouches[0].clientX
     handleSwipe(endX)
 }
 
-function handleMouseDown(event){
+function handleMouseDown(event) {
     isDragging = true
     startX = event.clientX
 }
 
-function handleMouseUp(event){
+function handleMouseUp(event) {
     if (!isDragging) return
     isDragging = false
     handleSwipe(event.clientX)
 }
 
-function handleMouseLeave(event){
+function handleMouseLeave(event) {
     if (!isDragging) return
     isDragging = false
     handleSwipe(event.clientX)
 }
 
-function handleSwipe(endX){
+function handleSwipe(endX) {
     const distance = endX - startX
     const threshold = 40
 
@@ -219,24 +354,94 @@ document.querySelector(".productDescription").textContent = product.description;
 
 
 const specsGrid = document.getElementById('specsGrid');
-const specs = product.characteristics[0];  
+const specs = product.characteristics[0];
 
 if (specs && specsGrid) {
-    specsGrid.innerHTML = ''; 
+    specsGrid.innerHTML = '';
 
     Object.entries(specs).forEach(([chave, valor]) => {
         const col = document.createElement('div');
 
-        col.className = 'col-6 col-md-4 col-lg-3'; 
-        
+        col.className = 'col-6 col-md-4 col-lg-3';
+
         col.innerHTML = `
             <div class="spec-item">
                 <span class="spec-label">${chave}</span>
                 <span class="spec-value">${valor}</span>
             </div>
         `;
-        
+
         specsGrid.appendChild(col);
     });
 }
 
+function modalCart(product){
+    const modal = document.getElementById("modalCart")
+    const modalContent = modal.querySelector(".modalCartContent")
+    const removeBtn = modal.querySelector(".modalRemoveButton")
+    const okBtn = modal.querySelector(".modalOkButton")
+
+    if(!modal || !modalContent || !removeBtn || !okBtn) return
+
+    modalContent.innerHTML = `
+        <div class= "d-flex"> 
+        <img src="${product.img}" alt="${product.nome}" class="modalProductImage">
+        <div class="modalProductInfo">
+            <h3>${product.nome}</h3>
+            <p>${product.preco.toLocaleString('pt-BR', {style: 'currency', currency: "BRL", minimumFractionDigits: 2})}</p>
+            ${product.variant ? `<small>Variante: ${product.variant}</small>` : ''}
+        </div>
+        </div>
+    `
+
+    removeBtn.onclick = () => {
+        cartApi.removeFromCart(product.id, 1, product.variant || "")
+        cartApi.atualizarBadgeGlobal?.()
+        modal.classList.remove("show")
+    }
+    
+    okBtn.onclick = () => {
+        modal.classList.remove("show")
+    }
+
+    positionModalCart()
+    modal.classList.add("show")
+    requestAnimationFrame(positionModalCart)
+}
+
+function positionModalCart() {
+    const modal = document.getElementById("modalCart")
+    if (!modal) return
+
+    const cartNavItem = document
+        .querySelector("header .bi-cart3")
+        ?.closest(".nav-item")
+
+    if (!cartNavItem) return
+
+    const iconRect = cartNavItem.getBoundingClientRect()
+    const margin = 12
+    const viewportWidth = window.innerWidth
+    const targetY = Math.max(iconRect.bottom , margin)
+    const desiredX = iconRect.left + (iconRect.width / 2)
+    const modalWidth = modal.offsetWidth || 320
+    const clampedX = Math.min(
+        Math.max(desiredX, (modalWidth / 2) + margin),
+        viewportWidth - (modalWidth / 2) - margin
+    )
+
+    modal.style.top = `${targetY}px`
+    modal.style.left = `${clampedX}px`
+}
+
+window.addEventListener("resize", () => {
+    const modal = document.getElementById("modalCart")
+    if (!modal?.classList.contains("show")) return
+    positionModalCart()
+})
+
+window.addEventListener("scroll", () => {
+    const modal = document.getElementById("modalCart")
+    if (!modal?.classList.contains("show")) return
+    positionModalCart()
+}, { passive: true })

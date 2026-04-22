@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/dashboard/css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom JS -->
+    <script src="/js/darkmode.js"></script>
+    <script src="/js/script.js" defer></script>
+    <script src="/dashboard/js/menu.js"></script>
+    <script type="module" src="/dashboard/js/gerenciar-produtos.js"></script>
+    <script type="module" src="/dashboard/js/editar-produto.js"></script>
+    <script src="/js/darkmode.js"></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+
+          <a class="navbar-brand d-block d-md-none" href="index.html"
+            ><img
+              src="/assets/media/logo/logo-light.svg"
+              alt="PD Sports"
+              id="logo"
+              class="d-none d-md-block"
+          /></a>
+
+          <search class="containerSearch">
+            <a class="navbar-brand d-none d-md-block" href="index.html">
+              <img
+                src="/assets/media/logo/logo-light.svg"
+                alt="PD Sports"
+                id="logo"
+              />
+            </a>
+
+            <h2 class="secTitle">Bem-vindo(a) ao painel administrativo</h2>
+
+            <ul class="navbar-nav align-items-center">
+              <li class="nav-item d-block d-lg-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i
+                ></a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i>Tire suas dúvidas</a
+                >
+              </li>
+
+              <button
+                class="btn d-block d-md-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mobileSearchBox"
+                aria-expanded="false"
+                aria-controls="mobileSearchBox"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+
+              <li class="nav-item">
+                <a id="themeToggle" class="themeToggle" aria-pressed="false"
+                  ><i class="bi bi-moon-stars"></i
+                ></a>
+              </li>
+
+              
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-box-arrow-in-right"></i>Entrar</a
+                >
+              </li>
+            </ul>
+          </search>
+          
+        </div>
+      </nav>
+    </header>
+
+    <div class="admin-layout">
+
+      <!-- MENU -->
+      <nav class="admin-sidebar">
+        <ul
+          class="nav nav-pills flex-row flex-md-column w-100 justify-content-around justify-content-md-start gap-1 gap-md-3"
+        >
+          <li class="nav-item">
+            <a
+              class="nav-link active link text-center text-md-start"
+              href="#dashboard"
+            >
+              Desempenho
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link text-center text-md-start"
+              href="#gerenciarProdutos"
+            >
+              Gerenciar Produtos
+            </a>
+          </li>
+
+          <li class="nav-item d-none d-md-block mt-4">
+            <a class="nav-link text-danger" href="#loja">
+              Ir para Loja <i class="bi bi-box-arrow-right ms-2 fs-3"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <main class="admin-content p-3 p-md-4 flex-fill">
+
+        <div class="d-flex justify-content-end loja-mobile d-md-none">
+          <a href="#loja" class="text-danger text-decoration-none fw-medium fs-5">
+            Ir à loja <i class="bi bi-box-arrow-right ms-1"></i>
+          </a>
+        </div>
+
+        <!-- DESMPENHO -->
+        <section id="desempenho" class="w-100 h-100">
+          <h2 class="secTitle mb-4 d-none d-md-block">Desempenho da Loja</h2>
+        </section>
+
+        <!-- GERENCIAR PRODUTOS -->
+        <section
+          id="gerenciarProdutos"
+          class="flex-fill w-100  h-100 d-none"
+        >
+          <hgroup>
+            <h2 class="secTitle">Gerenciar Produtos</h2>
+          </hgroup>
+
+          <form class="d-flex gap-3 mb-4">
+            <input
+              type="text"
+              name="busca"
+              id="buscaInput"
+              placeholder="Buscar produto..."
+              class="form-control"
+            />
+            <button
+              class="btnPrimary"
+              data-bs-target="#criarProduto"
+              data-bs-toggle="modal"
+              type="button"
+            >
+              Adicionar produto
+            </button>
+          </form>
+
+          <div
+            id="listaProdutosAdmin"
+            class="d-flex flex-column w-100 mt-2"
+          ></div>
+        </section>
+      <section id="dashboard">
+        <h2 class="textCenter mainTitle">Dashboard de Vendas</h2>
+        <div class="row">
+          <article class="card">
+            <h3 class="subTitleCard">Mais vendidos nas ultimas 24h</h3>
+            <ol id="mostWanted24">
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">1. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="80" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">2. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="60" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">3. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="40" max="100"></progress>
+              </li>
+            </ol>
+          </article>
+          <article class="card cardFull">
+            <h3 class="subTitleCard"><span>234</span> vendas na última hora</h3>
+          </article>
+          <article class="card cardFull">
+            <h3 class="subTitleCard"><span>15432</span> vendas na última semana</h3>
+          </article>
+          <article class="card">
+            <h3 class="subTitleCard">Mais vendidos na semana</h3>
+            <ol id="mostWantedMonth">
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">1. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="80" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">2. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="60" max="100"></progress>
+              </li>
+              <li class="topWantedItem">
+                <div class="listText">
+                  <span class="pName">3. Produto 1</span>
+                  <span class="pSells">239 vendas</span> 
+                </div>
+                <progress value="40" max="100"></progress>
+              </li>
+            </ol>
+          </article>
+          
+        </div>
+      </section>
+    </main>
+
+        <!-- LOJA -->
+        <section id="loja" class="flex-fill p-4 d-none"></section>
+      </main>
+    </div>
+
+    <!-- MODAIS  -->
+    <div class="modal" id="criarProduto">
+      <div class="modal-dialog">
+        <form id="formCreateProduct" class="modal-content">
+          <div class="modal-header">
+            <h2>Criar Produto</h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="close"
+            ></button>
+          </div>
+          <div class="modal-body d-flex flex-column">
+            <h3>Informações</h3>
+            <div class="d-flex imagesForm">
+              <input
+                type="text"
+                placeholder="URL Imagem"
+                name="url"
+                id="urlImageInput"
+              />
+              <button type="button" class="btnPrimary" type="button">
+                Adicionar
+              </button>
+            </div>
+
+            <div class="imagesSec"></div>
+
+            <input
+              type="text"
+              name="name"
+              class="nameProdInput"
+              placeholder="Nome Produto"
+              required
+            />
+
+            <input
+              type="text"
+              name="brand"
+              class="brandProdInput"
+              placeholder="Marca do Produto"
+              required
+            />
+
+            <div class="d-flex">
+              <input
+                type="number"
+                step="any"
+                class="price"
+                name="price"
+                placeholder="Preço"
+                required
+              />
+              <input
+                type="number"
+                step="any"
+                class="discountPrice"
+                name="discountPrice"
+                placeholder="Preço com desconto"
+              />
+              <button type="button" class="btnOutline cleanDiscount">
+                Limpar desconto
+              </button>
+            </div>
+
+            <div class="d-flex variantsInputSec">
+              <input
+                type="text"
+                class="variantsInput"
+                placeholder="Variantes"
+              />
+              <button type="button" class="btnPrimary addVariant">
+                Adicionar
+              </button>
+            </div>
+
+            <div class="variantsSec d-flex gap-3"></div>
+
+            <div class="d-flex">
+              <select name="gender" class="genderSelect">
+                <option value="Unisex">Unisex</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+              </select>
+              <input
+                type="text"
+                name="category"
+                class="categoryInput"
+                placeholder="Categoria"
+              />
+            </div>
+
+            <input
+              type="text"
+              name="suitableFor"
+              placeholder="Indicado para:"
+              class="suitableForInput"
+            />
+
+            <h3>Características</h3>
+
+            <div class="d-flex characteristicsInputSec">
+              <input
+                type="text"
+                class="titleInputCharacteristics"
+                name="titulo"
+                placeholder="Título"
+              />
+              <input
+                type="text"
+                class="valueInputCharacteristics"
+                name="valor"
+                placeholder="Valor"
+              />
+              <button class="btnPrimary" type="button">Adicionar</button>
+            </div>
+
+            <div class="characteristicsSec"></div>
+
+            <textarea
+              name="descriptionInput"
+              placeholder="Descrição"
+              class="descriptionInput"
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btnPrimary">Criar Produto</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <aside
+      class="modal"
+      id="editarProduto"
+      aria-labelledby="tituloModalEditar"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <form id="formEditarProduto" class="modal-content">
+          <header class="modal-header">
+            <h2 id="tituloModalEditar">Editar Produto</h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </header>
+
+          <section class="modal-body d-flex flex-column">
+            <fieldset class="border-0 p-0 m-0 d-flex flex-column gap-3">
+              <legend class="h3 border-0">Informações</legend>
+
+              <div class="d-flex flex-column gap-2">
+                <label for="editUrlImageInput" class="fw-bold"
+                  >URL da Imagem</label
+                >
+                <div class="d-flex imagesForm gap-3">
+                  <input
+                    type="text"
+                    id="editUrlImageInput"
+                    name="url"
+                    placeholder="Ex: https://link-da-imagem.jpg"
+                    class="form-control"
+                  />
+                  <button type="button" class="btnPrimary">Adicionar</button>
+                </div>
+                <div class="imagesSec"></div>
+              </div>
+
+              <div class="d-flex flex-column gap-1">
+                <label for="editName" class="fw-bold">Nome do Produto</label>
+                <input
+                  type="text"
+                  id="editName"
+                  name="name"
+                  class="nameProdInput form-control"
+                  placeholder="Nome do Produto"
+                  required
+                />
+              </div>
+
+              <div class="d-flex flex-column gap-1">
+                <label for="editBrand" class="fw-bold">Marca do Produto</label>
+                <input
+                  type="text"
+                  id="editBrand"
+                  name="brand"
+                  class="brandProdInput form-control"
+                  placeholder="Marca do Produto"
+                  required
+                />
+              </div>
+
+              <div class="row g-2">
+                <div class="col-md-4">
+                  <label for="editPrice" class="fw-bold">Preço</label>
+                  <input
+                    type="number"
+                    id="editPrice"
+                    name="price"
+                    step="any"
+                    class="price form-control"
+                    placeholder="0.00"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <label for="editDiscount" class="fw-bold"
+                    >Preço com Desconto</label
+                  >
+                  <input
+                    type="number"
+                    id="editDiscount"
+                    name="discountPrice"
+                    step="any"
+                    class="discountPrice form-control"
+                    placeholder="0.00"
+                  />
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                  <button type="button" class="btnOutline cleanDiscount w-100">
+                    Limpar desconto
+                  </button>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="border-0 p-0 m-0 mt-4 d-flex flex-column gap-3">
+              <legend class="visually-hidden">Categorização e Variantes</legend>
+
+              <div class="d-flex flex-column gap-1">
+                <label for="editVariants" class="fw-bold">Variantes</label>
+                <div class="d-flex variantsInputSec gap-3">
+                  <input
+                    type="text"
+                    id="editVariants"
+                    class="variantsInput form-control"
+                    placeholder="Ex: P, M, G"
+                  />
+                  <button type="button" class="btnPrimary addVariant">
+                    Adicionar
+                  </button>
+                </div>
+                <div class="variantsSec d-flex gap-2 flex-wrap"></div>
+              </div>
+
+              <div class="row g-2">
+                <div class="col-md-6">
+                  <label for="editGender" class="fw-bold">Gênero</label>
+                  <select
+                    id="editGender"
+                    name="gender"
+                    class="genderSelect form-select"
+                  >
+                    <option value="Unisex">Unisex</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="editCategory" class="fw-bold">Categoria</label>
+                  <input
+                    type="text"
+                    id="editCategory"
+                    name="category"
+                    class="categoryInput form-control"
+                    placeholder="Ex: Calçados"
+                  />
+                </div>
+              </div>
+
+              <div class="d-flex flex-column gap-1">
+                <label for="editSuitable" class="fw-bold">Indicado para:</label>
+                <input
+                  type="text"
+                  id="editSuitable"
+                  name="suitableFor"
+                  placeholder="Ex: Corrida, Academia"
+                  class="suitableForInput form-control"
+                />
+              </div>
+            </fieldset>
+
+            <fieldset class="border-0 p-0 m-0 mt-4 d-flex flex-column gap-3">
+              <legend class="h3 border-0">Características</legend>
+              <div class="d-flex flex-column gap-2">
+                <div class="d-flex characteristicsInputSec gap-2">
+                  <div class="flex-grow-1">
+                    <label for="charTitle" class="visually-hidden"
+                      >Título da Característica</label
+                    >
+                    <input
+                      type="text"
+                      id="charTitle"
+                      class="titleInputCharacteristics form-control"
+                      placeholder="Título (Ex: Material)"
+                    />
+                  </div>
+                  <div class="flex-grow-1">
+                    <label for="charValue" class="visually-hidden"
+                      >Valor da Característica</label
+                    >
+                    <input
+                      type="text"
+                      id="charValue"
+                      class="valueInputCharacteristics form-control"
+                      placeholder="Valor (Ex: Poliéster)"
+                    />
+                  </div>
+                  <button class="btnPrimary" type="button">Adicionar</button>
+                </div>
+                <div class="characteristicsSec d-flex flex-wrap gap-2"></div>
+              </div>
+
+              <div class="d-flex flex-column gap-1">
+                <label for="editDesc" class="fw-bold">Descrição</label>
+                <textarea
+                  id="editDesc"
+                  name="descriptionInput"
+                  placeholder="Descreva o produto aqui..."
+                  class="descriptionInput form-control"
+                  rows="4"
+                ></textarea>
+              </div>
+            </fieldset>
+          </section>
+
+          <footer class="modal-footer">
+            <button type="submit" class="btnPrimary px-4">
+              Salvar Alterações
+            </button>
+          </footer>
+        </form>
+      </div>
+    </aside>
+
+    <script src="js/script.js" type="module"></script>
+  </body>
+</html>

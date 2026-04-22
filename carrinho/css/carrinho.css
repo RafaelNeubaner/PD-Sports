@@ -1,0 +1,403 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#carrinho {
+  padding: 20px 64px;
+  gap: 20px;
+  flex: 1;
+}
+
+footer {
+  margin-top: auto;
+}
+
+.cartItens {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+  max-width: 100%;
+}
+
+.cartItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+  vertical-align: middle;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+
+.cartItem > .prodPrice {
+  margin-top: auto;
+}
+
+.cartItem img {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.quantityControl .controls {
+  display: flex;
+  align-items: center;
+  background-color: #e9e9e9;
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+}
+
+.quantityControl span {
+  padding: 0 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--txtDark);
+}
+
+.quantityControl .btnOutline:hover {
+  background-color: #d1d1d1 !important;
+  color: black !important;
+  border: 0 !important;
+}
+
+.quantityControl button {
+  padding: 1px 9px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--txtDark);
+  border: 0;
+  background-color: var(--branco-cinzento);
+}
+
+/* FORMS - Dados, Endereço e Forma de Pagamento */
+#formaPagamento > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+#formaPagamento > div .pagamento {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+#formaPagamento > div .pagamento p {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.custom-radio {
+  appearance: none;
+
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--secondary);
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  margin: 0;
+  flex-shrink: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-radio:checked::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: var(--primary);
+
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.input-icon-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon-wrapper input.form-control {
+  padding-right: 45px;
+  border-radius: 8px;
+  height: 50px;
+}
+
+.input-icon-wrapper i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+
+  pointer-events: none;
+}
+
+#formulario {
+  width: 100%;
+  background-color: var(--bg);
+  display: block;
+}
+
+#formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+#formulario legend {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+#formulario label {
+  display: none;
+}
+
+#dadosCliente {
+  display: flex;
+  flex-direction: column;
+}
+
+#dadosCliente > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 2.4rem 0 1.2rem 0;
+}
+
+#dadosCliente > .d-flex,
+#endereco > .d-flex,
+#formaPagamento > .d-flex {
+  flex-direction: row;
+  gap: 1.2rem !important;
+}
+
+#endereco {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+#endereco #cep {
+  margin-top: 1.2rem;
+}
+
+#endereco > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+@media (min-width: 768px) {
+  #formulario label {
+    font-size: 1.4rem;
+  }
+
+  #formulario input {
+    font-size: 1.4rem;
+  }
+
+  #formulario {
+    max-width: 512px;
+  }
+
+  #formulario label {
+    display: block;
+  }
+}
+
+.remove {
+  margin-left: 10px;
+}
+
+.quantityControl span {
+  margin: 0 10px;
+  font-size: 16px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.red {
+  color: var(--primary);
+}
+
+.resumo {
+  width: 30%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 576px) {
+  #carrinho {
+    padding: 60px 16px;
+    margin-bottom: 60px;
+  }
+
+  .cartItens {
+    display: flex;
+    flex-direction: column;
+    max-width: none;
+  }
+
+  #formulario {
+    padding-bottom: 100px;
+  }
+
+  .resumo {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 20px 20px;
+    width: 100%;
+    max-width: none;
+    background-color: var(--branco-cinzento);
+    box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.418);
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  #carrinho {
+    padding: 20px 16px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+  .cartItens {
+    grid-template-columns: 1fr;
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 992px) {
+  #carrinho {
+    padding: 20px 128px;
+  }
+  .cartItens {
+    grid-template-columns: 1fr 1fr;
+    max-width: 85%;
+  }
+}
+
+#formFrete {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+}
+
+#formFrete #cepInput {
+  flex: 1;
+  min-width: 0;
+}
+
+#formFrete .btnCalcularFrete {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+ul {
+  padding: 0;
+}
+
+.resumo > h4 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.freteItem * {
+  margin: 0;
+  padding: 0;
+}
+
+.freteItem img {
+  height: 18px;
+}
+
+.freteItem input {
+  min-width: none;
+  width: fit-content;
+}
+
+.precoTotal {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.buyNowButton {
+  box-shadow: 0 8px 28px #e1060073;
+  height: 60px;
+}
+
+.modalCompraConcluida {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 1000;
+}
+
+#carrinho.checkout-completed > :not(.modalCompraConcluida) {
+  display: none !important;
+}
+
+#carrinho.checkout-completed .modalCompraConcluida {
+  display: flex;
+}
+
+.modalCompraConcluida i {
+  font-size: 48px;
+}
+
+.modalCompraConcluida a {
+  border-radius: 8px;
+}
+
+.modalCompraConcluida div {
+  display: flex;
+  gap: 24px;
+}
+
+@media (max-width: 576px) {
+  .modalCompraConcluida {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .modalCompraConcluida div {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 992px) {
+  .modalCompraConcluida {
+    width: 90%;
+    padding: 20px;
+  }
+}
