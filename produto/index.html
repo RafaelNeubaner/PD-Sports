@@ -42,6 +42,7 @@
 
     <!-- Custom JS -->
     <script src="/js/darkmode.js" defer type="module"></script>
+    <script type="module" src="/carrinho/js/carrinho.js" defer></script>
     <script src="/produto/js/script.js" defer type="module"></script>
     <script src="/js/product-card.js" defer type="module"></script>
     <script src="/js/section-carousel.js" defer type="module"></script>
@@ -121,8 +122,9 @@
                 ></a>
               </li>
 
-              <li class="nav-item">
-                <a href="#" class="nav-link"><i class="bi bi-cart3"></i></a>
+              <li class="nav-item position-relative">
+                <a href="/carrinho/index.html" class="nav-link"><i class="bi bi-cart3"></i></a>
+                <span class="cart-badge">0</span>
               </li>
               <li class="nav-item d-none d-md-block iconProfile">
                 <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
@@ -246,10 +248,10 @@
 
         <!-- COMPRAR PRODUTO -->
         <aside class="d-flex flex-column gap-4 productInfos">
-          <h3 class="productName cardTitle"></h3>
+          <h3 class="productName cardTitle" id="nomeProduto"></h3>
           <div>
             <p class="productFullPrice"></p>
-            <p class="productPrice cardTitle"></p>
+            <p class="productPrice cardTitle" id="preco"></p>
           </div>
           <p class="productPriceParc">
             ou <span class="priceTotalParc"></span> em
@@ -269,22 +271,24 @@
           <button class="btnPrimary buyNowButton">
             <img src="/assets/media/icons/lightning.svg" /> Comprar Agora
           </button>
-          <button class="btnOutline mb24">Adicionar ao Carrinho</button>
+          <button class="btnOutline mb24" id="addCart">
+            Adicionar ao Carrinho
+          </button>
           <div class="divider"></div>
 
           <form id="formFrete" class="d-flex flex-column flex-wrap gap-3">
             <h3>Calcular Frete</h3>
+            <template id="tempFreteOption">
+              <li class="freteItem d-flex gap-3">
+                <input type="radio" name="freteOption" class="freteOption">
+                <img src="" alt="">
+                <label for="" class="d-flex flex-row w-100 align-items-center justify-content-between">
+                  <h4></h4>
+                  <p></p>
+                </label>
+              </li>
+            </template>
             <ul class="fretesOptions d-flex flex-column gap-4">
-              <template id="tempFreteOption">
-                <li class="freteItem d-flex gap-3">
-                  <input type="radio" name="freteOption" class="freteOption">
-                  <img src="" alt="">
-                  <label for="" class="d-flex flex-row w-100 align-items-center justify-content-between">
-                    <h4></h4>
-                    <p></p>
-                  </label>
-                </li>
-              </template>
             </ul>
             <input placeholder="Digite seu CEP" name="CEP" type="text" id="cepInput" />
             <button type="button" class="btnOutline mb24 btnCalcularFrete">Calcular</button>
@@ -347,6 +351,15 @@
           </button>
         </div>
       </section>
+
+      <article id="modalCart">
+        <h2>Produto Adicionado!</h2>
+        <div class="modalCartContent"></div>
+        <div class="d-flex gap-3 mt-4">
+          <button class="btnOutline modalRemoveButton">Remover</button>
+          <button class="btnPrimary modalOkButton">OK</button>
+        </div>
+      </article>
     </main>
 
     <footer class="bgHeader">

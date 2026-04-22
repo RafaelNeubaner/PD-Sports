@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PD Sports | Carrinho</title>
+    <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/carrinho/css/carrinho.css" />
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom JS -->
+    <script type="module" src="/carrinho/js/carrinho.js" defer></script>
+    <script src="/js/darkmode.js"></script>
+    <script src="/carrinho/js/validacao-cartao.js"></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <a class="navbar-brand d-block d-md-none" href="/index.html"
+            ><img
+              src="/assets/media/logo/logo-light.svg"
+              alt="PD Sports"
+              id="logo"
+          /></a>
+
+          <search class="containerSearch">
+            <a class="navbar-brand d-none d-md-block" href="/index.html">
+              <img
+                src="/assets/media/logo/logo-light.svg"
+                alt="PD Sports"
+                id="logo"
+              />
+            </a>
+
+            <form class="d-none d-md-flex position-relative inputForm">
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+                aria-label="Pesquisar produtos"
+              />
+              <button class="btn" type="button" id="button-search-desktop">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+
+            <ul class="navbar-nav align-items-center">
+              <li class="nav-item d-block d-lg-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i
+                ></a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i>Tire suas dúvidas</a
+                >
+              </li>
+
+              <button
+                class="btn d-block d-md-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mobileSearchBox"
+                aria-expanded="false"
+                aria-controls="mobileSearchBox"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+
+              <li class="nav-item">
+                <a id="themeToggle" class="themeToggle" aria-pressed="false"
+                  ><i class="bi bi-moon-stars"></i
+                ></a>
+              </li>
+              
+              <li class="nav-item position-relative">
+                <a href="/carrinho/index.html" class="nav-link"><i class="bi bi-cart3"></i></a>
+                <span class="cart-badge">0</span>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-box-arrow-in-right"></i>Entrar</a
+                >
+              </li>
+            </ul>
+          </search>
+
+          <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
+            <form>
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+              />
+              <button class="btn" type="button">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+          </div>
+
+          <menu class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item d-block d-sm-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
+                    class="bi bi-chevron-right ms-1"
+                  ></i
+                ></a>
+              </li>
+
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=esportes"
+                  >Esportes</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?gender=masculino"
+                  >Masculino</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?gender=feminino"
+                  >Feminino</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?genero=infantil"
+                  >Infantil</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?promocao=ofertas"
+                  >Promoções</a
+                >
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=futebol"
+                  >Futebol</a
+                >
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=corrida"
+                  >Corrida</a
+                >
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link" href="#">Marcas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sobre nós</a>
+              </li>
+            </ul>
+          </menu>
+        </div>
+      </nav>
+    </header>
+
+    <main id="carrinho" class="d-flex justify-content-between gap-3">
+      <section class="d-flex flex-column gap-3">
+        <h1 class="red mainTitle">Carrinho ( <span class="cart-badge"></span> )</h1>
+        <p class="carrinho-vazio">Seu carrinho está vazio.</p>
+        <section class="cartItens"></section>
+
+        <!-- FORMS - Dados, Endereço e Forma de Pagamento -->
+        <section id="formulario">
+          <form>
+            <section id="dadosCliente">
+              <legend>Dados do Cliente</legend>
+              <div class="d-flex w-100">
+                <fieldset class="w-100">
+                  <label for="nome" class="form-label">Nome</label>
+                  <input
+                    type="text"
+                    class="form-control w-100"
+                    id="nome"
+                    placeholder="Primeiro nome"
+                  />
+                </fieldset>
+
+                <fieldset class="w-100">
+                  <label for="sobrenome" class="form-label">Sobrenome</label>
+                  <input
+                    type="text"
+                    class="form-control w-100"
+                    id="sobrenome"
+                    placeholder="Sobrenome"
+                  />
+                </fieldset>
+              </div>
+
+              <fieldset>
+                <label for="cpf" class="form-label">CPF</label>
+                <input
+                  type="cpf"
+                  class="form-control"
+                  id="cpf"
+                  placeholder="Informe seu CPF"
+                />
+              </fieldset>
+            </section>
+
+            <section id="endereco">
+              <legend>Endereço de Entrega</legend>
+
+              <fieldset class="w-100">
+                <label for="cep" class="form-label">CEP</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cepInput"
+                  placeholder="Informe seu CEP"
+                />
+              </fieldset>
+
+              <div class="d-flex flex-column flex-md-row w-100">
+                <fieldset class="w-100">
+                  <label for="rua" class="form-label">Rua</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="ruaInput"
+                    placeholder="Rua"
+                  />
+                </fieldset>
+
+                <fieldset class="w-100">
+                  <label for="bairro" class="form-label">Bairro</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="bairroInput"
+                    placeholder="Bairro"
+                  />
+                </fieldset>
+                <fieldset class="w-100">
+                  <label for="numero" class="form-label">Número</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="numeroInput"
+                    placeholder="Número"
+                    min="1"
+                  />
+                </fieldset>
+              </div>
+
+              <fieldset class="w-100">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cidadeInput"
+                  placeholder="Informe sua Cidade"
+                />
+              </fieldset>
+              <fieldset class="w-100">
+                <label for="estado" class="form-label">Estado</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="estadoInput"
+                  placeholder="Informe seu Estado"
+                />
+              </fieldset>
+            </section>
+
+            <section id="formaPagamento">
+              <legend>Forma de Pagamento</legend>
+
+              <div class="d-flex w-100">
+                <fieldset class="pagamento d-flex align-items-center">
+                  <input
+                    type="radio"
+                    name="metodoPagamento"
+                    id="pix"
+                    class="custom-radio"
+                    checked
+                  />
+                  <i class="bi bi-x-diamond-fill fs-2" style="color: #00bdae"></i>
+                  <p>Pix</p>
+                </fieldset>
+
+                <fieldset class="pagamento d-flex align-items-center">
+                  <input
+                    type="radio"
+                    name="metodoPagamento"
+                    id="cartao"
+                    class="custom-radio"
+                  />
+                  <i class="bi bi-credit-card fs-2"></i>
+                  <p>Cartão de Crédito</p>
+                </fieldset>
+              </div>
+
+              <fieldset id="camposCartao" class="d-flex flex-column gap-3 w-100">
+                <div class="input-icon-wrapper">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="n-cartao"
+                    placeholder="Nº do Cartão"
+                  />
+                  <i class="bi bi-credit-card-2-front"></i>
+                </div>
+
+                <div class="d-flex gap-3 w-100">
+                  <div class="input-icon-wrapper w-50">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="vencimento"
+                      placeholder="Data Vencimento"
+                    />
+                    <i class="bi bi-calendar"></i>
+                  </div>
+
+                  <div class="input-icon-wrapper w-50">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cvv"
+                      placeholder="CVV"
+                    />
+                    <i class="bi bi-key-fill"></i>
+                  </div>
+                </div>
+              </fieldset>
+            </section>
+          </form>
+        </section>
+      </section>
+
+      <aside class="resumo">
+        <h4>Subtotal: <span class="span2">R$ 8,97</span></h4>
+        <!--<form id="formFrete" class="d-flex gap-3">
+          <input placeholder="Digite seu CEP" class="flex-grow-1" name="CEP" type="text" id="cepInput">
+          <button class="btnPrimary btnCalcularFrete">Calcular</button>
+        </form>-->
+        <template id="tempFreteOption">
+          <li class="freteItem d-flex gap-3">
+            <input type="radio" name="freteOption" class="freteOption">
+            <img src="" alt="">
+            <label for="" class="d-flex flex-row w-100 align-items-center justify-content-between">
+              <h4></h4>
+              <p></p>
+            </label>
+          </li>
+        </template>
+        <ul class="fretesOptions d-flex flex-column gap-4">
+        </ul>
+        <h4>Entrega: <span class="precoFrete">R$ 0,00</span></h4>
+        <h4>Total: <span class="precoTotal">R$ 0,00</span></h4>
+
+        <button class="btnPrimary buyNowButton">
+          <img src="/assets/media/icons/lightning.svg" /> Finalizar Compra
+        </button>
+      </aside>
+    </main>
+
+    <footer class="bgHeader">
+      <p class="textCenter font20">
+        © PD Sports 2026 | Desenvolvido por Pablo, Pedro e Rafael.
+      </p>
+    </footer>
+  </body>
+</html>
