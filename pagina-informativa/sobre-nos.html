@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="icon" href="assets/media/icons/fav-icon.png" type="image/png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/pagina-informativa/css/sobre-nos.css" />
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom JS -->
+    <script src="/pagina-informativa/js/script.js" defer></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <a class="navbar-brand d-block d-md-none" href="/index.html"
+            ><img
+              src="../assets/media/logo/logo-light.svg"
+              alt="PD Sports"
+              id="logo"
+          /></a>
+
+          <search class="containerSearch">
+            <a class="navbar-brand d-none d-md-block" href="/index.html">
+              <img
+                src="../assets/media/logo/logo-light.svg"
+                alt="PD Sports"
+                id="logo"
+              />
+            </a>
+
+            <form
+              action="/busca/busca-produto.html"
+              class="d-none d-md-flex position-relative inputForm"
+            >
+              <input
+                type="text"
+                name="query"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+                aria-label="Pesquisar produtos"
+              />
+              <button class="btn" type="button" id="button-search-desktop">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+
+            <ul class="navbar-nav align-items-center">
+              <li class="nav-item d-block d-lg-none">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-question-circle"></i
+                ></a>
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a href="/pagina-informativa/faq.html" class="nav-link"
+                  ><i class="bi bi-question-circle"></i>Tire suas dúvidas</a
+                >
+              </li>
+
+              <button
+                class="btn d-block d-md-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mobileSearchBox"
+                aria-expanded="false"
+                aria-controls="mobileSearchBox"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+
+              <li class="nav-item">
+                <a id="themeToggle" class="themeToggle" aria-pressed="false"
+                  ><i class="bi bi-moon-stars"></i
+                ></a>
+              </li>
+
+              <li class="nav-item position-relative">
+                <a href="/carrinho/index.html" class="nav-link"
+                  ><i class="bi bi-cart3"></i
+                ></a>
+                <span class="cart-badge">0</span>
+              </li>
+              <li class="nav-item d-none d-md-block iconProfile">
+                <a href="#" class="nav-link"><i class="bi bi-person"></i></a>
+              </li>
+              <li class="nav-item d-none d-md-block loginLink">
+                <a href="/login/index.html" class="nav-link"
+                  ><i class="bi bi-box-arrow-in-right"></i>Entrar</a
+                >
+              </li>
+            </ul>
+          </search>
+
+          <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
+            <form>
+              <input
+                type="text"
+                class="form-control pe-5"
+                placeholder="O que você está procurando?"
+              />
+              <button class="btn" type="button">
+                <i class="bi bi-search"></i>
+              </button>
+            </form>
+          </div>
+
+          <menu class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item d-block d-sm-none loginLink">
+                <a href="#" class="nav-link"
+                  ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
+                    class="bi bi-chevron-right ms-1"
+                  ></i
+                ></a>
+              </li>
+
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=esportes"
+                  >Esportes</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?gender=masculino"
+                  >Masculino</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?gender=feminino"
+                  >Feminino</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?genero=infantil"
+                  >Infantil</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?promocao=ofertas"
+                  >Promoções</a
+                >
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=futebol"
+                  >Futebol</a
+                >
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a
+                  class="nav-link"
+                  href="/busca/busca-produto.html?categoria=corrida"
+                  >Corrida</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pagina-informativa/sobre-nos.html">Sobre nós</a>
+              </li>
+            </ul>
+          </menu>
+        </div>
+      </nav>
+    </header>
+
+    <main class="d-flex flex-column gap-5">
+      <section class="heros">
+
+        <section class="heroEsportes">
+          <img class="w-md-100" src="../assets/media/images/sobre/esportes_sobre_nos.png" alt="Pessoas praticando vários esportes">
+          <div class="d-flex flex-column flex-md-row justify-content-around align-items-center">
+            <h2 class="subTitle">O esporte não tem limites. Nós também não!</h2>
+            <hgroup class="text-start text-md-end">
+              <p>Respiramos performance e somos o destino definitivo para atletas de todos os níveis.</p>
+              <p>Com variedade em mais de 15 modalidades, entregamos tecnologia e design para você evoluir e superar seus limites.</p>
+              <p>Seja onde estiver, a PD Sports está com você em cada movimento.</p>
+            </hgroup>
+          </div>
+        </section>
+
+        <section class="heroEsportes d-none d-md-block">
+          <img class="w-100" src="../assets/media/images/sobre/inovacao_sobre_nos.png" alt="Pessoas praticando vários esportes">
+          <div class="d-flex flex-column flex-md-row justify-content-around align-items-center">
+            <hgroup class="text-start">
+              <p>Conectamos você rapidamente às melhores marcas esportivas, cuidando de tudo para que seu foco seja apenas o treino. </p>
+              <p>Usamos tecnologia para oferecer uma experiência de compra ágil, intuitiva e segura.</p>
+            </hgroup>
+            <h2>Inovação que impulsiona o seu jogo.</h2>
+          </div>
+        </section>
+      </section>
+
+      <section class="missaoSection d-flex flex-column align-items-center justify-content-between">
+        <h2 class="sectTitle">Missão Visão e Valores</h2>
+        <section>
+          <div class="redSection">
+            <div class="missaoContent d-flex flex-column flex-md-row gap-3 justify-content-center">
+              <article class="cardMissao">
+                <h4 class="subTitleCard">Missão</h4>
+                <p>Impulsionar o potencial de cada atleta através do acesso facilitado à melhor tecnologia esportiva do mundo.</p>
+              </article>
+              <article class="cardMissao">
+                <h4 class="subTitleCard">Visão</h4>
+                <p>Ser a plataforma digital de referência global em agilidade e curadoria especializada para apaixonados por esporte.</p>
+              </article>
+              <article class="cardMissao">
+                <h4 class="subTitleCard">Valores</h4>
+                <p>Velocidade, Qualidade, Superação, Ética.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- MARCAS -->
+      <section class="marcas">
+        <hgroup>
+          <h2 class="sectTitle mb-0">Nossas Marcas Parceiras</h2>
+        </hgroup>
+
+        <div class="containerMarcas">
+          <article>
+            <img
+              src="/assets/media/images/home/marcas/marca-nike.png"
+              alt="Nike"
+              class="logoMarca"
+            />
+          </article>
+
+          <article>
+            <img
+              src="/assets/media/images/home/marcas/marca-puma.png"
+              alt="Puma"
+              class="logoMarca"
+            />
+          </article>
+
+          <article>
+            <img
+              src="/assets/media/images/home/marcas/marca-adidas.png"
+              alt="Adidas"
+              class="logoMarca"
+            />
+          </article>
+
+          <article>
+            <img
+              src="/assets/media/images/home/marcas/marca-new-balance.png"
+              alt="New Balance"
+              class="logoMarca"
+            />
+          </article>
+
+          <article>
+            <img
+              src="/assets/media/images/home/marcas/marca-under-armour.png"
+              alt="Under Armour"
+              class="logoMarca"
+            />
+          </article>
+
+          <article>
+            <img
+              src="/assets/media/images/home/marcas/marca-umbro.png"
+              alt="Umbro"
+              class="logoMarca"
+            />
+          </article>
+        </div>
+      </section>
+
+      <section class="pdsportsSection">
+        <h2 class="sectTitle">Só a PDSports tem</h2>
+        <div class="w-100 d-flex flex-column flex-md-row gap-3 justify-content-around">
+          <article class="cardMissao">
+            <img src="../assets/media/images/sobre/sports.png" alt="Icon Modalidades Esportivas">
+            <h4 class="subTitleCard">Diversas Modalidades</h4>
+            <p>Tudo para o seu jogo. Com mais de 15 modalidades esportivas em nosso catálogo, oferecemos uma curadoria especializada de equipamentos e vestuário para atletas de todos os níveis. Seja qual for a sua paixão, você encontra aqui.</p>
+          </article>
+          <article class="cardMissao">
+            <img src="../assets/media/images/sobre/box.png" alt="Icon Caixa de entrega">
+            <h4 class="subTitleCard">Velocidade de entrega</h4>
+            <p>O seu treino não pode esperar. Nossa logística foi pensada para quem tem pressa de vencer, garantindo um envio ágil e seguro. Compre hoje e receba seus produtos em tempo recorde direto na sua porta.</p>
+          </article>
+          <article class="cardMissao">
+            <img src="../assets/media/images/sobre/shield.png" alt="Icon Escudo">
+            <h4 class="subTitleCard">Valores</h4>
+            <p>Alta performance com o melhor custo-benefício. Trabalhamos com preços competitivos, condições facilitadas e promoções exclusivas para que o seu único foco seja quebrar seus próprios recordes.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="fraseSec p-5 d-flex justify-content-center">
+        <p>“Nossa paixão é te levar ao topo. Seu potencial é infinito. Movimente-se.”</p>
+      </section>
+    </main>
+
+    <footer class="bgHeader">
+      <p class="textCenter font20">
+        © PD Sports 2026 | Desenvolvido por Pablo, Pedro e Rafael.
+      </p>
+    </footer>
+  </body>
+</html>
