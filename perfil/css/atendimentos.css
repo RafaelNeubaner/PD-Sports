@@ -44,7 +44,7 @@ main {
   list-style: none;
   margin-bottom: 0;
 
-  flex: 1; 
+  flex: 1;
 }
 
 body.darkMode .atendimento-card ul {
@@ -57,7 +57,7 @@ body.darkMode .atendimento-card ul {
   font-weight: 200;
 }
 
-.atendimento-card ul li  strong {
+.atendimento-card ul li strong {
   font-size: 1.4rem;
   font-weight: 600;
 }
@@ -83,8 +83,8 @@ body.darkMode .atendimento-card ul {
   }
 
   #atendimento .btnPrimary {
-  padding: 1.2rem 2.4rem;
-  max-width: fit-content;
-  font-size: 1.4rem;
-}
+    padding: 1.2rem 2.4rem;
+    max-width: fit-content;
+    font-size: 1.4rem;
+  }
 }
