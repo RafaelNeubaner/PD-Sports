@@ -40,11 +40,12 @@
     ></script>
 
     <script src="js/darkmode.js" defer></script>
-    <script src="js/carrossel.js" defer></script>
+    <script src="js/destaque-categorias.js" defer></script>
     <script type="module" src="/carrinho/js/carrinho.js" defer></script>
     <script src="js/section-carousel.js" defer></script>
     <script type="module" src="js/product-card.js" defer></script>
     <script type="module" src="js/header.js" defer></script>
+    <script type="module" src="js/newsletter.js" defer></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -566,6 +567,7 @@
         <form
           action=""
           class="d-flex flex-column flex-lg-row justify-content-between gap-5"
+          id="formNewsletter"
         >
           <div class="col-12 col-lg-4">
             <h2>Receba ofertas e descontos exclusivos</h2>
@@ -584,11 +586,14 @@
               class="col-5 col-lg-3"
               placeholder="Digite seu Nome"
               name="name"
+              required
             />
             <input
               class="col-5 col-lg-3"
               placeholder="Digite seu Email"
               name="email"
+              required
+              type="email"
             />
             <button class="btnOutline col-12 col-lg-3">Cadastrar</button>
           </div>
