@@ -1,4 +1,4 @@
-import {calcularFrete, getLocationByCEP} from '../../js/fretes/useFretes.js'
+import { calcularFrete, getLocationByCEP } from '../../js/fretes/useFretes.js'
 
 const CART_STORAGE_KEY = 'pd-sports-cart';
 
@@ -252,7 +252,7 @@ function subtrairItem(event) {
             cartApi.removeFromCart(item.id, 1, item.variant);
         }
     }
-    
+
     if (qtd === 0) {
         produto.remove();
         if (cartApi) {
@@ -310,23 +310,23 @@ function atualizarSubtotal() {
     subtotal = 0;
     document.querySelectorAll('.cartItem').forEach(produto => {
         let subtotalProduto = parseFloat(produto.querySelector('.subTotal').textContent.replace('R$', '').replace(',', '.'));
-            subtotal += subtotalProduto;
+        subtotal += subtotalProduto;
     });
     let subtotalElement = document.querySelector('.resumo .span2');
     if (!subtotalElement) return;
     subtotalElement.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
 }
 
-function calcularTotal(){
-    let total = 0 
+function calcularTotal() {
+    let total = 0
     console.log(typeof total)
-    if(subtotal) total += subtotal;
+    if (subtotal) total += subtotal;
     console.log(typeof total)
     console.log(typeof freteVal)
-    if(freteVal) total += freteVal;
+    if (freteVal) total += freteVal;
     console.log(typeof total)
 
-    document.querySelector(".precoTotal").textContent = total.toLocaleString("pt-BR", {currency: "BRL", style:"currency"})
+    document.querySelector(".precoTotal").textContent = total.toLocaleString("pt-BR", { currency: "BRL", style: "currency" })
     console.log(total)
 }
 
@@ -341,7 +341,7 @@ if (carrinho && botaoFinalizarCompra) {
         const audioCompraFinalizada = document.getElementById('audio-compra-finalizada');
         if (audioCompraFinalizada) {
             audioCompraFinalizada.currentTime = 0;
-            audioCompraFinalizada.play().catch(() => {});
+            audioCompraFinalizada.play().catch(() => { });
         }
 
         if (cartApi) {
@@ -417,25 +417,33 @@ document.querySelector("#formFrete").addEventListener('submit', (event) => {
     calculateFrete()
 })*/
 
-const savedCEP = localStorage.getItem("LAST_CEP")
-const cepInput = document.querySelector("#cepInput")
-cepInput.addEventListener('blur', async ()=>{
-    calculateFrete()
-    getCEP()
-})
-let selectedFrete = null
-cepInput.value=savedCEP
 
-if(cepInput.value){
-    calculateFrete()
-    getCEP()
-}
+const cepInput = document.querySelector("#cepInput")
+var freteTemp
+window.addEventListener("DOMContentLoaded", () => {
+    const savedCEP = localStorage.getItem("LAST_CEP")
+    cepInput.addEventListener('blur', async () => {
+        getCEP()
+        calculateFrete()
+    })
+    let selectedFrete = null
+    cepInput.value = savedCEP
+    freteTemp = document.getElementById("tempFreteOption")
+
+    if (cepInput.value) {
+        calculateFrete()
+        getCEP()
+    }
+
+})
 
 var isLoading = false;
 async function calculateFrete() {
+    console.log(freteTemp)
     if (!cepInput || !freteTemp || !cartApi) return;
     if (isLoading) return
     const cep = cepInput.value
+    console.log(cep)
     if (!cep) return;
 
     localStorage.setItem("LAST_CEP", cep)
@@ -448,27 +456,27 @@ async function calculateFrete() {
     fretesSec.replaceChildren()
     fretesSec.textContent = "Carregando..."
 
-    if (!Array.isArray(fretesOptions) || fretesOptions.length === 0) {
-        fretesSec.textContent = 'Nao foi possivel calcular o frete.';
-        return;
-    }
     //document.querySelector(".btnCalcularFrete").textContent = "Carregando..."
     const fretesOptions = await calcularFrete(cep, cartApi.getTotalItens())
     isLoading = false
     //document.querySelector(".btnCalcularFrete").textContent = "Calcular"
+    if (!Array.isArray(fretesOptions) || fretesOptions.length === 0) {
+        fretesSec.textContent = 'Nao foi possivel calcular o frete.';
+        return;
+    }
 
     fretesSec.replaceChildren()
     fretesOptions.forEach(frete => {
         if (frete.error) return;
         const li = freteTemp.content.cloneNode(true)
-        
+
         li.querySelector("input").id = `${frete.name}Op`
         li.querySelector("label").setAttribute("for", `${frete.name}Op`)
         li.querySelector("img").src = frete.company.picture
         li.querySelector("h4").textContent = frete.name
         li.querySelector("p").textContent = `${frete.currency} ${frete.price.toString().replace(".", ",")}`
 
-        li.querySelector("input").addEventListener("change", (event)=>{
+        li.querySelector("input").addEventListener("change", (event) => {
             freteVal = Number(frete.price)
             document.querySelector(".precoFrete").textContent = `${frete.currency} ${frete.price.toString().replace(".", ",")}`
             calcularTotal()
@@ -486,12 +494,12 @@ async function calculateFrete() {
 }
 
 var isLoadingCEP = false
-async function getCEP(){
+async function getCEP() {
     if (isLoadingCEP) return
     const cep = cepInput.value
     if (!cep) return;
 
-    isLoadingCEP=true;
+    isLoadingCEP = true;
 
     const location = await getLocationByCEP(cep)
 
@@ -500,5 +508,5 @@ async function getCEP(){
     document.getElementById("cidadeInput").value = location.localidade
     document.getElementById("estadoInput").value = location.estado
     document.getElementById("numeroInput").focus()
-    isLoadingCEP=false
+    isLoadingCEP = false
 }
