@@ -41,7 +41,7 @@ async function carregarVitrine() {
     let produtosFiltrados = produtosApi;
 
 
-    // --- PROMOÇÃO E BANNERS ---
+    // PROMOÇÃO E BANNERS 
     if (promocao === "ofertas") {
       tituloDinamico = "Ofertas da Semana";
 
@@ -69,7 +69,7 @@ async function carregarVitrine() {
       produtosFiltrados = produtosApi.sort(() => 0.5 - Math.random()).slice(0, 12);
     }
 
-    // --- ESPORTES ---
+    // ESPORTES
     else if (categorias.includes("esportes")) {
       tituloDinamico = "Todas as Modalidades";
       const categoriasVistas = new Set();
@@ -82,7 +82,7 @@ async function carregarVitrine() {
       }).slice(0, 15);
     }
 
-    // --- FILTROS ASIDE ---
+    // FILTROS ASIDE 
     else {
       let titulosParaOHeader = [];
 
@@ -101,7 +101,6 @@ async function carregarVitrine() {
         const categoriasBuscadas = categorias.map(c => c === "academia" ? "musculacao" : c);
 
         produtosFiltrados = produtosFiltrados.filter((p) => {
-          //const categoriaDoProduto = removerAcentos(p.category.toLowerCase());
           return categorias.includes(p.category.toLowerCase()); 
         });
 
