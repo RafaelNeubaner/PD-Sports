@@ -219,7 +219,7 @@
       <section id="meusPedidos">
         <button
           class="btnOutline mb-4 px-4 py-2"
-          onclick="window.location.href = '/perfil/perfil.html';"
+          onclick="window.location.href = '/perfil/perfil.html'"
         >
           Fechar
         </button>
@@ -227,5 +227,56 @@
         <div id="containerPedidos" class="d-flex flex-column gap-4"></div>
       </section>
     </main>
+
+    <article
+      class="modalTrocaDevolucao"
+    >
+      <div
+        class="modalTrocaCard"
+      >
+        <button
+          type="button"
+          class="btnOutline btnFecharModal"
+          data-close-modal
+        >
+          Fechar
+        </button>
+
+        <h2 id="modalTrocaTitulo">Troca e devolução</h2>
+
+        <form class="modalTrocaForm">
+          <select
+            class="form-select modalSelect"
+          >
+            <option selected>Selecione o motivo</option>
+            <option value="troca">Troca de tamanho</option>
+            <option value="defeito">Produto com defeito</option>
+            <option value="arrependimento">Arrependimento de compra</option>
+          </select>
+
+          <div class="modalOpcoes">
+            <label class="modalOpcao">
+              <input type="radio" name="modalOpcaoTroca" />
+              <span>Credito na conta</span>
+            </label>
+
+            <label class="modalOpcao">
+              <input type="radio" name="modalOpcaoTroca" />
+              <span>Estorno</span>
+            </label>
+          </div>
+
+          <textarea
+            class="form-control modalObservacoes"
+            rows="4"
+            placeholder="Observações"
+          ></textarea>
+
+          <button type="submit" class="btnPrimary modalConfirmar">
+            Confirmar
+          </button>
+        </form>
+      </div>
+    </article>
   </body>
 </html>
