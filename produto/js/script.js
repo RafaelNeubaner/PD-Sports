@@ -17,6 +17,35 @@ const categoryProducts = await getProductsByCategory(product.category)
 const relatedProducts = categoryProducts.filter(p => p.id != id).slice(0, 10)
 compreJunto(relatedProducts)
 const cartApi = window.PDSportsCart
+const CART_STORAGE_KEY = "pd-sports-cart"
+
+function getItemCartKey(item) {
+    return `${item.id}::${item.variant || ""}`
+}
+
+function addToCartFallback(produto, quantidade = 1) {
+    let cart = []
+    try {
+        const raw = localStorage.getItem(CART_STORAGE_KEY)
+        cart = raw ? JSON.parse(raw) : []
+        if (!Array.isArray(cart)) {
+            cart = []
+        }
+    } catch {
+        cart = []
+    }
+
+    const itemKey = getItemCartKey(produto)
+    const index = cart.findIndex((item) => getItemCartKey(item) === itemKey)
+
+    if (index >= 0) {
+        cart[index].qtd = (Number(cart[index].qtd) || 0) + quantidade
+    } else {
+        cart.push({ ...produto, qtd: quantidade, cartKey: itemKey })
+    }
+
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart))
+}
 
 const last_cep = localStorage.getItem("LAST_CEP")
 if (last_cep){
@@ -35,6 +64,7 @@ let isDragging = false
 let selectedPrincipalImage = productImages[0]
 
 setupAddToCartButton()
+setupBuyNowButton()
 
 setPrincipalImage(selectedPrincipalImage)
 setupMobilePhotosCarousel()
@@ -107,24 +137,46 @@ function setupAddToCartButton(){
     if (!addCartButton) return
 
     addCartButton.addEventListener("click", () => {
-        const nome = product.name?.trim() || "Produto"
-        const idProduto = String(product.id || nome.toLowerCase().replace(/\s+/g, "-"))
-        const preco = Number(product.price) || 0
-        const img = selectedPrincipalImage || productImages[0] || ""
-        const variant = getSelectedVariant()
-        const payload = { id: idProduto, nome, preco, img }
+        const payload = addCurrentProductToCart()
+        if (!payload) return
 
-        if (variant) {
-            payload.variant = variant
-        }
-
-        if (cartApi?.addToCart) {
-            cartApi.addToCart(payload, 1)
-            cartApi.atualizarBadgeGlobal?.()
-            scrollToNavbar()
-            modalCart(payload)
-        }
+        scrollToNavbar()
+        modalCart(payload)
     })
+}
+
+function setupBuyNowButton() {
+    const buyNowButton = document.querySelector(".buyNowButton")
+    if (!buyNowButton) return
+
+    buyNowButton.addEventListener("click", () => {
+        const payload = addCurrentProductToCart()
+        if (!payload) return
+
+        window.location.href = "/carrinho/index.html"
+    })
+}
+
+function addCurrentProductToCart() {
+    const nome = product.name?.trim() || "Produto"
+    const idProduto = String(product.id || nome.toLowerCase().replace(/\s+/g, "-"))
+    const preco = Number(product.price) || 0
+    const img = selectedPrincipalImage || productImages[0] || ""
+    const variant = getSelectedVariant()
+    const payload = { id: idProduto, nome, preco, img }
+
+    if (variant) {
+        payload.variant = variant
+    }
+
+    if (cartApi?.addToCart) {
+        cartApi.addToCart(payload, 1)
+        cartApi.atualizarBadgeGlobal?.()
+        return payload
+    }
+
+    addToCartFallback(payload, 1)
+    return payload
 }
     
 document.querySelector(".btnCalcularFrete").addEventListener('click', calculateFrete)
