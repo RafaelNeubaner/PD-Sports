@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PD Sports</title>
-    <link rel="icon" href="assets/media/icons/favicon.svg" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="assets/media/icons/favicon.svg"
+      type="image/x-icon"
+    />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -98,12 +102,12 @@
 
             <ul class="navbar-nav align-items-center">
               <li class="nav-item d-block d-lg-none">
-                <a href="#" class="nav-link"
+                <a href="/pagina-informativa/faq.html" class="nav-link"
                   ><i class="bi bi-question-circle"></i
                 ></a>
               </li>
               <li class="nav-item d-none d-lg-block">
-                <a href="pagina-informativa/faq.html" class="nav-link"
+                <a href="/pagina-informativa/faq.html" class="nav-link"
                   ><i class="bi bi-question-circle"></i>Tire suas dúvidas</a
                 >
               </li>
@@ -132,7 +136,9 @@
                 <span class="cart-badge">0</span>
               </li>
               <li class="nav-item d-none d-md-block iconProfile">
-                <a href="/perfil/perfil.html" class="nav-link"><i class="bi bi-person"></i></a>
+                <a href="/perfil/perfil.html" class="nav-link"
+                  ><i class="bi bi-person"></i
+                ></a>
               </li>
               <li class="nav-item d-none d-md-block loginLink">
                 <a href="/login/index.html" class="nav-link"
@@ -143,13 +149,14 @@
           </search>
 
           <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
-            <form>
+            <form action="/busca/busca-produto.html">
               <input
                 type="text"
+                name="query"
                 class="form-control pe-5"
                 placeholder="O que você está procurando?"
               />
-              <button class="btn" type="button">
+              <button class="btn" type="submit">
                 <i class="bi bi-search"></i>
               </button>
             </form>
@@ -158,7 +165,7 @@
           <menu class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item d-block d-sm-none loginLink">
-                <a href="/perfil/perfil.html" class="nav-link"
+                <a href="/login/index.html" class="nav-link"
                   ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
                     class="bi bi-chevron-right ms-1"
                   ></i
@@ -215,7 +222,9 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="pagina-informativa/sobre-nos.html">Sobre nós</a>
+                <a class="nav-link" href="/pagina-informativa/sobre-nos.html"
+                  >Sobre nós</a
+                >
               </li>
             </ul>
           </menu>
@@ -270,7 +279,10 @@
                 </a>
               </article>
               <article class="slide">
-                <a href="produto/index.html?id=51.2" aria-label="Ir para página de produtos">
+                <a
+                  href="produto/index.html?id=51.2"
+                  aria-label="Ir para página de produtos"
+                >
                   <img
                     src="assets/media/images/home/imagem-hero-3.png"
                     alt="Slide 3"

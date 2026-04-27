@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const linksMenu = document.querySelectorAll('.admin-sidebar .nav-link, .d-md-none a[href="#loja"]');
     const conteudos = document.querySelectorAll('main > section');
 
-    if(!document.location.hash){
-        document.location.hash = "#dashboard"
+    // Sempre inicia na aba de desempenho ao carregar a página.
+    const telaInicial = '#dashboard';
+    if (document.location.hash !== telaInicial) {
+        history.replaceState(null, '', telaInicial);
     }
 
     function ocultarTodasAsTelas() {
@@ -46,5 +48,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    navegarPara(document.location.hash)
+    navegarPara(telaInicial)
 });
