@@ -243,7 +243,7 @@
                   <input
                     type="text"
                     class="form-control w-100"
-                    id="nome"
+                    id="nomeInput"
                     placeholder="Primeiro nome"
                   />
                 </fieldset>
@@ -253,7 +253,7 @@
                   <input
                     type="text"
                     class="form-control w-100"
-                    id="sobrenome"
+                    id="sobrenomeInput"
                     placeholder="Sobrenome"
                   />
                 </fieldset>
@@ -264,10 +264,14 @@
                 <input
                   type="cpf"
                   class="form-control"
-                  id="cpf"
+                  id="cpfInput"
                   placeholder="Informe seu CPF"
                 />
               </fieldset>
+            </section>
+            <section id="userNotAuthenticated" class="d-none">
+              <p>Faça login para continuar o processo de compra</p>
+              <a href="/login/index.html?back_to=/carrinho/index.html" class="btnPrimary btnLogar">Entrar ou criar sua conta</a>
             </section>
 
             <section id="endereco">
@@ -401,7 +405,7 @@
         </section>
       </section>
 
-      <aside class="resumo">
+      <aside class="resumo d-flex flex-column gap-4">
         <h4>Subtotal: <span class="span2">R$ 8,97</span></h4>
         <!--<form id="formFrete" class="d-flex gap-3">
           <input placeholder="Digite seu CEP" class="flex-grow-1" name="CEP" type="text" id="cepInput">
@@ -419,7 +423,16 @@
         </template>
         <ul class="fretesOptions d-flex flex-column gap-4">
         </ul>
+
+        <div class="descontoSection d-flex align-items-center justify-content-between">
+          <label for="descontoInput" class="desconto">Desconto</label>
+          <form class="formDesconto d-flex gap-3">
+            <input type="text" placeholder="Cupom de desconto" id="descontoInput">
+            <button class="btnPrimary">Aplicar</button>
+          </form>
+        </div>
         <h4>Entrega: <span class="precoFrete">R$ 0,00</span></h4>
+        <h4>Desconto: <span class="precoDesconto">- R$ --,--</span></h4>
         <h4>Total: <span class="precoTotal subTitleCard">R$ 0,00</span></h4>
 
         <button class="btnPrimary buyNowButton">

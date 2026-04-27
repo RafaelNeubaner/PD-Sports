@@ -1,9 +1,13 @@
 import { calcularFrete, getLocationByCEP } from '../../js/fretes/useFretes.js'
+import { getUserAuthenticated } from '../../js/users/useAuth.js'
 
 const CART_STORAGE_KEY = 'pd-sports-cart';
 
 var freteVal = 0;
+var descontoVal = 0;
 var subtotal = 0;
+
+getUserAuthenticated().then(setUserAuthenticated)
 
 function parseValor(valorTexto) {
     const normalizado = String(valorTexto || '0')
@@ -224,6 +228,7 @@ function somarItem(event) {
 
     atualizarSubtotal();
     atualizarBadge();
+    verificaCupons()
     calcularTotal();
 }
 
@@ -262,6 +267,7 @@ function subtrairItem(event) {
 
     atualizarBadge();
     atualizarSubtotal();
+    verificaCupons()
     calcularTotal();
 }
 
@@ -319,15 +325,11 @@ function atualizarSubtotal() {
 
 function calcularTotal() {
     let total = 0
-    console.log(typeof total)
     if (subtotal) total += subtotal;
-    console.log(typeof total)
-    console.log(typeof freteVal)
     if (freteVal) total += freteVal;
-    console.log(typeof total)
+    if (descontoVal) total -= descontoVal;
 
     document.querySelector(".precoTotal").textContent = total.toLocaleString("pt-BR", { currency: "BRL", style: "currency" })
-    console.log(total)
 }
 
 function exibirModalCompraConcluida() {
@@ -368,6 +370,7 @@ function removerItem(event) {
     }
     atualizarBadge();
     atualizarSubtotal();
+    verificaCupons()
     calcularTotal();
 }
 
@@ -408,6 +411,7 @@ function carregarCarrinho() {
 
     atualizarBadge();
     atualizarSubtotal();
+    verificaCupons();
     calcularTotal();
 }
 /*
@@ -436,6 +440,40 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
 })
+
+const descontoInput = document.querySelector("#descontoInput")
+document.querySelector(".formDesconto").addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log("submit")
+    verificaCupons()
+    calcularTotal()
+})
+
+function verificaCupons() {
+    if (!descontoInput.value || descontoInput.value.trim() == "") return;
+
+    console.log("VErificando cupons")
+    if (descontoInput.value.toUpperCase() == "FUTEBOL15") {
+        descontoVal = Math.round(subtotal * 0.15)
+        document.querySelector(".precoDesconto").textContent = descontoVal.toLocaleString("pt-BR", { currency: "BRL", style: "currency" })
+    } else {
+        descontoVal = 0;
+    }
+}
+
+
+function setUserAuthenticated(user) {
+    if (!user) {
+        document.querySelector("#dadosCliente").classList.add("d-none")
+        document.querySelector("#userNotAuthenticated").classList.remove("d-none")
+        document.querySelector(".buyNowButton").disabled = true
+        return;
+    }
+
+    document.querySelector("#nomeInput").value = user.firstname
+    document.querySelector("#sobrenomeInput").value = user.lastname
+    document.querySelector("#cpfInput").value = user.cpf
+}
 
 var isLoading = false;
 async function calculateFrete() {
@@ -479,6 +517,8 @@ async function calculateFrete() {
         li.querySelector("input").addEventListener("change", (event) => {
             freteVal = Number(frete.price)
             document.querySelector(".precoFrete").textContent = `${frete.currency} ${frete.price.toString().replace(".", ",")}`
+
+            verificaCupons()
             calcularTotal()
         })
 
@@ -490,6 +530,7 @@ async function calculateFrete() {
     fretesSec.firstElementChild.querySelector("input").setAttribute("checked", true)
     document.querySelector(".precoFrete").textContent = fretesSec.firstElementChild.querySelector("p").textContent
     freteVal = Number(fretesOptions[0].price)
+    verificaCupons()
     calcularTotal()
 }
 
@@ -510,3 +551,4 @@ async function getCEP() {
     document.getElementById("numeroInput").focus()
     isLoadingCEP = false
 }
+
