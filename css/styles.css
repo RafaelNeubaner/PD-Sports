@@ -138,6 +138,7 @@ body.darkMode .themeToggle:hover {
     background-color: var(--secondary);
     color: var(--txtLight);
     border: none;
+    text-decoration: none;
     padding: 10px 24px;
     border-radius: 12px;
     cursor: pointer;

@@ -1,5 +1,7 @@
 import { loginUser } from "../../js/users/useAuth.js"
 
+const urlParams = new URLSearchParams(window.location.search);
+
 const fecharModalSenha = document.getElementById('sairModalSenha');
 const abrirModalSenha = document.getElementById('abrirModalSenha');
 const modalRecuperarSenha = document.querySelector('.modalRecuperarSenha');
@@ -57,6 +59,12 @@ formLogin.addEventListener("submit", async (event) => {
 
     try {
         var user = await loginUser({ email, password })
+        var back = urlParams.get("back_to")
+        if(back){
+            window.location = back
+            return;
+        }
+
         if (user.isAdmin) {
             window.location = "/dashboard"
             return;
