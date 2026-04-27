@@ -201,5 +201,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  navegarPara("#desempenho");
+  navegarPara("#dashboard");
 });
