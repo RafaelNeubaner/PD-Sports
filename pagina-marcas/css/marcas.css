@@ -68,8 +68,8 @@
 }
 
 @media (max-width: 575px) {
-  .secTitle {
-    font-size: 2.4rem;
+  .sectTitle {
+    font-size: 2.4rem !important;
     font-weight: bold;
   }
 }
