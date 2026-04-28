@@ -165,12 +165,7 @@ function sincronizarStorageComPagina() {
     }
   });
 
-    carregarCarrinho();
-    atualizarBadge();
-    atualizarSubtotal();
-    calcularTotal();
-    relatedProducts();
-    cartApi.saveCart(Array.from(totais.values()).filter((item) => item.qtd > 0));
+  cartApi.saveCart(Array.from(totais.values()).filter((item) => item.qtd > 0));
 }
 
 addEventListener("DOMContentLoaded", () => {
@@ -215,8 +210,6 @@ addEventListener("DOMContentLoaded", () => {
     }
   }
 
-    atualizarBadge();
-    verificaCupons();
   carregarCarrinho();
   atualizarBadge();
   atualizarSubtotal();
@@ -314,6 +307,8 @@ function atualizarBadge() {
   }
   if (!carrinho) return;
 
+  carrinho.classList.toggle("is-empty", quantidadeCarrinho === 0);
+
   const textoVazio = carrinho.querySelector(".carrinho-vazio");
   const resumo = carrinho.querySelector(".resumo");
   const formulario = carrinho.querySelector("#formulario");
@@ -325,39 +320,24 @@ function atualizarBadge() {
     if (formulario) {
       formulario.style.display = "none";
     }
-    if (!carrinho) return;
 
-    carrinho.classList.toggle('is-empty', quantidadeCarrinho === 0);
-
-    const textoVazio = carrinho.querySelector('.carrinho-vazio');
-    const resumo = carrinho.querySelector('.resumo');
-    const formulario = carrinho.querySelector('#formulario');
-
-    if (quantidadeCarrinho === 0) {
-        if (resumo) {
-            resumo.style.display = 'none';
-        }
-        if (formulario) {
-            formulario.style.display = 'none';
-        }
-
-        if (!textoVazio) {
-            const texto = document.createElement('p');
-            texto.className = 'carrinho-vazio';
-            texto.textContent = 'Seu carrinho está vazio';
-            carrinho.appendChild(texto);
-        }
-    } else {
-        if (textoVazio) {
-            textoVazio.remove();
-        }
-        if (resumo) {
-            resumo.style.display = 'flex';
-        }
-        if (formulario) {
-            formulario.style.display = 'block';
-        }
+    if (!textoVazio) {
+      const texto = document.createElement("p");
+      texto.className = "carrinho-vazio";
+      texto.textContent = "Seu carrinho está vazio";
+      carrinho.appendChild(texto);
     }
+    return;
+  }
+
+  if (textoVazio) {
+    textoVazio.remove();
+  }
+  if (resumo) {
+    resumo.style.display = "flex";
+  }
+  if (formulario) {
+    formulario.style.display = "block";
   }
 }
 
@@ -396,47 +376,11 @@ function exibirModalCompraConcluida() {
 
 const botaoFinalizarCompra = carrinho?.querySelector(".resumo .buyNowButton");
 if (carrinho && botaoFinalizarCompra) {
-  botaoFinalizarCompra.addEventListener("click", () => {
-    const compraFinalizada = document.getElementById("compra-finalizada");
-    if (compraFinalizada) {
-      compraFinalizada.currentTime = 0;
-      compraFinalizada.play().catch(() => {});
-    }
-
-    const itensComprados = cartApi ? cartApi.getCart() : [];
-
-    if (itensComprados.length > 0) {
-      const cepEntrega =
-        document.getElementById("cepInput").value || "Não informado";
-
-      const totalPedido = (subtotal + freteVal - descontoVal).toFixed(2);
-
-      const metodoPagamentoRadio = document.querySelector(
-        'input[name="metodoPagamento"]:checked',
-      );
-      const paymentMethod =
-        metodoPagamentoRadio && metodoPagamentoRadio.id === "pix"
-          ? "Pix"
-          : "Cartão de Crédito";
-
-      const novoPedido = {
-        id: Math.floor(100000 + Math.random() * 900000).toString(),
-        createdAt: new Date().toISOString(),
-        total: totalPedido,
-        paymentMethod: paymentMethod,
-        cep: cepEntrega,
-        itens: itensComprados,
-      };
-
-      const historicoPedidos =
-        JSON.parse(localStorage.getItem("pd-sports-pedidos")) || [];
-
-      historicoPedidos.unshift(novoPedido);
-
-      localStorage.setItem(
-        "pd-sports-pedidos",
-        JSON.stringify(historicoPedidos),
-      );
+    botaoFinalizarCompra.addEventListener('click', () => {
+        const audioCompraFinalizada = document.getElementById('audio-compra-finalizada');
+        if (audioCompraFinalizada) {
+            audioCompraFinalizada.currentTime = 0;
+            audioCompraFinalizada.play().catch(() => { });
     }
 
     if (cartApi) {
@@ -465,7 +409,7 @@ function removerItem(event) {
   }
   atualizarBadge();
   atualizarSubtotal();
-  verificaCupons();
+    verificaCupons()
   calcularTotal();
 }
 
