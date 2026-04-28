@@ -17,11 +17,12 @@ const BASE_URL = 'https://69d3b21c336103955f8f770c.mockapi.io/api/'
  * Função para cadastrar novo usuário na aplicação
  * 
  * @param {User} user 
+ * 
  * @returns {Promise<User>}
  */
 export async function createUser(user){
     const response  = await fetch(
-        `${BASE_URL}users`,
+        `/api/signUp`,
         {
             method: "POST",
             headers: {
@@ -49,7 +50,7 @@ export async function createUser(user){
  * @returns {Promise<User>}
  */
 export async function updateUser(id, user){
-    const response = await fetch(`${BASE_URL}users/${id}`, {
+    const response = await fetch(`/api/updateUser`, {
         method: "PUT",
         headers: {
             'Accept': 'application/json',
@@ -100,7 +101,7 @@ export async function deleteUser(id){
  * @return {Promise<User>}
  */
 export async function getUserById(id){
-    const response = await fetch(`${BASE_URL}users/${id}`, {
+    const response = await fetch(`/api/getUser?id=${id}`, {
         method: "GET",
         headers: {
             'Accept': 'application/json',
@@ -139,4 +140,43 @@ export async function getUserByEmail(email){
 
     const userResponse = await response.json()
     return userResponse
+}
+
+export async function signIn(email, password){
+    const response = await fetch('/api/signIn', {
+        method: "POST",
+        body: JSON.stringify({
+            "email": email,
+            "password": password
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+
+    const json = await response.json()
+    if(!response.ok) throw new Error (json.message);
+
+    return json;
+}
+
+export async function changePassword(id, oldPassword, newPassword){
+    const response = await fetch('/api/changePassword', {
+        method: "POST",
+        body: JSON.stringify({
+            "id": id,
+            "actualPassword": oldPassword,
+            "newPassword": newPassword
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+
+    const json = await response.json()
+    if(!response.ok) throw new Error (json.message);
+
+    return json;
 }

@@ -1,5 +1,4 @@
-require('dotenv').config();
-const BASE_URL_USERS = `${process.env.BASE_URL_USERS}users`
+const BASE_URL_USERS = `https://69d3b21c336103955f8f770c.mockapi.io/api/users/`
 
 export default async function handler(req, res){
     const response = await fetch(
@@ -10,7 +9,7 @@ export default async function handler(req, res){
                 'Accept': 'application/json',
                 'content-type': "application/json"
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(req.body)
         }
     )
 
@@ -18,5 +17,5 @@ export default async function handler(req, res){
 
     delete result.password;
 
-    return result;
+    return res.json(result);
 }

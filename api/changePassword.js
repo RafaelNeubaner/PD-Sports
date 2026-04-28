@@ -4,16 +4,18 @@ export default async function handler(req, res){
 
     const responseUser = await fetch(`${BASE_URL_USERS}/${req.body.id}`)
 
-    if(!responseUser.ok) return res.status(404).json("Usuário não encontrado")
+    if(!responseUser.ok) return res.status(404).json({"message": "Usuário não encontrado"})
 
     var actualUser = await responseUser.json()
 
-    var userUpdate = {
-        ...req.body,
-        "password": actualUser.password
-    }
+    if(actualUser.password != req.body.actualPassword) return res.status(400).json({"message": "Senha inválida"});
 
-    const response = await fetch(`${BASE_URL_USERS}/${userUpdate.id}`, {
+    const userUpdate = {
+        ...actualUser,
+        "password": req.body.newPassword
+    }        
+
+    const response = await fetch(`${BASE_URL_USERS}/${req.body.id}`, {
         method: "PUT",
         headers: {
             'Accept': 'application/json',
@@ -23,7 +25,7 @@ export default async function handler(req, res){
     })
 
     if(!response.ok){
-        return res.status(response.status).json(response.body)
+        return res.status(400).json({"message": "Ocorreu um erro ao atualizar o usuário"})
     }
 
     const userResponse = await response.json()

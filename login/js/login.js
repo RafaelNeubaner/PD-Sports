@@ -1,4 +1,4 @@
-import { loginUser } from "../../js/users/useAuth.js"
+import { isPasswordValid, loginUser } from "../../js/users/useAuth.js"
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -52,8 +52,7 @@ formLogin.addEventListener("submit", async (event) => {
     }
 
     var password = formLogin.querySelector("#login-password").value
-    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$/;
-    if (!regex.test(password)) {
+    if (!isPasswordValid(password)) {
         return alert("Senha não cumpre os requisitos")
     }
 

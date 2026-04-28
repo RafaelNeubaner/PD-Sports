@@ -1,4 +1,4 @@
-import {createUser} from "../../js/users/useAuth.js"
+import {createUser, isPasswordValid} from "../../js/users/useAuth.js"
 
 const formCadastro = document.querySelector(".regForm")
 
@@ -45,8 +45,7 @@ formCadastro.addEventListener("submit", async (event)=>{
 
     var password = formCadastro.querySelector("#login-password").value
     var confirmPassword = formCadastro.querySelector("#login-confirm-password").value
-    const regexSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$/;   
-    if(!regexSenha.test(password)) {
+    if(!isPasswordValid(password)) {
         return alert("Senha não cumpre os requisitos");
     }
 
