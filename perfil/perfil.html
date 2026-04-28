@@ -41,7 +41,7 @@
     <!-- Custom JS -->
     <script src="../js/users/isLogged.js" type="module"></script>
     <script src="/js/darkmode.js"></script>
-    <script src="/perfil/js/meus-dados.js"></script>
+    <script type="module" src="/perfil/js/meus-dados.js"></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -60,12 +60,13 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <a class="navbar-brand d-block d-md-none" href="/index.html"
-            ><img
+          <a class="navbar-brand d-block d-md-none" href="/index.html">
+            <img
               src="../assets/media/logo/logo-light.svg"
               alt="PD Sports"
               id="logo"
-          /></a>
+            />
+          </a>
 
           <search class="containerSearch">
             <a class="navbar-brand d-none d-md-block" href="/index.html">
@@ -251,6 +252,7 @@
                   class="form-control w-100"
                   id="nome"
                   placeholder="Primeiro nome"
+                  autocomplete="name"
                 />
               </fieldset>
 
@@ -261,13 +263,13 @@
                   class="form-control w-100"
                   id="sobrenome"
                   placeholder="Sobrenome"
+                  
                 />
               </fieldset>
 
               <fieldset>
                 <label for="cpf" class="form-label">CPF</label>
                 <input
-                  type="number"
                   class="form-control"
                   id="cpf"
                   placeholder="Informe seu CPF"
@@ -277,10 +279,11 @@
               <fieldset>
                 <label for="telefone" class="form-label">Telefone</label>
                 <input
-                  type="number"
+                type="tel"
                   class="form-control"
                   id="telefone"
                   placeholder="Informe seu telefone"
+                  autocomplete="tel"
                 />
               </fieldset>
 
@@ -292,6 +295,7 @@
                   type="date"
                   name="data-nascimento"
                   id="data-nascimento"
+                  autocomplete="bday"
                 />
               </fieldset>
 
@@ -307,53 +311,83 @@
                 <fieldset class="w-100">
                   <label for="email" class="form-label">E-mail</label>
                   <input
-                    type="text"
+                    type="email"
                     class="form-control"
-                    id="email"
+                    id="emailInput"
                     placeholder="Informe seu e-mail"
+                    autocomplete="email"
+                    disabled="true"
                   />
                 </fieldset>
 
                 <fieldset class="w-100">
                   <label for="novo-email" class="form-label">Novo E-mail</label>
                   <input
-                    type="text"
+                    type="email"
                     class="form-control"
-                    id="novo-email"
+                    id="newEmailInput"
                     placeholder="Digite seu novo e-mail"
+                    autocomplete="email"
                   />
                 </fieldset>
 
-                <button type="button" class="btnPrimary">Alterar E-mail</button>
+                <button type="button" class="btnPrimary btnAlterarEmail">Alterar E-mail</button>
               </div>
 
               <div class="d-flex flex-column w-100">
                 <fieldset class="w-100">
                   <label for="senha" class="form-label">Senha</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="senha"
-                    placeholder="Informe sua senha atual"
-                  />
+                  <div class="passwordWithEye d-flex flex-row align-items-center gap-2">
+
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="senhaInput"
+                      autocomplete="current-password"
+                      placeholder="Informe sua senha atual"
+                    />
+                    <i class="bi bi-eye-slash"></i>
+                  </div>
                 </fieldset>
 
                 <fieldset class="w-100">
                   <label for="nova-senha" class="form-label">Nova Senha</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="nova-senha"
-                    placeholder="Digite sua nova senha"
-                  />
+                  <div class="passwordWithEye d-flex flex-row align-items-center gap-2">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="novaSenhaInput"
+                      autocomplete="new-password"
+                      placeholder="Digite sua nova senha"
+                    />
+                    <i class="bi bi-eye-slash"></i>
+                  </div>
                 </fieldset>
+                <ul>
+                  <li>8 caracteres</li>
+                  <li>Uma letra maiúscula</li>
+                  <li>Uma letra minúscula</li>
+                  <li>Um número</li>
+                  <li>Sem espaço ou quebra de linha</li>
+                </ul>
 
-                <button type="button" class="btnPrimary">Alterar Senha</button>
+                <button type="button" class="btnPrimary btnAlterarSenha">Alterar Senha</button>
               </div>
             </form>
           </section>
         </div>
       </section>
     </main>
+    <section class="loadingPage show">
+      <div class="spinner-grow" >
+        <span class="sr-only"></span>
+      </div>
+      <div class="spinner-grow" >
+        <span class="sr-only"></span>
+      </div>
+      <div class="spinner-grow" >
+        <span class="sr-only"></span>
+      </div>
+    </section>
   </body>
 </html>

@@ -2,7 +2,7 @@
 /**
  * @typedef {import("./useUsers").User} User
  */
-import {createUser as createUserAPI, updateUser as updateUserAPI, getUserByEmail, getUserById} from "../users/useUsers.js"
+import {createUser as createUserAPI, updateUser as updateUserAPI, getUserByEmail, getUserById, signIn, changePassword} from "../users/useUsers.js"
 
 const USER_ID_VARIABLE = "userIdAuth"
 
@@ -52,10 +52,7 @@ export async function createUser(user){
  */
 export async function loginUser({email, password}){
     try{
-        let user = (await getUserByEmail(email))[0];
-        if(user.password !== password) throw new Error("Senha inválida")
-        
-        delete user.password;
+        let user = await signIn(email, password);
 
         localStorage.setItem(USER_ID_VARIABLE, user.id)
 
@@ -69,6 +66,8 @@ export async function loginUser({email, password}){
  * 
  * @param {number} id 
  * @param {User} user 
+ * 
+ * @returns {Promise<User>}
  */
 export async function updateUser(id, user){
     try{
@@ -81,8 +80,30 @@ export async function updateUser(id, user){
 }
 
 /**
+ * 
+ * @param {string} id 
+ * @param {string} oldPassword 
+ * @param {string} newPassword 
+ * 
+ * @returns {User}
+ */
+export async function updatePassword(id, oldPassword, newPassword) {
+    var user = await changePassword(id, oldPassword, newPassword)
+
+    return user;
+}
+
+/**
  * @return {void}
  */
 export function signOut(){
     localStorage.removeItem(USER_ID_VARIABLE);
+}
+
+export function isPasswordValid(password){
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$/;
+    if (regex.test(password)) {
+        return true;
+    }
+    return false;
 }
