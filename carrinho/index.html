@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/carrossel.css">
+    <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="/carrinho/css/carrinho.css" />
 
     <!-- Scripts -->
@@ -64,7 +66,7 @@
 
           <a class="navbar-brand d-block d-md-none" href="/index.html"
             ><img
-              src="../assets/media/logo/logo-light.svg"
+              src="assets/media/logo/logo-light.svg"
               alt="PD Sports"
               id="logo"
           /></a>
@@ -72,7 +74,7 @@
           <search class="containerSearch">
             <a class="navbar-brand d-none d-md-block" href="/index.html">
               <img
-                src="../assets/media/logo/logo-light.svg"
+                src="assets/media/logo/logo-light.svg"
                 alt="PD Sports"
                 id="logo"
               />
@@ -96,7 +98,7 @@
 
             <ul class="navbar-nav align-items-center">
               <li class="nav-item d-block d-lg-none">
-                <a href="#" class="nav-link"
+                <a href="/pagina-informativa/faq.html" class="nav-link"
                   ><i class="bi bi-question-circle"></i
                 ></a>
               </li>
@@ -130,7 +132,9 @@
                 <span class="cart-badge">0</span>
               </li>
               <li class="nav-item d-none d-md-block iconProfile">
-                <a href="/perfil/perfil.html" class="nav-link"><i class="bi bi-person"></i></a>
+                <a href="/perfil/perfil.html" class="nav-link"
+                  ><i class="bi bi-person"></i
+                ></a>
               </li>
               <li class="nav-item d-none d-md-block loginLink">
                 <a href="/login/index.html" class="nav-link"
@@ -141,13 +145,14 @@
           </search>
 
           <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
-            <form>
+            <form action="/busca/busca-produto.html">
               <input
                 type="text"
+                name="query"
                 class="form-control pe-5"
                 placeholder="O que você está procurando?"
               />
-              <button class="btn" type="button">
+              <button class="btn" type="submit">
                 <i class="bi bi-search"></i>
               </button>
             </form>
@@ -156,7 +161,7 @@
           <menu class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item d-block d-sm-none loginLink">
-                <a href="#" class="nav-link"
+                <a href="/login/index.html" class="nav-link"
                   ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
                     class="bi bi-chevron-right ms-1"
                   ></i
@@ -173,14 +178,14 @@
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  href="/busca/busca-produto.html?gender=masculino"
+                  href="/busca/busca-produto.html?genero=Masculino"
                   >Masculino</a
                 >
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  href="/busca/busca-produto.html?gender=feminino"
+                  href="/busca/busca-produto.html?genero=Feminino"
                   >Feminino</a
                 >
               </li>
@@ -213,15 +218,17 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/pagina-informativa/sobre-nos.html">Sobre nós</a>
+                <a class="nav-link" href="/pagina-informativa/sobre-nos.html"
+                  >Sobre nós</a
+                >
               </li>
             </ul>
           </menu>
         </div>
       </nav>
     </header>
-
-    <main id="carrinho" class="d-flex justify-content-between gap-3">
+    <main>
+    <div id="carrinho" class="d-flex justify-content-between gap-3">
       <section class="d-flex flex-column gap-3">
         <h1 class="red mainTitle">Carrinho ( <span class="cart-badge"></span> )</h1>
         <p class="carrinho-vazio">Seu carrinho está vazio.</p>
@@ -442,7 +449,39 @@
           <a href="/perfil/meus-pedidos.html" class="btnPrimary">Meus Pedidos</a>
         </div>
       </article>
-    </main>
+      
+    </div>
+    <section class="compreJunto maisVendidos">
+          <hgroup class="d-flex justify-content-between align-items-center">
+          <h2 class="sectTitle m-0">Compre Também</h2>
+          <a
+            class="vejaMais link"
+            href="/busca/busca-produto.html?promocao=mais-vendidos"
+          >
+          </a>
+        </hgroup>
+
+        <div class="sectionCarousel position-relative relatedProducts">
+          <button
+            class="btn-primary carousel-control prev d-none d-lg-flex"
+            id="btnLeftCompreJunto"
+          >
+            <i class="bi bi-chevron-left"></i>
+          </button>
+
+          <div class="slider-wrapper" id="sliderWrapperCompreJunto">
+            <div class="slider-track" id="sliderTrackCompreJunto"></div>
+          </div>
+
+          <button
+            class="btn-primary carousel-control next d-none d-lg-flex"
+            id="btnRightCompreJunto"
+          >
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+        </section>
+        </main>
 
     <footer class="bgHeader">
       <p class="textCenter font20">

@@ -1,6 +1,3 @@
-.red {
-  color: red;
-}
 
 main > section:not(.heros) {
     padding: 10px 40px;
@@ -97,10 +94,14 @@ main > section:not(.heros) {
   box-shadow: 4px 4px 4px #00000077;
 }
 
-@media (max-width: 568px){
+@media (max-width: 768px){
     .missaoSection{
         height: max-content;
         max-height: none;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center !important;
+        justify-content: center!important;
     }
 
     .redSection{
@@ -109,6 +110,10 @@ main > section:not(.heros) {
     }
     .missaoSection > section{
         height: fit-content;
+    }
+    .missaoContent,
+    .pdsportsSection > div {
+      align-items: center;
     }
     .cardMissao{
         margin-top: 0;
@@ -120,6 +125,7 @@ main > section:not(.heros) {
 }
 .cardMissao p {
   font-size: 16px;
+  color: var(--txtDark);
 }
 
 .missaoContent {
@@ -179,27 +185,23 @@ body.darkMode .logoMarca {
   }
 }
 
-.pdsportsSection {
-  .cardMissao {
+.pdsportsSection .cardMissao{
+  
     margin: 0;
     height: 100%;
     gap: 10px;
-
-
-    img {
-      width: 30px;
-    }
   }
+
+
+.pdsportsSection .cardMissao {
+  margin: 0;
+  height: 100%;
+  gap: 10px;
 }
 
-.fraseSec > p{
-    font-size: 30px;
-    max-width: 600px;
-    text-align: center;
-    color: var(--primary);
-    font-weight: 600;
+.pdsportsSection .cardMissao img {
+  width: 30px;
 }
-
 @media (min-width: 768px){
     .fraseSec > p {
         font-size: 40px;
