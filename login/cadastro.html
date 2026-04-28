@@ -1,10 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro | PD Sports</title>
-    <link rel="icon" href="/assets/media/icons/favicon.svg" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="/assets/media/icons/favicon.svg"
+      type="image/x-icon"
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,7 +22,6 @@
     <script src="../js/users/isNotAuthenticated.js" type="module"></script>
     <script src="js/cadastro.js" type="module" defer></script>
     <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
-
   </head>
   <body>
     <main class="loginPage textCenter">
@@ -50,12 +53,11 @@
               id="login-phone"
               name="phone"
               type="tel"
+              oninput="mascaraTelefone(this)"
               placeholder="Telefone"
               autocomplete="tel"
               required
             />
-
-            
           </div>
           <div class="formRows">
             <label class="txtInvisible" for="login-cpf"></label>
@@ -63,10 +65,11 @@
               id="login-cpf"
               name="cpf"
               type="text"
+              oninput="mascaraCPF(this)"
               placeholder="CPF"
               required
             />
-            
+
             <label class="txtInvisible" for="login-bday"></label>
             <input
               id="login-bday"
@@ -96,8 +99,6 @@
               autocomplete="username"
               required
             />
-            
-            
           </div>
           <div class="formRows rowDate mb24">
             <label class="txtInvisible" for="login-password"></label>
@@ -127,5 +128,32 @@
         </p>
       </section>
     </main>
+    <script>
+      function mascaraCPF(input) {
+        // Remove tudo o que não é dígito
+        let valor = input.value.replace(/\D/g, "");
+
+        // Aplica a formatação progressivamente
+        valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+        valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+        valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+        input.value = valor;
+      }
+
+      function mascaraTelefone(input) {
+        let valor = input.value.replace(/\D/g, ""); // Remove tudo que não é número
+
+        if (valor.length > 10) {
+          // Formato Celular: (00) 00000-0000
+          valor = valor.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
+        } else {
+          // Formato Fixo: (00) 0000-0000
+          valor = valor.replace(/^(\d{2})(\d{4})(\d{4}).*/, "($1) $2-$3");
+        }
+
+        input.value = valor;
+      }
+    </script>
   </body>
 </html>
