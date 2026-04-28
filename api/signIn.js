@@ -5,7 +5,7 @@ export default async function handler(req, res){
 
     if(!body.email || !body.password) return res.status(400).json({"message": "email and password obrigatórios"})
 
-    const response = await fetch(`${BASE_URL_USERS}?email=${email}`, {
+    const response = await fetch(`${BASE_URL_USERS}?email=${body.email}`, {
         method: "GET",
         headers: {
             'Accept': 'application/json',

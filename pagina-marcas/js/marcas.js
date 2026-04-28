@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         idProduto: "1.3",
         imagem: "/assets/media/images/marcas/umbro/card-umbro-3.png",
         titulo: "Conheça a Umbro PRO 5 Stable",
-        corFundo: "#46070a",
+        corFundo: "#240746",
       },
     ],
     nike: [
