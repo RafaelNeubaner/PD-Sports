@@ -1,5 +1,7 @@
 import { calcularFrete, getLocationByCEP } from '../../js/fretes/useFretes.js'
 import { getUserAuthenticated } from '../../js/users/useAuth.js'
+import { compreJunto } from '../../js/product-card.js'
+import { getProductById, getProductsByCategory } from '../../js/products/useProducts.js'
 
 const CART_STORAGE_KEY = 'pd-sports-cart';
 
@@ -198,7 +200,8 @@ addEventListener('DOMContentLoaded', () => {
     carregarCarrinho();
     atualizarBadge();
     atualizarSubtotal();
-    calcularTotal()
+    calcularTotal();
+    relatedProducts();
 });
 
 
@@ -228,7 +231,7 @@ function somarItem(event) {
 
     atualizarSubtotal();
     atualizarBadge();
-    verificaCupons()
+    verificaCupons();
     calcularTotal();
 }
 
@@ -280,6 +283,8 @@ function atualizarBadge() {
         cartApi.atualizarBadgeGlobal();
     }
     if (!carrinho) return;
+
+    carrinho.classList.toggle('is-empty', quantidadeCarrinho === 0);
 
     const textoVazio = carrinho.querySelector('.carrinho-vazio');
     const resumo = carrinho.querySelector('.resumo');
@@ -413,6 +418,7 @@ function carregarCarrinho() {
     atualizarSubtotal();
     verificaCupons();
     calcularTotal();
+    relatedProducts();
 }
 /*
 document.querySelector(".btnCalcularFrete").addEventListener('click', calculateFrete)
@@ -552,3 +558,46 @@ async function getCEP() {
     isLoadingCEP = false
 }
 
+async function relatedProducts() {
+    const cartProducts = cartApi.getCart();
+    const categoriesFromCart = cartProducts
+        .map((p) => p.category)
+        .filter((category) => typeof category === 'string' && category.trim() !== '')
+        .map((category) => category.trim());
+
+    let categories = Array.from(new Set(categoriesFromCart));
+    const relatedSec = document.querySelector(".relatedProducts")
+    if (!relatedSec) return;
+
+    if (categories.length === 0 && cartProducts.length > 0) {
+        const productsFromCart = await Promise.all(
+            cartProducts.map((item) => getProductById(item.id).catch(() => null)),
+        );
+
+        categories = Array.from(
+            new Set(
+                productsFromCart
+                    .map((product) => product?.category)
+                    .filter((category) => typeof category === 'string' && category.trim() !== '')
+                    .map((category) => category.trim()),
+            ),
+        );
+    }
+
+    if (categories.length === 0) {
+        compreJunto([]);
+        return;
+    }
+
+    const relatedByCategory = await Promise.all(
+        categories.map((category) => getProductsByCategory(category).catch(() => [])),
+        console.log(categories)
+    );
+
+    const relatedProducts = relatedByCategory
+        .flat()
+        .filter((product, index, list) => list.findIndex((p) => p.id === product.id) === index)
+        .slice(0, 10);
+
+    compreJunto(relatedProducts)
+}

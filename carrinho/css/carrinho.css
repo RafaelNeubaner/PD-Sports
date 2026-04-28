@@ -5,9 +5,22 @@ body {
 }
 
 #carrinho {
-  padding: 20px 64px;
   gap: 20px;
   flex: 1;
+}
+
+#carrinho.is-empty .resumo,
+#carrinho.is-empty #formulario {
+  display: none !important;
+}
+
+#carrinho.is-empty + .compreJunto {
+  display: none !important;
+}
+
+main {
+  padding: 20px 64px;
+  max-width: 1920px;
 }
 
 footer {
@@ -251,12 +264,14 @@ footer {
   min-width: 300px;
   display: flex;
   flex-direction: column;
+  background-color: var(--bg);
 }
 
 @media (max-width: 576px) {
-  #carrinho {
+  main {
     padding: 60px 16px;
-    margin-bottom: 60px;
+    margin-bottom: 260px;
+    gap: 0;
   }
 
   .cartItens {
@@ -276,14 +291,14 @@ footer {
     padding: 20px 20px;
     width: 100%;
     max-width: none;
-    background-color: var(--branco-cinzento);
     box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.418);
+    z-index: 10;
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-  #carrinho {
-    padding: 20px 16px;
+  main {
+    padding: 120px 16px;
   }
 }
 
@@ -295,7 +310,7 @@ footer {
 }
 
 @media (min-width: 992px) {
-  #carrinho {
+  main {
     padding: 20px 128px;
   }
   .cartItens {
@@ -410,3 +425,6 @@ ul {
   }
 }
 
+.compreJunto {
+  max-width: 80vw;
+}
