@@ -162,8 +162,9 @@ function addCurrentProductToCart() {
     const idProduto = String(product.id || nome.toLowerCase().replace(/\s+/g, "-"))
     const preco = Number(product.price) || 0
     const img = selectedPrincipalImage || productImages[0] || ""
+    const category = product.category || ""
     const variant = getSelectedVariant()
-    const payload = { id: idProduto, nome, preco, img }
+    const payload = { id: idProduto, nome, preco, img, category }
 
     if (variant) {
         payload.variant = variant

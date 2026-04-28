@@ -1,5 +1,7 @@
-import { calcularFrete, getLocationByCEP } from "../../js/fretes/useFretes.js";
-import { getUserAuthenticated } from "../../js/users/useAuth.js";
+import { calcularFrete, getLocationByCEP } from '../../js/fretes/useFretes.js'
+import { getUserAuthenticated } from '../../js/users/useAuth.js'
+import { compreJunto } from '../../js/product-card.js'
+import { getProductById, getProductsByCategory } from '../../js/products/useProducts.js'
 
 const CART_STORAGE_KEY = "pd-sports-cart";
 
@@ -163,7 +165,12 @@ function sincronizarStorageComPagina() {
     }
   });
 
-  cartApi.saveCart(Array.from(totais.values()).filter((item) => item.qtd > 0));
+    carregarCarrinho();
+    atualizarBadge();
+    atualizarSubtotal();
+    calcularTotal();
+    relatedProducts();
+    cartApi.saveCart(Array.from(totais.values()).filter((item) => item.qtd > 0));
 }
 
 addEventListener("DOMContentLoaded", () => {
@@ -208,6 +215,8 @@ addEventListener("DOMContentLoaded", () => {
     }
   }
 
+    atualizarBadge();
+    verificaCupons();
   carregarCarrinho();
   atualizarBadge();
   atualizarSubtotal();
@@ -316,22 +325,38 @@ function atualizarBadge() {
     if (formulario) {
       formulario.style.display = "none";
     }
+    if (!carrinho) return;
 
-    if (!textoVazio) {
-      const texto = document.createElement("p");
-      texto.className = "carrinho-vazio";
-      texto.textContent = "Seu carrinho está vazio";
-      carrinho.appendChild(texto);
-    }
-  } else {
-    if (textoVazio) {
-      textoVazio.remove();
-    }
-    if (resumo) {
-      resumo.style.display = "flex";
-    }
-    if (formulario) {
-      formulario.style.display = "block";
+    carrinho.classList.toggle('is-empty', quantidadeCarrinho === 0);
+
+    const textoVazio = carrinho.querySelector('.carrinho-vazio');
+    const resumo = carrinho.querySelector('.resumo');
+    const formulario = carrinho.querySelector('#formulario');
+
+    if (quantidadeCarrinho === 0) {
+        if (resumo) {
+            resumo.style.display = 'none';
+        }
+        if (formulario) {
+            formulario.style.display = 'none';
+        }
+
+        if (!textoVazio) {
+            const texto = document.createElement('p');
+            texto.className = 'carrinho-vazio';
+            texto.textContent = 'Seu carrinho está vazio';
+            carrinho.appendChild(texto);
+        }
+    } else {
+        if (textoVazio) {
+            textoVazio.remove();
+        }
+        if (resumo) {
+            resumo.style.display = 'flex';
+        }
+        if (formulario) {
+            formulario.style.display = 'block';
+        }
     }
   }
 }
@@ -479,10 +504,11 @@ function carregarCarrinho() {
     conteiner.insertAdjacentHTML("beforeend", produtoHTML);
   });
 
-  atualizarBadge();
-  atualizarSubtotal();
-  verificaCupons();
-  calcularTotal();
+    atualizarBadge();
+    atualizarSubtotal();
+    verificaCupons();
+    calcularTotal();
+    relatedProducts();
 }
 /*
 document.querySelector(".btnCalcularFrete").addEventListener('click', calculateFrete)
@@ -626,4 +652,48 @@ async function getCEP() {
   document.getElementById("estadoInput").value = location.estado;
   document.getElementById("numeroInput").focus();
   isLoadingCEP = false;
+}
+
+async function relatedProducts() {
+    const cartProducts = cartApi.getCart();
+    const categoriesFromCart = cartProducts
+        .map((p) => p.category)
+        .filter((category) => typeof category === 'string' && category.trim() !== '')
+        .map((category) => category.trim());
+
+    let categories = Array.from(new Set(categoriesFromCart));
+    const relatedSec = document.querySelector(".relatedProducts")
+    if (!relatedSec) return;
+
+    if (categories.length === 0 && cartProducts.length > 0) {
+        const productsFromCart = await Promise.all(
+            cartProducts.map((item) => getProductById(item.id).catch(() => null)),
+        );
+
+        categories = Array.from(
+            new Set(
+                productsFromCart
+                    .map((product) => product?.category)
+                    .filter((category) => typeof category === 'string' && category.trim() !== '')
+                    .map((category) => category.trim()),
+            ),
+        );
+    }
+
+    if (categories.length === 0) {
+        compreJunto([]);
+        return;
+    }
+
+    const relatedByCategory = await Promise.all(
+        categories.map((category) => getProductsByCategory(category).catch(() => [])),
+        console.log(categories)
+    );
+
+    const relatedProducts = relatedByCategory
+        .flat()
+        .filter((product, index, list) => list.findIndex((p) => p.id === product.id) === index)
+        .slice(0, 10);
+
+    compreJunto(relatedProducts)
 }
