@@ -84,6 +84,32 @@ As mensagens de commit devem seguir o padrão:
 * `fix:` Correção de erro.
 * `docs:` Alteração em documentação.
 
+<br>
+
+# Acesso Cliente & Adm
+Para entrar em sua conta de cliente, é necessário realizar o cadastro preenchendo os respectivos campos com nome completo, data de nascimento, cpf, email e senha.
+<br>
+O email deve ser no formato válido e a senha deve seguir os requisitos abaixo:
+
+### Requisitos senha:
+- Ter no mínimo 8 dígitos
+- Ter no mínimo 1 letra maiúscula
+- Ter no mínimo 1 letra minúscula
+- Ter no mínimo 1 número
+- Sem espaço ou quebra de linha
+<br>
+
+### Acesso Administrativo
+
+Para acessar a área administrativa da PD Spots, use as seguintes credenciais:
+```json
+    {
+        "email": "adm@pdsports.com.br",
+        "senha": "Adm1234*"
+    }
+```
+
+O login será validado como o usuário sendo administrador. Sendo assim ele pode criar, editar e excluir produtos do catálogo, além de visualizar o dashboard de controle.
 
 ## 🔗 Links Úteis
 * **Repositório:** [PD Sports](https://github.com/RafaelNeubaner/PD-Sports)
@@ -91,5 +117,5 @@ As mensagens de commit devem seguir o padrão:
   * [Desktop](https://www.figma.com/proto/dsnVBsy7jPQ42vvvIR1yi6/V%C3%AAnus-Manh%C3%A3---PDSports?node-id=210-304&viewport=580%2C514%2C0.22&t=uMqbWiNVKhQ22xVK-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=210%3A2685&show-proto-sidebar=1&page-id=210%3A303)
   * [Mobile](https://www.figma.com/proto/dsnVBsy7jPQ42vvvIR1yi6/V%C3%AAnus-Manh%C3%A3---PDSports?node-id=210-304&viewport=580%2C514%2C0.22&t=uMqbWiNVKhQ22xVK-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=210%3A2685&show-proto-sidebar=1&page-id=210%3A303)
 
-* **Deploy (Vercel):** [Inserir posteriormente o link]
+* **Deploy (Vercel):** [PD Sports](https://pd-sports.vercel.app/)
 
