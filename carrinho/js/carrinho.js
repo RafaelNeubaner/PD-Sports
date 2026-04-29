@@ -2,8 +2,7 @@ import { calcularFrete, getLocationByCEP } from '../../js/fretes/useFretes.js'
 import { getUserAuthenticated } from '../../js/users/useAuth.js'
 import { compreJunto } from '../../js/product-card.js'
 import { getProductById, getProductsByCategory } from '../../js/products/useProducts.js'
-
-const CART_STORAGE_KEY = "pd-sports-cart";
+import { cartApi } from '../../js/carrinho/useCart.js'
 
 var freteVal = 0;
 var descontoVal = 0;
@@ -11,95 +10,7 @@ var subtotal = 0;
 
 getUserAuthenticated().then(setUserAuthenticated);
 
-function parseValor(valorTexto) {
-  const normalizado = String(valorTexto || "0")
-    .replace(/[^\d,.-]/g, "")
-    .replace(/\.(?=\d{3}(\D|$))/g, "")
-    .replace(",", ".");
-
-  const valor = Number.parseFloat(normalizado);
-  return Number.isNaN(valor) ? 0 : valor;
-}
-
-function parseProduto(nome) {
-  return String(nome || "produto")
-    .trim()
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
-function getCartStorage() {
-  try {
-    const rawCart = localStorage.getItem(CART_STORAGE_KEY);
-    return rawCart ? JSON.parse(rawCart) : [];
-  } catch {
-    return [];
-  }
-}
-
-function setCartStorage(cart) {
-  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
-}
-
-function buildCartItemKey(item) {
-  return `${item.id}::${item.variant || ""}`;
-}
-
-window.PDSportsCart = window.PDSportsCart || {
-  parseProduto,
-  parseValor,
-  getCart: () => getCartStorage(),
-  saveCart: (cart) => setCartStorage(cart),
-  addToCart: (produto, quantidade = 1) => {
-    const cart = getCartStorage();
-    const itemKey = buildCartItemKey(produto);
-    const index = cart.findIndex((item) => buildCartItemKey(item) === itemKey);
-
-    if (index >= 0) {
-      cart[index].qtd += quantidade;
-    } else {
-      cart.push({ ...produto, qtd: quantidade, cartKey: itemKey });
-    }
-
-    setCartStorage(cart);
-    return cart;
-  },
-  removeFromCart: (id, quantidade = 1, variant = "") => {
-    const cart = getCartStorage();
-    const itemKey = buildCartItemKey({ id, variant });
-    const index = cart.findIndex((item) => buildCartItemKey(item) === itemKey);
-
-    if (index === -1) {
-      return cart;
-    }
-
-    cart[index].qtd -= quantidade;
-    if (cart[index].qtd <= 0) {
-      cart.splice(index, 1);
-    }
-
-    setCartStorage(cart);
-    return cart;
-  },
-  clearCart: () => {
-    setCartStorage([]);
-  },
-  getTotalItens: () =>
-    getCartStorage().reduce((total, item) => total + (item.qtd || 0), 0),
-  atualizarBadgeGlobal: () => {
-    const total = String(window.PDSportsCart.getTotalItens());
-    document.querySelectorAll(".cart-badge").forEach((badge) => {
-      badge.textContent = total;
-    });
-  },
-};
-
-const cartBadge = document.querySelector(".cart-badge");
 const carrinho = document.getElementById("carrinho");
-const cartApi = window.PDSportsCart;
 let quantidadeCarrinho = 0;
 
 function getProdutoDados(produto) {
@@ -299,9 +210,6 @@ function subtrairItem(event) {
 
 function atualizarBadge() {
   sincronizarQuantidadeCarrinho();
-  if (cartBadge) {
-    cartBadge.textContent = String(quantidadeCarrinho);
-  }
   if (cartApi) {
     cartApi.atualizarBadgeGlobal();
   }
@@ -376,11 +284,11 @@ function exibirModalCompraConcluida() {
 
 const botaoFinalizarCompra = carrinho?.querySelector(".resumo .buyNowButton");
 if (carrinho && botaoFinalizarCompra) {
-    botaoFinalizarCompra.addEventListener('click', () => {
-        const audioCompraFinalizada = document.getElementById('audio-compra-finalizada');
-        if (audioCompraFinalizada) {
-            audioCompraFinalizada.currentTime = 0;
-            audioCompraFinalizada.play().catch(() => { });
+  botaoFinalizarCompra.addEventListener('click', () => {
+    const audioCompraFinalizada = document.getElementById('audio-compra-finalizada');
+    if (audioCompraFinalizada) {
+      audioCompraFinalizada.currentTime = 0;
+      audioCompraFinalizada.play().catch(() => { });
     }
 
     if (cartApi) {
@@ -409,10 +317,10 @@ function removerItem(event) {
   }
   atualizarBadge();
   atualizarSubtotal();
-    verificaCupons()
+  verificaCupons()
   calcularTotal();
 }
-
+console.log(cartApi)
 function carregarCarrinho() {
   if (!cartApi) return;
 
@@ -448,11 +356,11 @@ function carregarCarrinho() {
     conteiner.insertAdjacentHTML("beforeend", produtoHTML);
   });
 
-    atualizarBadge();
-    atualizarSubtotal();
-    verificaCupons();
-    calcularTotal();
-    relatedProducts();
+  atualizarBadge();
+  atualizarSubtotal();
+  verificaCupons();
+  calcularTotal();
+  relatedProducts();
 }
 /*
 document.querySelector(".btnCalcularFrete").addEventListener('click', calculateFrete)
@@ -599,45 +507,45 @@ async function getCEP() {
 }
 
 async function relatedProducts() {
-    const cartProducts = cartApi.getCart();
-    const categoriesFromCart = cartProducts
-        .map((p) => p.category)
-        .filter((category) => typeof category === 'string' && category.trim() !== '')
-        .map((category) => category.trim());
+  const cartProducts = cartApi.getCart();
+  const categoriesFromCart = cartProducts
+    .map((p) => p.category)
+    .filter((category) => typeof category === 'string' && category.trim() !== '')
+    .map((category) => category.trim());
 
-    let categories = Array.from(new Set(categoriesFromCart));
-    const relatedSec = document.querySelector(".relatedProducts")
-    if (!relatedSec) return;
+  let categories = Array.from(new Set(categoriesFromCart));
+  const relatedSec = document.querySelector(".relatedProducts")
+  if (!relatedSec) return;
 
-    if (categories.length === 0 && cartProducts.length > 0) {
-        const productsFromCart = await Promise.all(
-            cartProducts.map((item) => getProductById(item.id).catch(() => null)),
-        );
-
-        categories = Array.from(
-            new Set(
-                productsFromCart
-                    .map((product) => product?.category)
-                    .filter((category) => typeof category === 'string' && category.trim() !== '')
-                    .map((category) => category.trim()),
-            ),
-        );
-    }
-
-    if (categories.length === 0) {
-        compreJunto([]);
-        return;
-    }
-
-    const relatedByCategory = await Promise.all(
-        categories.map((category) => getProductsByCategory(category).catch(() => [])),
-        console.log(categories)
+  if (categories.length === 0 && cartProducts.length > 0) {
+    const productsFromCart = await Promise.all(
+      cartProducts.map((item) => getProductById(item.id).catch(() => null)),
     );
 
-    const relatedProducts = relatedByCategory
-        .flat()
-        .filter((product, index, list) => list.findIndex((p) => p.id === product.id) === index)
-        .slice(0, 10);
+    categories = Array.from(
+      new Set(
+        productsFromCart
+          .map((product) => product?.category)
+          .filter((category) => typeof category === 'string' && category.trim() !== '')
+          .map((category) => category.trim()),
+      ),
+    );
+  }
 
-    compreJunto(relatedProducts)
+  if (categories.length === 0) {
+    compreJunto([]);
+    return;
+  }
+
+  const relatedByCategory = await Promise.all(
+    categories.map((category) => getProductsByCategory(category).catch(() => [])),
+    console.log(categories)
+  );
+
+  const relatedProducts = relatedByCategory
+    .flat()
+    .filter((product, index, list) => list.findIndex((p) => p.id === product.id) === index)
+    .slice(0, 10);
+
+  compreJunto(relatedProducts)
 }
