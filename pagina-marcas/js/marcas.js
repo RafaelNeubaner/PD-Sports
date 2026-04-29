@@ -105,20 +105,20 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         idProduto: "2.5",
         imagem: "/assets/media/images/marcas/underarmour/card-underarmour-1.png",
-        titulo: "Umbro Adamant Master<br><small>Class Pro Kintsugi</small>",
-        corFundo: "#145c8f",
+        titulo: "Tênis de Corrida Under Armour <br><small>Charged Wing 2 </small>",
+        corFundo: "#336991c5",
       },
       {
         idProduto: "1.2",
         imagem: "/assets/media/images/marcas/underarmour/card-underarmour-2.png",
         titulo: "Camisa England 1998 com 30% OFF",
-        corFundo: "#c10000",
+        corFundo: "#ad5820",
       },
       {
         idProduto: "1.3",
         imagem: "/assets/media/images/marcas/underarmour/card-underarmour-3.png",
-        titulo: "Conheça a Under Armour PRO 5 Stable",
-        corFundo: "#23083d",
+        titulo: "Bota Militar Under Armour Charged Valsetz",
+        corFundo: "#2f6394",
       },
     ],
     newbalance: [
