@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sobre Nós | PD Sports</title>
-    <link rel="icon" href="/assets/media/icons/favicon.svg" type="image/x-icon" />
+    <title>PD Sports</title>
+    <link
+      rel="icon"
+      href="/assets/media/icons/favicon.svg"
+      type="image/x-icon"
+    />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,7 +34,8 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
-    <link rel="stylesheet" href="/pagina-informativa/css/sobre-nos.css" />
+    <link rel="stylesheet" href="/css/homepage.css" />
+    <link rel="stylesheet" href="/pagina-marcas/css/marcas.css" />
 
     <!-- Scripts -->
     <script
@@ -39,13 +44,11 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- Custom JS -->
-    <script src="/pagina-informativa/js/script.js" defer></script>
-    <script src="/js/darkmode.js"></script>
-    <script src="/js/header.js" type="module"></script>
-    <script src="/js/carrinho.js" type="module"></script>
+    <script src="/js/darkmode.js" defer></script>
+    <script type="module" src="/js/header.js" defer></script>
+    <script type="module" src="/pagina-marcas/js/marcas.js" defer></script>
   </head>
-  <body>
+  <body data-marca="newbalance">
     <!-- HEADER -->
     <header>
       <nav class="navbar navbar-expand-lg">
@@ -64,7 +67,7 @@
 
           <a class="navbar-brand d-block d-md-none" href="/index.html"
             ><img
-              src="assets/media/logo/logo-light.svg"
+              src="/assets/media/logo/logo-light.svg"
               alt="PD Sports"
               id="logo"
           /></a>
@@ -72,7 +75,7 @@
           <search class="containerSearch">
             <a class="navbar-brand d-none d-md-block" href="/index.html">
               <img
-                src="assets/media/logo/logo-light.svg"
+                src="/assets/media/logo/logo-light.svg"
                 alt="PD Sports"
                 id="logo"
               />
@@ -96,7 +99,7 @@
 
             <ul class="navbar-nav align-items-center">
               <li class="nav-item d-block d-lg-none">
-                <a href="/pagina-informativa/faq.html" class="nav-link"
+                <a href="#" class="nav-link"
                   ><i class="bi bi-question-circle"></i
                 ></a>
               </li>
@@ -143,14 +146,13 @@
           </search>
 
           <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
-            <form action="/busca/busca-produto.html">
+            <form>
               <input
                 type="text"
-                name="query"
                 class="form-control pe-5"
                 placeholder="O que você está procurando?"
               />
-              <button class="btn" type="submit">
+              <button class="btn" type="button">
                 <i class="bi bi-search"></i>
               </button>
             </form>
@@ -159,7 +161,7 @@
           <menu class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item d-block d-sm-none loginLink">
-                <a href="/login/index.html" class="nav-link"
+                <a href="/perfil/perfil.html" class="nav-link"
                   ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
                     class="bi bi-chevron-right ms-1"
                   ></i
@@ -226,140 +228,97 @@
       </nav>
     </header>
 
-    <main class="d-flex flex-column gap-5">
-      <section class="heros">
+    <!-- HERO -->
+    <section id="hero" class="container-fluid mx-auto p-0">
+      <article class="slide w-100">
+        <a
+          href="/busca/busca-produto.html?marca=umbro"
+          aria-label="Ver todos os produtos da Umbro"
+        >
+          <img
+            src="/assets/media/images/marcas/umbro/hero-umbro.png"
+            alt="Banner Umbro"
+            style="object-position: 50% 0%; width: 100%"
+            class="d-none d-lg-block d-sm-block"
+          />
 
-        <section class="heroEsportes">
-          <img class="w-md-100" src="../assets/media/images/sobre/esportes_sobre_nos.png" alt="Pessoas praticando vários esportes">
-          <div class="d-flex flex-column flex-md-row justify-content-around align-items-center">
-            <h2 class="subTitle">O esporte não tem limites. Nós também não!</h2>
-            <hgroup class="text-start text-md-end">
-              <p>Respiramos performance e somos o destino definitivo para atletas de todos os níveis.</p>
-              <p>Com variedade em mais de 15 modalidades, entregamos tecnologia e design para você evoluir e superar seus limites.</p>
-              <p>Seja onde estiver, a PD Sports está com você em cada movimento.</p>
-            </hgroup>
-          </div>
-        </section>
+          <img
+            src="/assets/media/images/marcas/umbro/hero-umbro-mobile.png"
+            alt="Banner Umbro Mobile"
+            style="object-position: 50% 0%; width: 100%"
+            class="d-block d-lg-none d-sm-none heroMobile"
+          />
+        </a>
+      </article>
+    </section>
 
-        <section class="heroEsportes d-none d-md-block">
-          <img class="w-100" src="../assets/media/images/sobre/inovacao_sobre_nos.png" alt="Pessoas praticando vários esportes">
-          <div class="d-flex flex-column flex-md-row justify-content-around align-items-center">
-            <hgroup class="text-start">
-              <p>Conectamos você rapidamente às melhores marcas esportivas, cuidando de tudo para que seu foco seja apenas o treino. </p>
-              <p>Usamos tecnologia para oferecer uma experiência de compra ágil, intuitiva e segura.</p>
-            </hgroup>
-            <h2>Inovação que impulsiona o seu jogo.</h2>
-          </div>
-        </section>
+    <main>
+      <section
+        id="containerDestaquesMarca"
+        class="container-fluid p-0"
+      ></section>
+
+      <!-- CTA -->
+      <section class="cta">
+        <article>
+          <a href="/produto/index.html?id=71.1" id="CTAHover">
+            <!-- desktop -->
+            <img
+              class="d-none d-lg-block d-sm-block"
+              src="/assets/media/images/marcas/umbro/cta-umbro.png"
+              alt="pack de chuteiras da umbro"
+              id="CTA"
+            />
+            <!-- mobile -->
+            <img
+              class="d-block d-lg-none d-sm-none"
+              src="/assets/media/images/marcas/umbro/cta-umbro-mobile.png"
+              alt="pack de chuteiras da umbro mobile"
+              id="CTAMobile"
+            />
+          </a>
+        </article>
       </section>
 
-      <section class="missaoSection d-flex flex-column align-items-center justify-content-between">
-        <h2 class="sectTitle">Missão Visão e Valores</h2>
-        <section>
-          <div class="redSection">
-            <div class="missaoContent d-flex flex-column flex-md-row gap-3 justify-content-center">
-              <article class="cardMissao">
-                <h4 class="subTitleCard">Missão</h4>
-                <p>Impulsionar o potencial de cada atleta através do acesso facilitado à melhor tecnologia esportiva do mundo.</p>
-              </article>
-              <article class="cardMissao">
-                <h4 class="subTitleCard">Visão</h4>
-                <p>Ser a plataforma digital de referência global em agilidade e curadoria especializada para apaixonados por esporte.</p>
-              </article>
-              <article class="cardMissao">
-                <h4 class="subTitleCard">Valores</h4>
-                <p>Velocidade, Qualidade, Superação, Ética.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-      </section>
+      <section class="ofertas mb64 container mt-5">
+        <hgroup class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="sectTitle m-0">Ofertas da Semana</h2>
+          <a
+            class="vejaMais link"
+            href="/busca/busca-produto.html?promocao=ofertas&marca=nike"
+          >
+            <i class="bi bi-plus-circle me-1" ></i>Veja Mais
 
-      <!-- MARCAS -->
-      <section class="marcas">
-        <hgroup>
-          <h2 class="sectTitle mb-0">Nossas Marcas Parceiras</h2>
+          </a>
         </hgroup>
 
-        <div class="containerMarcas">
-          <article>
-            <img
-              src="/assets/media/images/home/marcas/marca-nike.png"
-              alt="Nike"
-              class="logoMarca"
-            />
-          </article>
+        <div class="sectionCarousel position-relative">
+          <button
+            class="btn-primary carousel-control prev d-none d-lg-flex"
+            id="btnLeftOfertasMarca"
+          >
+            <i class="bi bi-chevron-left"></i>
+          </button>
 
-          <article>
-            <img
-              src="/assets/media/images/home/marcas/marca-puma.png"
-              alt="Puma"
-              class="logoMarca"
-            />
-          </article>
+          <div class="slider-wrapper" id="sliderWrapperOfertasMarca">
+            <div
+              class="slider-track sliderContainer"
+              id="sliderTrackOfertasMarca"
+            ></div>
+          </div>
 
-          <article>
-            <img
-              src="/assets/media/images/home/marcas/marca-adidas.png"
-              alt="Adidas"
-              class="logoMarca"
-            />
-          </article>
-
-          <article>
-            <img
-              src="/assets/media/images/home/marcas/marca-new-balance.png"
-              alt="New Balance"
-              class="logoMarca"
-            />
-          </article>
-
-          <article>
-            <img
-              src="/assets/media/images/home/marcas/marca-under-armour.png"
-              alt="Under Armour"
-              class="logoMarca"
-            />
-          </article>
-
-          <article>
-            <img
-              src="/assets/media/images/home/marcas/marca-umbro.png"
-              alt="Umbro"
-              class="logoMarca"
-            />
-          </article>
+          <button
+            class="btn-primary carousel-control next d-none d-lg-flex"
+            id="btnRightOfertasMarca"
+          >
+            <i class="bi bi-chevron-right"></i>
+          </button>
         </div>
-      </section>
-
-      <section class="pdsportsSection">
-        <h2 class="sectTitle">Só a PDSports tem</h2>
-        <div class="w-100 d-flex flex-column flex-md-row gap-3 justify-content-around">
-          <article class="cardMissao">
-            <img src="../assets/media/images/sobre/sports.png" alt="Icon Modalidades Esportivas">
-            <h4 class="subTitleCard">Diversas Modalidades</h4>
-            <p>Tudo para o seu jogo. Com mais de 15 modalidades esportivas em nosso catálogo, oferecemos uma curadoria especializada de equipamentos e vestuário para atletas de todos os níveis. Seja qual for a sua paixão, você encontra aqui.</p>
-          </article>
-          <article class="cardMissao">
-            <img src="../assets/media/images/sobre/box.png" alt="Icon Caixa de entrega">
-            <h4 class="subTitleCard">Velocidade de entrega</h4>
-            <p>O seu treino não pode esperar. Nossa logística foi pensada para quem tem pressa de vencer, garantindo um envio ágil e seguro. Compre hoje e receba seus produtos em tempo recorde direto na sua porta.</p>
-          </article>
-          <article class="cardMissao">
-            <img src="../assets/media/images/sobre/shield.png" alt="Icon Escudo">
-            <h4 class="subTitleCard">Valores</h4>
-            <p>Alta performance com o melhor custo-benefício. Trabalhamos com preços competitivos, condições facilitadas e promoções exclusivas para que o seu único foco seja quebrar seus próprios recordes.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="fraseSec p-5 d-flex justify-content-center textCenter sectTitle">
-        <p>“Nossa paixão é te levar ao topo. Seu potencial é infinito. Movimente-se.”</p>
       </section>
     </main>
 
     <footer class="bgHeader">
-      <p class="textCenter font20">
+      <p class="textCenter">
         © PD Sports 2026 | Desenvolvido por Pablo, Pedro e Rafael.
       </p>
     </footer>

@@ -4,6 +4,7 @@
 import { calcularFrete } from "../../js/fretes/useFretes.js";
 import { getProductById, getProductsByCategory } from "../../js/products/useProducts.js"
 import { compreJunto } from "/js/product-card.js"
+import { cartApi } from "../../js/carrinho/useCart.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 let id = urlParams.get('id');
@@ -16,7 +17,6 @@ let productImages = product.images
 const categoryProducts = await getProductsByCategory(product.category)
 const relatedProducts = categoryProducts.filter(p => p.id != id).slice(0, 10)
 compreJunto(relatedProducts)
-const cartApi = window.PDSportsCart
 const CART_STORAGE_KEY = "pd-sports-cart"
 
 function getItemCartKey(item) {
@@ -24,27 +24,7 @@ function getItemCartKey(item) {
 }
 
 function addToCartFallback(produto, quantidade = 1) {
-    let cart = []
-    try {
-        const raw = localStorage.getItem(CART_STORAGE_KEY)
-        cart = raw ? JSON.parse(raw) : []
-        if (!Array.isArray(cart)) {
-            cart = []
-        }
-    } catch {
-        cart = []
-    }
-
-    const itemKey = getItemCartKey(produto)
-    const index = cart.findIndex((item) => getItemCartKey(item) === itemKey)
-
-    if (index >= 0) {
-        cart[index].qtd = (Number(cart[index].qtd) || 0) + quantidade
-    } else {
-        cart.push({ ...produto, qtd: quantidade, cartKey: itemKey })
-    }
-
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart))
+    cartApi.addToCart(produto, 1)
 }
 
 const last_cep = localStorage.getItem("LAST_CEP")
@@ -175,9 +155,6 @@ function addCurrentProductToCart() {
         cartApi.atualizarBadgeGlobal?.()
         return payload
     }
-
-    addToCartFallback(payload, 1)
-    return payload
 }
     
 document.querySelector(".btnCalcularFrete").addEventListener('click', calculateFrete)

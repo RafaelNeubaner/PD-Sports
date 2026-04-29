@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
       containerPedidos.innerHTML += cardHTML;
     }
 
-    const modalTrocaDevolucao = document.getElementById("modalTrocaDevolucao");
+    const modalTrocaDevolucao = document.querySelector(".modalTrocaDevolucao");
     const abrirModalButtons = document.querySelectorAll(".btnTrocarDevolver");
     const fecharModalButtons = document.querySelectorAll("[data-close-modal]");
 
