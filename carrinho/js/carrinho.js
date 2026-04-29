@@ -367,6 +367,7 @@ function calcularTotal() {
     "pt-BR",
     { currency: "BRL", style: "currency" },
   );
+  return total;
 }
 
 function exibirModalCompraConcluida() {
@@ -374,6 +375,9 @@ function exibirModalCompraConcluida() {
   carrinho.classList.add("checkout-completed");
 }
 
+<<<<<<< feat/pedido-usuario
+const botaoFinalizarCompra = carrinho?.querySelector('.resumo .buyNowButton');
+=======
 function validarDadosCliente() {
   const campos = {
     nome: document.getElementById("nomeInput"),
@@ -419,6 +423,7 @@ function validarDadosCliente() {
 }
 
 const botaoFinalizarCompra = carrinho?.querySelector(".resumo .buyNowButton");
+>>>>>>> develop
 if (carrinho && botaoFinalizarCompra) {
     botaoFinalizarCompra.addEventListener("click", (event) => {
         event.preventDefault();
@@ -432,6 +437,42 @@ if (carrinho && botaoFinalizarCompra) {
             audioCompraFinalizada.currentTime = 0;
             audioCompraFinalizada.play().catch(() => { });
         }
+<<<<<<< feat/pedido-usuario
+ 
+ 
+        const itensComprados = cartApi ? cartApi.getCart() : [];
+ 
+        if (itensComprados.length > 0) {
+            const cepEntrega = document.getElementById("cepInput").value || "Não informado";
+     
+            const totalPedido = calcularTotal();
+           
+            const metodoPagamentoRadio = document.querySelector('input[name="metodoPagamento"]:checked');
+            const paymentMethod = metodoPagamentoRadio && metodoPagamentoRadio.id === 'pix' ? 'Pix' : 'Cartão de Crédito';
+ 
+            const novoPedido = {
+                id: Math.floor(100000 + Math.random() * 900000).toString(),
+                createdAt: new Date().toISOString(),
+                total: totalPedido,
+                paymentMethod: paymentMethod,
+                cep: cepEntrega,
+                itens: itensComprados
+            };
+ 
+           
+            const historicoPedidos = JSON.parse(localStorage.getItem('pd-sports-pedidos')) || [];
+         
+            historicoPedidos.unshift(novoPedido);
+           
+            localStorage.setItem('pd-sports-pedidos', JSON.stringify(historicoPedidos));
+        }
+ 
+   
+        if (cartApi) {
+            cartApi.clearCart();
+        }
+        document.querySelectorAll('.cartItem').forEach((produto) => produto.remove());
+=======
 
         if (cartApi) {
           cartApi.clearCart();
@@ -439,11 +480,16 @@ if (carrinho && botaoFinalizarCompra) {
         document
           .querySelectorAll(".cartItem")
           .forEach((produto) => produto.remove());
+>>>>>>> develop
         quantidadeCarrinho = 0;
         atualizarBadge();
         atualizarSubtotal();
         exibirModalCompraConcluida();
+<<<<<<< feat/pedido-usuario
+    });
+=======
       });
+>>>>>>> develop
 }
 
 function removerItem(event) {
