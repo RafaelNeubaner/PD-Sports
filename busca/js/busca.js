@@ -153,8 +153,8 @@ function renderizarGrid(produtos, containerGrid) {
   if (produtos.length === 0) {
     containerGrid.innerHTML = `
             <div class="col-12 text-center py-5 w-100">
-                <i class="bi bi-search fs-1 text-muted mb-3 d-block"></i>
-                <h4 class="text-muted">Nenhum produto encontrado com estes filtros.</h4>
+                <i class="bi bi-search fs-1 txtMuted mb-3 d-block"></i>
+                <h4 class="txtMuted">Nenhum produto encontrado com estes filtros.</h4>
             </div>`;
     return;
   }
