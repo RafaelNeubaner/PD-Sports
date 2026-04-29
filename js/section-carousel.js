@@ -60,6 +60,41 @@ function autoplayCarrossel() {
     }
   });
 
+  // SWIPE FUNCTIONALITY
+  let startX = 0;
+  let endX = 0;
+  const minSwipeDistance = 50; // Distância mínima para considerar como swipe
+
+  carrossel.addEventListener('touchstart', (event) => {
+    startX = event.changedTouches[0].screenX;
+    clearInterval(autoplayInterval);
+  }, false);
+
+  carrossel.addEventListener('touchend', (event) => {
+    endX = event.changedTouches[0].screenX;
+    handleSwipe();
+    iniciarAutoplay();
+  }, false);
+
+  function handleSwipe() {
+    const diff = startX - endX;
+    const activeIndex = Array.from(dots).findIndex(dot => dot.classList.contains('active'));
+
+    // Swipe para a esquerda (próximo slide)
+    if (diff > minSwipeDistance) {
+      const nextIndex = (activeIndex + 1) % dots.length;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[nextIndex].classList.add('active');
+      atualizarCarrossel();
+    }
+    // Swipe para a direita (slide anterior)
+    else if (diff < -minSwipeDistance) {
+      const prevIndex = (activeIndex - 1 + dots.length) % dots.length;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[prevIndex].classList.add('active');
+      atualizarCarrossel();
+    }
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
     dots[0].classList.add('active');

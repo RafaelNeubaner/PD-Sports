@@ -54,10 +54,16 @@
   text-align: center;
 }
 
+#filtros {
+  background-color: var(--bg);
+}
+
 .custom-checkbox {
   margin-bottom: 0.5rem;
 
 }
+
+
 
 .custom-checkbox .form-check-input {
 
@@ -232,5 +238,24 @@ body.darkMode #gridProdutosBusca .badge img {
 
   #gridProdutosBusca {
     margin-top: 1rem;
+  }
+}
+
+@media (max-width: 776px) {
+  main {
+    margin-top: 10rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .search-filter input {
+    padding-right: 2rem;
+  }
+
+  .search-filter .search-icon {
+    right: 5px;
+  } 
+  main {
+    padding: 10px;
   }
 }
