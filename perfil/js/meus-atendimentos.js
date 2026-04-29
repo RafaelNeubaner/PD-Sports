@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const formNovoAtendimento = document.getElementById("formNovoAtendimento");
 
   const chamadosAPI = [
-    {
+    /*{
       id: "1001",
       productId: "1.1",
       tipoProblema: "defeito",
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       tipoProblema: "estorno",
       status: "Resolvido",
       detalheCliente: "não identifiquei o valor na fatura.",
-    },
+    },*/
   ];
 
 

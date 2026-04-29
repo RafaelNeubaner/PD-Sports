@@ -1,5 +1,5 @@
 import {getUserAuthenticated} from "./users/useAuth.js"
-
+import {cartApi} from "./carrinho/useCart.js"
 const user = await getUserAuthenticated()
 
 if(user){
@@ -11,3 +11,5 @@ if(user){
 }else{
     document.querySelector(".iconProfile").classList.remove("d-md-block")
 }
+
+cartApi.atualizarBadgeGlobal()
