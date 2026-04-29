@@ -25,27 +25,6 @@ function getItemCartKey(item) {
 
 function addToCartFallback(produto, quantidade = 1) {
     cartApi.addToCart(produto, 1)
-   /* let cart = []
-    try {
-        const raw = localStorage.getItem(CART_STORAGE_KEY)
-        cart = raw ? JSON.parse(raw) : []
-        if (!Array.isArray(cart)) {
-            cart = []
-        }
-    } catch {
-        cart = []
-    }
-
-    const itemKey = getItemCartKey(produto)
-    const index = cart.findIndex((item) => getItemCartKey(item) === itemKey)
-
-    if (index >= 0) {
-        cart[index].qtd = (Number(cart[index].qtd) || 0) + quantidade
-    } else {
-        cart.push({ ...produto, qtd: quantidade, cartKey: itemKey })
-    }
-
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart))*/
 }
 
 const last_cep = localStorage.getItem("LAST_CEP")
