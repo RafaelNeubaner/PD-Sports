@@ -64,21 +64,21 @@ document.addEventListener("DOMContentLoaded", () => {
     adidas: [
       {
         idProduto: "2.5",
-        imagem: "/assets/media/images/marcas/umbro/card-umbro-1.png",
-        titulo: "Umbro Adamant Master<br><small>Class Pro Kintsugi</small>",
-        corFundo: "#145c8f",
+        imagem: "/assets/media/images/marcas/adidas/card-adidas-1.png",
+        titulo: "Camisa I Real Madrid 25/26<br><small>Versão Jogador </small>",
+        corFundo: "#ad8820"
       },
       {
         idProduto: "1.2",
-        imagem: "/assets/media/images/marcas/umbro/card-umbro-2.png",
-        titulo: "Camisa England 1998 com 30% OFF",
-        corFundo: "#c10000",
+        imagem: "/assets/media/images/marcas/adidas/card-adidas-2.png",
+        titulo: "Adizero Drive RC M",
+        corFundo:  "#ca4a17e3"
       },
       {
         idProduto: "1.3",
-        imagem: "/assets/media/images/marcas/umbro/card-umbro-3.png",
-        titulo: "Conheça a Umbro PRO 5 Stable",
-        corFundo: "#23083d",
+        imagem: "/assets/media/images/home/categoria-destaque-1.png",
+        titulo: "Conheça a Bola Adidas Trionda Pro<br><small>Copa do Mundo da FIFA 26™</small>",
+        corFundo: "#1a6dbbbd"
       },
     ],
     puma: [
