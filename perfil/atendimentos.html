@@ -42,7 +42,6 @@
     <!-- Custom JS -->
     <script src="../js/users/isLogged.js" type="module"></script>
     <script src="/js/darkmode.js"></script>
-    <script src="/carrinho/js/carrinho.js" defer></script>
     <script type="module" src="/perfil/js/meus-atendimentos.js"></script>
   </head>
   <body>
@@ -253,15 +252,9 @@
       </header>
 
       <form id="formNovoAtendimento">
-        <label for="nomeCliente" class="sr-only">Nome Cliente</label>
-        <input
-          type="text"
-          id="nomeCliente"
-          name="nomeCliente"
-          placeholder="Nome Cliente"
-          required
-        />
-
+        <h3>Nome: <span class="nomeCliente"></span></h3>
+        <h3>Telefone: <span class="telefoneCliente"></span></h3>
+      
         <label for="codigoPedido" class="sr-only">Código do Pedido</label>
         <input
           type="text"
@@ -269,15 +262,6 @@
           name="codigoPedido"
           placeholder="Código do Pedido"
           maxlength="6"
-          required
-        />
-
-        <label for="telefoneContato" class="sr-only">Telefone de contato</label>
-        <input
-          type="tel"
-          id="telefoneContato"
-          name="telefoneContato"
-          placeholder="Telefone de contato"
           required
         />
 

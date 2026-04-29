@@ -2,6 +2,7 @@ document.getElementById("voltar").addEventListener("click", function () {
   window.location.href = "perfil.html";
 });
 
+import { getUserAuthenticated } from "../../js/users/useAuth.js";
 import { getProductById, getProductsFilter } from "/js/products/useProducts.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -10,6 +11,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const abrirAtendimento = document.getElementById("abrirAtendimento");
   const btnFecharModal = document.querySelector(".btn-fechar-modal");
   const formNovoAtendimento = document.getElementById("formNovoAtendimento");
+
+  const user = await getUserAuthenticated()
+
+  document.querySelector(".nomeCliente").textContent = `${user.firstname} ${user.lastname}`
+  document.querySelector(".telefoneCliente").textContent = user.phone
 
   const chamadosAPI = [
     /*{
