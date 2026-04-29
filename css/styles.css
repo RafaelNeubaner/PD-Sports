@@ -88,6 +88,11 @@ body.darkMode .themeToggle:hover {
 }
 
 /* GLOBAL - BACKGROUND UTILITIES */
+.bg {
+    background-color: var(--bg);
+    color: var(--txt);
+}
+
 .bgLight {
     background-color: var(--bg-light);
     color: var(--txtDark);
