@@ -41,8 +41,6 @@ function updateUserOnScreen(user){
     inputNovaSenha.value=""
 }
 
-
-
 document.addEventListener("DOMContentLoaded", async () => {
     
     var user = await getUserAuthenticated();

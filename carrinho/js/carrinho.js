@@ -275,6 +275,7 @@ function calcularTotal() {
     "pt-BR",
     { currency: "BRL", style: "currency" },
   );
+  return total;
 }
 
 function exibirModalCompraConcluida() {
@@ -282,14 +283,99 @@ function exibirModalCompraConcluida() {
   carrinho.classList.add("checkout-completed");
 }
 
+function validarDadosCliente() {
+  const campos = {
+    nome: document.getElementById("nomeInput"),
+    sobrenome: document.getElementById("sobrenomeInput"),
+    cpf: document.getElementById("cpfInput"),
+    cep: document.getElementById("cepInput"),
+    rua: document.getElementById("ruaInput"),
+    bairro: document.getElementById("bairroInput"),
+    numero: document.getElementById("numeroInput"),
+    cidade: document.getElementById("cidadeInput"),
+    estado: document.getElementById("estadoInput"),
+  };
+
+  const camposVazios = Object.entries(campos)
+    .filter(([key, input]) => !input || !input.value.trim())
+    .map(([key]) => key);
+
+  if (camposVazios.length > 0) {
+    alert(`Por favor, preencha os seguintes campos: ${camposVazios.join(", ")}`);
+    return false;
+  }
+
+  // Validar dados de pagamento se cartão for selecionado
+  const metodoPagamento = document.querySelector('input[name="metodoPagamento"]:checked');
+  if (metodoPagamento && metodoPagamento.id === "cartao") {
+    const camposCartao = {
+      "número do cartão": document.getElementById("n-cartao"),
+      "data de vencimento": document.getElementById("vencimento"),
+      "CVV": document.getElementById("cvv"),
+    };
+
+    const camposCartaoVazios = Object.entries(camposCartao)
+      .filter(([key, input]) => !input || !input.value.trim())
+      .map(([key]) => key);
+
+    if (camposCartaoVazios.length > 0) {
+      alert(`Por favor, preencha os dados do cartão: ${camposCartaoVazios.join(", ")}`);
+      return false;
+    }
+  }
+
+  return true;
+}
+
 const botaoFinalizarCompra = carrinho?.querySelector(".resumo .buyNowButton");
 if (carrinho && botaoFinalizarCompra) {
-  botaoFinalizarCompra.addEventListener('click', () => {
+
+  botaoFinalizarCompra.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    if (!validarDadosCliente()) {
+      return;
+    }
+
     const audioCompraFinalizada = document.getElementById('audio-compra-finalizada');
     if (audioCompraFinalizada) {
       audioCompraFinalizada.currentTime = 0;
       audioCompraFinalizada.play().catch(() => { });
     }
+
+
+    const itensComprados = cartApi ? cartApi.getCart() : [];
+
+    if (itensComprados.length > 0) {
+      const cepEntrega = document.getElementById("cepInput").value || "Não informado";
+
+      const totalPedido = calcularTotal();
+
+      const metodoPagamentoRadio = document.querySelector('input[name="metodoPagamento"]:checked');
+      const paymentMethod = metodoPagamentoRadio && metodoPagamentoRadio.id === 'pix' ? 'Pix' : 'Cartão de Crédito';
+
+      const novoPedido = {
+        id: Math.floor(100000 + Math.random() * 900000).toString(),
+        createdAt: new Date().toISOString(),
+        total: totalPedido,
+        paymentMethod: paymentMethod,
+        cep: cepEntrega,
+        itens: itensComprados
+      };
+
+
+      const historicoPedidos = JSON.parse(localStorage.getItem('pd-sports-pedidos')) || [];
+
+      historicoPedidos.unshift(novoPedido);
+
+      localStorage.setItem('pd-sports-pedidos', JSON.stringify(historicoPedidos));
+    }
+
+
+    if (cartApi) {
+      cartApi.clearCart();
+    }
+    document.querySelectorAll('.cartItem').forEach((produto) => produto.remove());
 
     if (cartApi) {
       cartApi.clearCart();
@@ -297,6 +383,7 @@ if (carrinho && botaoFinalizarCompra) {
     document
       .querySelectorAll(".cartItem")
       .forEach((produto) => produto.remove());
+
     quantidadeCarrinho = 0;
     atualizarBadge();
     atualizarSubtotal();
