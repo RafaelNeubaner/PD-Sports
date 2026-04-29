@@ -1,6 +1,15 @@
 #hero {
   /* max-height: 548px; */
-  max-width: 1400px;
+  max-width: 1200px;
+}
+
+main {
+  padding: 0;
+}
+
+#containerDestaquesMarca {
+  max-width: 1200px;
+  margin-bottom: 6.4rem;
 }
 
 .marcaDestaque {
@@ -48,12 +57,16 @@
 
 
 @media (max-width: 767px) {
+  main {
+    padding: 0 2.4rem;
+  }
+
   .cardDestaque {
     height: 368px;/
   }
 
   .destaqueImg {
-    max-height: 300px;
+    max-height: 250px;
   }
 
   .heroMobile {
@@ -70,7 +83,6 @@
 }
 
 @media (max-width: 575px) {
-  
 
   .sectTitle {
     font-size: 2.4rem !important;
