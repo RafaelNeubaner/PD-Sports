@@ -232,7 +232,7 @@
 
         <div class="chamados" id="containerAtendimentos"></div>
 
-        <button class="btnPrimary" id="abrirAtendimento">
+        <button class="btnPrimary" id="abrirAtendimentoBtn">
           Abrir novo atendimento
         </button>
       </section>
@@ -270,10 +270,10 @@
           <option value="" disabled selected>
             Dropdown áreas de atendimento
           </option>
-          <option value="duvida">Dúvidas gerais</option>
-          <option value="devolucao">Troca ou Devolução</option>
-          <option value="entrega">Problemas com a entrega</option>
-          <option value="pagamento">Pagamento e Estorno</option>
+          <option value="duvida" >Dúvidas gerais</option>
+          <option value="devolucao" class="pedidoOption">Troca ou Devolução</option>
+          <option value="entrega" class="pedidoOption">Problemas com a entrega</option>
+          <option value="pagamento" class="pedidoOption">Pagamento e Estorno</option>
         </select>
 
         <label for="descricao" class="sr-only">Descrição</label>

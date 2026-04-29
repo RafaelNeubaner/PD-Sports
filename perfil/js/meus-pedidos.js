@@ -78,7 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="pedidoCol colStatus">
                         ${gerarTimelineStatus()}
                         <div class="statusBotoes">
-                            <button type="button" class="btnOutline btnTrocarDevolver">Trocar ou devolver</button>
+                            <div class="d-flex gap-3">
+                                <button type="button" class="btnOutline btnTrocarDevolver">Trocar ou devolver</button>
+                                <a href="/perfil/atendimentos.html?id=${idExibicao}#new" class="btnOutline btnTrocarDevolver">Abrir atendimento</a>
+                            </div>
                             <button class="btnOutline">Baixar nota fiscal</button>
                         </div>
                     </div>

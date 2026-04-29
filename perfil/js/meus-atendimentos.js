@@ -1,45 +1,37 @@
+
+import { abrirAtendimento, getAtendimentos } from "../../js/atendimentos/useAtendimentos.js";
+import { getUserAuthenticated } from "../../js/users/useAuth.js";
+import { getProductById, getProductsFilter } from "/js/products/useProducts.js";
+
 document.getElementById("voltar").addEventListener("click", function () {
   window.location.href = "perfil.html";
 });
 
-import { getUserAuthenticated } from "../../js/users/useAuth.js";
-import { getProductById, getProductsFilter } from "/js/products/useProducts.js";
-
 document.addEventListener("DOMContentLoaded", async () => {
   const containerAtendimentos = document.getElementById("containerAtendimentos");
   const modal = document.getElementById("modalAtendimento");
-  const abrirAtendimento = document.getElementById("abrirAtendimento");
+  const abrirAtendimentoBtn = document.getElementById("abrirAtendimentoBtn");
   const btnFecharModal = document.querySelector(".btn-fechar-modal");
   const formNovoAtendimento = document.getElementById("formNovoAtendimento");
+
+  console.log(document.location.hash)
+  if(document.location.hash === "#new"){
+    const params = new URLSearchParams(document.location.search)
+    var idPedido = params.get("id")
+    document.querySelector("#codigoPedido").style.display="block"
+    document.querySelectorAll(".pedidoOption").forEach(op=>op.style.display="block")
+    const inputCodPedido = document.querySelector("#codigoPedido")
+    inputCodPedido.value = params.get("id")
+    inputCodPedido.disabled=true
+    modal.showModal()
+  }
 
   const user = await getUserAuthenticated()
 
   document.querySelector(".nomeCliente").textContent = `${user.firstname} ${user.lastname}`
   document.querySelector(".telefoneCliente").textContent = user.phone
 
-  const chamadosAPI = [
-    /*{
-      id: "1001",
-      productId: "1.1",
-      tipoProblema: "defeito",
-      status: "Em andamento",
-      detalheCliente: "veio com o tecido descascado.",
-    },
-    {
-      id: "1002",
-      productId: "2.1",
-      tipoProblema: "entrega_incompleta",
-      status: "Sob análise",
-      detalheCliente: "recebi apenas uma parte do kit.",
-    },
-    {
-      id: "1003",
-      productId: "3.1",
-      tipoProblema: "estorno",
-      status: "Resolvido",
-      detalheCliente: "não identifiquei o valor na fatura.",
-    },*/
-  ];
+  const atendimentoList = getAtendimentos()
 
 
   function gerarTextosChamado(tipoProblema, nomeProduto, detalheCliente) {
@@ -89,17 +81,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                   <p class="text-muted mt-2">Atualizando atendimentos...</p>
               </div>
           `;
-
-      if (chamadosAPI.length === 0) {
+      console.log(atendimentoList)
+      console.log(atendimentoList.length)
+      if (atendimentoList.length === 0) {
         containerAtendimentos.innerHTML = `<p class="text-center text-muted py-5">Você não possui chamados em aberto.</p>`;
         return;
       }
 
       let htmlFinal = "";
 
-      const chamadosOrdenados = [...chamadosAPI].reverse();
-
-      for (const chamado of chamadosOrdenados) {
+      for (const chamado of atendimentoList) {
         let imgProduto = "/assets/media/img/default.png";
         let nomeProduto = "Produto Indisponível";
 
@@ -159,8 +150,8 @@ document.addEventListener("DOMContentLoaded", async () => {
  
   // MODAL NOVO ATENDIMENTO
   
-  if (abrirAtendimento) {
-    abrirAtendimento.addEventListener("click", () => modal.showModal());
+  if (abrirAtendimentoBtn) {
+    abrirAtendimentoBtn.addEventListener("click", () => modal.showModal());
   }
 
   if (btnFecharModal) {
@@ -210,15 +201,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       
       const idDoProdutoReal = produtoSorteado.id; 
       const novoChamado = {
-        id: Date.now().toString(), 
-        numeroPedido: inputCodigoPedido, 
-        productId: idDoProdutoReal,     
+        id: atendimentoList.length+1, 
+        isPedido: inputCodigoPedido,   
         tipoProblema: inputArea,
+        createdAt: Date.now().toString(),
         status: "Sob análise", 
-        detalheCliente: inputDescricao,
+        descricao: inputDescricao,
       };
 
-      chamadosAPI.push(novoChamado);
+      abrirAtendimento(novoChamado)
       
       alert("Atendimento aberto com sucesso!");
       formNovoAtendimento.reset();
