@@ -117,7 +117,6 @@ header .navbar .containerSearch button i,
 header .navbar i {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--secondary);
 }
 
 header .navbar .container .navbar-toggler {
@@ -163,9 +162,9 @@ header .navbar .container #navbarNav li a::after {
 menu ul {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 4rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
