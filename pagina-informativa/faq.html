@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FAQ | PD Sports</title>
-    <link rel="icon" href="/assets/media/icons/favicon.svg" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="/assets/media/icons/favicon.svg"
+      type="image/x-icon"
+    />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,6 +46,8 @@
     <!-- Custom JS -->
     <script src="/pagina-informativa/js/script.js" defer></script>
     <script src="/js/darkmode.js"></script>
+    <script src="/js/header.js" type="module"></script>
+    <script src="/js/carrinho.js" type="module"></script>
   </head>
   <body>
     <!-- HEADER -->
@@ -62,7 +68,7 @@
 
           <a class="navbar-brand d-block d-md-none" href="/index.html"
             ><img
-              src="../assets/media/logo/logo-light.svg"
+              src="assets/media/logo/logo-light.svg"
               alt="PD Sports"
               id="logo"
           /></a>
@@ -70,7 +76,7 @@
           <search class="containerSearch">
             <a class="navbar-brand d-none d-md-block" href="/index.html">
               <img
-                src="../assets/media/logo/logo-light.svg"
+                src="assets/media/logo/logo-light.svg"
                 alt="PD Sports"
                 id="logo"
               />
@@ -94,7 +100,7 @@
 
             <ul class="navbar-nav align-items-center">
               <li class="nav-item d-block d-lg-none">
-                <a href="#" class="nav-link"
+                <a href="/pagina-informativa/faq.html" class="nav-link"
                   ><i class="bi bi-question-circle"></i
                 ></a>
               </li>
@@ -128,7 +134,23 @@
                 <span class="cart-badge">0</span>
               </li>
               <li class="nav-item d-none d-md-block iconProfile">
-                <a href="/perfil/perfil.html" class="nav-link"><i class="bi bi-person"></i></a>
+                <a href="/perfil/perfil.html" class="nav-link"
+                  ><i class="bi bi-person"></i
+                ></a>
+              </li>
+              <li class="nav-item d-none logoutLink">
+                <a
+                  href="/index.html"
+                  class="btn nav-link logoutBtn"
+                  style="
+                    cursor: pointer;
+                    border: none;
+                    background: none;
+                    padding: 0.5rem 0.75rem;
+                  "
+                >
+                  <i class="bi bi-box-arrow-right"></i>Sair
+                </a>
               </li>
               <li class="nav-item d-none d-md-block loginLink">
                 <a href="/login/index.html" class="nav-link"
@@ -139,13 +161,14 @@
           </search>
 
           <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
-            <form>
+            <form action="/busca/busca-produto.html">
               <input
                 type="text"
+                name="query"
                 class="form-control pe-5"
                 placeholder="O que você está procurando?"
               />
-              <button class="btn" type="button">
+              <button class="btn" type="submit">
                 <i class="bi bi-search"></i>
               </button>
             </form>
@@ -154,7 +177,7 @@
           <menu class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item d-block d-sm-none loginLink">
-                <a href="#" class="nav-link"
+                <a href="/login/index.html" class="nav-link"
                   ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
                     class="bi bi-chevron-right ms-1"
                   ></i
@@ -171,14 +194,14 @@
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  href="/busca/busca-produto.html?gender=masculino"
+                  href="/busca/busca-produto.html?genero=Masculino"
                   >Masculino</a
                 >
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  href="/busca/busca-produto.html?gender=feminino"
+                  href="/busca/busca-produto.html?genero=Feminino"
                   >Feminino</a
                 >
               </li>
@@ -211,7 +234,9 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/pagina-informativa/sobre-nos.html">Sobre nós</a>
+                <a class="nav-link" href="/pagina-informativa/sobre-nos.html"
+                  >Sobre nós</a
+                >
               </li>
             </ul>
           </menu>
@@ -221,27 +246,47 @@
 
     <main class="faqPage">
       <section class="faqShell container">
-        <h1 class="mainTitle textCenter" >Perguntas Frequentes</h1>
+        <h1 class="mainTitle textCenter">Perguntas Frequentes</h1>
 
         <div class="faqLayout">
           <aside class="faqSidebar">
-            <button class="faqFilter subTitleCard" type="button" data-category="all">
+            <button
+              class="faqFilter subTitleCard"
+              type="button"
+              data-category="all"
+            >
               <i class="bi bi-grid-3x3-gap subtTitleCard"></i>
               <span>Todas</span>
             </button>
-            <button class="faqFilter subTitleCard" type="button" data-category="trocas">
+            <button
+              class="faqFilter subTitleCard"
+              type="button"
+              data-category="trocas"
+            >
               <i class="bi bi-arrow-repeat subtTitleCard"></i>
               <span>Trocas e Devoluções</span>
             </button>
-            <button class="faqFilter subTitleCard" type="button" data-category="entrega">
+            <button
+              class="faqFilter subTitleCard"
+              type="button"
+              data-category="entrega"
+            >
               <i class="bi bi-truck subtTitleCard"></i>
               <span>Entrega</span>
             </button>
-            <button class="faqFilter subTitleCard" type="button" data-category="conta">
+            <button
+              class="faqFilter subTitleCard"
+              type="button"
+              data-category="conta"
+            >
               <i class="bi bi-person-badge subtTitleCard"></i>
               <span>Minha Conta</span>
             </button>
-            <button class="faqFilter subTitleCard" type="button" data-category="pagamento">
+            <button
+              class="faqFilter subTitleCard"
+              type="button"
+              data-category="pagamento"
+            >
               <i class="bi bi-credit-card subtTitleCard"></i>
               <span>Pagamento</span>
             </button>
@@ -253,11 +298,19 @@
               <i class="bi bi-x-circle subtTitleCard"></i>
               <span>Cancelamento</span>
             </button>
-            <button class="faqFilter subTitleCard" type="button" data-category="pedidos">
+            <button
+              class="faqFilter subTitleCard"
+              type="button"
+              data-category="pedidos"
+            >
               <i class="bi bi-bag-check subtTitleCard"></i>
               <span>Meus Pedidos</span>
             </button>
-            <button class="faqFilter subTitleCard" type="button" data-category="privacidade">
+            <button
+              class="faqFilter subTitleCard"
+              type="button"
+              data-category="privacidade"
+            >
               <i class="bi bi-shield-lock subtTitleCard"></i>
               <span>Privacidade e Dados</span>
             </button>
@@ -276,9 +329,7 @@
 
             <div class="faqMeta">
               <span id="faqCount">0 perguntas encontradas</span>
-              <button id="faqClear" class="link" type="button">
-                Limpar filtros
-              </button>
+              <button id="faqClear" class="link" type="button"></button>
             </div>
 
             <div id="faqAccordion" class="faqAccordion"></div>

@@ -67,9 +67,15 @@ h1 {
   border-color: transparent;
 }
 
+.faqFilter.subTitleCard.active > span {
+  color: var(--txtLight);
+}
+
 .faqContent {
   min-width: 0;
 }
+
+
 
 .faqSearch {
   position: relative;
@@ -112,7 +118,7 @@ h1 {
   gap: 1rem;
   margin:1rem 1rem 1.5rem;
   color: var(--txtMuted);
-  font-size: 0.95rem;
+  font-size: 1.6rem;
 }
 
 .link {
@@ -160,13 +166,12 @@ h1 {
 
 .faqQuestion i {
   flex: 0 0 auto;
-  color: var(--txtMuted);
   transition: transform 0.2s ease;
 }
 
 .faqItem.open .faqQuestion i {
   transform: rotate(180deg);
-  color: var(--txt);
+  color: var(--txt-muted);
 }
 
 .faqAnswer {

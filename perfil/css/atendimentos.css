@@ -177,3 +177,8 @@ body.darkMode .atendimento-card ul {
   justify-content: flex-end;
   margin-top: 8px;
 }
+
+#codigoPedido, .pedidoOption{
+  display: none;
+}
+

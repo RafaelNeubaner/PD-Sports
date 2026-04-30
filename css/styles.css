@@ -47,7 +47,7 @@ body.darkMode {
     --bg: #141414;
     --bg-light: #F6F6F6;
     --bg-dark: #141414;
-    --bg-header: #990100;
+    --bg-header: #141414;
     --bg-card: #252525;
     --primary: #B90504;
     --secondary: #990100;
@@ -69,6 +69,7 @@ body.darkMode {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    color: var(--txt);
 }
 
 .themeToggle:hover {
@@ -78,7 +79,7 @@ body.darkMode {
 
 body.darkMode .themeToggle {
     background-color: transparent;
-    color: var(--txtD);
+    color: var(--txt);
     
 }
 
@@ -88,6 +89,11 @@ body.darkMode .themeToggle:hover {
 }
 
 /* GLOBAL - BACKGROUND UTILITIES */
+.bg {
+    background-color: var(--bg);
+    color: var(--txt);
+}
+
 .bgLight {
     background-color: var(--bg-light);
     color: var(--txtDark);
@@ -138,6 +144,7 @@ body.darkMode .themeToggle:hover {
     background-color: var(--secondary);
     color: var(--txtLight);
     border: none;
+    text-decoration: none;
     padding: 10px 24px;
     border-radius: 12px;
     cursor: pointer;
@@ -283,7 +290,7 @@ body.darkMode .themeToggle:hover {
 }
 
 p {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
 }
 
 .mb64 {
@@ -386,5 +393,9 @@ select {
         font-size: 16px;
         font-weight: 600;
     }
-
+    
+    .subTitleCard {
+        font-size: 16px;
+        font-weight: 600;
+    }
 }

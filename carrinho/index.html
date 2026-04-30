@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PD Sports | Carrinho</title>
-    <link rel="icon" href="/assets/media/icons/favicon.svg" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="/assets/media/icons/favicon.svg"
+      type="image/x-icon"
+    />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,6 +34,8 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/carrossel.css" />
+    <link rel="stylesheet" href="/css/homepage.css" />
     <link rel="stylesheet" href="/carrinho/css/carrinho.css" />
 
     <!-- Scripts -->
@@ -40,7 +46,7 @@
     ></script>
 
     <!-- Custom JS -->
-    <script type="module" src="/carrinho/js/carrinho.js" defer></script>
+    <script src="./js/carrinho.js" type="module"></script>
     <script src="/js/darkmode.js"></script>
     <script src="/carrinho/js/validacao-cartao.js"></script>
     <script type="module" src="../js/header.js" defer></script>
@@ -96,7 +102,7 @@
 
             <ul class="navbar-nav align-items-center">
               <li class="nav-item d-block d-lg-none">
-                <a href="#" class="nav-link"
+                <a href="/pagina-informativa/faq.html" class="nav-link"
                   ><i class="bi bi-question-circle"></i
                 ></a>
               </li>
@@ -130,7 +136,23 @@
                 <span class="cart-badge">0</span>
               </li>
               <li class="nav-item d-none d-md-block iconProfile">
-                <a href="/perfil/perfil.html" class="nav-link"><i class="bi bi-person"></i></a>
+                <a href="/perfil/perfil.html" class="nav-link"
+                  ><i class="bi bi-person"></i
+                ></a>
+              </li>
+              <li class="nav-item d-none logoutLink">
+                <a
+                  href="/index.html"
+                  class="btn nav-link logoutBtn"
+                  style="
+                    cursor: pointer;
+                    border: none;
+                    background: none;
+                    padding: 0.5rem 0.75rem;
+                  "
+                >
+                  <i class="bi bi-box-arrow-right"></i>Sair
+                </a>
               </li>
               <li class="nav-item d-none d-md-block loginLink">
                 <a href="/login/index.html" class="nav-link"
@@ -141,13 +163,14 @@
           </search>
 
           <div class="collapse w-100 mt-2 d-md-none" id="mobileSearchBox">
-            <form>
+            <form action="/busca/busca-produto.html">
               <input
                 type="text"
+                name="query"
                 class="form-control pe-5"
                 placeholder="O que você está procurando?"
               />
-              <button class="btn" type="button">
+              <button class="btn" type="submit">
                 <i class="bi bi-search"></i>
               </button>
             </form>
@@ -156,7 +179,7 @@
           <menu class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item d-block d-sm-none loginLink">
-                <a href="#" class="nav-link"
+                <a href="/login/index.html" class="nav-link"
                   ><i class="bi bi-person me-1"></i>Entre ou Cadastre-se<i
                     class="bi bi-chevron-right ms-1"
                   ></i
@@ -173,14 +196,14 @@
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  href="/busca/busca-produto.html?gender=masculino"
+                  href="/busca/busca-produto.html?genero=Masculino"
                   >Masculino</a
                 >
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  href="/busca/busca-produto.html?gender=feminino"
+                  href="/busca/busca-produto.html?genero=Feminino"
                   >Feminino</a
                 >
               </li>
@@ -213,222 +236,290 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/pagina-informativa/sobre-nos.html">Sobre nós</a>
+                <a class="nav-link" href="/pagina-informativa/sobre-nos.html"
+                  >Sobre nós</a
+                >
               </li>
             </ul>
           </menu>
         </div>
       </nav>
     </header>
+    <main>
+      <div id="carrinho" class="d-flex justify-content-between gap-3">
+        <section class="d-flex flex-column gap-3">
+          <h1 class="red mainTitle">
+            Carrinho ( <span class="cart-badge"></span> )
+          </h1>
+          <p class="carrinho-vazio">Seu carrinho está vazio.</p>
+          <section class="cartItens"></section>
 
-    <main id="carrinho" class="d-flex justify-content-between gap-3">
-      <section class="d-flex flex-column gap-3">
-        <h1 class="red mainTitle">Carrinho ( <span class="cart-badge"></span> )</h1>
-        <p class="carrinho-vazio">Seu carrinho está vazio.</p>
-        <section class="cartItens"></section>
+          <!-- FORMS - Dados, Endereço e Forma de Pagamento -->
+          <section id="formulario">
+            <form>
+              <section id="dadosCliente">
+                <legend>Dados do Cliente</legend>
+                <div class="d-flex w-100">
+                  <fieldset class="w-100">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input
+                      type="text"
+                      class="form-control w-100"
+                      id="nomeInput"
+                      placeholder="Primeiro nome"
+                    />
+                  </fieldset>
 
-        <!-- FORMS - Dados, Endereço e Forma de Pagamento -->
-        <section id="formulario">
-          <form>
-            <section id="dadosCliente">
-              <legend>Dados do Cliente</legend>
-              <div class="d-flex w-100">
-                <fieldset class="w-100">
-                  <label for="nome" class="form-label">Nome</label>
-                  <input
-                    type="text"
-                    class="form-control w-100"
-                    id="nome"
-                    placeholder="Primeiro nome"
-                  />
-                </fieldset>
-
-                <fieldset class="w-100">
-                  <label for="sobrenome" class="form-label">Sobrenome</label>
-                  <input
-                    type="text"
-                    class="form-control w-100"
-                    id="sobrenome"
-                    placeholder="Sobrenome"
-                  />
-                </fieldset>
-              </div>
-
-              <fieldset>
-                <label for="cpf" class="form-label">CPF</label>
-                <input
-                  type="cpf"
-                  class="form-control"
-                  id="cpf"
-                  placeholder="Informe seu CPF"
-                />
-              </fieldset>
-            </section>
-
-            <section id="endereco">
-              <legend>Endereço de Entrega</legend>
-
-              <fieldset class="w-100">
-                <label for="cep" class="form-label">CEP</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="cepInput"
-                  placeholder="Informe seu CEP"
-                />
-              </fieldset>
-
-              <div class="d-flex flex-column flex-md-row w-100">
-                <fieldset class="w-100">
-                  <label for="rua" class="form-label">Rua</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="ruaInput"
-                    placeholder="Rua"
-                  />
-                </fieldset>
-
-                <fieldset class="w-100">
-                  <label for="bairro" class="form-label">Bairro</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="bairroInput"
-                    placeholder="Bairro"
-                  />
-                </fieldset>
-                <fieldset class="w-100">
-                  <label for="numero" class="form-label">Número</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="numeroInput"
-                    placeholder="Número"
-                    min="1"
-                  />
-                </fieldset>
-              </div>
-
-              <fieldset class="w-100">
-                <label for="cidade" class="form-label">Cidade</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="cidadeInput"
-                  placeholder="Informe sua Cidade"
-                />
-              </fieldset>
-              <fieldset class="w-100">
-                <label for="estado" class="form-label">Estado</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="estadoInput"
-                  placeholder="Informe seu Estado"
-                />
-              </fieldset>
-            </section>
-
-            <section id="formaPagamento">
-              <legend>Forma de Pagamento</legend>
-
-              <div class="d-flex w-100">
-                <fieldset class="pagamento d-flex align-items-center">
-                  <input
-                    type="radio"
-                    name="metodoPagamento"
-                    id="pix"
-                    class="custom-radio"
-                    checked
-                  />
-                  <i class="bi bi-x-diamond-fill fs-2" style="color: #00bdae"></i>
-                  <p>Pix</p>
-                </fieldset>
-
-                <fieldset class="pagamento d-flex align-items-center">
-                  <input
-                    type="radio"
-                    name="metodoPagamento"
-                    id="cartao"
-                    class="custom-radio"
-                  />
-                  <i class="bi bi-credit-card fs-2"></i>
-                  <p>Cartão de Crédito</p>
-                </fieldset>
-              </div>
-
-              <fieldset id="camposCartao" class="d-flex flex-column gap-3 w-100">
-                <div class="input-icon-wrapper">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="n-cartao"
-                    placeholder="Nº do Cartão"
-                  />
-                  <i class="bi bi-credit-card-2-front"></i>
+                  <fieldset class="w-100">
+                    <label for="sobrenome" class="form-label">Sobrenome</label>
+                    <input
+                      type="text"
+                      class="form-control w-100"
+                      id="sobrenomeInput"
+                      placeholder="Sobrenome"
+                    />
+                  </fieldset>
                 </div>
 
-                <div class="d-flex gap-3 w-100">
-                  <div class="input-icon-wrapper w-50">
+                <fieldset>
+                  <label for="cpf" class="form-label">CPF</label>
+                  <input
+                    type="cpf"
+                    class="form-control"
+                    id="cpfInput"
+                    placeholder="Informe seu CPF"
+                  />
+                </fieldset>
+              </section>
+              <section id="userNotAuthenticated" class="d-none">
+                <p>Faça login para continuar o processo de compra</p>
+                <a
+                  href="/login/index.html?back_to=/carrinho/index.html"
+                  class="btnPrimary btnLogar"
+                  >Entrar ou criar sua conta</a
+                >
+              </section>
+
+              <section id="endereco">
+                <legend>Endereço de Entrega</legend>
+
+                <fieldset class="w-100">
+                  <label for="cep" class="form-label">CEP</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cepInput"
+                    placeholder="Informe seu CEP"
+                  />
+                </fieldset>
+
+                <div class="d-flex flex-column flex-md-row w-100">
+                  <fieldset class="w-100">
+                    <label for="rua" class="form-label">Rua</label>
                     <input
                       type="text"
                       class="form-control"
-                      id="vencimento"
-                      placeholder="Data Vencimento"
+                      id="ruaInput"
+                      placeholder="Rua"
                     />
-                    <i class="bi bi-calendar"></i>
-                  </div>
+                  </fieldset>
 
-                  <div class="input-icon-wrapper w-50">
+                  <fieldset class="w-100">
+                    <label for="bairro" class="form-label">Bairro</label>
                     <input
                       type="text"
                       class="form-control"
-                      id="cvv"
-                      placeholder="CVV"
+                      id="bairroInput"
+                      placeholder="Bairro"
                     />
-                    <i class="bi bi-key-fill"></i>
-                  </div>
+                  </fieldset>
+                  <fieldset class="w-100">
+                    <label for="numero" class="form-label">Número</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="numeroInput"
+                      placeholder="Número"
+                      min="1"
+                    />
+                  </fieldset>
                 </div>
-              </fieldset>
-            </section>
-          </form>
+
+                <fieldset class="w-100">
+                  <label for="cidade" class="form-label">Cidade</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cidadeInput"
+                    placeholder="Informe sua Cidade"
+                  />
+                </fieldset>
+                <fieldset class="w-100">
+                  <label for="estado" class="form-label">Estado</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="estadoInput"
+                    placeholder="Informe seu Estado"
+                  />
+                </fieldset>
+              </section>
+
+              <section id="formaPagamento">
+                <legend>Forma de Pagamento</legend>
+
+                <div class="d-flex w-100">
+                  <fieldset class="pagamento d-flex align-items-center">
+                    <input
+                      type="radio"
+                      name="metodoPagamento"
+                      id="pix"
+                      class="custom-radio"
+                      checked
+                    />
+                    <i
+                      class="bi bi-x-diamond-fill fs-2"
+                      style="color: #00bdae"
+                    ></i>
+                    <p>Pix</p>
+                  </fieldset>
+
+                  <fieldset class="pagamento d-flex align-items-center">
+                    <input
+                      type="radio"
+                      name="metodoPagamento"
+                      id="cartao"
+                      class="custom-radio"
+                    />
+                    <i class="bi bi-credit-card fs-2"></i>
+                    <p>Cartão de Crédito</p>
+                  </fieldset>
+                </div>
+
+                <fieldset
+                  id="camposCartao"
+                  class="d-flex flex-column gap-3 w-100"
+                >
+                  <div class="input-icon-wrapper">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="n-cartao"
+                      placeholder="Nº do Cartão"
+                    />
+                    <i class="bi bi-credit-card-2-front"></i>
+                  </div>
+
+                  <div class="d-flex gap-3 w-100">
+                    <div class="input-icon-wrapper w-50">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="vencimento"
+                        placeholder="Data Vencimento"
+                      />
+                      <i class="bi bi-calendar"></i>
+                    </div>
+
+                    <div class="input-icon-wrapper w-50">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="cvv"
+                        placeholder="CVV"
+                      />
+                      <i class="bi bi-key-fill"></i>
+                    </div>
+                  </div>
+                </fieldset>
+              </section>
+            </form>
+          </section>
         </section>
-      </section>
 
-      <aside class="resumo">
-        <h4>Subtotal: <span class="span2">R$ 8,97</span></h4>
-        <!--<form id="formFrete" class="d-flex gap-3">
+        <aside class="resumo d-flex flex-column gap-4">
+          <h4>Subtotal: <span class="span2">R$ 8,97</span></h4>
+          <!--<form id="formFrete" class="d-flex gap-3">
           <input placeholder="Digite seu CEP" class="flex-grow-1" name="CEP" type="text" id="cepInput">
           <button class="btnPrimary btnCalcularFrete">Calcular</button>
         </form>-->
-        <template id="tempFreteOption">
-          <li class="freteItem d-flex gap-3">
-            <input type="radio" name="freteOption" class="freteOption">
-            <img src="" alt="">
-            <label for="" class="d-flex flex-row w-100 align-items-center justify-content-between">
-              <h4></h4>
-              <p></p>
-            </label>
-          </li>
-        </template>
-        <ul class="fretesOptions d-flex flex-column gap-4">
-        </ul>
-        <h4>Entrega: <span class="precoFrete">R$ 0,00</span></h4>
-        <h4>Total: <span class="precoTotal subTitleCard">R$ 0,00</span></h4>
+          <template id="tempFreteOption">
+            <li class="freteItem d-flex gap-3">
+              <input type="radio" name="freteOption" class="freteOption" />
+              <img src="" alt="" />
+              <label
+                for=""
+                class="d-flex flex-row w-100 align-items-center justify-content-between"
+              >
+                <h4></h4>
+                <p></p>
+              </label>
+            </li>
+          </template>
+          <ul class="fretesOptions d-flex flex-column gap-4"></ul>
 
-        <button class="btnPrimary buyNowButton">
-          <img src="/assets/media/icons/lightning.svg" /> Finalizar Compra
-        </button>
-      </aside>
-      <article class="modalCompraConcluida">
-        <i class="bi bi-check-circle" style="color: green;"></i>
-        <h3 class="subTitleCard">Obrigado por comprar conosco!</h3>
-        <div>
-          <a href="/index.html" class="btnOutline">Voltar a tela Inicial</a>
-          <a href="/perfil/meus-pedidos.html" class="btnPrimary">Meus Pedidos</a>
+          <div
+            class="descontoSection d-flex align-items-center justify-content-between"
+          >
+            <label for="descontoInput" class="desconto">Desconto</label>
+            <form class="formDesconto d-flex gap-3">
+              <input
+                type="text"
+                placeholder="Cupom de desconto"
+                id="descontoInput"
+              />
+              <button class="btnPrimary">Aplicar</button>
+            </form>
+          </div>
+          <h4>Entrega: <span class="precoFrete">R$ 0,00</span></h4>
+          <h4>Desconto: <span class="precoDesconto">- R$ --,--</span></h4>
+          <h4>Total: <span class="precoTotal subTitleCard">R$ 0,00</span></h4>
+
+          <button class="btnPrimary buyNowButton">
+            <img src="/assets/media/icons/lightning.svg" /> Finalizar Compra
+          </button>
+        </aside>
+        <article class="modalCompraConcluida">
+          <i class="bi bi-check-circle" style="color: green"></i>
+          <h3 class="subTitleCard">Obrigado por comprar conosco!</h3>
+          <div>
+            <a href="/index.html" class="btnOutline">Voltar a tela Inicial</a>
+            <a href="/perfil/meus-pedidos.html" class="btnPrimary"
+              >Meus Pedidos</a
+            >
+          </div>
+        </article>
+      </div>
+      <section class="compreJunto maisVendidos">
+        <hgroup class="d-flex justify-content-between align-items-center">
+          <h2 class="sectTitle m-0">Compre Também</h2>
+          <a
+            class="vejaMais link"
+            href="/busca/busca-produto.html?promocao=mais-vendidos"
+          >
+          </a>
+        </hgroup>
+
+        <div class="sectionCarousel position-relative relatedProducts">
+          <button
+            class="btn-primary carousel-control prev d-none d-lg-flex"
+            id="btnLeftCompreJunto"
+          >
+            <i class="bi bi-chevron-left"></i>
+          </button>
+
+          <div class="slider-wrapper" id="sliderWrapperCompreJunto">
+            <div class="slider-track" id="sliderTrackCompreJunto"></div>
+          </div>
+
+          <button
+            class="btn-primary carousel-control next d-none d-lg-flex"
+            id="btnRightCompreJunto"
+          >
+            <i class="bi bi-chevron-right"></i>
+          </button>
         </div>
-      </article>
+      </section>
     </main>
 
     <footer class="bgHeader">

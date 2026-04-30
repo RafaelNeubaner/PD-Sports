@@ -1,4 +1,4 @@
-import { getProductsFilter } from "/js/products/useProducts.js";
+import { getProductsFilter } from "../../js/products/useProducts.js";
 
 // CARD ADM
 function criarCardProdutoAdmin(produto) {
@@ -26,10 +26,10 @@ function criarCardProdutoAdmin(produto) {
               data-id="${produto.id}"
               data-bs-toggle="modal" 
               data-bs-target="#editarProduto">
-              Editar Produto
+              Editar
             </button>
             <button class="btn btn-danger btn-excluir rounded-3 px-3 py-2" data-id="${produto.id}" data-name="${produto.name}">
-              Excluir Produto
+              Excluir
             </button>
         </div>
     </article>
@@ -89,15 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>`;
 
 
-      let produtos = await getProductsFilter(
-        termoBusca,
-        "", 
-        "", 
-        "", 
-        false,
-        "desc",
-      );
+      let produtos = await getProductsFilter({query: termoBusca});
 
+      console.log(produtos)
       containerLista.innerHTML = "";
 
       if (!produtos || produtos.length === 0) {
@@ -201,5 +195,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  navegarPara("#desempenho");
+  navegarPara("#dashboard");
 });

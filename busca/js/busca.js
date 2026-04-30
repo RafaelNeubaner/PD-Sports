@@ -2,28 +2,55 @@ import { getProductsFilter } from "../../js/products/useProducts.js";
 import { criarCardProduto } from "/js/product-card.js";
 import { sincronizarCheckboxes, iniciarFiltrosLateral } from "./filtros.js";
 
+function ordenarProdutos(produtos, ordenacao) {
+  const lista = [...produtos];
+
+  switch (ordenacao) {
+    case "menorPreco":
+      return lista.sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+    case "maiorPreco":
+      return lista.sort((a, b) => (Number(b.price) || 0) - (Number(a.price) || 0));
+    case "lancamentos":
+      return lista.sort((a, b) => {
+        const idA = Number(String(a.id ?? "0").split(".")[0]) || 0;
+        const idB = Number(String(b.id ?? "0").split(".")[0]) || 0;
+        return idB - idA;
+      });
+    case "relevancia":
+    default:
+      return lista;
+  }
+}
+
 async function carregarVitrine() {
   const params = new URLSearchParams(window.location.search);
 
   sincronizarCheckboxes(params);
 
-  const query = params.get("query")
+  const query = params.get("query");
   const promocao = params.get("promocao");
+  const ordenarPor = params.get("ordenarPor") || "relevancia";
   const categorias = params.getAll("categoria").map(c => c.toLowerCase());
   const generos = params.getAll("genero").map(g => g.toLowerCase());
   const marcas = params.getAll("marca").map(m => m.toLowerCase());
 
   const containerGrid = document.getElementById("gridProdutosBusca");
   const tituloH1 = document.getElementById("tituloBusca");
-  let tituloDinamico = "Resultado da Busca";
+  const selectOrdenarPor = document.getElementById("ordenarPor");
+
+  if (selectOrdenarPor && selectOrdenarPor.value !== ordenarPor) {
+    selectOrdenarPor.value = ordenarPor;
+  }
+  
+  let tituloPromocao = "";
+  let titulosParaOHeader = [];
 
   try {
     if (containerGrid) {
       containerGrid.innerHTML = '<div class="col-12 text-center py-5 w-100"><div class="spinner-border text-danger" role="status"></div><p class="mt-2 text-muted">Buscando produtos...</p></div>';
     }
 
-
-    // BUSCA NA API
+  
     let parametrosAPI = { limit: 100 }; 
 
     if (categorias.length === 1 && !categorias.includes("esportes")) {
@@ -33,59 +60,51 @@ async function carregarVitrine() {
     if (generos.length === 1) {
       parametrosAPI.gender = generos[0].charAt(0).toUpperCase() + generos[0].slice(1);
     }
-    if (query){
-      parametrosAPI.query = query
+    if (query) {
+      parametrosAPI.query = query;
     }
 
     let produtosApi = await getProductsFilter(parametrosAPI);
     let produtosFiltrados = produtosApi;
 
+    // FILTRO PROMOÇÃO 
 
-    // PROMOÇÃO E BANNERS 
     if (promocao === "ofertas") {
-      tituloDinamico = "Ofertas da Semana";
-
-      produtosFiltrados = produtosApi.filter(p => !p.noDiscount).slice(0, 12);
+      tituloPromocao = "Ofertas da Semana";
+      produtosFiltrados = produtosFiltrados.filter(p => !p.noDiscount && p.hasDiscount === true);
     } 
     else if (promocao === "banner1") {
-      tituloDinamico = "Destaques da Temporada (Até 50% OFF)";
-      const contadorCategoria = {};
-      const preFiltrados = produtosApi.filter(p => !p.noDiscount && p.discountPercentage <= 50);
-      produtosFiltrados = preFiltrados.filter((p) => {
-        contadorCategoria[p.category] = (contadorCategoria[p.category] || 0) + 1;
-        return contadorCategoria[p.category] <= 2;
-      }).slice(0, 30);
+      tituloPromocao = "Destaques da Temporada (Até 50% OFF)";
+      produtosFiltrados = produtosFiltrados.filter(p => !p.noDiscount && p.discountPercentage <= 50);
     } 
     else if (promocao === "banner2") {
-      tituloDinamico = "Especial Futebol";
-      produtosFiltrados = produtosApi.filter(p => p.category.toLowerCase() === "futebol" && !p.noDiscount && p.discountPercentage >= 14);
+      tituloPromocao = "Especial Futebol";
+      produtosFiltrados = produtosFiltrados.filter(p => p.category.toLowerCase() === "futebol" && !p.noDiscount && p.discountPercentage >= 14);
     } 
     else if (promocao === "cta") {
-      tituloDinamico = "Liquidação de Performance (+15% OFF)";
-      produtosFiltrados = produtosApi.filter(p => !p.noDiscount && p.discountPercentage >= 15);
+      tituloPromocao = "Liquidação de Performance (+15% OFF)";
+      produtosFiltrados = produtosFiltrados.filter(p => !p.noDiscount && p.discountPercentage >= 15);
     } 
     else if (promocao === "mais-vendidos") {
-      tituloDinamico = "Mais Vendidos";
-      produtosFiltrados = produtosApi.sort(() => 0.5 - Math.random()).slice(0, 12);
+      tituloPromocao = "Mais Vendidos";
+
+      produtosFiltrados = produtosFiltrados.sort(() => 0.5 - Math.random());
     }
 
-    // ESPORTES
-    else if (categorias.includes("esportes")) {
-      tituloDinamico = "Todas as Modalidades";
+    // 3. FILTROS ASIDE/GERAIS
+    if (categorias.includes("esportes")) {
+      titulosParaOHeader.push("Todas as Modalidades");
       const categoriasVistas = new Set();
-      produtosFiltrados = produtosApi.filter((p) => {
+      produtosFiltrados = produtosFiltrados.filter((p) => {
         if (!categoriasVistas.has(p.category)) {
           categoriasVistas.add(p.category);
           return true;
         }
         return false;
-      }).slice(0, 15);
+      });
     }
-
-    // FILTROS ASIDE 
     else {
-      let titulosParaOHeader = [];
-
+      
       if (marcas.length > 0) {
         produtosFiltrados = produtosFiltrados.filter(p => marcas.includes(p.brand.toLowerCase()));
         titulosParaOHeader.push(...marcas);
@@ -96,12 +115,14 @@ async function carregarVitrine() {
         titulosParaOHeader.push(...generos);
       }
 
-      if (categorias.length > 0 && !categorias.includes("esportes")) {
-        const removerAcentos = (texto) => texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    
+      if (categorias.length > 0) {
         const categoriasBuscadas = categorias.map(c => c === "academia" ? "musculacao" : c);
-
+        
         produtosFiltrados = produtosFiltrados.filter((p) => {
-          return categorias.includes(p.category.toLowerCase()); 
+          let catDoProduto = p.category.toLowerCase();
+          if (catDoProduto === "musculacao") catDoProduto = "academia"; 
+          return categorias.includes(catDoProduto); 
         });
 
         const dicionarioDeTitulos = {
@@ -113,18 +134,36 @@ async function carregarVitrine() {
         const titulosCategorias = categoriasBuscadas.map(c => dicionarioDeTitulos[c] || c);
         titulosParaOHeader.push(...titulosCategorias);
       }
-
-      if (titulosParaOHeader.length > 0) {
-        tituloDinamico = titulosParaOHeader
-          .slice(0, 3)
-          .map(t => t.charAt(0).toUpperCase() + t.slice(1))
-          .join(", ");
-        if (titulosParaOHeader.length > 3) tituloDinamico += " e mais...";
-      }
     }
 
-    if (tituloH1) tituloH1.textContent = tituloDinamico;
-    renderizarGrid(produtosFiltrados, containerGrid);
+ 
+    let tituloDinamicoFinal = "Resultado da Busca";
+
+
+    let textoFiltros = "";
+    if (titulosParaOHeader.length > 0) {
+      textoFiltros = titulosParaOHeader
+        .slice(0, 3)
+        .map(t => t.charAt(0).toUpperCase() + t.slice(1))
+        .join(", ");
+      if (titulosParaOHeader.length > 3) textoFiltros += " e mais...";
+    }
+
+
+    if (tituloPromocao && textoFiltros) {
+      tituloDinamicoFinal = `${tituloPromocao} - ${textoFiltros}`;
+    } else if (tituloPromocao) {
+      tituloDinamicoFinal = tituloPromocao;
+    } else if (textoFiltros) {
+      tituloDinamicoFinal = textoFiltros;
+    }
+
+    if (tituloH1) tituloH1.textContent = tituloDinamicoFinal;
+
+    const produtosOrdenados = ordenarProdutos(produtosFiltrados, ordenarPor);
+    const produtosFinais = produtosOrdenados.slice(0, 24);
+
+    renderizarGrid(produtosFinais, containerGrid);
 
   } catch (error) {
     console.error("Erro na busca:", error);
@@ -141,8 +180,8 @@ function renderizarGrid(produtos, containerGrid) {
   if (produtos.length === 0) {
     containerGrid.innerHTML = `
             <div class="col-12 text-center py-5 w-100">
-                <i class="bi bi-search fs-1 text-muted mb-3 d-block"></i>
-                <h4 class="text-muted">Nenhum produto encontrado com estes filtros.</h4>
+                <i class="bi bi-search fs-1 txtMuted mb-3 d-block"></i>
+                <h4 class="txtMuted">Nenhum produto encontrado com estes filtros.</h4>
             </div>`;
     return;
   }
@@ -161,6 +200,20 @@ function renderizarGrid(produtos, containerGrid) {
 
 document.addEventListener("DOMContentLoaded", () => {
   iniciarFiltrosLateral(carregarVitrine);
+
+  const selectOrdenarPor = document.getElementById("ordenarPor");
+  if (selectOrdenarPor) {
+    selectOrdenarPor.addEventListener("change", () => {
+      const params = new URLSearchParams(window.location.search);
+      params.set("ordenarPor", selectOrdenarPor.value);
+
+      const novaURL = window.location.pathname + "?" + params.toString();
+      window.history.pushState({ path: novaURL }, "", novaURL);
+
+      carregarVitrine();
+    });
+  }
+
   carregarVitrine();
   window.addEventListener('popstate', carregarVitrine);
 });

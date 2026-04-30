@@ -17,6 +17,7 @@
  * @property {string[]} images - Links das imagens do produto
  * @property {string} category - Categoria do produto
  * @property {string} gender - Gênero do produto
+ * @property {string} suitableFor  - Modalidade a qual aquele produto é adequada
  * @property {?boolean} isProduct2  - Qual endpoint o produto está salvo
  */
 

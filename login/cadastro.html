@@ -1,10 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro | PD Sports</title>
-    <link rel="icon" href="/assets/media/icons/favicon.svg" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="/assets/media/icons/favicon.svg"
+      type="image/x-icon"
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,20 +16,37 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
       rel="stylesheet"
     />
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="css/login.css" />
+    <script src="../js/users/isNotAuthenticated.js" type="module"></script>
     <script src="js/cadastro.js" type="module" defer></script>
+    <script src="/js/darkmode.js"></script>
     <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
-
   </head>
   <body>
+    <div style="position: absolute; top: 20px; right: 20px">
+      <a id="themeToggle" class="btnPrimary"
+        ><i class="bi bi-moon-stars"></i
+      ></a>
+    </div>
     <main class="loginPage textCenter">
+      <img src="/assets/media/images/login/Imagem-login.png" alt="Imagem de login" class="loginImage d-none d-lg-block">
       <section class="loginCard">
-        <a href="../index.html">
+        <a href="/index.html">
           <img
-            src="../assets/media/logo/logo-light.svg"
+            src="/assets/media/logo/logo-light.svg"
             alt="PD Sports"
+            id="logo"
             class="logo"
           />
         </a>
@@ -49,12 +70,11 @@
               id="login-phone"
               name="phone"
               type="tel"
+              oninput="mascaraTelefone(this)"
               placeholder="Telefone"
               autocomplete="tel"
               required
             />
-
-            
           </div>
           <div class="formRows">
             <label class="txtInvisible" for="login-cpf"></label>
@@ -62,10 +82,11 @@
               id="login-cpf"
               name="cpf"
               type="text"
+              oninput="mascaraCPF(this)"
               placeholder="CPF"
               required
             />
-            
+
             <label class="txtInvisible" for="login-bday"></label>
             <input
               id="login-bday"
@@ -95,8 +116,6 @@
               autocomplete="username"
               required
             />
-            
-            
           </div>
           <div class="formRows rowDate mb24">
             <label class="txtInvisible" for="login-password"></label>
@@ -118,13 +137,75 @@
               required
             />
           </div>
+          <div class="passwordRequirements bg" id="passwordRequirements" style="display: none;">
+            <p class="requirement" data-requirement="minLength">
+              <i class="bi bi-circle"></i> Mínimo 8 caracteres
+            </p>
+            <p class="requirement" data-requirement="uppercase">
+              <i class="bi bi-circle"></i> Pelo menos uma letra maiúscula
+            </p>
+            <p class="requirement" data-requirement="lowercase">
+              <i class="bi bi-circle"></i> Pelo menos uma letra minúscula
+            </p>
+            <p class="requirement" data-requirement="number">
+              <i class="bi bi-circle"></i> Pelo menos um número
+            </p>
+            <p class="requirement" data-requirement="special">
+              <i class="bi bi-circle"></i> Pelo menos um caractere especial (!@#$%^&*)
+            </p>
+          </div>
+          <div class="loginLinks cadastroLinks">
+            <a href="#" class="link subTitleCard" id="abrirModalTermos">Termos e Condições</a>
+          </div>
           <button type="submit" class="btnPrimary mb24">Criar Conta</button>
         </form>
         <p class="subTitleCard">
           Já tem conta?
-          <a href="./index.html" class="link subTitleCard">Faça o login</a>
+          <a href="/login/index.html" class="link subTitleCard">Faça o login</a>
         </p>
       </section>
+
+      <article class="termsModal" id="termosModal">
+        <div class="termsModalContent bg">
+          <button class="btnOutline sair" id="fecharModalTermos" type="button">X</button>
+          <hgroup>
+            <h2 class="subTitle textCenter">Termos e Condições</h2>
+          </hgroup>
+          <div class="termsBody">
+            <p>1. O uso da plataforma é permitido apenas para fins lícitos e compatíveis com a navegação de compra.</p>
+            <p>2. Os preços, descrições e disponibilidade podem ser alterados sem aviso prévio.</p>
+            <p>3. A conta do usuário é de responsabilidade exclusiva do titular cadastrado.</p>
+            <p>4. A PD Sports pode suspender o acesso em caso de uso indevido, fraude ou violação destas regras.</p>
+          </div>
+        </div>
+      </article>
     </main>
+    <script>
+      function mascaraCPF(input) {
+        // Remove tudo o que não é dígito
+        let valor = input.value.replace(/\D/g, "");
+
+        // Aplica a formatação progressivamente
+        valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+        valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+        valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+        input.value = valor;
+      }
+
+      function mascaraTelefone(input) {
+        let valor = input.value.replace(/\D/g, ""); // Remove tudo que não é número
+
+        if (valor.length > 10) {
+          // Formato Celular: (00) 00000-0000
+          valor = valor.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
+        } else {
+          // Formato Fixo: (00) 0000-0000
+          valor = valor.replace(/^(\d{2})(\d{4})(\d{4}).*/, "($1) $2-$3");
+        }
+
+        input.value = valor;
+      }
+    </script>
   </body>
 </html>

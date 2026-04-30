@@ -1,4 +1,4 @@
-import { getProductById, updateProduct } from "/js/products/useProducts.js";
+import { getProductById, updateProduct } from "../../js/products/useProducts.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const modalEditarElement = document.getElementById("editarProduto");
@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       document.getElementById("editName").value = produto.name || "";
       document.getElementById("editBrand").value = produto.brand || "";
-      document.getElementById("editPrice").value = produto.price ? produto.price.toString().replace(".", ",") : "";
-      document.getElementById("editDiscount").value = produto.discount ? produto.discount.toString().replace(".", ",") : "";
+      document.getElementById("editPrice").value = produto.fullPrice ? produto.fullPrice: "";
+      document.getElementById("editDiscount").value = produto.price ? produto.price: "";
       document.getElementById("editGender").value = produto.gender || "";
       document.getElementById("editCategory").value = produto.category || "";
       document.getElementById("editSuitable").value = produto.suitableFor || "";
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
   formEdit.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    if (editImagesSelected.length <= 0) return alert("Insira ao menos uma imagem");
+    if (editImagesSelected.length < 2) return alert("Insira ao menos 2 imagens");
 
     const nameProduct = document.getElementById("editName").value;
     const brandProduct = document.getElementById("editBrand").value;
@@ -209,22 +209,59 @@ document.addEventListener("DOMContentLoaded", () => {
     const suitableFor = document.getElementById("editSuitable").value;
     const description = document.getElementById("editDesc").value;
 
-    if (editCaracteristicas.size <= 0) return alert("Insira ao menos uma característica");
+    if(!nameProduct || nameProduct == ""){
+        return alert("Insira o nome do produto")
+    }
 
-    price = Number(price.replace(",", "."));
-    if (discountPrice) discountPrice = Number(discountPrice.replace(",", "."));
+    if(!brandProduct || brandProduct == ""){
+        return alert("Insira a marca do produto")
+    }
 
-    category = category.toLowerCase();
-    category = category.charAt(0).toUpperCase() + category.slice(1);
+    if(!price || price == ""){
+        return alert("Insira o preço")
+    }
+
+    price = Number(price.replace(",", "."))
+    if(discountPrice && discountPrice > 0){
+        discountPrice = Number(discountPrice.replace(",", "."))
+
+        if(price< discountPrice){
+            return alert("O preço promocional não pode ser maior que o preço normal")
+        }
+    }
+
+    if(!gender || gender == ""){
+        return alert("Insira o gênero do produto")
+    }
+
+    if(!category || category == ""){
+        return alert("Insira uma categoria")
+    }
+
+    category = category.toLowerCase()
+    category = category.charAt(0).toUpperCase() + category.slice(1)
+
+    if(!suitableFor || suitableFor == ""){
+        return alert("Especifique para qual esporte é indicado o produto")
+    }
+
+    if(editCaracteristicas.length<=0){
+        return alert("Insira ao menos uma característica")
+    }
+
+    if(!description || description==""){
+        return alert("Insira uma descrição do produto")
+    }
 
     const isProduct2 = currentEditId.endsWith(".2");
 
     const updatedProductData = {
       name: nameProduct,
-      price: price,
-      discount: discountPrice || price,
+      price: discountPrice || price,
+      fullPrice: price,
       discountPercentage: discountPrice ? Math.ceil(100 - (discountPrice / price) * 100) : 0,
-      noDiscount: !discountPrice,
+      qtSales: Math.random() * 5000,
+      hasDiscount: discountPrice ? true : false,
       brand: brandProduct,
       description: description,
       characteristics: [Object.fromEntries(editCaracteristicas)],
