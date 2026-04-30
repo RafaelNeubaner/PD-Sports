@@ -5,8 +5,9 @@
 
 .admin-card h5 {
   color: var(--txt);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
+
 
 .admin-card .admin-card-price {
   color: var(--red2yellow);
@@ -48,11 +49,11 @@ body.darkMode .admin-card {
 }
 
 .admin-card-id {
-  font-size: 0.85rem;
+  font-size: 1.2rem;
 }
 
 .admin-card-price {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .btn-editar {
@@ -60,6 +61,7 @@ body.darkMode .admin-card {
   color: var(--red2yellow) !important;
 
 }
+
 
 .btn-excluir {
   font-size: 1.2rem;
@@ -126,6 +128,8 @@ body.darkMode .btn-excluir {
   border-radius: 8px;
   width: fit-content;
 }
+
+
 
 
 @media (min-width: 768px) {
@@ -276,7 +280,10 @@ body.darkMode .btn-excluir {
   color: var(--txt);
 
 }
-
+.modal-header {
+  position: relative;
+  background-color: var(--bg)!important;
+}
 #editarProduto .modal-header,
 #editarProduto .modal-footer {
   background-color: var(--bg);
@@ -286,6 +293,11 @@ body.darkMode .btn-excluir {
 #criarProduto .modal-header,
 #criarProduto .modal-footer {
   background-color: var(--bg);
+}
+
+.modal-header .btn-close {
+  color: var(--branco) !important;
+  background-color: var(--primary) !important;
 }
 
 #criarProduto .modal-body>*,
@@ -379,8 +391,10 @@ select {
     height: 100vh;
     margin: 0;
 
-    color: var();
+    color: var(--bg) !important;
   }
+
+  
 }
 
 @media (max-width: 767px){
@@ -501,3 +515,13 @@ progress::-moz-progress-bar {
         grid-template-columns: 1fr;
     }
 }
+
+#criarProduto label, #formEditarProduto label, #formEditarProduto legend {
+  font-size: 1.4rem;
+}
+
+#criarProduto input, #criarProduto textarea, #criarProduto select, #formEditarProduto input, #formEditarProduto textarea, #formEditarProduto select {
+  font-size: 1.2rem !important;
+  color: var(--txt) !important;
+}
+

@@ -341,5 +341,5 @@ body.darkMode header .navbar .container #navbarNav li a::after, .nav-link::after
 
 
 body.darkMode .navbar-toggler-icon {
-  filter: invert(1) brightness(200%);
+  filter: invert(1) brightness(500%);
 }
