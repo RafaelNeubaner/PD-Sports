@@ -5,7 +5,9 @@
 
 .admin-card h5 {
   color: var(--txt);
+  font-size: 1.6rem;
 }
+
 
 .admin-card .admin-card-price {
   color: var(--red2yellow);
@@ -47,11 +49,11 @@ body.darkMode .admin-card {
 }
 
 .admin-card-id {
-  font-size: 0.85rem;
+  font-size: 1.2rem;
 }
 
 .admin-card-price {
-  font-size: 1.1rem;
+  font-size: 1.6rem;
 }
 
 .btn-editar {
@@ -59,6 +61,7 @@ body.darkMode .admin-card {
   color: var(--red2yellow) !important;
 
 }
+
 
 .btn-excluir {
   font-size: 1.2rem;
@@ -76,6 +79,7 @@ body.darkMode .btn-excluir {
 
 #gerenciarProdutos form #buscaInput {
   width: 100%;
+  font-size: 1.4rem;
 }
 
 .card-produto-admin {
@@ -124,6 +128,8 @@ body.darkMode .btn-excluir {
   border-radius: 8px;
   width: fit-content;
 }
+
+
 
 
 @media (min-width: 768px) {
@@ -206,6 +212,11 @@ body.darkMode .btn-excluir {
   color: var(--branco-puro);
 }
 
+.admin-sidebar .nav-link.active:hover {
+  color: var(--branco) !important;
+}
+
+
 .loja-mobile {
   padding:  2.4rem;
 }
@@ -269,7 +280,10 @@ body.darkMode .btn-excluir {
   color: var(--txt);
 
 }
-
+.modal-header {
+  position: relative;
+  background-color: var(--bg)!important;
+}
 #editarProduto .modal-header,
 #editarProduto .modal-footer {
   background-color: var(--bg);
@@ -279,6 +293,11 @@ body.darkMode .btn-excluir {
 #criarProduto .modal-header,
 #criarProduto .modal-footer {
   background-color: var(--bg);
+}
+
+.modal-header .btn-close {
+  color: var(--branco) !important;
+  background-color: var(--primary) !important;
 }
 
 #criarProduto .modal-body>*,
@@ -347,7 +366,7 @@ select {
 }
 
 .variantItem span {
-  font-size: 16px;
+  font-size: 1.4rem;
   border-radius: 8px;
 }
 
@@ -357,7 +376,7 @@ select {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 16px;
+  font-size: 1.4rem;
   width: 100%;
   line-height: 80px;
   text-align: center;
@@ -372,8 +391,10 @@ select {
     height: 100vh;
     margin: 0;
 
-    color: var();
+    color: var(--bg) !important;
   }
+
+  
 }
 
 @media (max-width: 767px){
@@ -494,3 +515,13 @@ progress::-moz-progress-bar {
         grid-template-columns: 1fr;
     }
 }
+
+#criarProduto label, #formEditarProduto label, #formEditarProduto legend {
+  font-size: 1.4rem;
+}
+
+#criarProduto input, #criarProduto textarea, #criarProduto select, #formEditarProduto input, #formEditarProduto textarea, #formEditarProduto select {
+  font-size: 1.2rem !important;
+  color: var(--txt) !important;
+}
+

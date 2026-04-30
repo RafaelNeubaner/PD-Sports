@@ -15,7 +15,10 @@ const USER_ID_VARIABLE = "userIdAuth"
 export async function getUserAuthenticatedUpdate() {
     const userIdAuthStr = localStorage.getItem(USER_ID_VARIABLE)
 
-    if (!userIdAuthStr) return null;
+    if (!userIdAuthStr) {
+        localStorage.removeItem("user-object")
+        return null;
+    }
 
     const user = await getUserById(userIdAuthStr)
 
@@ -29,6 +32,13 @@ export async function getUserAuthenticatedUpdate() {
  * @returns {User | null}
  */
 export async function getUserAuthenticated() {
+    const userIdAuthStr = localStorage.getItem(USER_ID_VARIABLE)
+
+    if (!userIdAuthStr) {
+        localStorage.removeItem("user-object")
+        return null;
+    }
+
     const userObject = JSON.parse(localStorage.getItem("user-object"))
 
     if (!userObject) return null;
@@ -117,6 +127,7 @@ export async function updatePassword(id, oldPassword, newPassword) {
  */
 export function signOut() {
     localStorage.removeItem(USER_ID_VARIABLE);
+    localStorage.removeItem("user-object");
 }
 
 export function isPasswordValid(password) {

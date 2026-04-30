@@ -151,3 +151,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert("Senha atualizada")
     })
 });
+
+
+
+
+
+// SE USUÁRIO ADM MOSTRA BTN ADMIN
+const user = await getUserAuthenticated();
+
+const btnAdmin = document.querySelector(".js-btn-admin");
+
+if (user && user.isAdmin) {
+
+    btnAdmin.classList.remove("d-none");
+}

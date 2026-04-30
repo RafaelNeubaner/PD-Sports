@@ -2,6 +2,26 @@ import { getProductsFilter } from "../../js/products/useProducts.js";
 import { criarCardProduto } from "/js/product-card.js";
 import { sincronizarCheckboxes, iniciarFiltrosLateral } from "./filtros.js";
 
+function ordenarProdutos(produtos, ordenacao) {
+  const lista = [...produtos];
+
+  switch (ordenacao) {
+    case "menorPreco":
+      return lista.sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+    case "maiorPreco":
+      return lista.sort((a, b) => (Number(b.price) || 0) - (Number(a.price) || 0));
+    case "lancamentos":
+      return lista.sort((a, b) => {
+        const idA = Number(String(a.id ?? "0").split(".")[0]) || 0;
+        const idB = Number(String(b.id ?? "0").split(".")[0]) || 0;
+        return idB - idA;
+      });
+    case "relevancia":
+    default:
+      return lista;
+  }
+}
+
 async function carregarVitrine() {
   const params = new URLSearchParams(window.location.search);
 
@@ -9,12 +29,18 @@ async function carregarVitrine() {
 
   const query = params.get("query");
   const promocao = params.get("promocao");
+  const ordenarPor = params.get("ordenarPor") || "relevancia";
   const categorias = params.getAll("categoria").map(c => c.toLowerCase());
   const generos = params.getAll("genero").map(g => g.toLowerCase());
   const marcas = params.getAll("marca").map(m => m.toLowerCase());
 
   const containerGrid = document.getElementById("gridProdutosBusca");
   const tituloH1 = document.getElementById("tituloBusca");
+  const selectOrdenarPor = document.getElementById("ordenarPor");
+
+  if (selectOrdenarPor && selectOrdenarPor.value !== ordenarPor) {
+    selectOrdenarPor.value = ordenarPor;
+  }
   
   let tituloPromocao = "";
   let titulosParaOHeader = [];
@@ -134,7 +160,8 @@ async function carregarVitrine() {
 
     if (tituloH1) tituloH1.textContent = tituloDinamicoFinal;
 
-    const produtosFinais = produtosFiltrados.slice(0, 24);
+    const produtosOrdenados = ordenarProdutos(produtosFiltrados, ordenarPor);
+    const produtosFinais = produtosOrdenados.slice(0, 24);
 
     renderizarGrid(produtosFinais, containerGrid);
 
@@ -173,6 +200,20 @@ function renderizarGrid(produtos, containerGrid) {
 
 document.addEventListener("DOMContentLoaded", () => {
   iniciarFiltrosLateral(carregarVitrine);
+
+  const selectOrdenarPor = document.getElementById("ordenarPor");
+  if (selectOrdenarPor) {
+    selectOrdenarPor.addEventListener("change", () => {
+      const params = new URLSearchParams(window.location.search);
+      params.set("ordenarPor", selectOrdenarPor.value);
+
+      const novaURL = window.location.pathname + "?" + params.toString();
+      window.history.pushState({ path: novaURL }, "", novaURL);
+
+      carregarVitrine();
+    });
+  }
+
   carregarVitrine();
   window.addEventListener('popstate', carregarVitrine);
 });
