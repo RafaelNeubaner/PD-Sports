@@ -1,4 +1,5 @@
 import { isPasswordValid, loginUser } from "../../js/users/useAuth.js"
+import { initTermsModal } from "./termos-modal.js"
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -7,6 +8,70 @@ const abrirModalSenha = document.getElementById('abrirModalSenha');
 const modalRecuperarSenha = document.querySelector('.modalRecuperarSenha');
 const enviarInstrucoes = document.getElementById('enviar');
 const formLogin = document.querySelector('.login-form')
+
+// Validação de Requisitos de Senha
+function initPasswordRequirements() {
+  const passwordInput = document.getElementById('login-password');
+  const requirementsContainer = document.getElementById('passwordRequirements');
+  
+  if (!passwordInput || !requirementsContainer) return;
+
+  const requirements = {
+    minLength: (password) => password.length >= 8,
+    uppercase: (password) => /[A-Z]/.test(password),
+    lowercase: (password) => /[a-z]/.test(password),
+    number: (password) => /\d/.test(password),
+    special: (password) => /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+  };
+
+  function updateRequirements() {
+    const password = passwordInput.value;
+    
+    // Mostrar o container se houver entrada
+    if (password.length > 0) {
+      requirementsContainer.style.display = 'block';
+    } else {
+      requirementsContainer.style.display = 'none';
+    }
+
+    // Atualizar cada requisito
+    Object.entries(requirements).forEach(([key, test]) => {
+      const requirementEl = requirementsContainer.querySelector(`[data-requirement="${key}"]`);
+      if (requirementEl) {
+        const isMet = test(password);
+        if (isMet) {
+          requirementEl.classList.add('met');
+          const icon = requirementEl.querySelector('i');
+          if (icon) {
+            icon.classList.remove('bi-circle');
+            icon.classList.add('bi-check-circle-fill');
+          }
+        } else {
+          requirementEl.classList.remove('met');
+          const icon = requirementEl.querySelector('i');
+          if (icon) {
+            icon.classList.remove('bi-check-circle-fill');
+            icon.classList.add('bi-circle');
+          }
+        }
+      }
+    });
+  }
+
+  // Adicionar listener para validação em tempo real
+  passwordInput.addEventListener('input', updateRequirements);
+  
+  // Inicializar na carga
+  updateRequirements();
+}
+
+initTermsModal({
+    openSelector: '#abrirModalTermos',
+    modalSelector: '#termosModal',
+    closeSelector: '#fecharModalTermos'
+})
+
+initPasswordRequirements();
 
 const abrirModal = () => {
     modalRecuperarSenha.classList.add('is-open');

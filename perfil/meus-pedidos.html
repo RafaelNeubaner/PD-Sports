@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PD Sports | Meus Pedidos</title>
-    <link rel="icon" href="/assets/media/icons/favicon.svg" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="/assets/media/icons/favicon.svg"
+      type="image/x-icon"
+    />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -132,6 +136,20 @@
                   ><i class="bi bi-person"></i
                 ></a>
               </li>
+              <li class="nav-item d-none logoutLink">
+                <a
+                  href="/index.html"
+                  class="btn nav-link logoutBtn"
+                  style="
+                    cursor: pointer;
+                    border: none;
+                    background: none;
+                    padding: 0.5rem 0.75rem;
+                  "
+                >
+                  <i class="bi bi-box-arrow-right"></i>Sair
+                </a>
+              </li>
               <li class="nav-item d-none d-md-block loginLink">
                 <a href="/login/index.html" class="nav-link"
                   ><i class="bi bi-box-arrow-in-right"></i>Entrar</a
@@ -237,12 +255,8 @@
       </section>
     </main>
 
-    <article
-      class="modalTrocaDevolucao"
-    >
-      <div
-        class="modalTrocaCard"
-      >
+    <article class="modalTrocaDevolucao">
+      <div class="modalTrocaCard">
         <button
           type="button"
           class="btnOutline btnFecharModal"
@@ -254,9 +268,7 @@
         <h2 id="modalTrocaTitulo">Troca e devolução</h2>
 
         <form class="modalTrocaForm">
-          <select
-            class="form-select modalSelect"
-          >
+          <select class="form-select modalSelect">
             <option selected>Selecione o motivo</option>
             <option value="troca">Troca de tamanho</option>
             <option value="defeito">Produto com defeito</option>

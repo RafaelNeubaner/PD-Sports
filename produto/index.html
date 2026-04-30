@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Produto | PD Sports</title>
-    <link rel="icon" href="/assets/media/icons/favicon.svg" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="/assets/media/icons/favicon.svg"
+      type="image/x-icon"
+    />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -46,7 +50,6 @@
     <script src="/js/product-card.js" defer type="module"></script>
     <script src="/js/section-carousel.js" defer type="module"></script>
     <script type="module" src="../js/header.js" defer></script>
-    
   </head>
   <body>
     <!-- HEADER -->
@@ -136,6 +139,20 @@
                 <a href="/perfil/perfil.html" class="nav-link"
                   ><i class="bi bi-person"></i
                 ></a>
+              </li>
+              <li class="nav-item d-none logoutLink">
+                <a
+                  href="/index.html"
+                  class="btn nav-link logoutBtn"
+                  style="
+                    cursor: pointer;
+                    border: none;
+                    background: none;
+                    padding: 0.5rem 0.75rem;
+                  "
+                >
+                  <i class="bi bi-box-arrow-right"></i>Sair
+                </a>
               </li>
               <li class="nav-item d-none d-md-block loginLink">
                 <a href="/login/index.html" class="nav-link"
@@ -316,18 +333,27 @@
             <h3>Calcular Frete</h3>
             <template id="tempFreteOption">
               <li class="freteItem d-flex gap-3">
-                <input type="radio" name="freteOption" class="freteOption">
-                <img src="" alt="">
-                <label for="" class="d-flex flex-row w-100 align-items-center justify-content-between">
+                <input type="radio" name="freteOption" class="freteOption" />
+                <img src="" alt="" />
+                <label
+                  for=""
+                  class="d-flex flex-row w-100 align-items-center justify-content-between"
+                >
                   <h4></h4>
                   <p></p>
                 </label>
               </li>
             </template>
-            <ul class="fretesOptions d-flex flex-column gap-4">
-            </ul>
-            <input placeholder="Digite seu CEP" name="CEP" type="text" id="cepInput" />
-            <button type="button" class="btnOutline mb24 btnCalcularFrete">Calcular</button>
+            <ul class="fretesOptions d-flex flex-column gap-4"></ul>
+            <input
+              placeholder="Digite seu CEP"
+              name="CEP"
+              type="text"
+              id="cepInput"
+            />
+            <button type="button" class="btnOutline mb24 btnCalcularFrete">
+              Calcular
+            </button>
           </form>
           <!-- AVALIAÇÕES -->
           <section id="avaliacoes">
