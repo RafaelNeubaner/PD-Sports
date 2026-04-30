@@ -14,14 +14,16 @@ const ATENDIMENTO_KEY = "atendimentos-cliente"
 export function getAtendimentos(){
     const atendimentos = localStorage.getItem(ATENDIMENTO_KEY)
 
-    return atendimentos ? JSON.parse(atendimentos) : []
+    const atendimentoParse = atendimentos ? JSON.parse(atendimentos) : []
+    
+    return atendimentoParse.sort((a, b)=> new Date(b.createdAt) - new Date(a.createdAt));
 }
 
 export function abrirAtendimento(atendimento){
     const atendimentos = getAtendimentos()
 
     atendimentos.push(atendimento)
-    atendimentos.sort((a, b)=> new Date(b.createdAt) - new Date(a.createdAt))
+    atendimentos.sort((a, b)=> new Date(a.createdAt) - new Date(b.createdAt))
 
     localStorage.setItem(ATENDIMENTO_KEY, JSON.stringify(atendimentos))
 }

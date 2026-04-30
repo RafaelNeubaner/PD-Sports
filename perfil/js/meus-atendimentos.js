@@ -1,13 +1,14 @@
 
 import { abrirAtendimento, getAtendimentos } from "../../js/atendimentos/useAtendimentos.js";
+import { getPedidoById } from "../../js/pedidos/usePedidos.js";
 import { getUserAuthenticated } from "../../js/users/useAuth.js";
 import { getProductById, getProductsFilter } from "/js/products/useProducts.js";
 
 document.getElementById("voltar").addEventListener("click", function () {
   window.location.href = "perfil.html";
 });
-
 document.addEventListener("DOMContentLoaded", async () => {
+  var inputCodPedido = document.querySelector("#codigoPedido")
   const containerAtendimentos = document.getElementById("containerAtendimentos");
   const modal = document.getElementById("modalAtendimento");
   const abrirAtendimentoBtn = document.getElementById("abrirAtendimentoBtn");
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     var idPedido = params.get("id")
     document.querySelector("#codigoPedido").style.display="block"
     document.querySelectorAll(".pedidoOption").forEach(op=>op.style.display="block")
-    const inputCodPedido = document.querySelector("#codigoPedido")
+    
     inputCodPedido.value = params.get("id")
     inputCodPedido.disabled=true
     modal.showModal()
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       default:
         motivo = "Dúvida geral";
         situacao = "Em triagem.";
-        descricao = `Atendimento referente ao produto "${nomeProduto}": ${detalheCliente}`;
+        descricao = `Atendimento referente a: ${detalheCliente}`;
     }
     return { motivo, situacao, descricao };
   }
@@ -81,8 +82,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                   <p class="text-muted mt-2">Atualizando atendimentos...</p>
               </div>
           `;
-      console.log(atendimentoList)
-      console.log(atendimentoList.length)
       if (atendimentoList.length === 0) {
         containerAtendimentos.innerHTML = `<p class="text-center text-muted py-5">Você não possui chamados em aberto.</p>`;
         return;
@@ -91,18 +90,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       let htmlFinal = "";
 
       for (const chamado of atendimentoList) {
-        let imgProduto = "/assets/media/img/default.png";
+        let imgProduto = "../assets/media/logo/logo-dark.svg";
         let nomeProduto = "Produto Indisponível";
-
-        if (chamado.productId) {
+        console.log(chamado)
+        if (chamado.idPedido) {
           try {
-            const produtoReal = await getProductById(chamado.productId);
-            if (produtoReal) {
-              nomeProduto = produtoReal.name;
-              imgProduto =
+            var pedido = getPedidoById(chamado.idPedido)
+            console.log(pedido)
+            if(pedido){
+              const produtoReal = await getProductById(pedido.itens[0].id);
+              if (produtoReal) {
+                nomeProduto = produtoReal.name;
+                imgProduto =
                 produtoReal.images && produtoReal.images.length > 0
                   ? produtoReal.images[0]
                   : imgProduto;
+              }
             }
           } catch (err) {
             console.warn(`Produto ID ${chamado.productId} não encontrado.`);
@@ -112,7 +115,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const textos = gerarTextosChamado(
           chamado.tipoProblema,
           nomeProduto,
-          chamado.detalheCliente,
+          chamado.descricao,
         );
         const badgeClass = getBadgeClass(chamado.status);
 
@@ -144,9 +147,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-
   await renderizarChamados();
-
  
   // MODAL NOVO ATENDIMENTO
   
@@ -173,15 +174,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   formNovoAtendimento.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-
-    const inputCodigoPedido = document.getElementById("codigoPedido").value.trim();
+    console.log(!inputCodPedido.disabled)
+    let inputCodigoPedido;
+    if(!inputCodPedido.disabled){
+      inputCodigoPedido = document.getElementById("codigoPedido").value.trim();
+      if (inputCodPedido.length > 6) {
+          alert("O código do pedido deve ter no máximo 6 caracteres.");
+          return;
+      }
+    }
     const inputArea = document.getElementById("areaAtendimento").value;
     const inputDescricao = document.getElementById("descricao").value;
     
-    if (inputCodigoPedido.length > 6) {
-        alert("O código do pedido deve ter no máximo 6 caracteres.");
-        return;
-    }
 
     const btnSubmit = formNovoAtendimento.querySelector("button[type='submit']");
     const textoOriginalBtn = btnSubmit.textContent;
@@ -202,9 +206,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       const idDoProdutoReal = produtoSorteado.id; 
       const novoChamado = {
         id: atendimentoList.length+1, 
-        isPedido: inputCodigoPedido,   
+        idPedido: inputCodigoPedido || null,   
         tipoProblema: inputArea,
-        createdAt: Date.now().toString(),
+        createdAt: Date.now().toLocaleString("pt-BR"),
         status: "Sob análise", 
         descricao: inputDescricao,
       };
@@ -214,7 +218,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       alert("Atendimento aberto com sucesso!");
       formNovoAtendimento.reset();
       modal.close();
+      location.hash=""
+      location.search=""
 
+      atendimentoList = getAtendimentos()
       await renderizarChamados();
 
     } catch (error) {
