@@ -213,7 +213,7 @@ body.darkMode #gridProdutosBusca .card .card-body span>sub {
 
 
 #gridProdutosBusca .badge {
-  background-color: #9900007e;
+  background-color: #990000;
   color: var(--txt);
   font-size: 1.2rem;
   width: fit-content;
