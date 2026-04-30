@@ -39,6 +39,11 @@ export function iniciarFiltrosLateral(callbackAtualizarVitrine) {
       if(urlAntiga.get("query"))
         params.append("query", urlAntiga.get("query"))
 
+      const selectOrdenarPor = document.getElementById('ordenarPor');
+      if (selectOrdenarPor && selectOrdenarPor.value) {
+        params.set('ordenarPor', selectOrdenarPor.value);
+      }
+
       document.querySelectorAll('input[name="marca"]:checked').forEach(cb => params.append('marca', cb.value));
       document.querySelectorAll('input[name="genero"]:checked').forEach(cb => params.append('genero', cb.value));
       document.querySelectorAll('input[name="categoria"]:checked').forEach(cb => params.append('categoria', cb.value));
