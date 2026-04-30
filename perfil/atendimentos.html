@@ -42,7 +42,6 @@
     <!-- Custom JS -->
     <script src="../js/users/isLogged.js" type="module"></script>
     <script src="/js/darkmode.js"></script>
-    <script src="/carrinho/js/carrinho.js" defer></script>
     <script type="module" src="/perfil/js/meus-atendimentos.js"></script>
   </head>
   <body>
@@ -233,7 +232,7 @@
 
         <div class="chamados" id="containerAtendimentos"></div>
 
-        <button class="btnPrimary" id="abrirAtendimento">
+        <button class="btnPrimary" id="abrirAtendimentoBtn">
           Abrir novo atendimento
         </button>
       </section>
@@ -253,15 +252,9 @@
       </header>
 
       <form id="formNovoAtendimento">
-        <label for="nomeCliente" class="sr-only">Nome Cliente</label>
-        <input
-          type="text"
-          id="nomeCliente"
-          name="nomeCliente"
-          placeholder="Nome Cliente"
-          required
-        />
-
+        <h3>Nome: <span class="nomeCliente"></span></h3>
+        <h3>Telefone: <span class="telefoneCliente"></span></h3>
+      
         <label for="codigoPedido" class="sr-only">Código do Pedido</label>
         <input
           type="text"
@@ -269,16 +262,6 @@
           name="codigoPedido"
           placeholder="Código do Pedido"
           maxlength="6"
-          required
-        />
-
-        <label for="telefoneContato" class="sr-only">Telefone de contato</label>
-        <input
-          type="tel"
-          id="telefoneContato"
-          name="telefoneContato"
-          placeholder="Telefone de contato"
-          required
         />
 
         <label for="areaAtendimento" class="sr-only">Área de atendimento</label>
@@ -286,10 +269,10 @@
           <option value="" disabled selected>
             Dropdown áreas de atendimento
           </option>
-          <option value="duvida">Dúvidas gerais</option>
-          <option value="devolucao">Troca ou Devolução</option>
-          <option value="entrega">Problemas com a entrega</option>
-          <option value="pagamento">Pagamento e Estorno</option>
+          <option value="duvida" >Dúvidas gerais</option>
+          <option value="devolucao" class="pedidoOption">Troca ou Devolução</option>
+          <option value="entrega" class="pedidoOption">Problemas com a entrega</option>
+          <option value="pagamento" class="pedidoOption">Pagamento e Estorno</option>
         </select>
 
         <label for="descricao" class="sr-only">Descrição</label>
