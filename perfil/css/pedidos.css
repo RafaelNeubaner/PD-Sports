@@ -73,7 +73,9 @@ body.darkMode .pedidoCard {
   margin-top: 16px;
 }
 
-.statusBotoes button {
+.statusBotoes button, .statusBotoes a {
+  text-align: center;
+  text-decoration: none;
   width: 100%;
   padding: 8px 16px;
 }

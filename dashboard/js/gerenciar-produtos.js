@@ -1,4 +1,4 @@
-import { getProductsFilter } from "/js/products/useProducts.js";
+import { getProductsFilter } from "../../js/products/useProducts.js";
 
 // CARD ADM
 function criarCardProdutoAdmin(produto) {
@@ -89,15 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>`;
 
 
-      let produtos = await getProductsFilter(
-        termoBusca,
-        "", 
-        "", 
-        "", 
-        false,
-        "desc",
-      );
+      let produtos = await getProductsFilter({query: termoBusca});
 
+      console.log(produtos)
       containerLista.innerHTML = "";
 
       if (!produtos || produtos.length === 0) {
