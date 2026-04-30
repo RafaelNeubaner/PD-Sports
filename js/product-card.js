@@ -10,6 +10,13 @@ export function criarCardProduto(produto) {
       : "/assets/media/img/default.png";
   const temDesconto = produto.hasDiscount;
 
+  const formatarPreco = (valor) => {
+    return Number(valor).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
+  };
+
   return `
     <article class="slider-item">
     <a href="/produto/index.html?id=${produto.id}" class="linkCardProduto text-decoration-none" itemprop="item">
@@ -29,8 +36,12 @@ export function criarCardProduto(produto) {
 
         <div class="card-body">
           <h3 class="card-title font20 mb-2 cardTitle">${produto.name}</h3>
-          ${temDesconto ? `<p class="card-text preco-antigo txtMuted mb-0"><s>R$ ${produto.fullPrice.toFixed(2)}</s></p>` : ""}
-          <span class="subTitleCard txtDark" itemprop="price">R$ ${(temDesconto ? produto.price : produto.fullPrice).toFixed(2)} <sub>no PIX</sub></span>
+          
+          <!-- AJUSTE AQUI: Removido o R$ fixo e o toFixed(2), usando a nova função -->
+          ${temDesconto ? `<p class="card-text preco-antigo txtMuted mb-0"><s>${formatarPreco(produto.fullPrice)}</s></p>` : ""}
+          
+          <!-- AJUSTE AQUI: Removido o R$ fixo e o toFixed(2), usando a nova função -->
+          <span class="subTitleCard txtDark" itemprop="price">${formatarPreco(temDesconto ? produto.price : produto.fullPrice)} <sub>no PIX</sub></span>
         </div>
       </div>
       </a>
