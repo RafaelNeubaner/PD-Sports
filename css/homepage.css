@@ -728,6 +728,7 @@ body.darkMode .logoMarca {
 
 /* HOMEPAGE - NEWSLETTER */
 
+
 #newsletterSection .inputsSec input {
   background-color: var(--bg-light) !important;
   flex-grow: 1;
@@ -765,6 +766,10 @@ body.darkMode #newsletterSection .inputsSec input {
   accent-color: var(--secondary)
 }
 
+#newsletterSection input {
+  font-size: 1.2rem;
+}
+
 #newsletterSection h2,
 #newsletterSection label {
   font-size: 1.4rem;
@@ -774,4 +779,8 @@ body.darkMode #newsletterSection .inputsSec input {
   font-size: 2.4rem;
   font-weight: 800;
   color: var(--secondary);
+}
+
+#newsletterSection .btnOutline {
+  font-size: 1.4rem !important;
 }
