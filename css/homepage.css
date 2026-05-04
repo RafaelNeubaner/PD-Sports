@@ -228,7 +228,7 @@ main {
   background-color: transparent;
   color: var(--txt);
   border: none;
-
+  text-align: end;
   font-weight: 600;
   cursor: pointer;
   font-size: 1.2rem;
