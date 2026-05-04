@@ -17,20 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
   function simularDownloadNF(idPedido, valorTotal, nomeProduto) {
     const conteudoNF = `=========================================
           PD SPORTS - NOTA FISCAL        
-=========================================
-CNPJ: 00.000.000/0001-00
-Data da Emissão: ${new Date().toLocaleDateString("pt-BR")}
-Hora: ${new Date().toLocaleTimeString("pt-BR")}
------------------------------------------
-DADOS DO PEDIDO
-Número do Pedido: #${idPedido}
-Produto(s): ${nomeProduto}
------------------------------------------
-VALOR TOTAL: ${valorTotal}
-=========================================
-  Obrigado por comprar na PD Sports!
-  Desenvolvido por Pablo, Pedro e Rafael.
-=========================================`;
+          =========================================
+          CNPJ: 00.000.000/0001-00
+          Data da Emissão: ${new Date().toLocaleDateString("pt-BR")}
+          Hora: ${new Date().toLocaleTimeString("pt-BR")}
+          -----------------------------------------
+          DADOS DO PEDIDO
+          Número do Pedido: #${idPedido}
+          Produto(s): ${nomeProduto}
+          -----------------------------------------
+          VALOR TOTAL: ${valorTotal}
+          =========================================
+            Obrigado por comprar na PD Sports!
+            Desenvolvido por Pablo, Pedro e Rafael.
+          =========================================`;
 
     const blob = new Blob([conteudoNF], { type: "text/plain;charset=utf-8" });
     const urlDownload = window.URL.createObjectURL(blob);
