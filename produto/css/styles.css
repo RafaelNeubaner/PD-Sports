@@ -16,6 +16,8 @@ main{
 .secondaryImage, .principalImage{
     border-radius: 12px;
     box-shadow: 0 4px 4px #00000040;
+    background-color: var(--bg-light);
+    aspect-ratio: 1;
 }
 
 #productPhotos{
@@ -24,6 +26,7 @@ main{
 
 .principalImage{
     height: 60vh;
+    
 }
 
 .secondaryImage{

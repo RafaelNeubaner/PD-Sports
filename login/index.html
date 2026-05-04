@@ -61,14 +61,17 @@
           />
 
           <label for="login-password">Senha</label>
-          <input
-            id="login-password"
-            name="senha"
-            type="password"
-            placeholder="Digite sua senha"
-            autocomplete="current-password"
-            required
-          />
+          <div class="passwordWithEye d-flex flex-row align-items-center gap-2">
+            <input
+              id="login-password"
+              name="senha"
+              type="password"
+              placeholder="Digite sua senha"
+              autocomplete="current-password"
+              required
+            />
+            <i class="bi bi-eye-slash"></i>
+          </div>
           <div class="loginLinks">
             <a href="#" class="link subTitleCard" id="abrirModalTermos">Termos e Condições</a>
             <a href="#" class="link subTitleCard " id="abrirModalSenha">Esqueceu a senha?</a>

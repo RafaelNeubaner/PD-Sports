@@ -106,6 +106,17 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
+document.querySelectorAll(".passwordWithEye").forEach(passwordContainer=>passwordContainer.querySelector("i").addEventListener('click', ()=>{
+    passwordContainer.querySelector("i").classList.toggle("bi-eye-slash") 
+    passwordContainer.querySelector("i").classList.toggle("bi-eye") 
+
+    if(passwordContainer.querySelector("i").classList.contains("bi-eye")){
+    passwordContainer.querySelector("input").type="text"
+    }else{
+    passwordContainer.querySelector("input").type="password"
+    }
+}))
+
 
 formLogin.addEventListener("submit", async (event) => {
     event.preventDefault()

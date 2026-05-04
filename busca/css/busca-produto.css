@@ -154,6 +154,7 @@
 #gridProdutosBusca .card {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.8rem;
   padding: 1rem;
   background-color: transparent;
@@ -179,6 +180,8 @@ body.darkMode #gridProdutosBusca .card {
   object-fit: contain;
   height: 120px;
   width: 100%;
+  max-width: 115px;
+  background-color: var(--bg-light);
 }
 
 

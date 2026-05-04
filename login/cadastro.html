@@ -136,25 +136,31 @@
           <div class="formRows rowDate mb24">
             <fieldset>
               <label for="login-password">Criar Senha</label>
-              <input
-                id="login-password"
-                name="senha"
-                type="password"
-                placeholder="Crie sua senha"
-                autocomplete="current-password"
-                required
-              />
+              <div class="passwordWithEye d-flex flex-row align-items-center gap-2">
+                <input
+                  id="login-password"
+                  name="senha"
+                  type="password"
+                  placeholder="Crie sua senha"
+                  autocomplete="current-password"
+                  required
+                />
+               <i class="bi bi-eye-slash"></i>
+              </div>
             </fieldset>
             <fieldset>
               <label for="login-confirm-password">Confirmar Senha</label>
-              <input
-                id="login-confirm-password"
-                name="senha"
-                type="password"
-                placeholder="Digite sua senha novamente"
-                autocomplete="current-password"
-                required
-              />
+                <div class="passwordWithEye d-flex flex-row align-items-center gap-2">
+                  <input
+                    id="login-confirm-password"
+                    name="senha"
+                    type="password"
+                    placeholder="Digite sua senha novamente"
+                    autocomplete="current-password"
+                    required
+                  />
+                  <i class="bi bi-eye-slash"></i>
+                </div>
             </fieldset>
           </div>
           <div class="passwordRequirements bg" id="passwordRequirements" style="display: none;">
