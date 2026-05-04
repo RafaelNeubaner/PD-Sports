@@ -4,10 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const conteudos = document.querySelectorAll('main > section');
 
     // Sempre inicia na aba de desempenho ao carregar a página.
-    const telaInicial = '#dashboard';
-    if (document.location.hash !== telaInicial) {
-        history.replaceState(null, '', telaInicial);
-    }
+    
 
     function ocultarTodasAsTelas() {
         console.log("limpou")
@@ -38,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (linkAtivo) {
             linkAtivo.classList.add('active');
         }
+        document.location.hash = idTela
     }
 
     linksMenu.forEach(link => {
@@ -48,5 +46,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    navegarPara(telaInicial)
 });

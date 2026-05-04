@@ -164,7 +164,7 @@ body.darkMode .themeToggle:hover {
 
 .btnOutline {
     background-color: transparent;
-    color: var(--primary);
+    color: var(--tertiary);
     border: 3px solid var(--secondary);
     padding: 8px 22px;
     border-radius: 12px;
@@ -317,6 +317,7 @@ input.form-control {
     outline: none;
     background-color: transparent !important;
     color: var(--txt) !important;
+    font-size: 1.2rem;
 }
 
 input::placeholder,

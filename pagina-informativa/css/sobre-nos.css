@@ -1,3 +1,6 @@
+main {
+  gap: 6.4rem;
+}
 
 main > section:not(.heros) {
     padding: 10px 40px;
@@ -137,7 +140,7 @@ main > section:not(.heros) {
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  gap: 1.2rem;
+  gap: 2.4rem;
   width: 100%;
 }
 
@@ -172,17 +175,25 @@ body.darkMode .logoMarca {
 }
 
 @media (min-width: 992px) {
+
   .marcas .containerMarcas {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 1rem;
   }
+  
 
   .marcas .logoMarca {
     height: 60px;
     width: 180px;
   }
+}
+.pdsportsSection {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2.4rem;
 }
 
 .pdsportsSection .cardMissao{

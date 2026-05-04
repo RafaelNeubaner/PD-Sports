@@ -228,7 +228,7 @@ main {
   background-color: transparent;
   color: var(--txt);
   border: none;
-
+  text-align: end;
   font-weight: 600;
   cursor: pointer;
   font-size: 1.2rem;
@@ -237,6 +237,11 @@ main {
 .ofertas hgroup .vejaMais i,
 .maisVendidos hgroup .vejaMais i {
   font-size: 1.6rem;
+}
+
+.ofertas hgroup a{
+  flex-grow: 1;
+  min-width: 100px;
 }
 
 .ofertas .card,
@@ -263,7 +268,11 @@ body.darkMode .maisVendidos .card {
 .ofertas .cardImgProduto,
 .maisVendidos .cardImgProduto {
   object-fit: contain;
-  height: 120px;
+  height: 115px;
+  max-width: 110px;
+  margin: 0 auto;
+  width: 100%;
+  background-color: var(--bg-light);
 }
 
 .ofertas .card .card-body,
@@ -276,7 +285,7 @@ body.darkMode .maisVendidos .card {
 }
 
 .badge {
-  background-color: #9900007e;
+  background-color: #990000;
   color: var(--txt);
   font-size: 1.2rem;
   width: fit-content;
@@ -719,6 +728,7 @@ body.darkMode .logoMarca {
 
 /* HOMEPAGE - NEWSLETTER */
 
+
 #newsletterSection .inputsSec input {
   background-color: var(--bg-light) !important;
   flex-grow: 1;
@@ -756,13 +766,21 @@ body.darkMode #newsletterSection .inputsSec input {
   accent-color: var(--secondary)
 }
 
+#newsletterSection input {
+  font-size: 1.2rem;
+}
+
 #newsletterSection h2,
 #newsletterSection label {
-  font-size: 12px;
+  font-size: 1.4rem;
 }
 
 #newsletterSection h2 {
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 800;
   color: var(--secondary);
+}
+
+#newsletterSection .btnOutline {
+  font-size: 1.4rem !important;
 }

@@ -257,7 +257,7 @@ const produtosFutebol = [
         "category": "Futebol"
     },
     {
-        "name": "Chuteira Campo Adidas Predator Accuracy.3",
+        "name": "Chuteira Campo Adidas Predator Accuracy 3",
         "fullPrice": 499.90,
         "price": 429.90,
         "discountPercentage": 14,

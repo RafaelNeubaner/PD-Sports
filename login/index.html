@@ -50,43 +50,28 @@
         <h1 class="mainTitle textCenter">Entre na sua conta</h1>
 
         <form class="login-form" autocomplete="on">
-          <label class="txtInvisible" for="login-user">CPF ou Email</label>
+          <label for="login-user">Email</label>
           <input
             id="login-user"
             name="usuario"
             type="text"
-            placeholder="Email"
+            placeholder="exemplo@email.com"
             autocomplete="username"
             required
           />
 
-          <label class="txtInvisible" for="login-password">Senha</label>
-          <input
-            id="login-password"
-            name="senha"
-            type="password"
-            placeholder="Senha"
-            autocomplete="current-password"
-            required
-          />
-          <div class="passwordRequirements" id="passwordRequirements" style="display: none;">
-            <p class="requirement" data-requirement="minLength">
-              <i class="bi bi-circle"></i> Mínimo 8 caracteres
-            </p>
-            <p class="requirement" data-requirement="uppercase">
-              <i class="bi bi-circle"></i> Pelo menos uma letra maiúscula
-            </p>
-            <p class="requirement" data-requirement="lowercase">
-              <i class="bi bi-circle"></i> Pelo menos uma letra minúscula
-            </p>
-            <p class="requirement" data-requirement="number">
-              <i class="bi bi-circle"></i> Pelo menos um número
-            </p>
-            <p class="requirement" data-requirement="special">
-              <i class="bi bi-circle"></i> Pelo menos um caractere especial (!@#$%^&*)
-            </p>
+          <label for="login-password">Senha</label>
+          <div class="passwordWithEye d-flex flex-row align-items-center gap-2">
+            <input
+              id="login-password"
+              name="senha"
+              type="password"
+              placeholder="Digite sua senha"
+              autocomplete="current-password"
+              required
+            />
+            <i class="bi bi-eye-slash"></i>
           </div>
-
           <div class="loginLinks">
             <a href="#" class="link subTitleCard" id="abrirModalTermos">Termos e Condições</a>
             <a href="#" class="link subTitleCard " id="abrirModalSenha">Esqueceu a senha?</a>

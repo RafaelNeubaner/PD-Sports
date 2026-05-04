@@ -195,5 +195,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  navegarPara("#dashboard");
+  const pages = ["#dashboard", "#gerenciarProdutos"]
+    var telaInicial = '#dashboard';
+    if (pages.includes(document.location.hash)) {
+        telaInicial = document.location.hash
+    }
+  navegarPara(telaInicial);
 });

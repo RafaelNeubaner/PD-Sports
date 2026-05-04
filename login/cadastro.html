@@ -51,91 +51,117 @@
           />
         </a>
 
-        <h1 class="mainTitle textCenter mb24">Registre-se</h1>
+        <h1 class="mainTitle textCenter">Registre-se</h1>
 
         <form class="regForm" autocomplete="on">
           <div class="formRows">
-            <label class="txtInvisible" for="login-user"></label>
-            <input
-              id="login-user"
-              name="usuario"
-              type="text"
-              placeholder="Email"
-              autocomplete="email"
-              required
-            />
-
-            <label class="txtInvisible" for="login-phone"></label>
-            <input
-              id="login-phone"
-              name="phone"
-              type="tel"
-              oninput="mascaraTelefone(this)"
-              placeholder="Telefone"
-              autocomplete="tel"
-              required
-            />
-          </div>
-          <div class="formRows">
-            <label class="txtInvisible" for="login-cpf"></label>
-            <input
-              id="login-cpf"
-              name="cpf"
-              type="text"
-              oninput="mascaraCPF(this)"
-              placeholder="CPF"
-              required
-            />
-
-            <label class="txtInvisible" for="login-bday"></label>
-            <input
-              id="login-bday"
-              name="usuario"
-              type="date"
-              placeholder="Data de Nascimento"
-              autocomplete="bday"
-              required
-            />
-          </div>
-          <div class="formRows">
-            <label class="txtInvisible" for="login-name"></label>
-            <input
+            <fieldset>
+              <label for="login-name">Nome</label>
+              <input
               id="login-name"
               name="firstname"
               type="text"
-              placeholder="Nome"
+              placeholder="Primeiro nome"
               autocomplete="username"
               required
-            />
-
-            <input
-              id="login-lastname"
-              name="lastname"
-              type="text"
-              placeholder="Sobrenome"
-              autocomplete="username"
-              required
-            />
+              />
+            </fieldset>
+            
+            <fieldset>
+              <label for="login-lastname">Sobrenome</label>
+              <input
+                id="login-lastname"
+                name="lastname"
+                type="text"
+                placeholder="Sobrenome"
+                autocomplete="username"
+                required
+              />
+            </fieldset>
           </div>
+          
+          <div class="formRows">
+            <fieldset>
+              <label for="login-cpf">CPF</label>
+              <input
+                id="login-cpf"
+                name="cpf"
+                type="text"
+                oninput="mascaraCPF(this)"
+                placeholder="000.000.000-00"
+                required
+              />
+            </fieldset>
+
+            <fieldset>
+              <label for="login-bday">Data de Nascimento</label>
+              <input
+                id="login-bday"
+                name="usuario"
+                type="date"
+                placeholder="Data de Nascimento"
+                autocomplete="bday"
+                required
+              />
+            </fieldset>
+          </div>
+
+          <div class="formRows">
+            <fieldset>
+              <label for="login-user">E-mail</label>
+              <input
+                id="login-user"
+                name="usuario"
+                type="text"
+                placeholder="exemplo@email.com"
+                autocomplete="email"
+                required
+              />
+            </fieldset>
+
+            <fieldset>
+              <label for="login-phone">Telefone</label>
+              <input
+                id="login-phone"
+                name="phone"
+                type="tel"
+                oninput="mascaraTelefone(this)"
+                placeholder="(00) 00000-0000"
+                autocomplete="tel"
+                required
+              />
+            </fieldset>
+          </div>
+          
           <div class="formRows rowDate mb24">
-            <label class="txtInvisible" for="login-password"></label>
-            <input
-              id="login-password"
-              name="senha"
-              type="password"
-              placeholder="Senha"
-              autocomplete="current-password"
-              required
-            />
-            <label class="txtInvisible" for="login-confirm-password"></label>
-            <input
-              id="login-confirm-password"
-              name="senha"
-              type="password"
-              placeholder="Confirmar Senha"
-              autocomplete="current-password"
-              required
-            />
+            <fieldset>
+              <label for="login-password">Criar Senha</label>
+              <div class="passwordWithEye d-flex flex-row align-items-center gap-2">
+                <input
+                  id="login-password"
+                  name="senha"
+                  type="password"
+                  placeholder="Crie sua senha"
+                  autocomplete="current-password"
+                  required
+                />
+               <i class="bi bi-eye-slash"></i>
+              </div>
+            </fieldset>
+            <fieldset>
+              <label for="login-confirm-password">Confirmar Senha</label>
+                <div class="passwordWithEye d-flex flex-row align-items-center gap-2">
+                  <input
+                    id="login-confirm-password"
+                    name="senha"
+                    type="password"
+                    placeholder="Digite sua senha novamente"
+                    autocomplete="current-password"
+                    required
+                  />
+                  <i class="bi bi-eye-slash"></i>
+                </div>
+            </fieldset>
           </div>
           <div class="passwordRequirements bg" id="passwordRequirements" style="display: none;">
             <p class="requirement" data-requirement="minLength">

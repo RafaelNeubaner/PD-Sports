@@ -21,7 +21,7 @@
     width: 100%;
 }
 
-.slider-wrapper {
+.sliderWrapper {
     overflow-x: auto;
     scroll-behavior: smooth;
     scrollbar-width: none;
@@ -30,19 +30,19 @@
 }
 
 
-.slider-wrapper::-webkit-scrollbar {
+.sliderWrapper::-webkit-scrollbar {
     display: none;
 }
 
 
-.slider-track {
+.sliderTrack {
     display: flex;
     gap: 1.6rem;
     padding: 0.8rem;
 }
 
 
-.slider-item {
+.sliderItem {
     flex: 0 0 calc(50% - 0.8rem);
     max-width: 300px;
 }
@@ -99,6 +99,7 @@ body.darkMode .maisVendidos .card {
 .maisVendidos .cardImgProduto {
     object-fit: contain;
     height: 120px;
+    background-color: var(--bg-light);
 }
 
 .ofertas .card .card-body,
@@ -111,7 +112,7 @@ body.darkMode .maisVendidos .card {
 }
 
 .badge {
-    background-color: #9900007e;
+    background-color: #990000;
     color: var(--txt);
     font-size: 1.2rem;
     width: fit-content;

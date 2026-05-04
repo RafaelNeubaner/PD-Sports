@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               </div>
           `;
       if (atendimentoList.length === 0) {
-        containerAtendimentos.innerHTML = `<p class="text-center text-muted py-5">Você não possui chamados em aberto.</p>`;
+        containerAtendimentos.innerHTML = `<p class="text-center txtMuted py-5">Você não possui chamados em aberto.</p>`;
         return;
       }
 
