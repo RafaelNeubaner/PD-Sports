@@ -124,6 +124,10 @@ button {
     width: fit-content;
 }
 
+#formFrete input {
+    font-size: 1.2em !important ;
+}
+
 /* INFO PRODUTO */
 .containerProduct {
     display: flex;
