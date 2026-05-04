@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         corFundo: "#c10000",
       },
       {
-        idProduto: "1.3",
+        idProduto: "22.1",
         imagem: "/assets/media/images/marcas/umbro/card-umbro-3.png",
         titulo: "Conheça a Umbro PRO 5 Stable",
         corFundo: "#240746",
