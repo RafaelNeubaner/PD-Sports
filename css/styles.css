@@ -400,3 +400,7 @@ select {
         font-weight: 600;
     }
 }
+
+.card {
+    padding-top: 35px!important;
+}
