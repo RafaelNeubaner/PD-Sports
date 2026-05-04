@@ -215,6 +215,21 @@ hgroup h2 {
     border-radius: 4px;
 }
 
+.passwordWithEye{
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.passwordWithEye input{
+    padding: 0;
+    margin: 0;
+}
+
+.passwordWithEye i {
+  font-size: 20px;
+  cursor: pointer;
+}
+
 .requirement {
     font-size: 12px;
     color: var(--txtMuted);
