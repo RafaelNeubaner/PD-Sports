@@ -24,7 +24,7 @@ export function criarCardProduto(produto) {
         ${
           temDesconto
             ? `
-          <span class="badge text-badge position-absolute top-0 start-0 m-1">
+          <span class="badge text-badge position-absolute top-0  m-1 start-0">
             <img src="/assets/media/icons/icone-desconto.svg" class="icone-badge" alt="icone desconto"> 
             -${Math.round(produto.discountPercentage)}%
           </span>

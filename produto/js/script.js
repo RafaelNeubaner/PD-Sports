@@ -343,9 +343,9 @@ if (specs && specsGrid) {
         col.className = 'col-6 col-md-4 col-lg-3';
 
         col.innerHTML = `
-            <div class="spec-item">
-                <span class="spec-label">${chave}</span>
-                <span class="spec-value">${valor}</span>
+            <div class="specItem">
+                <span class="specLabel">${chave}</span>
+                <span class="specValue">${valor}</span>
             </div>
         `;
 
