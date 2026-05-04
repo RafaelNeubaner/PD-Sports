@@ -268,7 +268,9 @@ body.darkMode .maisVendidos .card {
 .ofertas .cardImgProduto,
 .maisVendidos .cardImgProduto {
   object-fit: contain;
-  height: 120px;
+  height: 115px;
+  max-width: 110px;
+  margin: 0 auto;
 }
 
 .ofertas .card .card-body,
