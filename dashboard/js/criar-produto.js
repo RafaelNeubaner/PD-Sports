@@ -247,7 +247,7 @@ async function validadeForm(){
         name: nameProduct,
         price: discountPrice || price,
         fullPrice: price,
-        discountPercentage: discountPrice ?  Math.ceil(discountPrice/price * 100) : null,
+        discountPercentage: discountPrice ?  Math.abs(1 - Math.ceil(discountPrice/price * 100)) : null,
         qtSales: Math.random *5000,
         hasDiscount: discountPrice ? true : false,
         brand: brandProduct,
