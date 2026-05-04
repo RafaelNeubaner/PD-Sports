@@ -170,7 +170,7 @@ body.darkMode .btn-excluir {
   form {
     display: flex;
     flex-direction: column;
-    gap: 2.4rem;
+    background-color: var(--bg);
   }
 }
 
@@ -283,6 +283,7 @@ body.darkMode .btn-excluir {
 .modal-header {
   position: relative;
   background-color: var(--bg)!important;
+  border-radius: 0;
 }
 #editarProduto .modal-header,
 #editarProduto .modal-footer {

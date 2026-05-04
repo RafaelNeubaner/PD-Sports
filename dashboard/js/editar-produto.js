@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
       name: nameProduct,
       price: discountPrice || price,
       fullPrice: price,
-      discountPercentage: discountPrice ? Math.ceil(100 - (discountPrice / price) * 100) : 0,
+      discountPercentage: discountPrice ? Math.abs(1 - Math.ceil(100 - (discountPrice / price) * 100)) : 0,
       qtSales: Math.random() * 5000,
       hasDiscount: discountPrice ? true : false,
       brand: brandProduct,
