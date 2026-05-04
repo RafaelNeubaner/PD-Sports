@@ -148,7 +148,7 @@ button{
 }
 
 /* Item de Especificação Individual */
-.spec-item {
+.specItem {
   background-color: var(--branco-cinzento);
   border-radius: 10px;
   padding: 15px;
@@ -157,40 +157,40 @@ button{
   border: 1px solid transparent;
 }
 
-.spec-item:hover {
+.specItem:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   border-color: var(--primary);
 }
 
 /* Rótulo (ex: Peso, Material) */
-.spec-label {
+.specLabel {
   display: block;
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--txtMuted);
   margin-bottom: 4px;
 }
 
 /* Valor (ex: 300g, Couro) */
-.spec-value {
+.specValue {
   display: block;
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--txtDark);
 }
 
 /* --- SUPORTE PARA DARK MODE --- */
-body.darkMode .spec-item {
+body.darkMode .specItem {
   background-color: var(--preto-fosco);
   border: 1px solid var(--cinza);
 }
 
-body.darkMode .spec-value {
+body.darkMode .specValue {
   color: var(--txtLight);
 }
 
-body.darkMode .spec-label {
+body.darkMode .specLabel {
   color: var(--txtMuted);
 }
 
