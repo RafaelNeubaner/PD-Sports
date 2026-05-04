@@ -1,5 +1,5 @@
 
-// 1. SINCRONIZAR CHECKBOXES  URL
+// SINCRONIZAR CHECKBOXES  URL
 
 export function sincronizarCheckboxes(params) {
 
@@ -24,8 +24,7 @@ export function sincronizarCheckboxes(params) {
   });
 }
 
-
-// EVENTOS DA BARRA LATERAL
+//  FILTRO DE ORDENAÇÃO
 
 export function iniciarFiltrosLateral(callbackAtualizarVitrine) {
   
