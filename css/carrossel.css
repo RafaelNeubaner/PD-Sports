@@ -21,7 +21,7 @@
     width: 100%;
 }
 
-.slider-wrapper {
+.sliderWrapper {
     overflow-x: auto;
     scroll-behavior: smooth;
     scrollbar-width: none;
@@ -30,19 +30,19 @@
 }
 
 
-.slider-wrapper::-webkit-scrollbar {
+.sliderWrapper::-webkit-scrollbar {
     display: none;
 }
 
 
-.slider-track {
+.sliderTrack {
     display: flex;
     gap: 1.6rem;
     padding: 0.8rem;
 }
 
 
-.slider-item {
+.sliderItem {
     flex: 0 0 calc(50% - 0.8rem);
     max-width: 300px;
 }
