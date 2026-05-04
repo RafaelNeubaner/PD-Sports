@@ -14,6 +14,37 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
   }
 
+  function simularDownloadNF(idPedido, valorTotal, nomeProduto) {
+    const conteudoNF = `=========================================
+          PD SPORTS - NOTA FISCAL        
+=========================================
+CNPJ: 00.000.000/0001-00
+Data da Emissão: ${new Date().toLocaleDateString("pt-BR")}
+Hora: ${new Date().toLocaleTimeString("pt-BR")}
+-----------------------------------------
+DADOS DO PEDIDO
+Número do Pedido: #${idPedido}
+Produto(s): ${nomeProduto}
+-----------------------------------------
+VALOR TOTAL: ${valorTotal}
+=========================================
+  Obrigado por comprar na PD Sports!
+  Desenvolvido por Pablo, Pedro e Rafael.
+=========================================`;
+
+    const blob = new Blob([conteudoNF], { type: "text/plain;charset=utf-8" });
+    const urlDownload = window.URL.createObjectURL(blob);
+    const linkInvisivel = document.createElement("a");
+
+    linkInvisivel.href = urlDownload;
+    linkInvisivel.download = `Nota_Fiscal_Pedido_${idPedido}.txt`;
+
+    document.body.appendChild(linkInvisivel);
+    linkInvisivel.click();
+    document.body.removeChild(linkInvisivel);
+    window.URL.revokeObjectURL(urlDownload);
+  }
+
   try {
     containerPedidos.innerHTML = `
             <div class="text-center py-5">
@@ -49,16 +80,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const itens = pedido.itens || [];
 
       let imgProduto = "/assets/media/img/default.png";
-      let nomeProduto = "Pedido Vazio";
+      let nomeProdutoHtml = "Pedido Vazio";
+      let nomeProdutoTextoNF = "Pedido Vazio";
       let idParaRedirecionar = "";
 
       if (itens.length > 0) {
         imgProduto = itens[0].img;
-        nomeProduto = itens[0].nome;
+        nomeProdutoHtml = itens[0].nome;
+        nomeProdutoTextoNF = itens[0].nome;
         idParaRedirecionar = itens[0].id;
 
         if (itens.length > 1) {
-          nomeProduto += ` <br><small class="text-muted">e mais ${itens.length - 1} item(ns)</small>`;
+          nomeProdutoHtml += ` <br><small class="text-muted">e mais ${itens.length - 1} item(ns)</small>`;
+          nomeProdutoTextoNF += ` e mais ${itens.length - 1} item(ns)`;
         }
       }
 
@@ -66,13 +100,15 @@ document.addEventListener("DOMContentLoaded", () => {
         ? `/produto/index.html?id=${idParaRedirecionar}`
         : `/index.html`;
 
+      const valorFormatado = `R$ ${Number(valorTotal).toFixed(2).replace(".", ",")}`;
+
       const cardHTML = `
                 <article class="pedidoCard">
                     <div class="pedidoCol colProduto">
                         <figure class="produtoImagemWrapper">
                             <img src="${imgProduto}" alt="Produto do Pedido" class="produtoImagem">
                         </figure>
-                        <figcaption class="produtoNome">${nomeProduto}</figcaption>
+                        <figcaption class="produtoNome">${nomeProdutoHtml}</figcaption>
                     </div>
 
                     <div class="pedidoCol colStatus">
@@ -82,7 +118,13 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <button type="button" class="btnOutline btnTrocarDevolver">Trocar ou devolver</button>
                                 <a href="/perfil/atendimentos.html?id=${idExibicao}#new" class="btnOutline">Abrir atendimento</a>
                             </div>
-                            <button class="btnOutline">Baixar nota fiscal</button>
+                            <!-- A MÁGICA ESTÁ AQUI: Adicionamos a classe btnBaixarNF e os data-attributes -->
+                            <button type="button" class="btnOutline btnBaixarNF" 
+                                data-id="${idExibicao}" 
+                                data-valor="${valorFormatado}" 
+                                data-produto="${nomeProdutoTextoNF}">
+                                Baixar nota fiscal
+                            </button>
                         </div>
                     </div>
 
@@ -92,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <ul class="resumoLista">
                                 <li>Pedido: <span>#${idExibicao}</span></li>
                                 <li>Data do pedido: <span>${new Date(dataPedido).toLocaleDateString("pt-BR")}</span></li>
-                                <li>Valor total: <span class="destaqueValor">R$ ${Number(valorTotal).toFixed(2).replace(".", ",")}</span></li>
+                                <li>Valor total: <span class="destaqueValor">${valorFormatado}</span></li>
                                 <li>Pagamento: <span>${formaPagamento}</span></li>
                                 <li>CEP de Entrega: <span>${cepEntrega}</span></li>
                             </ul>
@@ -106,6 +148,18 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
       containerPedidos.innerHTML += cardHTML;
     }
+
+    containerPedidos.addEventListener("click", (event) => {
+      const botaoNF = event.target.closest(".btnBaixarNF");
+
+      if (botaoNF) {
+        const id = botaoNF.getAttribute("data-id");
+        const valor = botaoNF.getAttribute("data-valor");
+        const produto = botaoNF.getAttribute("data-produto");
+
+        simularDownloadNF(id, valor, produto);
+      }
+    });
 
     const modalTrocaDevolucao = document.querySelector(".modalTrocaDevolucao");
     const abrirModalButtons = document.querySelectorAll(".btnTrocarDevolver");
