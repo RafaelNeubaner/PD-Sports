@@ -91,7 +91,7 @@ async function carregarVitrine() {
       produtosFiltrados = produtosFiltrados.sort(() => 0.5 - Math.random());
     }
 
-    // 3. FILTROS ASIDE/GERAIS
+    // FILTROS ASIDE/GERAIS
     if (categorias.includes("esportes")) {
       titulosParaOHeader.push("Todas as Modalidades");
       const categoriasVistas = new Set();

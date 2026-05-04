@@ -23,15 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const produtoDestaques = {
     umbro: [
       {
-        idProduto: "2.5",
+        idProduto: "76.2",
         imagem: "/assets/media/images/marcas/umbro/card-umbro-1.png",
         titulo: "Umbro Adamant Master<br><small>Class Pro Kintsugi</small>",
         corFundo: "#145c8f",
       },
       {
-        idProduto: "1.2",
+        idProduto: "77.2",
         imagem: "/assets/media/images/marcas/umbro/card-umbro-2.png",
-        titulo: "Camisa England 1998 com 30% OFF",
+        titulo: "Camisa Umbro Seleção Inglaterra <br><small>Retrô Home 1998</small>",
         corFundo: "#c10000",
       },
       {
@@ -43,19 +43,19 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
     nike: [
       {
-        idProduto: "2.5",
+        idProduto: "52.2",
         imagem: "/assets/media/images/marcas/nike/card-nike-1.png",
         titulo: "Air Jordan 5 Retro OG <br><small>White Metallic</small>",
         corFundo: "#0d0f14",
       },
       {
-        idProduto: "1.2",
+        idProduto: "53.2",
         imagem: "/assets/media/images/marcas/nike/card-nike-2.png",
         titulo: "Conheça o Nike Pegasus 42",
         corFundo: "#9c1521",
       },
       {
-        idProduto: "1.3",
+        idProduto: "54.2",
         imagem: "/assets/media/images/marcas/nike/card-nike-3.png",
         titulo: "Camisa do Galo Nike II 26/27 <br><small>Torcedor Pro</small>",
         corFundo: "#080c14",
@@ -63,19 +63,19 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
     adidas: [
       {
-        idProduto: "2.5",
+        idProduto: "62.2",
         imagem: "/assets/media/images/marcas/adidas/card-adidas-1.png",
         titulo: "Camisa I Real Madrid 25/26<br><small>Versão Jogador </small>",
         corFundo: "#ad8820"
       },
       {
-        idProduto: "1.2",
+        idProduto: "63.2",
         imagem: "/assets/media/images/marcas/adidas/card-adidas-2.png",
         titulo: "Adizero Drive RC M",
         corFundo:  "#ca4a17e3"
       },
       {
-        idProduto: "1.3",
+        idProduto: "64.2",
         imagem: "/assets/media/images/home/categoria-destaque-1.png",
         titulo: "Conheça a Bola Adidas Trionda Pro<br><small>Copa do Mundo da FIFA 26™</small>",
         corFundo: "#1a6dbbbd"
@@ -83,19 +83,19 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
     puma: [
       {
-        idProduto: "2.5",
+        idProduto: "58.2",
         imagem: "/assets/media/images/marcas/puma/card-puma-1.png",
         titulo: "Tênis de Corrida Feminino<br><small>MagMax NITRO™ 2</small>",
         corFundo: "#145c8f",
       },
       {
-        idProduto: "1.2",
+        idProduto: "59.2",
         imagem: "/assets/media/images/marcas/puma/card-puma-2.png",
         titulo: "Jaqueta BMW M Masculina<br><small>Motorsport Garage Crew</small>",
         corFundo: "#c10000",
       },
       {
-        idProduto: "1.3",
+        idProduto: "60.2",
         imagem: "/assets/media/images/marcas/puma/card-puma-3.png",
         titulo: "Camiseta Mclaren Masculina<br><small>Racing Graphic</small>",
         corFundo: "#c9621d",
@@ -103,48 +103,50 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
     underarmour: [
       {
-        idProduto: "2.5",
+        idProduto: "72.2",
         imagem: "/assets/media/images/marcas/underarmour/card-underarmour-1.png",
         titulo: "Tênis de Corrida Under Armour <br><small>Charged Wing 2 </small>",
         corFundo: "#336991c5",
       },
       {
-        idProduto: "1.2",
+        idProduto: "73.2",
         imagem: "/assets/media/images/marcas/underarmour/card-underarmour-2.png",
-        titulo: "Camisa England 1998 com 30% OFF",
+        titulo: "Tênis de Corrida Under Armour <br><small>Velociti Distance</small>",
         corFundo: "#ad5820",
       },
       {
-        idProduto: "1.3",
+        idProduto: "74.2",
         imagem: "/assets/media/images/marcas/underarmour/card-underarmour-3.png",
-        titulo: "Bota Militar Under Armour Charged Valsetz",
+        titulo: "Bota Militar Under Armour <br><small>Charged Valsetz</small>",
         corFundo: "#2f6394",
       },
     ],
     newbalance: [
       {
-        idProduto: "2.5",
-        imagem: "/assets/media/images/marcas/umbro/card-umbro-1.png",
-        titulo: "Umbro Adamant Master<br><small>Class Pro Kintsugi</small>",
-        corFundo: "#1B628E",
+        idProduto: "68.2",
+        imagem: "/assets/media/images/marcas/newbalance/card-newbalance-1.png",
+        titulo: "Tênis New Balance Masculino<br><small>Nb Numeric 440 V2</small>",
+        corFundo: "#8e451b"
+        
       },
       {
-        idProduto: "1.2",
-        imagem: "/assets/media/images/marcas/umbro/card-umbro-2.png",
-        titulo: "Camisa England 1998 com 30% OFF",
-        corFundo: "#B90504",
+        idProduto: "69.2",
+        imagem: "/assets/media/images/marcas/newbalance/card-newbalance-2.png",
+        titulo: "Jaqueta New Balance Masculina<br><small>Numeric Archive </small>",
+        corFundo: "#1b3f5c"
+        
       },
       {
-        idProduto: "1.3",
-        imagem: "/assets/media/images/marcas/umbro/card-umbro-3.png",
-        titulo: "Conheça a Umbro PRO 5 Stable",
-        corFundo: "#1B0737",
+        idProduto: "70.2",
+        imagem: "/assets/media/images/marcas/newbalance/card-newbalance-3.png",
+        titulo: "Tênis New Balance Arishiv4 Feminino<br><small>Tecnologia Fresh Foam</small>",
+        corFundo: "#11104bda"
       },
     ],
   };
 
   // ESTRUTURA PRODUTOS EM DESTAQUE
-  function renderizarDestaquesCurados(listaDestaques) {
+  function renderizarDestaques(listaDestaques) {
     if (!containerDestaques || !listaDestaques) return;
 
     let htmlDesktop = `<div class="d-none d-md-flex w-100 marcaDestaque">`;
@@ -191,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
     containerDestaques.innerHTML = htmlDesktop + htmlMobile;
   }
 
-  renderizarDestaquesCurados(produtoDestaques[keyMarca]);
+  renderizarDestaques(produtoDestaques[keyMarca]);
 
   // CARROSEL OFERTAS
   async function renderizarOfertasDaMarca() {
@@ -233,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sliderTrack.innerHTML = "";
 
       if (ofertasDaMarca.length === 0) {
-        sliderTrack.innerHTML = `<p class="text-muted py-3 px-4">No momento não temos produtos da ${marcaAtual} em oferta.</p>`;
+        sliderTrack.innerHTML = `<p class="textMuted py-3 px-4">No momento não temos produtos da ${marcaAtual} em oferta.</p>`;
         return;
       }
 

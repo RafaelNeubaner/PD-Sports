@@ -248,9 +248,9 @@ body.darkMode .specLabel {
     color: #767676;
 }
 
-@media (max-width: 1024px) and (min-width: 992px){
+@media (max-width: 1100px) and (min-width: 992px){
     .principalImage {
-        width: 680px;
+        max-width: 550px;
     }
 }
 

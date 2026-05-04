@@ -43,17 +43,31 @@ h1 {
 }
 
 .logo {
-	width: 210px;
+	width: 168px;
 	max-width: 100%;
 	height: auto;
 	margin-bottom: 56px;
 	filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.2));
 }
 
+.regForm fieldset {
+    width: 100%;
+}
+
+
 .login-form {
 	width: 100%;
     max-width: 560px;
     text-align: center;
+}
+
+.login-form label, .regForm label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.4rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary);
 }
 
 .login-form input {
@@ -63,27 +77,28 @@ h1 {
 	background: transparent;
 	color: var(--txt);
 	margin-bottom: 24px;
+    font-size: 1.2rem;
     
 }
 
 .regForm {
-	width: 100%;
+    width: 100%;
     max-width: 560px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 1.2rem;
 }
 
 .regForm input {
-	width: 100%;
+    width: 100%;
 	height: 50px;
 	border: 2px solid var(--branco-cinzento);
 	background: transparent;
 	color: var(--txt);
-	margin-bottom: 12px;
+    font-size: 1.2rem;
 }
 
 .loginLinks {
@@ -279,7 +294,7 @@ hgroup h2 {
 
 .formRows {
     display: flex;
-    gap: 12px;
+    gap: 1.2rem;
     width: 100%;
 }
 
